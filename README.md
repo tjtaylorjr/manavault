@@ -32,14 +32,24 @@
 
 ### MVP
 
+- Browse for cards throughout the history of Magic
+- Build decks
+- Rate and comment on the creations of other users
 ---
 
 ### Bonus Features
-
+- Statistical analysis of your deck composition
+- Hand drawing algorithm
+- Track your collection
+- Dark Mode
 ---
 <div align="center">
   <h2>Wireframes</h2>
 </div>
+
+![Register](https://user-images.githubusercontent.com/62177226/103712090-e8825680-4f86-11eb-9fcc-2c59820c239c.JPG)
+![Login](https://user-images.githubusercontent.com/62177226/103712100-ee783780-4f86-11eb-9786-f227fd3eeb9b.JPG)
+![Main](https://user-images.githubusercontent.com/62177226/103712106-f46e1880-4f86-11eb-8293-5a43fd26ee2a.JPG)
 
 ---
 <div align="center">

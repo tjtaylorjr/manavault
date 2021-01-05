@@ -20,10 +20,10 @@
 
 
 - [Features](#features)
-- [Wireframes] (#wireframes)
+- [Wireframes](#wireframes)
 - [Schema](#schema)
-- [Routes] (#routes)
-- [Components] (#components)
+- [Routes](#routes)
+- [Components](#components)
 - [Technologies and Packages](#technologies-and-packages)
 ---
 <div align="center">
@@ -38,7 +38,7 @@
 
 ---
 <div align="center">
-  <h2>wireframes</h2>
+  <h2>Wireframes</h2>
 </div>
 
 ---
@@ -53,7 +53,7 @@
 
 ---
 <div align="center">
-  <h2>components</h2>
+  <h2>Components</h2>
 </div>
 
 ---

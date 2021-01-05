@@ -20,44 +20,45 @@
 
 
 - [Features](#features)
+- [Wireframes] (#wireframes)
+- [Schema](#schema)
+- [Routes] (#routes)
+- [Components] (#components)
 - [Technologies and Packages](#technologies-and-packages)
-- [Schema](#Schema)
-- [Routes] (#Routes)
-- [Components] (#Components)
-- [Wireframes] (#Wireframes)
-
-
-
-
 ---
-## Features
-
+<div align="center">
+  <h2>Features</h2>
+</div>
 
 ### MVP
-
-
-
-
 
 ---
 
 ### Bonus Features
 
-
-
-
-
-
 ---
-
 <div align="center">
-  <h2>Technologies and Packages</h2>
+  <h2>wireframes</h2>
 </div>
 
 ---
+<div align="center">
+  <h2>Schema</h2>
+</div>
 
 ---
+<div align="center">
+  <h2>Routes</h2>
+</div>
 
 ---
+<div align="center">
+  <h2>components</h2>
+</div>
+
+---
+<div align="center">
+  <h2>Technologies and Packages</h2>
+</div>
 
 ---

@@ -41,19 +41,34 @@
 - Statistical analysis of your deck composition
 - Hand drawing algorithm
 - Track your collection
-- Dark Mode
 ---
 <div align="center">
   <h2>Wireframes</h2>
 </div>
 
+### Registration Page
+
 ![Register](https://user-images.githubusercontent.com/62177226/103712090-e8825680-4f86-11eb-9fcc-2c59820c239c.JPG)
+
+### Login Page
 ![Login](https://user-images.githubusercontent.com/62177226/103712100-ee783780-4f86-11eb-9786-f227fd3eeb9b.JPG)
+
+### Main Page
 ![Main](https://user-images.githubusercontent.com/62177226/103712106-f46e1880-4f86-11eb-8293-5a43fd26ee2a.JPG)
+
+### Explore Decks
 ![Deck-Browser](https://user-images.githubusercontent.com/62177226/103716847-00130c80-4f92-11eb-86e9-da148466aabb.JPG)
+
+### Explore Users
 ![Users](https://user-images.githubusercontent.com/62177226/103732172-de774c80-4fb4-11eb-9914-6b60aecd695f.JPG)
+
+### User Profiles
 ![User-Profile](https://user-images.githubusercontent.com/62177226/103735560-5301b980-4fbc-11eb-8e2a-85dbd8b430da.JPG)
+
+### Deck Builder and View (top half)
 ![Deck-Breakdown-top-level](https://user-images.githubusercontent.com/62177226/103759111-2f049f00-4fe1-11eb-90b0-70d53e65efb6.JPG)
+
+### Deck Builder and View (bottom half)
 ![Deck-Breakdown-bottom-level](https://user-images.githubusercontent.com/62177226/103765847-d8e92900-4feb-11eb-9819-ff2876383320.JPG)
 
 ---

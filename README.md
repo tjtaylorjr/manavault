@@ -41,6 +41,8 @@
 - Statistical analysis of your deck composition
 - Hand drawing algorithm
 - Track your collection
+- Dark/Light Mode
+- Card hover display on build page (displays image of card based on current hover location)
 ---
 <div align="center">
   <h2>Wireframes</h2>
@@ -58,6 +60,9 @@
 
 ### Explore Decks
 ![Deck-Browser](https://user-images.githubusercontent.com/62177226/103716847-00130c80-4f92-11eb-86e9-da148466aabb.JPG)
+
+### Explore Cards
+![Card-Page](https://user-images.githubusercontent.com/62177226/103947935-e7783300-5106-11eb-843f-2549ec92b410.JPG)
 
 ### Explore Users
 ![Users](https://user-images.githubusercontent.com/62177226/103732172-de774c80-4fb4-11eb-9914-6b60aecd695f.JPG)
@@ -123,6 +128,24 @@
 <div align="center">
   <h2>Components</h2>
 </div>
+
+- SignupForm (possibly a modal)
+- LoginForm (possibly a modal)
+- Navbar
+- Header (for most pages, want to have alternating background image)
+- DeckHeader (specific to individual deck page)
+- UserHeader (specific to user profile page)
+- Footer
+- DeckCard
+- UserCard
+- SearchPanel (search input field with buttons for setting search terms)
+- UserStatsPanel (different stats about user's decks like most used color)
+- DeckStatsPanel (different stats about individual decks)
+- CardPoolPanel (displays card search results represented as dragable card components)
+- Card (a component that is largely just an image of the card, but may have plus and minus buttons on it in the build page)
+- CardHoverDisplay (a component that will display an image of a card user is hovering on *This may or may not be too hard to include at this time)
+- CardList (displays user deck in list form with clickable links)
+- CardInfoPanel (a panel for the individual card page that displays information about the card)
 
 ---
 <div align="center">

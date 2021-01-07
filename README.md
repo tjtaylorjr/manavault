@@ -76,13 +76,48 @@
   <h2>Schema</h2>
 </div>
 
-![Schema](https://user-images.githubusercontent.com/62177226/103852111-36778700-5079-11eb-830d-914e62e1ec2e.JPG)
+![Schema](https://user-images.githubusercontent.com/62177226/103936250-2f8e5a00-50f5-11eb-95ec-46326225e523.JPG)
+
 
 
 ---
 <div align="center">
   <h2>Routes</h2>
 </div>
+
+- GET api/users (serves data to the users page)
+- GET api/users/:user_id (serves data to the user profile)
+- GET api/users/:user_id/followers (serves data to the followers page, which is a filtered users page)
+- GET api/users/:user_id/following (serves data to the following page, which is a filtered users page)
+- POST api/users/:user_id/follow (a "form" to follow a user)
+- DELETE api/users/:user_id/unfollow (cancel a follow)
+- POST api/search (broad search function on magin page that queries all tables)
+- POST api/search/decks (search function on the decks page)
+- POST api/search/cards (search function on the deck building page)
+- POST api/search/users (search function on the users page)
+- GET api/cards/:card_id (serves individual card data *unsure if going to use)
+- GET api/cards/:card_id/rating (an average rating by users *unsure if going to use)
+- POST api/cards/:card_id/rate (rate a card *may not use)
+- PUT api/cards/:card_id/rate (change your rating of a card *may not use)
+- POST api/decks/ (a form to create a new deck)
+- GET api/decks/:deck_id (serves individual deck page)
+- PUT api/decks/:deck_id (alter a deck)
+- DELETE api/decks/:deck_id (delete a deck)
+- GET api/decks/:deck_id/likes (serves total likes for a deck)
+- POST api/decks/:deck_id/likes (like a deck)
+- DELETE api/decks/:deck_id/likes (remove a like)
+- GET api/decks/:deck_id/rating (average rating by users)
+- POST api/decks/:deck_id/rating (rate a deck)
+- PUT api/decks/:deck_id/rating (change your rating)
+- DELETE api/decks/:deck_id/rating (delete your rating)
+- GET api/decks/:deck_id/comments (serves up all comments by users)
+- POST api/decks/:deck_id/comments (post a comment about a deck)
+- PUT api/decks/:deck_id/comments (change your comment)
+- DELETE api/decks/:deck_id/comments (remove your comment)
+- GET api/decks/:deck_id/comments/likes (serves up total likes for a comment)
+- POST api/decks/:deck_id/comment/likes (like a comment)
+- DELETE api/decks/:deck_id/comment/likes (remove a like on a comment)
+
 
 ---
 <div align="center">

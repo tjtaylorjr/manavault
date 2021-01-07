@@ -76,6 +76,9 @@
   <h2>Schema</h2>
 </div>
 
+![Schema](https://user-images.githubusercontent.com/62177226/103852111-36778700-5079-11eb-830d-914e62e1ec2e.JPG)
+
+
 ---
 <div align="center">
   <h2>Routes</h2>

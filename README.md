@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Capstone</h1>
+  <h1>ManaVault</h1>
 </div>
 
 <br>
@@ -8,8 +8,11 @@
 
 <br>
 
+![ManaVault]https://manavault.herokuapp.com/
 
-> CAPSTONE-PLACEHOLDER is a collection tracking and deck building tool for Magic: the Gathering.
+<br>
+
+> ManaVault is a collection tracking and deck building tool for Magic: the Gathering.
 
 <br>
 

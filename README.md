@@ -4,11 +4,14 @@
 
 <br>
 
-![picture goes here](http://pictureurl)
+![gif goes here](http://pictureurl)
 
 <br>
 
-![ManaVault]https://manavault.herokuapp.com/
+<div align='center'>
+  <a href='https://manavault.herokuapp.com/'>ManVault</a>
+</div>
+
 
 <br>
 

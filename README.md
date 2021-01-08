@@ -113,6 +113,8 @@
 - GET api/cards/:card_id/rating (an average rating by users *unsure if going to use)
 - POST api/cards/:card_id/rate (rate a card *may not use)
 - PUT api/cards/:card_id/rate (change your rating of a card *may not use)
+- GET api/formats/:card_id (gets legal format designations for a card)
+- POST api/formats/:deck_id (checks legal designation for a deck)
 - POST api/decks/ (a form to create a new deck)
 - GET api/decks/:deck_id (serves individual deck page)
 - PUT api/decks/:deck_id (alter a deck)

@@ -96,6 +96,9 @@
   <h2>Routes</h2>
 </div>
 
+- GET /auth (authenticates user)
+- POST /auth/login (enables login)
+- POST /auth/signup (register account)
 - GET api/users (serves data to the users page)
 - GET api/users/:user_id (serves data to the user profile)
 - GET api/users/:user_id/followers (serves data to the followers page, which is a filtered users page)

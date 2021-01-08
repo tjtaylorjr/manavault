@@ -11,6 +11,7 @@ from .routes.auth_routes import auth_routes
 from .routes.api.card.routes import card_routes
 from .routes.api.deck.routes import deck_routes
 
+
 from .seeds import seed_commands
 
 from .config import Config

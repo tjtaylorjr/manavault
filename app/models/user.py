@@ -1,6 +1,6 @@
 from .db import db
-from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable = False)
 
     @property
-    def pasword(self):
+    def password(self):
         return self.hashed_password
 
     @password.setter

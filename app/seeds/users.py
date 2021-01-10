@@ -1,7 +1,11 @@
 from werkzeug.security import generate_password_hash
 from app.models import db, User
 
-def seed_users():
+
+
+
+
+def seed_demo():
 
     demo = User(username='Demo', email='demo@aa.io',
                 password='password')
@@ -9,6 +13,8 @@ def seed_users():
     db.session.add(demo)
 
     db.session.commit()
+
+
 
 def undo_users():
     db.session.execute('TRUNCATE users;')

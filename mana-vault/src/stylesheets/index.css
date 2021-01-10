@@ -1,0 +1,64 @@
+/* TODO Add site wide styles */
+html {
+  height: 100vh;
+
+}
+body {
+  height: 100%;
+
+}
+
+h2 {
+
+}
+
+.splash {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 50px 1fr 1fr 1fr 50px;
+  grid-template-rows: 50px 1fr 1fr 50px;
+  background: url('../assets/backgrounds/land-color-morph.png') no-repeat center center fixed;
+  background-color: #cccccc;
+  background-size: cover;
+  text-align: center;
+}
+
+.title {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  font-family: "Satmin";
+  font-size: 10rem;
+  background: -webkit-linear-gradient(#A4321C, #F0C964);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px #461607;
+}
+
+.splash-statement {
+  grid-column-start: 3;
+  grid-row-start: 3;
+  font-family: "Matrixbsc";
+  font-size: 7rem;
+  background: -webkit-linear-gradient(#434878, #31B3E1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px #21243b;
+}
+
+.disclaimer {
+  font-size: 10px;
+  grid-column-start: 3;
+  grid-row-start: 5;
+  color: #ffffff;
+}
+
+@font-face {
+  font-family: "Matrixbsc";
+  src: url("matrixbsc.ttf");
+}
+
+@font-face {
+  font-family: "Satmin";
+  src: url("SATAM___.TTF");
+}

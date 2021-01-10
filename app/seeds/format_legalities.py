@@ -1,6 +1,4 @@
 from app.models import db
-import os
-import pandas as pd
 from sqlalchemy import create_engine
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.types import Integer, String

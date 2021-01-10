@@ -87,7 +87,7 @@
   <h2>Schema</h2>
 </div>
 
-![Schema](https://user-images.githubusercontent.com/62177226/104072179-b10ae880-51d8-11eb-897c-fb206ac5db1c.JPG)
+![Schema](https://user-images.githubusercontent.com/62177226/104119404-06d8b100-52fd-11eb-9199-c458589149e9.JPG)
 
 
 

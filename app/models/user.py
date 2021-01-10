@@ -10,6 +10,12 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable = False, unique = True)
     hashed_password = db.Column(db.String(255), nullable = False)
 
+    def __repr__(self):
+        return f'User({self.id}, {self.username}, {self.email}, {self.hashed_password})'
+
+    def __str__(self):
+        return f'{self.id} can be reached at {self.email}'
+
     @property
     def password(self):
         return self.hashed_password

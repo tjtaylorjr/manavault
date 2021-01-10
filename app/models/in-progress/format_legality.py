@@ -29,7 +29,8 @@ class Format_Legality(db.Model):
         legal = [ruling for ruling in list if ruling = 'legal']
         not_legal = [ruling for ruling in list if not ruling in legal]
         return f'The card with id {self.card_uuid} is legal in the following formats: '
-
+    #still need to finish this __str__
+    
     @property
     def to_dict(self):
         return {

@@ -1,3 +1,3 @@
 from .db import db
 from .user import User
-from .format_legality import Format_Legality
+# from .format_legality import Format_legality

@@ -1,24 +1,17 @@
 <div align="center">
-  <h1>ManaVault</h1>
+  <h1><a href='https://manavault.herokuapp.com/'>ManaVault</a></h1>
 </div>
 
 <br>
 
-![gif goes here](http://pictureurl)
+
+![splash](https://user-images.githubusercontent.com/62177226/104138909-928e2400-5375-11eb-9cad-d86df0e189ed.JPG)
 
 <br>
 
-<div align='center'>
-  <a href='https://manavault.herokuapp.com/'>ManVault</a>
-</div>
-
+<h3>ManaVault is a collection tracking and deck building tool for Magic: the Gathering.</h3>
 
 <br>
-
-> ManaVault is a collection tracking and deck building tool for Magic: the Gathering.
-
-<br>
-
 
 <div align="center">
   <h2>Table of Contents</h2>

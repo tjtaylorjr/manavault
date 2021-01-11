@@ -18,8 +18,9 @@ h2 {
   width: 100%;
   grid-template-columns: 50px 1fr 1fr 1fr 50px;
   grid-template-rows: 50px 1fr 1fr 50px;
-  background: url('../assets/backgrounds/land-color-morph.png') no-repeat center center fixed;
-  background-color: #cccccc;
+  /* background: url('../assets/backgrounds/land-color-morph.png') no-repeat center center fixed; */
+  /* background-color: #cccccc; */
+  background-color: #000;
   background-size: cover;
   text-align: center;
 }

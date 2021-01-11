@@ -9,7 +9,7 @@
 
 <br>
 
-<h3>Spark is a collection tracking and deck building tool for Magic: the Gathering.</h3>
+<h3 align="center">Spark is a collection tracking and deck building tool for Magic: the Gathering.</h3>
 
 <br>
 

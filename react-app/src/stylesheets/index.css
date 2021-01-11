@@ -9,17 +9,13 @@ body {
 
 }
 
-h2 {
-
-}
-
 .splash {
   display: grid;
   height: 100%;
   width: 100%;
   grid-template-columns: 50px 1fr 3fr 1fr 50px;
   grid-template-rows: 50px 575px 1fr 50px;
-  background: url('../assets/backgrounds/land-color-morph.png') no-repeat center center fixed;
+  /* background: url('../assets/backgrounds/land-color-morph.png') no-repeat center center fixed; */
   /* background-color: #cccccc; */
   background-color: #000;
   background-size: cover;
@@ -40,6 +36,7 @@ h2 {
   font-size: 16rem;
   background: -webkit-linear-gradient(#A4321C, #F0C964);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 1px #461607;
 }
@@ -51,6 +48,7 @@ h2 {
   font-size: 7rem;
   background: -webkit-linear-gradient(#434878, #31B3E1);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 1px #21243b;
 }

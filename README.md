@@ -1,15 +1,15 @@
 <div align="center">
-  <h1><a href='https://manavault.herokuapp.com/'>ManaVault</a></h1>
+  <h1><a href='https://mtgspark.herokuapp.com/'>Spark</a></h1>
 </div>
 
 <br>
 
 
-![splash](https://user-images.githubusercontent.com/62177226/104138909-928e2400-5375-11eb-9cad-d86df0e189ed.JPG)
+![splash](https://user-images.githubusercontent.com/62177226/104149243-815c0c00-53a3-11eb-8634-edfe7b51ac93.JPG)
 
 <br>
 
-<h3>ManaVault is a collection tracking and deck building tool for Magic: the Gathering.</h3>
+<h3>Spark is a collection tracking and deck building tool for Magic: the Gathering.</h3>
 
 <br>
 

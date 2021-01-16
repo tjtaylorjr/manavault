@@ -33,19 +33,21 @@ body {
 
 .title {
   font-family: "Satmin";
-  font-size: 16rem;
-  background: -webkit-linear-gradient(#A4321C, #F0C964);
+  font-size: 170px;
+  background: -webkit-linear-gradient(270deg, #721b00, #f5bc2d);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px #461607;
+  -webkit-text-stroke: 1px #421408;
+  max-height: 30%;
+
 }
 
 .splash-statement {
   grid-column-start: 3;
   grid-row-start: 3;
   font-family: "Matrixbsc";
-  font-size: 7rem;
+  font-size: 70px;
   background: -webkit-linear-gradient(#434878, #31B3E1);
   -webkit-background-clip: text;
   background-clip: text;

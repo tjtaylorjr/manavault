@@ -41,5 +41,6 @@ def seed_alt_cardfaces():
 
 
 def undo_alt_cardfaces():
-    db.session.execute('TRUNCATE alternate_cardfaces CASCADE;')
+    db.session.execute('TRUNCATE alternate_cardfaces RESTART IDENTITY CASCADE;')
     db.session.commit()
+    print('unseed alternate cardfaces complete')

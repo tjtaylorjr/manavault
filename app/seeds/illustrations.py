@@ -41,3 +41,4 @@ def seed_illustrations():
 def undo_illustrations():
     db.session.execute('TRUNCATE illustrations;')
     db.session.commit()
+    print('unseed illustrations complete')

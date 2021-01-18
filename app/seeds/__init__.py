@@ -5,6 +5,7 @@ from .cards import seed_cards, undo_cards
 from .alternate_cardfaces import seed_alt_cardfaces, undo_alt_cardfaces
 from .format_lists import seed_format_lists, undo_format_lists
 from .illustrations import seed_illustrations, undo_illustrations
+from .decks import seed_decks, seed_deck_cards, undo_decks
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -20,6 +21,8 @@ def seed():
     seed_alt_cardfaces()
     seed_format_lists()
     seed_illustrations()
+    seed_decks()
+    seed_deck_cards()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command
@@ -31,4 +34,5 @@ def undo():
     undo_alt_cardfaces()
     undo_format_lists()
     undo_illustrations()
+    undo_decks()
     # Add other undo functions here

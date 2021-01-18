@@ -26,9 +26,29 @@ class Card(db.Model):
     is_multifaced = db.Column(db.Boolean, default = False)
     avg_rating = db.Column(db.Float(precision = 1), nullable = True)
     format_list = db.relationship('Format_List', backref=backref('card', uselist=False))
-    illustration = db.relationship('Illustration', backref=backref('card', uselist=False))
+    illustration = db.relationship('Illustration', uselist=False, back_populates="card", cascade="delete, delete-orphan")
     set = db.relationship('Set', back_populates = "cards")
-    alternate_cardfaces = db.relationship('Alternate_Cardface', back_populates='card')
+    alternate_cardfaces = db.relationship('Alternate_Cardface', back_populates='card', cascade="delete, delete-orphan")
+
+    def __init__(self, id, uuid, arena_id, name, set_code, set_number, rarity, type, power, toughness, loyalty, mana_cost, conv_mana_cost, keywords, rules_text, flavor_text, is_multifaced, avg_rating):
+        self.id = id
+        self.uuid = uuid
+        self.arena_id = arena_id
+        self.name = name
+        self.set_code = set_code
+        self.set_number = set_number
+        self.rarity = rarity
+        self.type = type
+        self.power = power
+        self.toughness = toughness
+        self.loyalty = loyalty
+        self.mana_cost = mana_cost
+        self.conv_mana_cost = conv_mana_cost
+        self.keywords = keywords
+        self.rules_text = rules_text
+        self.flavor_text = flavor_text
+        self.is_multifaced = multifaced
+        self.avg_rating = avg_rating
 
     def __repr__(self):
         return f'Card({self.id}, {self.uuid}, {self.arena_id}, {self.name}, {self.set_code}, {self.set_number}, {self.rarity}, {self.type}, {self.power}, {self.toughness}, {self.loyalty}, {self.mana_cost}, {self.conv_mana_cost}, {self.keywords}, {self.rules_text}, {self.flavor_text}, {self.is_multifaced}, {self.avg_rating})'

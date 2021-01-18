@@ -1,0 +1,126 @@
+
+.splash {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background: transparent;
+  display: flex;
+  /* position: fixed; */
+  justify-content: center;
+  z-index: 1;
+  padding-bottom: 50px;
+}
+.splash-search {
+  width: 100%;
+  padding-right: 50px;
+  padding-left: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.splash-contents {
+  position: relative;
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-rows: 700px 1fr 100px;
+  /* background: url('../assets/backgrounds/land-color-morph.png') no-repeat center center fixed; */
+  /* background-color: #cccccc; */
+  background-color: transparent;
+  /* background-size: cover; */
+  /* text-align: center; */
+  /* border-left: 3px solid #ad6415;
+  border-right: 3px solid #ad6415; */
+  z-index: 1;
+
+}
+
+.splash-background {
+  grid-row-start:1;
+  width: 100%;
+  min-height: 550px;
+  max-height: 700px;
+  height: calc(100% - 40%);
+  /* top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; */
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(to bottom, transparent 0%, transparent 80%, #06090F 100%);
+  background-blend-mode: multiply;
+  /* z-index: 1; */
+}
+
+
+.splash-background::after {
+  grid-row-start: 1;
+  content: "";
+  background: url('../assets/backgrounds/Ancient-Hellkite.jpg')  no-repeat ;
+  opacity: 0.325;
+  background-size: cover;
+  background-position: center top -150px;
+  /* height: calc(100% - 40px);
+  min-height: 550px;
+  max-height: 700px; */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  background-color: #06090F;
+
+}
+
+/* .title__container {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.title {
+  font-family: "Satmin";
+  font-size: 170px;
+  background: -webkit-linear-gradient(270deg, #721b00, #f5bc2d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px #421408;
+  max-height: 30%;
+
+} */
+
+/* .splash-statement {
+  grid-column-start: 2;
+  grid-row-start: 3;
+  font-family: "Matrixbsc";
+  font-size: 70px;
+  background: -webkit-linear-gradient(#434878, #31B3E1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px #21243b;
+} */
+
+
+.disclaimer {
+  font-size: 10px;
+  grid-row-start: 3;
+  color: #767676;
+  display: flex;
+  flex-direction: column;
+  padding-left: 150px;
+  padding-right: 150px;
+  /* justify-content: flex-start; */
+}
+
+.disclaimer p {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

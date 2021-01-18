@@ -47,3 +47,4 @@ def seed_format_lists():
 def undo_format_lists():
     db.session.execute('TRUNCATE format_lists;')
     db.session.commit()
+    print('unseed format lists complete')

@@ -157,8 +157,16 @@ def seed_users():
     )
     db.session.add(user20)
 
+    user21 = User(
+        username='tjtaylor',
+        email='webmaster@spark.io',
+        password='fakepassword'
+    )
+    db.session.add(user21)
+
     db.session.commit()
 
 def undo_users():
-    db.session.execute('TRUNCATE users;')
+    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
     db.session.commit()
+    print('unseed users complete')

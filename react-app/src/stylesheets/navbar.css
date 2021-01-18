@@ -1,0 +1,62 @@
+.navbar {
+  display: grid;
+  background: transparent;
+  position: absolute;
+  grid-template-columns: 50px 200px 1fr 200px 180px 50px;
+  height: 50px;
+  width: 100%;
+  padding-top: 12px;
+  z-index: 2;
+}
+
+.navlinks {
+  text-decoration: none;
+  color: #31B3E1;
+  padding: 5px;
+  cursor: pointer;
+}
+
+
+.navbar-links {
+  grid-column-start: 4;
+  height: 100%;
+
+}
+
+.navbar-links__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: -7px;
+}
+
+.navbar-links__right {
+  grid-column-start: 5;
+  height: 100%;
+
+}
+
+.navbar-links__right-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.title__container {
+  grid-column-start: 2;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+
+}
+.title {
+  font-family: "Satmin";
+  font-size: 50px;
+  background: -webkit-linear-gradient(270deg, #721b00, #f5bc2d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px #421408;
+  max-height: 55px;
+  margin-top: -10px;
+}

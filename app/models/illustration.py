@@ -14,6 +14,7 @@ class Illustration(db.Model):
     large_image = db.Column(db.String, nullable = False)
     highres_png = db.Column(db.String, nullable = False)
     art_crop = db.Column(db.String, nullable = False)
+    card = db.relationship('Card', back_populates='illustration')
 
 
 

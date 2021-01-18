@@ -25,6 +25,7 @@ def authenticate():
     """
     if current_user.is_authenticated:
         return current_user.to_dict()
+    print("Error (401): User not authenticated")
     return {'errors': ['Unauthorized']}, 401
 
 
@@ -43,6 +44,7 @@ def login():
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
         return user.to_dict()
+    print("ERROR (401): Log in not validated")
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

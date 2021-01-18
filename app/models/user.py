@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), nullable = False, unique = True)
     email = db.Column(db.String(255), nullable = False, unique = True)
     hashed_password = db.Column(db.String(255), nullable = False)
+    decks = db.relationship("Deck", back_populates="user", cascade="delete, delete-orphan", foreign_keys='Deck.user_id')
 
     def __repr__(self):
         return f'User({self.id}, {self.username}, {self.email}, {self.hashed_password})'

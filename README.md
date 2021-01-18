@@ -80,8 +80,7 @@
   <h2>Schema</h2>
 </div>
 
-![Schema](https://user-images.githubusercontent.com/62177226/104213687-93ba6200-5404-11eb-91f9-7b040910cf8b.JPG)
-
+![Schema](https://user-images.githubusercontent.com/62177226/104827993-910ba280-5832-11eb-96ee-3fe6319cdbb9.JPG)
 
 ---
 <div align="center">

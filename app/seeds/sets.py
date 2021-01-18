@@ -34,3 +34,4 @@ def seed_sets():
 def undo_sets():
     db.session.execute('TRUNCATE sets CASCADE;')
     db.session.commit()
+    print('unseed sets complete')

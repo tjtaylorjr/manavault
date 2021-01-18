@@ -5,3 +5,4 @@ from .card import Card
 from .alternate_cardface import Alternate_Cardface
 from .format_list import Format_List
 from .illustration import Illustration
+from .deck import Deck, Deck_Card

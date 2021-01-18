@@ -1,14 +1,18 @@
 import React from "react";
 import '../../stylesheets/index.css';
 import Footer from "../static/Footer";
+import SearchBar from "../search/SearchBar";
 
 const Main = () => {
+
   return (
     <>
       <div className="splash">
         <div className="splash-contents">
           <div className="splash-background">
-            <div className="splash-search"></div>
+            <div className="splash-search">
+              <SearchBar />
+            </div>
           </div>
           <div className="disclaimer">
             <p>Art featured on this page is Ancient Hellkite and was illustrated by Jason Chan.  Portions of the materials used on this site, including Ancient Hellkite, are property of Wizards of the Coast. ©Wizards of the Coast LLC.</p>

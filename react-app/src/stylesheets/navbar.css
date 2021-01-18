@@ -55,6 +55,18 @@
   width: 80px;
 }
 
+.navbar-links__right label {
+  cursor: pointer;
+  text-align: center;
+}
+
+.navbar-links__right button {
+  background: transparent;
+  border: none;
+  text-align: center;
+  display: none;
+
+}
 .navbar-links__right-list {
   display: flex;
   flex-direction: row;

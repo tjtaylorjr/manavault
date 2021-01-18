@@ -110,9 +110,8 @@ function App() {
           <CardBrowser user={currentUser} authenticated={authenticated} />
           <Footer />
         </Route>
-        <Route path="/search/:query" exact={true}>
+        <Route path="/search/?:query" exact={true}>
           <SearchResults />
-          <Footer />
         </Route>
         <Route path="/" exact={true} authenticated={authenticated}>
           <Main />

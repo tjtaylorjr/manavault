@@ -16,11 +16,6 @@ const NavBar = ({ authenticated, setAuthenticated, setCurrentUser, currentUser }
           <nav className="navbar-links">
             <ul className="navbar-links__list">
               <li>
-                <NavLink className="navlinks" to="/" exact={true} activeClassName="active">
-                  Home
-                </NavLink>
-              </li>
-              <li>
                 <NavLink className="navlinks" to="/decks" exact={true} activeClassName="active">
                   Decks
                 </NavLink>
@@ -35,17 +30,15 @@ const NavBar = ({ authenticated, setAuthenticated, setCurrentUser, currentUser }
           <nav className="navbar-links__right">
             <ul className="navbar-links__right-list">
               <li>
-                <NavLink className="navlinks" to="/login" exact={true} activeClassName="active">
-                  Login
-                    </NavLink>
+                <label>
+                  Logout
+                  <LogoutButton setAuthenticated={setAuthenticated} />
+                </label>
               </li>
               <li>
-                <NavLink className="navlinks" to={"/profile/"+ currentUser.id} exact={true} activeClassName="active">
+                <NavLink className="navlinks" to={"/profile/" + currentUser.id} exact={true} activeClassName="active">
                   Account
                     </NavLink>
-              </li>
-              <li>
-                <LogoutButton setAuthenticated={setAuthenticated} />
               </li>
             </ul>
           </nav>

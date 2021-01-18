@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import { login } from "../../utils/auth";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
@@ -30,34 +30,44 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
+    <div className="login-page">
+      <div className="login-page__buffer"></div>
+      <div className="login-page__main">
+        <form className="login-page__form" onSubmit={onLogin}>
+          <div>
+            {errors.map((error) => (
+              <div>{error}</div>
+            ))}
+          </div>
+          <div>
+            <h1>Sign In</h1>
+          </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              name="email"
+              type="text"
+              value={email}
+              onChange={updateEmail}
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
+              name="password"
+              type="password"
+              value={password}
+              onChange={updatePassword}
+            />
+            <button type="submit">Login</button>
+          </div>
+        </form>
+        <div className="login-page__main-regbox">
+          <h2>Need an account?  Sign up now.  It's Free!</h2>
+          <NavLink to="/sign-up" exact={true}>Register</NavLink>
+        </div>
       </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type="submit">Login</button>
-      </div>
-    </form>
+    </div>
   );
 };
 

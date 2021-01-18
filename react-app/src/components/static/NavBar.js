@@ -2,7 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 
-const NavBar = ({ authenticated, setAuthenticated, setCurrentUser }) => {
+const NavBar = ({ authenticated, setAuthenticated, setCurrentUser, currentUser }) => {
+  console.log(currentUser);
   if (authenticated) {
 
     return (
@@ -39,8 +40,8 @@ const NavBar = ({ authenticated, setAuthenticated, setCurrentUser }) => {
                     </NavLink>
               </li>
               <li>
-                <NavLink className="navlinks" to="/sign-up" exact={true} activeClassName="active">
-                  Sign Up
+                <NavLink className="navlinks" to={"/profile/"+ currentUser.id} exact={true} activeClassName="active">
+                  Account
                     </NavLink>
               </li>
               <li>
@@ -61,11 +62,6 @@ const NavBar = ({ authenticated, setAuthenticated, setCurrentUser }) => {
           </div>
           <nav className="navbar-links">
             <ul className="navbar-links__list">
-              <li>
-                <NavLink className="navlinks" to="/" exact={true} activeClassName="active">
-                  Home
-                </NavLink>
-              </li>
               <li>
                 <NavLink className="navlinks" to="/decks" exact={true} activeClassName="active">
                   Decks
@@ -89,9 +85,6 @@ const NavBar = ({ authenticated, setAuthenticated, setCurrentUser }) => {
                 <NavLink className="navlinks" to="/sign-up" exact={true} activeClassName="active">
                   Sign Up
                     </NavLink>
-              </li>
-              <li>
-                <LogoutButton setAuthenticated={setAuthenticated} />
               </li>
             </ul>
           </nav>

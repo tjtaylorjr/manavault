@@ -44,6 +44,7 @@ function App() {
       <NavBar
         authenticated={authenticated}
         setAuthenticated={setAuthenticated}
+        currentUser={currentUser}
         setCurrentUser={setCurrentUser}
       />
       <Switch>

@@ -1,5 +1,6 @@
 import Profile from "./Profile"
 import ProfileEditor from "./ProfileEditor"
+import UserCard from "./UserObject"
 
 
-export {Profile, ProfileEditor};
+export default { UserCard, Profile, ProfileEditor };

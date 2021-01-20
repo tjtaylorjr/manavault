@@ -3,12 +3,15 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import backref
 import uuid
 
+def generate_uuid():
+    return str(uuid.uuid4())
 
 class Card(db.Model):
     __tablename__ = 'cards'
 
     id = db.Column(db.Integer, primary_key=True)
-    uuid = db.Column(UUID(as_uuid=True), server_default=db.text("uuid_generate_v4()"), nullable = False, unique = True)
+    # uuid = db.Column(UUID(as_uuid=True), server_default=db.text("uuid_generate_v4()"), nullable = False, unique = True)
+    uuid = db.Column(db.String, default=generate_uuid, nullable = False, unique = True)
     arena_id = db.Column(db.Integer, nullable = True)
     name = db.Column(db.String(200), nullable = False)
     set_code = db.Column(db.String(10), db.ForeignKey('sets.set_code'), nullable = True)
@@ -53,7 +56,6 @@ class Card(db.Model):
     def __repr__(self):
         return f'Card({self.id}, {self.uuid}, {self.arena_id}, {self.name}, {self.set_code}, {self.set_number}, {self.rarity}, {self.type}, {self.power}, {self.toughness}, {self.loyalty}, {self.mana_cost}, {self.conv_mana_cost}, {self.keywords}, {self.rules_text}, {self.flavor_text}, {self.is_multifaced}, {self.avg_rating})'
 
-    @property
     def to_dict(self):
         return {
             "id": self.id,
@@ -74,7 +76,12 @@ class Card(db.Model):
             "flavor_text": self.flavor_text,
             "is_multifaced": self.is_multifaced,
             "avg_rating": self.avg_rating,
-            "format_list": self.format_list.to_dict(),
-            "illustration": self.illustration.to_dict(),
-            "alternate_cardfaces": self.alternate_cardfaces.to_dict()
+            # "format_list": self.format_list,
+            # "illustration": self.illustration,
+            # "alternate_cardfaces": self.alternate_cardfaces
+            # "format_list": self.format_list.to_dict(),
+            # "format_list": [format.to_dict() for format in self.format_list],
+            # "illustration": self.illustration.to_dict(),
+            # "illustration": [image.to_dict() for image in self.illustration],
+            # "alternate_cardfaces": self.alternate_cardfaces.to_dict()
         }

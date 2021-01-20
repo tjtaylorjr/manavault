@@ -26,7 +26,7 @@ def seed_format_lists():
         # index_label='id',
         chunksize=10000,
         dtype = {
-          "card_uuid": UUID,
+          "card_uuid": String,
           "standard": String(10),
           "future": String(10),
           "historic": String(10),

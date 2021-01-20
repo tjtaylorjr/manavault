@@ -1,6 +1,5 @@
 import React from "react";
 import '../../stylesheets/index.css';
-import Footer from "../static/Footer";
 import SearchBar from "../search/SearchBar";
 
 const Main = () => {
@@ -21,7 +20,6 @@ const Main = () => {
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
     </>
   )
 }

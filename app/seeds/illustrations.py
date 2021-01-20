@@ -26,8 +26,8 @@ def seed_illustrations():
         # index_label='id',
         chunksize=10000,
         dtype = {
-          "card_uuid": UUID,
-          "alternate_cardface_uuid": UUID,
+          "card_uuid": String,
+          "alternate_cardface_uuid": String,
           "artist": String,
           "small_image": String,
           "normal_image": String,

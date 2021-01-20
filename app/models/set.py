@@ -12,7 +12,6 @@ class Set(db.Model):
     def __repr__(self):
         return f'Set({self.set_code}, {self.set_name}, {self.release_date})'
 
-    @property
     def to_dict(self):
         return {
             "set_code": self.set_code,

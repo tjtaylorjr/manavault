@@ -1,16 +1,16 @@
 """reinitialization and migration
 
-Revision ID: 2152a1338edc
+Revision ID: d589fcdd4a0a
 Revises: 
-Create Date: 2021-01-17 12:53:15.608045
+Create Date: 2021-01-19 18:04:53.000636
 
 """
 from alembic import op
 import sqlalchemy as sa
-from sqlalchemy.dialects import postgresql
+
 
 # revision identifiers, used by Alembic.
-revision = '2152a1338edc'
+revision = 'd589fcdd4a0a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,7 +35,7 @@ def upgrade():
     )
     op.create_table('cards',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('uuid', postgresql.UUID(as_uuid=True), server_default=sa.text('uuid_generate_v4()'), nullable=False),
+    sa.Column('uuid', sa.String(), nullable=False),
     sa.Column('arena_id', sa.Integer(), nullable=True),
     sa.Column('name', sa.String(length=200), nullable=False),
     sa.Column('set_code', sa.String(length=10), nullable=True),
@@ -58,7 +58,7 @@ def upgrade():
     )
     op.create_table('decks',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('uuid', postgresql.UUID(as_uuid=True), server_default=sa.text('uuid_generate_v4()'), nullable=False),
+    sa.Column('uuid', sa.String(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('creator_name', sa.String(), nullable=True),
     sa.Column('deck_name', sa.String(), nullable=True),
@@ -75,8 +75,8 @@ def upgrade():
     )
     op.create_table('alternate_cardfaces',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('base_card_uuid', postgresql.UUID(as_uuid=True), nullable=False),
-    sa.Column('uuid', postgresql.UUID(as_uuid=True), server_default=sa.text('uuid_generate_v4()'), nullable=False),
+    sa.Column('base_card_uuid', sa.String(), nullable=False),
+    sa.Column('uuid', sa.String(), nullable=False),
     sa.Column('face_change', sa.String(length=50), nullable=False),
     sa.Column('name', sa.String(length=200), nullable=False),
     sa.Column('type', sa.String(length=100), nullable=True),
@@ -102,7 +102,7 @@ def upgrade():
     )
     op.create_table('format_lists',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('card_uuid', postgresql.UUID(as_uuid=True), nullable=False),
+    sa.Column('card_uuid', sa.String(), nullable=False),
     sa.Column('standard', sa.String(length=10), nullable=False),
     sa.Column('future', sa.String(length=10), nullable=False),
     sa.Column('historic', sa.String(length=10), nullable=False),
@@ -122,8 +122,8 @@ def upgrade():
     )
     op.create_table('illustrations',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('card_uuid', postgresql.UUID(as_uuid=True), nullable=True),
-    sa.Column('alternate_cardface_uuid', postgresql.UUID(as_uuid=True), nullable=True),
+    sa.Column('card_uuid', sa.String(), nullable=True),
+    sa.Column('alternate_cardface_uuid', sa.String(), nullable=True),
     sa.Column('artist', sa.String(), nullable=True),
     sa.Column('small_image', sa.String(), nullable=False),
     sa.Column('normal_image', sa.String(), nullable=False),

@@ -7,7 +7,7 @@ from flask_login import LoginManager
 
 
 from .models import db, User
-from .api import user_routes, auth_routes, card_routes, deck_routes, search_routes
+from .api import user_routes, auth_routes, card_routes, deck_routes, illustration_routes, search_routes
 
 from .seeds import seed_commands
 
@@ -34,6 +34,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(card_routes, url_prefix='/api/cards')
 app.register_blueprint(deck_routes, url_prefix='/api/decks')
 app.register_blueprint(search_routes, url_prefix='/api/search')
+app.register_blueprint(illustration_routes, url_prefix='/api/illustrations')
 db.init_app(app)
 Migrate(app, db)
 

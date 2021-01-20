@@ -3,13 +3,17 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import backref
 import uuid
 
+def generate_uuid():
+    return str(uuid.uuid4())
 
 class Alternate_Cardface(db.Model):
     __tablename__ = 'alternate_cardfaces'
 
     id = db.Column(db.Integer, primary_key=True)
-    base_card_uuid = db.Column(UUID(as_uuid=True), db.ForeignKey('cards.uuid'), default=uuid.uuid4, nullable = False, unique = True)
-    uuid = db.Column(UUID(as_uuid=True), server_default=db.text("uuid_generate_v4()"), nullable = False, unique = True)
+    # base_card_uuid = db.Column(UUID(as_uuid=True), db.ForeignKey('cards.uuid'), default=uuid.uuid4, nullable = False, unique = True)
+    base_card_uuid = db.Column(db.String, db.ForeignKey('cards.uuid'), nullable = False, unique = True)
+    # uuid = db.Column(UUID(as_uuid=True), server_default=db.text("uuid_generate_v4()"), nullable = False, unique = True)
+    uuid = db.Column(db.String, default = generate_uuid, nullable = False, unique = True)
     face_change = db.Column(db.String(50), nullable = False)
     name = db.Column(db.String(200), nullable = False)
     type = db.Column(db.String(100), nullable = True)
@@ -25,7 +29,6 @@ class Alternate_Cardface(db.Model):
     def __repr__(self):
         return f'Card({self.id}, {self.base_card_uuid}, {self.uuid}, {self.face_change}, {self.name}, {self.type}, {self.power}, {self.toughness}, {self.loyalty}, {self.keywords}, {self.rules_text}, {self.flavor_text})'
 
-    @property
     def to_dict(self):
         return {
             "id": self.id,

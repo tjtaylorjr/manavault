@@ -9,9 +9,9 @@ import NavBar from "./components/static/NavBar";
 import Footer from "./components/static/Footer";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-import {Profile, ProfileEditor} from "./components/users";
-// import Profile from "./components/users/Profile";
-// import ProfileEditor from "./components/users/ProfileEditor"
+// import {Profile, ProfileEditor} from "./components/users";
+import Profile from "./components/users";
+import ProfileEditor from "./components/users/ProfileEditor"
 import DeckBuilder from "./components/decks/DeckBuilder";
 import DeckViewer from "./components/decks/DeckViewer";
 import DeckEditor from "./components/decks/DeckEditor";
@@ -110,7 +110,7 @@ function App() {
           <CardBrowser user={currentUser} authenticated={authenticated} />
           <Footer />
         </Route>
-        <Route path="/search/?:query" exact={true}>
+        <Route path="/search/:query" exact={true}>
           <SearchResults />
         </Route>
         <Route path="/" exact={true} authenticated={authenticated}>

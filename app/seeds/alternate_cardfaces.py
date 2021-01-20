@@ -26,7 +26,7 @@ def seed_alt_cardfaces():
         # index_label='id',
         chunksize=10000,
         dtype = {
-          "base_card_uuid": UUID,
+          "base_card_uuid": String,
           "face_change": String(50),
           "name": String(200),
           "type": String(100),

@@ -10,7 +10,7 @@ const SearchBar = () => {
     e.preventDefault();
     const query = searchText.toLowerCase();
     setSearchText("");
-    history.push(`/search/?${query}`);
+    history.push(`/search/${query}`);
   };
 
   return (

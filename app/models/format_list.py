@@ -6,7 +6,8 @@ class Format_List(db.Model):
     __tablename__ = 'format_lists'
 
     id = db.Column(db.Integer, primary_key=True)
-    card_uuid = db.Column(UUID(as_uuid=True), db.ForeignKey('cards.uuid'), default=uuid.uuid4, nullable = False, unique = True)
+    # card_uuid = db.Column(UUID(as_uuid=True), db.ForeignKey('cards.uuid'), default=uuid.uuid4, nullable = False, unique = True)
+    card_uuid = db.Column(db.String, db.ForeignKey('cards.uuid'), nullable = False, unique = True)
     standard = db.Column(db.String(10), nullable = False)
     future = db.Column(db.String(10), nullable = False)
     historic = db.Column(db.String(10), nullable = False)
@@ -32,7 +33,6 @@ class Format_List(db.Model):
     #     return f'The card with id {self.card_uuid} is legal in the following formats: '
     #still need to finish this __str__
 
-    @property
     def to_dict(self):
         return {
             "id": self.id,

@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, redirect, request
-from app.models import db, Card, Deck, User
-from sqlalchemy import or_
+from app.models import db, Card, Deck, User, Illustration
+from sqlalchemy import or_, func, desc, text
+from sqlalchemy.orm import joinedload
 
 search_routes = Blueprint('search', __name__)
 
@@ -14,8 +15,24 @@ def general_search(query):
     data2 = [deck.to_dict() for deck in result2]
     deck_results = {"decks": data2}
 
-    result3 = Card.query.filter(or_(Card.name.ilike(f"%{query}%"), Card.type.ilike(f"%{query}%"), Card.keywords.ilike(f"%{query}%"), Card.rules_text.ilike(f"%{query}%"), Card.flavor_text.ilike(f"%{query}%"))).all()
+    result3 = Card.query.filter(or_(Card.name.ilike(f"%{query}%"))).distinct(Card.name).limit(10).all()
     data3 = [card.to_dict() for card in result3]
     card_results = {"cards": data3}
+
+
+
+
+
+
+
+
+    # result3 = Card.query.filter(or_(Card.name.ilike(f"%{query}%"), Card.type.ilike(f"%{query}%"), Card.keywords.ilike(f"%{query}%"), Card.rules_text.ilike(f"%{query}%"), Card.flavor_text.ilike(f"%{query}%"))).group_by(Card.id).order_by(func.count(Card.uuid).label('qty').desc()).all
+
+    # subquery()
+    # result3 = Card.query.filter(or_(Card.name.ilike(f"%{query}%"), Card.type.ilike(f"%{query}%"), Card.keywords.ilike(f"%{query}%"), Card.rules_text.ilike(f"%{query}%"), Card.flavor_text.ilike(f"%{query}%"))).distinct(func.count(Card.uuid).label(text('qty'))).group_by(Card.uuid).order_by(desc('qty')).all()
+
+    # results3 = Card.query(func.count(Card.uuid).label('qty')).group_by(Card.uuid).order_by(desc('qty'))
+    # result3 = Card.query.distinct(Card.uuid.in_(result3_subquery)).all()
+    # result3 = Card.query.filter(or_(Card.name.ilike(f"%{query}%"), Card.type.ilike(f"%{query}%"), Card.keywords.ilike(f"%{query}%"), Card.rules_text.ilike(f"%{query}%"), Card.flavor_text.ilike(f"%{query}%"))).distinct(Card.uuid).all()
 
     return {"results": [{"users": data}, {"decks": data2}, {"cards": data3}]}

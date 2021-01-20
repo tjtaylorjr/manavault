@@ -9,6 +9,10 @@ import uuid
 #     db.Model.metadata,
 #     db.Column('deck_id', db.Integer, db.ForeignKey("decks.id"), primary_key = True,
 #     db.Column('card_id', db.Integer, db.ForeignKey("cards.id"), primary_key = True)
+
+def generate_uuid():
+    return str(uuid.uuid4())
+
 class Deck_Card(db.Model):
     __tablename__ = 'deck_cards'
     deck_id = db.Column(db.Integer, db.ForeignKey('decks.id'), primary_key = True)
@@ -32,7 +36,8 @@ class Deck(db.Model):
     __tablename__ = 'decks'
 
     id = db.Column(db.Integer, primary_key=True)
-    uuid = db.Column(UUID(as_uuid=True), server_default=db.text("uuid_generate_v4()"), nullable = False, unique = True)
+    # uuid = db.Column(UUID(as_uuid=True), server_default=db.text("uuid_generate_v4()"), nullable = False, unique = True)
+    uuid = db.Column(db.String, default= generate_uuid, nullable = False, unique = True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     creator_name = db.Column(db.String, db.ForeignKey('users.username'))
     deck_name = db.Column(db.String, default = "Unnamed Deck")
@@ -58,7 +63,6 @@ class Deck(db.Model):
     def __repr__(self):
         return f'Deck({self.id}, {self.uuid}, {self.user_id}, {self.creator_name}, {self.deck_name}, {self.created_at}, {self.updated_at}, {self.description}, {self.background_img}, {self.video_url}, {self.avg_rating}, {self.card_list})'
 
-    @property
     def to_dict(self):
         return {
             "id": self.id,

@@ -26,7 +26,7 @@ def seed_cards():
         # index_label='id',
         chunksize=10000,
         dtype = {
-          "uuid": UUID,
+          "uuid": String,
           "arena_id": Integer,
           "name": String(200),
           "set_code": String(10),

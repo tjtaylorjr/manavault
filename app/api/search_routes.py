@@ -2,27 +2,33 @@ from flask import Blueprint, jsonify, redirect, request
 from app.models import db, Card, Deck, User, Illustration
 from sqlalchemy import or_, func, desc, text
 from sqlalchemy.orm import joinedload
+from sqlalchemy_searchable import search
 
 search_routes = Blueprint('search', __name__)
 
-@search_routes.route('/<query>')
-def general_search(query):
-    result = User.query.filter(User.username.ilike(f"%{query}%")).all()
+@search_routes.route('/<params>')
+def general_search(params):
+    result = User.query.filter(User.username.ilike(f"%{params}%")).all()
     data = [user.to_dict() for user in result]
     user_results = {"users": data}
 
-    result2 = Deck.query.filter(or_(Deck.deck_name.ilike(f"%{query}%"), Deck.description.ilike(f"%{query}%"))).all()
+    result2 = Deck.query.filter(or_(Deck.deck_name.ilike(f"%{params}%"), Deck.description.ilike(f"%{params}%"))).all()
     data2 = [deck.to_dict() for deck in result2]
     deck_results = {"decks": data2}
 
-    result3 = Card.query.filter(or_(Card.name.ilike(f"%{query}%"))).distinct(Card.name).limit(10).all()
+    # result3 = Card.query.filter(or_(Card.name.ilike(f"%{query}%"))).distinct(Card.name).limit(10).all()
+    # data3 = [card.to_dict() for card in result3]
+    # card_results = {"cards": data3}
+
+    # result3 = Card.query.filter(Card.name.contains(params)).distinct(Card.name)
+    # data3 = [card.to_dict() for card in result3]
+    # card_results = {"cards": data3}
+
+    result3 = Card.query.search(params, sort=True).limit(10).all()
     data3 = [card.to_dict() for card in result3]
+    print(result3)
+    print(data3)
     card_results = {"cards": data3}
-
-
-
-
-
 
 
 

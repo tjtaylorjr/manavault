@@ -12,7 +12,7 @@
 }
 .splash-search {
   grid-row-start: 1;
-  width: 25%;
+  width: 375px;
   padding-right: 50px;
   padding-left: 50px;
   margin-right: auto;
@@ -31,13 +31,14 @@
   font-size: 1.4rem;
   outline: none;
   font-weight: 500;
-  padding-left: 2.4rem;
+  padding-left: 2.8rem;
   line-height: 2.4rem;
 }
 
 .splash-search button {
   display: none;
 }
+
 .splash-contents {
   position: relative;
   display: grid;

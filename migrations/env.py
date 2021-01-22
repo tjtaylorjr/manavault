@@ -7,6 +7,9 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+from sqlalchemy.orm import configure_mappers
+from app.models import db
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -61,7 +64,7 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
-
+    configure_mappers()
     # this callback is used to prevent an auto-migration from being generated
     # when there are no changes to the schema
     # reference: http://alembic.zzzcomputing.com/en/latest/cookbook.html

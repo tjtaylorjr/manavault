@@ -1,12 +1,22 @@
 from .db import db
+from flask_sqlalchemy import BaseQuery
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import backref
+from sqlalchemy_searchable import SearchQueryMixin
+from sqlalchemy_utils.types import TSVectorType
+from sqlalchemy_searchable import make_searchable
 import uuid
+
+make_searchable(db.metadata)
 
 def generate_uuid():
     return str(uuid.uuid4())
 
+class CardQuery(BaseQuery, SearchQueryMixin):
+    pass
+
 class Card(db.Model):
+    query_class = CardQuery
     __tablename__ = 'cards'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -28,6 +38,7 @@ class Card(db.Model):
     flavor_text = db.Column(db.Text, nullable = True)
     is_multifaced = db.Column(db.Boolean, default = False)
     avg_rating = db.Column(db.Float(precision = 1), nullable = True)
+    search_vector = db.Column(TSVectorType('name', 'type', weights={'name': 'A', 'type': 'B'}))
     format_list = db.relationship('Format_List', backref=backref('card', uselist=False))
     illustration = db.relationship('Illustration', uselist=False, back_populates="card", cascade="delete, delete-orphan")
     set = db.relationship('Set', back_populates = "cards")
@@ -85,3 +96,6 @@ class Card(db.Model):
             # "illustration": [image.to_dict() for image in self.illustration],
             # "alternate_cardfaces": self.alternate_cardfaces.to_dict()
         }
+
+
+# db.configure_mappers()

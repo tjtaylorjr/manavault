@@ -5,7 +5,7 @@ from .card import Card, CardQuery
 from .alternate_cardface import Alternate_Cardface
 from .format_list import Format_List
 from .illustration import Illustration
-from .deck import Deck, Deck_Card
+from .deck import Deck, Deck_Card, DeckQuery
 
 
 # db.configure_mappers()

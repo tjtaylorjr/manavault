@@ -1,7 +1,7 @@
 import React from 'react'
 
 const DeckObject = ({ deck }) => {
-  console.log(deck)
+  const {data} = deck
   return (
     <p style={{ color: "#FFF" }}>{deck.deck_name}</p>
   )

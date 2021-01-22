@@ -2,14 +2,16 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), nullable = False, unique = True)
-    email = db.Column(db.String(255), nullable = False, unique = True)
-    hashed_password = db.Column(db.String(255), nullable = False)
-    decks = db.relationship("Deck", back_populates="user", cascade="delete, delete-orphan", foreign_keys='Deck.user_id')
+    username = db.Column(db.String(50), nullable=False, unique=True)
+    email = db.Column(db.String(255), nullable=False, unique=True)
+    hashed_password = db.Column(db.String(255), nullable=False)
+    decks = db.relationship("Deck", back_populates="user",
+                            cascade="delete, delete-orphan", foreign_keys='Deck.user_id')
 
     def __repr__(self):
         return f'User({self.id}, {self.username}, {self.email}, {self.hashed_password})'

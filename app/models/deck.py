@@ -2,7 +2,14 @@ from .db import db
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import backref
 from datetime import datetime
+from flask_sqlalchemy import BaseQuery
+from sqlalchemy_searchable import SearchQueryMixin
+from sqlalchemy_utils.types import TSVectorType
+# from sqlalchemy_searchable import make_searchable
+
 import uuid
+
+# make_searchable(db.metadata)
 
 # deck_cards = db.Table(
 #     "deck_card",
@@ -10,8 +17,14 @@ import uuid
 #     db.Column('deck_id', db.Integer, db.ForeignKey("decks.id"), primary_key = True,
 #     db.Column('card_id', db.Integer, db.ForeignKey("cards.id"), primary_key = True)
 
+
 def generate_uuid():
     return str(uuid.uuid4())
+
+
+class DeckQuery(BaseQuery, SearchQueryMixin):
+    pass
+
 
 class Deck_Card(db.Model):
     __tablename__ = 'deck_cards'
@@ -33,6 +46,7 @@ class Deck_Card(db.Model):
 
 
 class Deck(db.Model):
+    query_class = DeckQuery
     __tablename__ = 'decks'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -47,6 +61,7 @@ class Deck(db.Model):
     background_img = db.Column(db.String, nullable = True)
     video_url = db.Column(db.String, nullable = True)
     avg_rating = db.Column(db.Float(precision = 1), nullable = True)
+    search_vector = db.Column(TSVectorType('deck_name'))
     # card_list = db.Column(db.ARRAY(db.String), default = [])
     # cards = db.relationship('Card', secondary=deck_list, backref="decks"))
     card_list = db.relationship("Deck_Card", back_populates="deck", cascade="delete, delete-orphan")

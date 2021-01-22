@@ -8,13 +8,18 @@ search_routes = Blueprint('search', __name__)
 
 @search_routes.route('/<params>')
 def general_search(params):
-    result = User.query.filter(User.username.ilike(f"%{params}%")).all()
+    result = User.query.filter(User.username.ilike(f"%{params}%")).limit(10).all()
     data = [user.to_dict() for user in result]
     user_results = {"users": data}
 
-    result2 = Deck.query.filter(or_(Deck.deck_name.ilike(f"%{params}%"), Deck.description.ilike(f"%{params}%"))).all()
+    # result2 = Deck.query.filter(or_(Deck.deck_name.ilike(f"%{params}%"), Deck.description.ilike(f"%{params}%"))).all()
+    # data2 = [deck.to_dict() for deck in result2]
+    # deck_results = {"decks": data2}
+
+    result2 = Deck.query.search(params, sort=True).order_by(Deck.deck_name).limit(10).all()
     data2 = [deck.to_dict() for deck in result2]
-    deck_results = {"decks": data2}
+    deck_result = {"decks": data2}
+
 
     # result3 = Card.query.filter(or_(Card.name.ilike(f"%{query}%"))).distinct(Card.name).limit(10).all()
     # data3 = [card.to_dict() for card in result3]
@@ -24,10 +29,8 @@ def general_search(params):
     # data3 = [card.to_dict() for card in result3]
     # card_results = {"cards": data3}
 
-    result3 = Card.query.search(params, sort=True).limit(10).all()
+    result3 = Card.query.search(params, sort=True).filter(func.LENGTH(Card.set_code) <= 3).distinct().order_by(Card.name, Card.set_code).limit(10).all()
     data3 = [card.to_dict() for card in result3]
-    print(result3)
-    print(data3)
     card_results = {"cards": data3}
 
 

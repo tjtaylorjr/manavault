@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import UserObject from "../users/UserObject";
 import DeckObject from "../decks/DeckObject";
 import CardObject from "../cards/CardObject";
+import SearchBar from "./SearchBar";
 
 
 const SearchResults = () => {
@@ -10,9 +11,10 @@ const SearchResults = () => {
   const [deckQueryResults, setDeckQueryResults] = useState([]);
   const [cardQueryResults, setCardQueryResults] = useState([]);
   const [queryString, setQueryString] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const { query } = useParams();
-  console.log(query)
+  // console.log(query)
   useEffect(() => {
     if (query) {
       setQueryString(query);
@@ -20,29 +22,16 @@ const SearchResults = () => {
   }, [query]);
 
   useEffect(() => {
-    const searchFilter = (() => {
-      const params = query.split(" ");
-      const badSearchTerms = ["a", "an", "the", "if", "or", "but", "and", "for", "nor", "yet", "so", "at", "by", "from", "in", "into", "of", "on", "to", "with", "is"];
-      const filtered_query = params.filter(param => {
-        return badSearchTerms.indexOf(param) === -1;
-      });
-      filtered_query.unshift(query);
-      console.log(filtered_query);
-      return filtered_query;
-    })();
 
-    let userSearch = []
-    let deckSearch = []
-    let cardSearch = []
-    searchFilter.map(async (searchTerm) => {
+    let userSearch = [];
+    let deckSearch = [];
+    let cardSearch = [];
       (async () => {
-        const res = await fetch(`/api/search/${searchTerm}`);
+        const res = await fetch(`/api/search/${query}`);
         if (!res.ok) {
           throw res
         }
         const search = await res.json();
-        // {users, decks, cards} = search;
-        console.log(search)
         let generalSearch = []
         if (search.results.length > 0) {
           generalSearch = [...search.results]
@@ -54,68 +43,69 @@ const SearchResults = () => {
         }
 
         if (userSearch.length > 0) {
-          const uniqueUserResults = (() => {
-            const checkProp = userSearch.map(obj => obj['id']);
-            return userSearch.filter((obj, idx) => {
-              return checkProp.indexOf(obj['id']) === idx;
-            })
-          })()
+          // const uniqueUserResults = (() => {
+          //   const checkProp = userSearch.map(obj => obj['id']);
+          //   return userSearch.filter((obj, idx) => {
+          //     return checkProp.indexOf(obj['id']) === idx;
+          //   })
+          // })()
 
-          setUserQueryResults(uniqueUserResults)
+          setUserQueryResults(userSearch)
         }
 
         if (deckSearch.length > 0) {
-          const uniqueDeckResults = (() => {
-            const checkProp = deckSearch.map(obj => obj['id']);
-            return deckSearch.filter((obj, idx) => {
-              return checkProp.indexOf(obj['id']) === idx;
-            })
-          })()
+          // const uniqueDeckResults = (() => {
+          //   const checkProp = deckSearch.map(obj => obj['id']);
+          //   return deckSearch.filter((obj, idx) => {
+          //     return checkProp.indexOf(obj['id']) === idx;
+          //   })
+          // })()
 
-          const sortedDeckResults = (() => {
-            let perfectMatches = [];
-            let notPerfectMatches = [];
-            for ( let i = 0; i < uniqueDeckResults.length; i++ ) {
-              if (uniqueDeckResults[i] === query) {
-                perfectMatches.push(uniqueDeckResults[i])
-              } else {
-                notPerfectMatches.push(uniqueDeckResults[i])
-              }
-            }
+          // const sortedDeckResults = (() => {
+          //   let perfectMatches = [];
+          //   let notPerfectMatches = [];
+          //   for ( let i = 0; i < uniqueDeckResults.length; i++ ) {
+          //     if (uniqueDeckResults[i] === query) {
+          //       perfectMatches.push(uniqueDeckResults[i])
+          //     } else {
+          //       notPerfectMatches.push(uniqueDeckResults[i])
+          //     }
+          //   }
 
-            return perfectMatches.concat(notPerfectMatches)
-          })()
+          //   return perfectMatches.concat(notPerfectMatches)
+          // })()
 
-          setDeckQueryResults(sortedDeckResults)
+          setDeckQueryResults(deckSearch)
         }
 
         if (cardSearch.length > 0) {
-          const uniqueCardResults = (() => {
-            const checkProp = cardSearch.map(obj => obj['id']);
-            return cardSearch.filter((obj, idx) => {
-              return checkProp.indexOf(obj['id']) === idx;
-            })
-          })()
+          // const uniqueCardResults = (() => {
+          //   const checkProp = cardSearch.map(obj => obj['uuid']);
+          //   return cardSearch.filter((obj, idx) => {
+          //     return checkProp.indexOf(obj['id']) === idx;
+          //   })
+          // })()
 
-          const sortedCardResults = (() => {
-            let perfectMatches = [];
-            let notPerfectMatches = [];
-            for (let i = 0; i < uniqueCardResults.length; i++) {
-              if (uniqueCardResults[i] === query) {
-                perfectMatches.push(uniqueCardResults[i])
-              } else {
-                notPerfectMatches.push(uniqueCardResults[i])
-              }
-            }
+          // const sortedCardResults = (() => {
+          //   let perfectMatches = [];
+          //   let notPerfectMatches = [];
+          //   for (let i = 0; i < uniqueCardResults.length; i++) {
+          //     if (uniqueCardResults[i] === query) {
+          //       perfectMatches.push(uniqueCardResults[i])
+          //     } else {
+          //       notPerfectMatches.push(uniqueCardResults[i])
+          //     }
+          //   }
 
-            return perfectMatches.concat(notPerfectMatches)
-          })()
-          console.log(sortedCardResults)
-          setCardQueryResults(sortedCardResults)
+          //   return perfectMatches.concat(notPerfectMatches)
+          // })()
+          // console.log(sortedCardResults)
+          // setCardQueryResults(sortedCardResults)
+          setCardQueryResults(cardSearch)
         }
 
       })();
-    });
+    setIsLoaded(true);
   }, [queryString]);
 
   const userResultsRender = () => {
@@ -196,7 +186,13 @@ const SearchResults = () => {
   return (
     <>
       <div className="search-page">
-        <div className="search-page__buffer"></div>
+        <div className="search-page__buffer">
+          <div className="search-page__search">
+            <div className="search-page__searchbar-container">
+              <SearchBar />
+            </div>
+          </div>
+        </div>
         <h3 className="search-page__header">Displaying Results for {queryString}</h3>
         <div className="search-page__main">
           <section className="search-page__results">

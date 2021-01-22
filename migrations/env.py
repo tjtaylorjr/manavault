@@ -64,7 +64,7 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
-    configure_mappers()
+    # configure_mappers()
     # this callback is used to prevent an auto-migration from being generated
     # when there are no changes to the schema
     # reference: http://alembic.zzzcomputing.com/en/latest/cookbook.html

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const UserObject = ({user}) => {
-  console.log(user)
+const UserObject = (user) => {
+  const {data} = user
   return (
-    <p style={{color:"#FFF"}}>{user.username}</p>
+    <p style={{color:"#FFF"}}>{data.username}</p>
   )
 }
 

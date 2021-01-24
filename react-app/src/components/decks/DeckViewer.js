@@ -1,8 +1,15 @@
 import React from 'react';
-
-const DeckViewer = () => {
+import "../../stylesheets/deckviewer.css";
+const DeckViewer = (props) => {
+  console.log(props);
+  // const {data} = props.location.state;
+  // console.log(data);
   return (
-    <h3>This is the deck viewer!</h3>
+    <>
+      <div className="deckviewer">
+        <h3>This is the deck viewer!</h3>
+      </div>
+    </>
   )
 }
 

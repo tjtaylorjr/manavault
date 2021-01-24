@@ -4,6 +4,7 @@ import UserObject from "../users/UserObject";
 import DeckObject from "../decks/DeckObject";
 import CardObject from "../cards/CardObject";
 import SearchBar from "./SearchBar";
+import "../../stylesheets/searchresults.css";
 
 
 const SearchResults = () => {
@@ -11,14 +12,22 @@ const SearchResults = () => {
   const [deckQueryResults, setDeckQueryResults] = useState([]);
   const [cardQueryResults, setCardQueryResults] = useState([]);
   const [queryString, setQueryString] = useState("");
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
+  const [isUsersLoaded, setIsUsersLoaded] = useState(false);
+  const [isDecksLoaded, setIsDecksLoaded] = useState(false);
+  const [isCardsLoaded, setIsCardsLoaded] = useState(false);
 
   const { query } = useParams();
   // console.log(query)
   useEffect(() => {
-    if (query) {
+    if (query && query !== queryString) {
+      setIsPageLoaded(false);
+      setIsUsersLoaded(false);
+      setIsDecksLoaded(false);
+      setIsCardsLoaded(false);
       setQueryString(query);
     }
+    console.log(isCardsLoaded);
   }, [query]);
 
   useEffect(() => {
@@ -105,86 +114,88 @@ const SearchResults = () => {
         }
 
       })();
-    setIsLoaded(true);
+    setIsPageLoaded(true);
   }, [queryString]);
 
+  useEffect(() => {
+    setIsUsersLoaded(true)
+  }, [userQueryResults])
+
+  useEffect(() => {
+    setIsDecksLoaded(true)
+  }, [deckQueryResults])
+
+  useEffect(() => {
+    setIsCardsLoaded(true)
+  }, [cardQueryResults])
+
   const userResultsRender = () => {
-    return userQueryResults ? (
-      userQueryResults.length === 0 ?
-        <div className="search-page__container">
-        </div> :
-        <>
-          <div className="search-page__container">
-            <h3 className="search-page__subheader">
-              {'Found ' + userQueryResults.length + (userQueryResults.length > 1 ? ' Users' : ' User')}
-            </h3>
-            <ul className='search-page__list'>
-              {userQueryResults.map((user, i) => (
-                <UserObject key={i} data={user} />
-              ))}
-            </ul>
-          </div>
-        </>
+    return isPageLoaded && isUsersLoaded && userQueryResults.length !== 0 ? (
+      <>
+        <div className="search-page__results-container">
+          <h3 className="search-page__results-subheader">
+            {'Found ' + userQueryResults.length + (userQueryResults.length > 1 ? ' Users' : ' User')}
+          </h3>
+          <ul className='search-page__results-list'>
+            {userQueryResults.map((user, i) => (
+              <UserObject key={i} data={user} />
+            ))}
+          </ul>
+        </div>
+      </>
     ) :
-        <>
-          <div className="search-page__container">
-          </div>
-        </>
+      <>
+        <div className="search-page__results-container">
+        </div>
+      </>
 
   }
 
   const deckResultsRender = () => {
-    return deckQueryResults ? (
-      deckQueryResults.length === 0 ?
-        <div className="search-page__container">
-        </div> :
-        <>
-          <div className="search-page__container">
-            <h3 className="search-page__subheader">
-              {'Found ' + deckQueryResults.length + (deckQueryResults.length > 1 ? ' Decks' : ' Deck')}
-            </h3>
-            <ul className='search-page__list'>
-              {deckQueryResults.map((deck, i) => (
-                <DeckObject key={i} data={deck} />
-              ))}
-            </ul>
-          </div>
-        </>
-    ) :
+    return isPageLoaded && isDecksLoaded && deckQueryResults.length !== 0 ? (
       <>
-        <div className="search-page__container">
+        <div className="search-page__results-container">
+          <h3 className="search-page__results-subheader">
+            {'Found ' + deckQueryResults.length + (deckQueryResults.length > 1 ? ' Decks' : ' Deck')}
+          </h3>
+          <ul className='search-page__results-list'>
+            {deckQueryResults.map((deck, i) => (
+              <DeckObject key={i} data={deck} />
+            ))}
+          </ul>
         </div>
       </>
-
+    ) :
+      <>
+        <div className="search-page__results-container">
+        </div>
+      </>
   }
 
   const cardResultsRender = () => {
-    return cardQueryResults ? (
-      cardQueryResults.length === 0 ?
-        <div className="search-page__container">
-        </div> :
-        <>
-          <div className="search-page__container">
-            <h3 className="search-page__subheader">
-              {'Found ' + cardQueryResults.length + (cardQueryResults.length > 1 ? ' Cards' : ' Card')}
-            </h3>
-            <ul className='search-page__list'>
-              {cardQueryResults.map((card, i) => (
-                <CardObject key={i} data={card} />
-              ))}
-            </ul>
-          </div>
-        </>
-    ) :
+    return isPageLoaded && isCardsLoaded && cardQueryResults.length !== 0 ? (
       <>
-        <div className="search-page__container">
+        <div className="search-page__results-container">
+          <h3 className="search-page__results-subheader">
+            {'Found ' + cardQueryResults.length + (cardQueryResults.length > 1 ? ' Cards' : ' Card')}
+          </h3>
+          <ul className='search-page__results-list'>
+            {cardQueryResults.map((card, i) => (
+              <CardObject key={i} data={card} />
+            ))}
+          </ul>
         </div>
       </>
-
+    ) : (
+      <>
+      <div className="search-page__results-container"></div>
+      </>
+    )
   }
 
   return (
     <>
+      {isPageLoaded &&
       <div className="search-page">
         <div className="search-page__buffer">
           <div className="search-page__search">
@@ -193,7 +204,7 @@ const SearchResults = () => {
             </div>
           </div>
         </div>
-        <h3 className="search-page__header">Displaying Results for {queryString}</h3>
+        <h3 className="search-page__header">Displaying results for {queryString}</h3>
         <div className="search-page__main">
           <section className="search-page__results">
             {userResultsRender()}
@@ -206,6 +217,21 @@ const SearchResults = () => {
           </section>
         </div>
       </div>
+      }
+      {!isPageLoaded &&
+      <div className="search-page">
+        <div className="search-page__buffer">
+          <div className="search-page__search">
+            <div className="search-page__searchbar-container">
+              <SearchBar />
+            </div>
+          </div>
+        </div>
+        <h3 className="search-page__header">Searching for {query}...</h3>
+        <div className="search-page__main">
+        </div>
+      </div>
+      }
     </>
   )
 }

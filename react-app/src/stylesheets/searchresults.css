@@ -1,5 +1,5 @@
 .search-page {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -40,7 +40,6 @@
   grid-column-start: 2;
   grid-row-start: 2;
   width: 100%;
-  /* margin-bottom: 50px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,16 +54,12 @@
   text-align: center;
 }
 
-/* .search-page__searchbar-container form {
-
-} */
-
 .search-page__searchbar-container button {
   display: none;
 }
 
 .search-page__searchbar-container input {
-  width: 375px;
+  width: 420px;
   height: 2rem;
   border-radius: 16px;
   border: 1px solid #777777;
@@ -75,7 +70,6 @@
   font-weight: 500;
   padding-left: 2.8rem;
   line-height: 2.4rem;
-  /* padding-right: 1.8rem; */
 }
 
 .search-page__main {
@@ -84,6 +78,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   max-height: 100%;
   max-width: 100%;
   border-top: 1px solid #21262D;
@@ -92,11 +87,11 @@
 }
 
 .search-page__results {
-  /* border-bottom: 1px solid #21262D; */
   max-width: 100%;
   padding: 15px;
   position: relative;
-  /* flex: 1 1 auto; */
+  display: flex;
+  justify-content: center;
 }
 
 .search-page__no-results-message {
@@ -108,7 +103,7 @@
   position: relative;
 }
 
-.search-page__subheader {
+.search-page__results-subheader {
   color: #ffffff;
   width: 100%;
   text-align: center;
@@ -118,27 +113,231 @@
   padding-bottom: 15px;
 }
 
-.search-page__list {
+.search-page__results-list {
   display: flex;
+  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   position: relative;
 }
 
 .card-object {
-  /* border: 1px solid #21262D; */
-  /* background-color: #161B22; */
-  background-color: #06090F;
+  background-color: transparent;
   text-align: center;
   width: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+  position: relative;
+  cursor: pointer;
 }
 
 .card-object h4{
-  /* border-bottom: 1px solid #21262D; */
-  padding: 5px;
+  padding: 5px 7px;
+  height: 32px;
 }
-.card-object__image {
-  border-radius: 15px;
+
+.card-object__image-container {
+  border-top: 1px solid #21262D;
+  background-color: transparent;
+  max-width: 146px;
+  height: 204px;
+  padding: 10px 0px;
+  position: relative;
+}
+
+.card-object__image-container img {
   overflow: hidden;
+  border-radius: 7px;
   background-color: #06090F;
+  width: 142px;
+  height: 204px;
+  object-fit: cover;
+}
+
+.deck-object {
+  width: 250px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.deck-object h4{
+  padding: 5px 7px;
+  height: 32px;
+}
+
+.deck-object__3d-render {
+  border-top: 1px solid #21262D;
+  width: 184px;
+  height: 210px;
+  perspective: 2000px;
+  perspective-origin: -150% -150%;
+  padding-top: 40px;
+}
+
+.deck-object__3d-render-deckbox {
+  width: 184px;
+  height: 210px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(-100px);
+  transform: rotate3d(-.2,1,-.1,25deg);
+}
+
+.deck-object__3d-render-deckbox-front {
+  position: absolute;
+  width: 180px;
+  height: 210px;
+  transform: rotateY( 0deg) translateZ(50px);
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  outline: 1px solid transparent;
+  background-color: #21262D;
+}
+
+.deck-object__3d-render-deckbox-front-top {
+  width: 184px;
+  height: 88px;
+  outline: 1px solid transparent;
+  border-top: 1px solid #cccccc;
+  border-bottom: 3px groove #555555;
+  background-position: 76% 3% ;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  background-size: 313px 228px;
+  background-origin: border-box;
+}
+
+.deck-object__3d-render-deckbox-front-bottom {
+  width: 180px;
+  height: 119px;
+  outline: 1px solid transparent;
+  background-position: 76% 84% ;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  background-size: 313px 228px;
+  background-origin: border-box;
+}
+
+.deck-object__3d-render-deckbox-back {
+  position: absolute;
+  width: 180px;
+  height: 210px;
+  transform: rotateY(180deg) translateZ(50px);
+  background-color: #21262D;
+  outline: 1px solid transparent;
+}
+
+.deck-object__3d-render-deckbox-right,
+.deck-object__3d-render-deckbox-left {
+  position: absolute;
+  width: 100px;
+  height: 210px;
+  border-left: #cccccc;
+  border-right: #cccccc;
+  border-top: #cccccc;
+  outline: 1px solid transparent;
+  background-color: #21262D;
+}
+
+.deck-object__3d-render-deckbox-left-top {
+  position: relative;
+  width: 100px;
+  height: 90px;
+  outline: 1px solid transparent;
+  border-top: 1px solid #cccccc;
+  border-bottom: 4px groove #555555;
+  transform-origin: top right;
+  transform: skewY(13deg);
+  margin: -2px 0 0 0;
+  overflow: hidden;
+}
+
+.deck-object__3d-render-deckbox-left-top-img {
+  position: absolute;
+  outline: 1px solid transparent;
+  width: 100px;
+  height: 90px;
+  border-top: 1px solid #cccccc;
+  background-position: 1% 1% ;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  background-size: 313px 228px;
+  background-origin: border-box;
+  transform-origin: top right;
+  transform: skewY(-13deg);
+  margin: 0 0 0 0;
+}
+
+.deck-object__3d-render-deckbox-left-bottom {
+  width: 180px;
+  height: 141px;
+  outline: 1px solid transparent;
+  transform-origin: bottom left;
+  transform: skewY(13deg);
+  margin: -23px 0 0 0;
+  overflow: hidden;
+}
+
+.deck-object__3d-render-deckbox-left-bottom-img {
+  width: 180px;
+  height: 139px;
+  outline: 1px solid transparent;
+  background-position: 1% 84% ;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  background-size: 313px 228px;
+  background-origin: border-box;
+  transform-origin: top right;
+  transform: skewY(-13deg);
+  margin: -41px 0 0 0;
+}
+
+.deck-object__3d-render-deckbox-right {
+  transform: rotateY(90deg) translateZ(130px);
+}
+
+.deck-object__3d-render-deckbox-left {
+  transform: rotateY(-90deg) translateZ(50px);
+  overflow: hidden;
+}
+
+.deck-object__3d-render-deckbox-top,
+.deck-object__3d-render-deckbox-bottom {
+  position: absolute;
+  top: 50px;
+  outline: 1px solid transparent;
+  background-color: #21262D;
+  border-left: 1px solid #cccccc;
+}
+
+.deck-object__3d-render-deckbox-top {
+  width: 184px;
+  height: 100px;
+  transform: rotateX(90deg) translateZ(100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deck-object__3d-render-deckbox-top h1 {
+  font-family: "Satmin";
+  font-size: 45px;
+  background: -webkit-linear-gradient(270deg, #700d00, #f5bc2d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px #421408;
+  padding: 10px;
+}
+
+.deck-object__3d-render-deckbox-bottom {
+  width: 180px;
+  height: 100px;
+  transform: rotateX(-90deg) translateZ(110px);
 }

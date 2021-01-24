@@ -3,7 +3,6 @@ from app.models import db, Card, Deck, User, Illustration
 from sqlalchemy import or_, func, desc, text
 from sqlalchemy.orm import joinedload
 from sqlalchemy_searchable import search
-
 search_routes = Blueprint('search', __name__)
 
 @search_routes.route('/<params>')
@@ -12,24 +11,12 @@ def general_search(params):
     data = [user.to_dict() for user in result]
     user_results = {"users": data}
 
-    # result2 = Deck.query.filter(or_(Deck.deck_name.ilike(f"%{params}%"), Deck.description.ilike(f"%{params}%"))).all()
-    # data2 = [deck.to_dict() for deck in result2]
-    # deck_results = {"decks": data2}
-
     result2 = Deck.query.search(params, sort=True).order_by(Deck.deck_name).limit(10).all()
     data2 = [deck.to_dict() for deck in result2]
     deck_result = {"decks": data2}
 
-
-    # result3 = Card.query.filter(or_(Card.name.ilike(f"%{query}%"))).distinct(Card.name).limit(10).all()
-    # data3 = [card.to_dict() for card in result3]
-    # card_results = {"cards": data3}
-
-    # result3 = Card.query.filter(Card.name.contains(params)).distinct(Card.name)
-    # data3 = [card.to_dict() for card in result3]
-    # card_results = {"cards": data3}
-
-    result3 = Card.query.search(params, sort=True).filter(func.LENGTH(Card.set_code) <= 3).distinct().order_by(Card.name, Card.set_code).limit(10).all()
+    result3 = Card.query.search(params, sort=True).filter(func.LENGTH(Card.set_code) <= 3).distinct(
+    ).options(joinedload(Card.illustration)).order_by(Card.name, Card.set_code).limit(100).all()
     data3 = [card.to_dict() for card in result3]
     card_results = {"cards": data3}
 

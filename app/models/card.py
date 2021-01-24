@@ -41,7 +41,7 @@ class Card(db.Model):
     search_vector = db.Column(TSVectorType('name', 'type', weights={'name': 'A', 'type': 'B'}))
     format_list = db.relationship('Format_List', backref=backref('card', uselist=False))
     illustration = db.relationship('Illustration', uselist=False, back_populates="card", cascade="delete, delete-orphan")
-    set = db.relationship('Set', back_populates = "cards")
+    set = db.relationship('Set', back_populates="cards")
     alternate_cardfaces = db.relationship('Alternate_Cardface', back_populates='card', cascade="delete, delete-orphan")
 
     def __init__(self, id, uuid, arena_id, name, set_code, set_number, rarity, type, power, toughness, loyalty, mana_cost, conv_mana_cost, keywords, rules_text, flavor_text, is_multifaced, avg_rating):
@@ -92,7 +92,7 @@ class Card(db.Model):
             # "alternate_cardfaces": self.alternate_cardfaces
             # "format_list": self.format_list.to_dict(),
             # "format_list": [format.to_dict() for format in self.format_list],
-            # "illustration": self.illustration.to_dict(),
+            "illustration": self.illustration.to_dict(),
             # "illustration": [image.to_dict() for image in self.illustration],
             # "alternate_cardfaces": self.alternate_cardfaces.to_dict()
         }

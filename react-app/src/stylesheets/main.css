@@ -1,6 +1,6 @@
 
 .splash {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   position: relative;
   background: transparent;
@@ -8,11 +8,11 @@
   /* position: fixed; */
   justify-content: center;
   z-index: 1;
-  padding-bottom: 50px;
+  /* padding-bottom: 50px; */
 }
 .splash-search {
   grid-row-start: 1;
-  width: 375px;
+  width: 420px;
   padding-right: 50px;
   padding-left: 50px;
   margin-right: auto;
@@ -22,7 +22,7 @@
 }
 
 .splash-search input {
-  width: 100%;;
+  width: 100%;
   height: 2rem;
   border-radius: 16px;
   border: 1px solid #777777;

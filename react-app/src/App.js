@@ -100,7 +100,6 @@ function App() {
         </Route>
         <Route path="/decks/:id" exact={true} authenticated={authenticated}>
           <DeckViewer user={currentUser} authenticated={authenticated} />
-          <Footer />
         </Route>
         <Route path="/decks" exact={true} authenticated={authenticated}>
           <DeckBrowser user={currentUser} authenticated={authenticated} />

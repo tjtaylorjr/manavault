@@ -44,6 +44,10 @@ class Deck_Card(db.Model):
     def __repr__(self):
         return f'Deck_Card({self.deck_id}, {self.card_id}, {self.in_deck}, {self.in_sideboard})'
 
+    def to_dict(self):
+        return {
+            "card": self.card
+        }
 
 class Deck(db.Model):
     query_class = DeckQuery
@@ -83,13 +87,13 @@ class Deck(db.Model):
             "id": self.id,
             "uuid": self.uuid,
             "user_id": self.user_id,
-            "creator_username": self.creator_username,
+            "creator_name": self.creator_name,
             "deck_name": self.deck_name,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "description": self.description,
             "background_img": self.background_img,
-            "self.video_url": self.self.video_url,
+            "self.video_url": self.video_url,
             "avg_rating": self.avg_rating,
-            "card_list": [deck_card.to_dict() for deck_card in self.card_list]
+            "card_list": [deck_card.card.to_dict() for deck_card in self.card_list]
         }

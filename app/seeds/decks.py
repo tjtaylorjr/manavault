@@ -201,6 +201,6 @@ def seed_deck_cards():
     db.session.commit()
 
 def undo_decks():
-    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE decks RESTART IDENTITY CASCADE;')
     db.session.commit()
     print('unseed decks complete')

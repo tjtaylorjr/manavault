@@ -15,4 +15,9 @@ def users():
 @user_routes.route('/<int:id>')
 def user(id):
     user = User.query.get(id)
-    return user.to_dict()
+    return user.to_dict_all()
+
+# @user_routes.route('/profile/<int:id>')
+# def user(id):
+#     user = User.query.get(id)
+#     return user.to_dict_all()

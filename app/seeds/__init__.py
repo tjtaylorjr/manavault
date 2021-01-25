@@ -1,5 +1,6 @@
 from flask.cli import AppGroup
 from .users import seed_demo, seed_users, undo_users
+from .user_profiles import seed_user_profiles, undo_user_profiles
 from .sets import seed_sets, undo_sets
 from .cards import seed_cards, undo_cards
 from .alternate_cardfaces import seed_alt_cardfaces, undo_alt_cardfaces
@@ -16,6 +17,7 @@ seed_commands = AppGroup('seed')
 def seed():
     seed_demo()
     seed_users()
+    seed_user_profiles()
     seed_sets()
     seed_cards()
     seed_alt_cardfaces()
@@ -29,6 +31,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    undo_user_profiles()
     undo_sets()
     undo_cards()
     undo_alt_cardfaces()

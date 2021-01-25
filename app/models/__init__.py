@@ -1,6 +1,7 @@
 from .db import db
 from .set import Set
 from .user import User
+from .user_profile import User_Profile
 from .card import Card, CardQuery
 from .alternate_cardface import Alternate_Cardface
 from .format_list import Format_List

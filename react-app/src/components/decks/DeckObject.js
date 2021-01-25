@@ -8,7 +8,7 @@ const DeckObject = ( deck ) => {
 
   useEffect(() => {
     setDeckIMG(data.background_img)
-  },[])
+  },[data.background_img])
 
   const renderDeckPage = () => {
     history.push({
@@ -17,10 +17,15 @@ const DeckObject = ( deck ) => {
     });
   };
 
+  const renderUserProfile = () => {
+    history.push(`/users/${data.user_id}`)
+  }
+
   return (
-    <section className="deck-object" onClick={renderDeckPage}>
-      <h4 style={{ color: "#FFF" }}>{data.deck_name}</h4>
-      <div className="deck-object__3d-render">
+    <section className="deck-object">
+      <h4 onClick={renderDeckPage}>{data.deck_name}</h4>
+      <p className="deck-object__creator" onClick={renderUserProfile}>{'by ' + data.creator_name}</p>
+      <div className="deck-object__3d-render" onClick={renderDeckPage}>
         <div className="deck-object__3d-render-deckbox">
           <div className="deck-object__3d-render-deckbox-front">
             {deckIMG ? (

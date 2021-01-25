@@ -163,12 +163,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .deck-object h4{
-  padding: 5px 7px;
+  padding: 0 5px;
+  padding-top: 7px;
   height: 32px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.deck-object__creator {
+  font-size: 12px;
+  padding-bottom: 7px;
+  cursor: pointer;
 }
 
 .deck-object__3d-render {
@@ -178,6 +187,7 @@
   perspective: 2000px;
   perspective-origin: -150% -150%;
   padding-top: 40px;
+  cursor: pointer;
 }
 
 .deck-object__3d-render-deckbox {
@@ -194,34 +204,55 @@
   width: 180px;
   height: 210px;
   transform: rotateY( 0deg) translateZ(50px);
-  border-left: 1px solid #cccccc;
-  border-right: 1px solid #cccccc;
+  /* border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc; */
   outline: 1px solid transparent;
   background-color: #21262D;
+  /* border-width: */
+}
+
+.deck-object__3d-render-deckbox-front-top:before {
+  content: '';
+  width: 1px;
+  height:84px;
+  background-color: #cccccc;
+  left: -1px;
+  position: absolute;
 }
 
 .deck-object__3d-render-deckbox-front-top {
   width: 184px;
   height: 88px;
   outline: 1px solid transparent;
-  border-top: 1px solid #cccccc;
+  /* border-top: 1px solid #cccccc; */
   border-bottom: 3px groove #555555;
-  background-position: 76% 3% ;
+  background-position: 79% 3% ;
   background-repeat: no-repeat;
   background-attachment: local;
   background-size: 313px 228px;
   background-origin: border-box;
+  box-sizing: border-box;
+}
+
+.deck-object__3d-render-deckbox-front-bottom:before {
+  content: '';
+  width: 1px;
+  height:123px;
+  background-color: #cccccc;
+  left: -1px;
+  position: absolute;
 }
 
 .deck-object__3d-render-deckbox-front-bottom {
   width: 180px;
-  height: 119px;
+  height: 123px;
   outline: 1px solid transparent;
-  background-position: 76% 84% ;
+  background-position: 78% 87% ;
   background-repeat: no-repeat;
   background-attachment: local;
   background-size: 313px 228px;
   background-origin: border-box;
+  box-sizing: border-box;
 }
 
 .deck-object__3d-render-deckbox-back {
@@ -238,9 +269,9 @@
   position: absolute;
   width: 100px;
   height: 210px;
-  border-left: #cccccc;
-  border-right: #cccccc;
-  border-top: #cccccc;
+  /* border-left: #cccccc;
+  border-right: #cccccc; */
+  /* border-top: #cccccc; */
   outline: 1px solid transparent;
   background-color: #21262D;
 }
@@ -256,6 +287,8 @@
   transform: skewY(13deg);
   margin: -2px 0 0 0;
   overflow: hidden;
+  box-sizing: border-box;
+  background-origin: border-box;
 }
 
 .deck-object__3d-render-deckbox-left-top-img {
@@ -268,7 +301,7 @@
   background-repeat: no-repeat;
   background-attachment: local;
   background-size: 313px 228px;
-  background-origin: border-box;
+  /* background-origin: border-box; */
   transform-origin: top right;
   transform: skewY(-13deg);
   margin: 0 0 0 0;
@@ -282,17 +315,19 @@
   transform: skewY(13deg);
   margin: -23px 0 0 0;
   overflow: hidden;
+  box-sizing: border-box;
+  background-origin: border-box;
 }
 
 .deck-object__3d-render-deckbox-left-bottom-img {
   width: 180px;
-  height: 139px;
+  height: 145px;
   outline: 1px solid transparent;
   background-position: 1% 84% ;
   background-repeat: no-repeat;
   background-attachment: local;
   background-size: 313px 228px;
-  background-origin: border-box;
+  /* background-origin: border-box; */
   transform-origin: top right;
   transform: skewY(-13deg);
   margin: -41px 0 0 0;
@@ -340,4 +375,59 @@
   width: 180px;
   height: 100px;
   transform: rotateX(-90deg) translateZ(110px);
+}
+
+.user-object {
+  position: relative;
+  width: 200px;
+  height: 175px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-left: 1px solid #21262d;
+  border-right: 1px solid #21262D;
+}
+
+.user-object__avatar-container {
+
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-object__avatar-image-wrapper {
+  position: relative;
+  border-radius: 50%;
+  height: 110px;
+  width: 110px;
+  background: -webkit-linear-gradient(270deg, #700d00, #f5bc2d);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #f5bc2d;
+}
+
+.user-object__avatar-image {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-size: 100px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-clip: content-box;
+  border: 1px solid #700d00;
+}
+
+.user-object__username {
+  font-size: 18px;
+  color: #ffffff;
+  cursor: pointer;
 }

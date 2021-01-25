@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function UsersList() {
+function UsersBrowser() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -29,4 +29,4 @@ function UsersList() {
   );
 }
 
-export default UsersList;
+export default UsersBrowser;

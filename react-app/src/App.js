@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
 import { authenticate } from "./utils/auth";
 import Main from "./components/home/Main";
 import NavBar from "./components/static/NavBar";
 import Footer from "./components/static/Footer";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
-// import {Profile, ProfileEditor} from "./components/users";
-import Profile from "./components/users";
+import UsersBrowser from "./components/users/UsersBrowser";
+import UserProfile from "./components/users/UserProfile";
 import ProfileEditor from "./components/users/ProfileEditor"
 import DeckBuilder from "./components/decks/DeckBuilder";
 import DeckViewer from "./components/decks/DeckViewer";
@@ -49,12 +47,16 @@ function App() {
       />
       <Switch>
         <Route
-          path="/users/:id"
+          path="/users/:userId"
           exact={true}
           authenticated={authenticated}
           setAuthenticated={setAuthenticated}
         >
-          <Profile user={currentUser} />
+          <UserProfile
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+            user={currentUser}
+          />
         </Route>
         <ProtectedRoute
           path="/users/:id/edit"
@@ -71,12 +73,9 @@ function App() {
         >
           <DeckBuilder />
         </ProtectedRoute>
-        <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-          <User />
-        </ProtectedRoute>
+        <Route path="/users" exact={true} authenticated={authenticated}>
+          <UsersBrowser />
+        </Route>
         <ProtectedRoute
           path="/decks/:id/edit"
           exact={true}

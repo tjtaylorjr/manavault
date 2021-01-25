@@ -27,7 +27,6 @@ const SearchResults = () => {
       setIsCardsLoaded(false);
       setQueryString(query);
     }
-    console.log(isCardsLoaded);
   }, [query]);
 
   useEffect(() => {
@@ -44,11 +43,11 @@ const SearchResults = () => {
         let generalSearch = []
         if (search.results.length > 0) {
           generalSearch = [...search.results]
-          console.log(generalSearch)
+          // console.log(generalSearch)
           userSearch = [...generalSearch[0].users]
           deckSearch = [...generalSearch[1].decks]
           cardSearch = [...generalSearch[2].cards]
-          console.log(userSearch, deckSearch, cardSearch)
+          // console.log(userSearch, deckSearch, cardSearch)
         }
 
         if (userSearch.length > 0) {

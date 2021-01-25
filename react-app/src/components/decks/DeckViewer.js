@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../stylesheets/deckviewer.css";
+import "../../stylesheets/deckViewer.css";
 const DeckViewer = (props) => {
   console.log(props);
   // const {data} = props.location.state;

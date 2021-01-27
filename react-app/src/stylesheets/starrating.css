@@ -1,0 +1,47 @@
+
+
+.star-rating {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.star-rating__star {
+  cursor: pointer;
+  width: 2em;
+  height: 2em;
+  background-color: #21262D;
+  -webkit-clip-path: polygon(
+    50% 0%,
+    63% 38%,
+    100% 38%,
+    69% 59%,
+    82% 100%,
+    50% 75%,
+    18% 100%,
+    31% 59%,
+    0% 38%,
+    37% 38%
+  );
+  clip-path: polygon(
+    50% 0%,
+    63% 38%,
+    100% 38%,
+    69% 59%,
+    82% 100%,
+    50% 75%,
+    18% 100%,
+    31% 59%,
+    0% 38%,
+    37% 38%
+  );
+}
+
+.star-rating__star-selected {
+  background-color: #F5BC2D;
+}
+
+.star-rating__description {
+  flex-basis: 100%;
+  text-align: center;
+}

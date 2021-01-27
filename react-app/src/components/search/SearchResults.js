@@ -18,7 +18,7 @@ const SearchResults = () => {
   const [isCardsLoaded, setIsCardsLoaded] = useState(false);
 
   const { query } = useParams();
-  // console.log(query)
+
   useEffect(() => {
     if (query && query !== queryString) {
       setIsPageLoaded(false);
@@ -43,11 +43,11 @@ const SearchResults = () => {
         let generalSearch = []
         if (search.results.length > 0) {
           generalSearch = [...search.results]
-          // console.log(generalSearch)
+
           userSearch = [...generalSearch[0].users]
           deckSearch = [...generalSearch[1].decks]
           cardSearch = [...generalSearch[2].cards]
-          // console.log(userSearch, deckSearch, cardSearch)
+
         }
 
         if (userSearch.length > 0) {
@@ -107,7 +107,7 @@ const SearchResults = () => {
 
           //   return perfectMatches.concat(notPerfectMatches)
           // })()
-          // console.log(sortedCardResults)
+          
           // setCardQueryResults(sortedCardResults)
           setCardQueryResults(cardSearch)
         }

@@ -8,7 +8,7 @@ search_routes = Blueprint('search', __name__)
 @search_routes.route('/<params>')
 def general_search(params):
     result = User.query.filter(User.username.ilike(f"%{params}%")).limit(10).all()
-    data = [user.to_dict() for user in result]
+    data = [user.to_dict_all() for user in result]
     user_results = {"users": data}
 
     result2 = Deck.query.search(params, sort=True).order_by(Deck.deck_name).limit(10).all()

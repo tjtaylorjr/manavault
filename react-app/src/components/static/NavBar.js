@@ -35,7 +35,7 @@ const NavBar = ({ authenticated, setAuthenticated, setCurrentUser, currentUser }
                 </label>
               </li>
               <li>
-                <NavLink className="navlinks" to={"/profile/" + currentUser.id} exact={true} activeClassName="active">
+                <NavLink className="navlinks" to={"/users/" + currentUser.id} exact={true} activeClassName="active">
                   Account
                     </NavLink>
               </li>

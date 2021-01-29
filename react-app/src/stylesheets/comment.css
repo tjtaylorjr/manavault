@@ -1,0 +1,82 @@
+.comment__container {
+  position: relative;
+  width: 100%;
+  margin: auto 3px;
+  background: #FFFFFF;
+  display: flex;
+  border: 1px inset #0D1117;
+  color: #0D1117;
+  padding: 5px 0;
+}
+
+.comment__wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100px;
+  /* display: flex;
+  flex-direction: row;
+  align-items: space-around;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: 54px 285px 54px;
+  grid-template-rows: 38px 1fr 38px;
+
+
+}
+
+.comment__voting-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 90px;
+  align-items: center;
+  justify-content: space-between;
+  width: 50px;
+  grid-column: 1;
+  grid-row: 1 / span 3;
+}
+
+.comment_contents {
+  position: relative;
+  display: flex;
+  background-color: #ffffff;
+  color: #06090F;
+  width: 100%;
+  height: 100%;
+  grid-column-start: 2;
+  grid-row-start: 2 / span 2;
+  padding: 10px;
+}
+
+.comment_contents span {
+  /* padding-top: 10px; */
+}
+
+.comment__voting-panel {
+  /* border: 2px inset #06090F;
+  border-radius: 2px; */
+  margin-left: 2px;
+  align-self: center;
+  text-align: left;
+}
+
+.comment__upvote-button {
+  font-size: 2rem;
+  /* fill: #700d00; */
+  /* overflow: hidden; */
+  fill: #700d00;
+  cursor: pointer;
+}
+
+.comment__downvote-button {
+  font-size: 2rem;
+  fill: #700d00;
+  cursor: pointer;
+}
+
+.comment_avatar-container {
+  align-self: flex-start;
+  grid-column: 3;
+  grid-row-start: 1 / span 2;
+
+}

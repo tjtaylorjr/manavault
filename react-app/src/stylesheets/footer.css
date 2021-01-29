@@ -1,5 +1,9 @@
 .footer {
-  position: relative;
+  /* position: relative; */
+  /* position: fixed;
+  left: 0;
+  bottom: 0; */
+  position: absolute;
   height: 6vh;
   width: 100%;
   display: flex;
@@ -23,4 +27,5 @@
   color: lightgray;
   text-align: center;
   margin: 0 15px 0 15px;
+  font-size: .8rem;
 }

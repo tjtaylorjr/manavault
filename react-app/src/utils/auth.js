@@ -31,8 +31,6 @@ export const logout = async () => {
 };
 
 export const signUp = async (
-  firstname,
-  lastname,
   username,
   email,
   password
@@ -43,8 +41,6 @@ export const signUp = async (
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      firstname,
-      lastname,
       username,
       email,
       password,

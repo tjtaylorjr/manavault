@@ -23,8 +23,8 @@ class Alternate_Cardface(db.Model):
     keywords = db.Column(db.String(150), nullable = True)
     rules_text = db.Column(db.Text, nullable = True)
     flavor_text = db.Column(db.Text, nullable = True)
-    card = db.relationship('Card', back_populates = "alternate_cardfaces")
-    illustration = db.relationship('Illustration', backref=backref('alternate_cardface', uselist=False))
+    card = db.relationship('Card', back_populates="alternate_cardfaces")
+    illustration = db.relationship('Illustration', uselist=False, back_populates='alternate_cardface', cascade="delete, delete-orphan")
 
     def __repr__(self):
         return f'Card({self.id}, {self.base_card_uuid}, {self.uuid}, {self.face_change}, {self.name}, {self.type}, {self.power}, {self.toughness}, {self.loyalty}, {self.keywords}, {self.rules_text}, {self.flavor_text})'
@@ -44,4 +44,4 @@ class Alternate_Cardface(db.Model):
             "rules_text": self.rules_text,
             "flavor_text": self.flavor_text,
             "illustration": self.illustration.to_dict(),
-        }
+            }

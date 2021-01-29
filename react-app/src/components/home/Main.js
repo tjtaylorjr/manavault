@@ -14,6 +14,7 @@ const Main = () => {
               <SearchBar />
             </div>
           </div>
+          <div className="News"></div>
           <div className="disclaimer">
             <p>Art featured on this page is Ancient Hellkite and was illustrated by Jason Chan.  Portions of the materials used on this site, including Ancient Hellkite, are property of Wizards of the Coast. ©Wizards of the Coast LLC.</p>
             <p>Wizards of the Coast, Magic: The Gathering, and their logos are trademarks of Wizards of the Coast LLC in the United States and other countries. © 1993-2021 Wizards. All Rights Reserved.</p>

@@ -2,11 +2,12 @@ from flask.cli import AppGroup
 from .users import seed_demo, seed_users, undo_users
 from .user_profiles import seed_user_profiles, undo_user_profiles
 from .sets import seed_sets, undo_sets
-from .cards import seed_cards, undo_cards
+from .cards import seed_cards, undo_cards, seed_star_ratings, undo_star_ratings
 from .alternate_cardfaces import seed_alt_cardfaces, undo_alt_cardfaces
 from .format_lists import seed_format_lists, undo_format_lists
 from .illustrations import seed_illustrations, undo_illustrations
 from .decks import seed_decks, seed_deck_cards, undo_decks
+from .comments import seed_comments, undo_comments
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -25,6 +26,8 @@ def seed():
     seed_illustrations()
     seed_decks()
     seed_deck_cards()
+    seed_comments()
+    seed_star_ratings()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command
@@ -38,4 +41,6 @@ def undo():
     undo_format_lists()
     undo_illustrations()
     undo_decks()
+    undo_comments()
+    undo_star_ratings()
     # Add other undo functions here

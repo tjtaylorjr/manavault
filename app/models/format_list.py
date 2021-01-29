@@ -21,6 +21,7 @@ class Format_List(db.Model):
     brawl = db.Column(db.String(10), nullable = False)
     duel = db.Column(db.String(10), nullable = False)
     oldschool = db.Column(db.String(10), nullable = False)
+    card = db.relationship('Card', back_populates='format_list')
 
 
     def __repr__(self):
@@ -31,7 +32,7 @@ class Format_List(db.Model):
     #     legal = [ruling for ruling in list if ruling = 'legal']
     #     not_legal = [ruling for ruling in list if not ruling in legal]
     #     return f'The card with id {self.card_uuid} is legal in the following formats: '
-    #still need to finish this __str__
+    # still need to finish this __str__
 
     def to_dict(self):
         return {

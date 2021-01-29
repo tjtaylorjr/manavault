@@ -23,3 +23,6 @@ class RegistrationForm(FlaskForm):
     username = StringField('username', validators=[DataRequired(), username_exists])
     email = StringField('email', validators=[DataRequired(), email_exists])
     password = StringField('password', validators=[DataRequired()])
+
+class FollowForm(FlaskForm):
+    follower_id = StringField('follower_id', validators=[DataRequired()])

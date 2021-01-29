@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { render } from "react-dom";
+// import { render } from "react-dom";
 import {BsStarFill, BsStarHalf, BsStar} from 'react-icons/bs';
 
 const Star = ({ selected = false, onClick = f => f }) => (
   <div className = { selected ? 'star-rating__star star-rating__selected' : 'star-rating__star'} onClick={onClick} />
 )
+
+const totalStars = 5;
 
 const StarRating = ({ totalStars }) => {
   const [starSelected, selectStar] = useState(0);
@@ -25,5 +27,7 @@ const StarRating = ({ totalStars }) => {
 };
 
 // render(<StarRating totalStars={5} />, document.getElementById('root'));
+
+// TO DO want to make this more flexible with css by using clip value to reveal underlying color and render stars to the tenth decimal position.
 
 export default StarRating;

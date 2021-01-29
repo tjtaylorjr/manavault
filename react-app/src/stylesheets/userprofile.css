@@ -1,7 +1,8 @@
 .user-profile {
   position: relative;
   color: #ffffff;
-
+  min-height: 100vh;
+  padding-bottom: 2.5rem;
 }
 
 .user-profile__header {

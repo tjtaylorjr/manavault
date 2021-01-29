@@ -2,18 +2,17 @@ from werkzeug.security import generate_password_hash
 from app.models import db, User
 
 
-
-
-
-
 def seed_demo():
 
-    demo = User(username='Visitor', email='demo@spark.io',
-                password='password')
+    demo = User(
+        username='Visitor',
+        email='demo@spark.io',
+        password='password'
+    )
 
     db.session.add(demo)
-
     db.session.commit()
+
 
 def seed_users():
 
@@ -55,7 +54,8 @@ def seed_users():
     user6 = User(
         username='epeterson',
         email='epeterson@test.com',
-        password='password'
+        password='password',
+        followers=[user2, user3, user4, user5]
     )
     db.session.add(user6)
 
@@ -163,8 +163,8 @@ def seed_users():
         password='fakepassword'
     )
     db.session.add(user21)
-
     db.session.commit()
+
 
 def undo_users():
     db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')

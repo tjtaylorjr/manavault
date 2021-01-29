@@ -3,7 +3,7 @@ import Avatar from "../users/Avatar";
 import cn from "classnames";
 import DynamicHeight from "./DynamicHeight";
 
-const INITIAL_HEIGHT = 115;
+const INITIAL_HEIGHT = 100;
 
 const CommentBox = (props) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -14,7 +14,7 @@ const CommentBox = (props) => {
   const outerHeight = useRef(INITIAL_HEIGHT);
   const textRef = useRef(null);
   const containerRef = useRef(null);
-
+  const {setPostFlag} = props;
   useEffect(() => {
     if (props.user_id) {
       (async () => {
@@ -24,10 +24,10 @@ const CommentBox = (props) => {
         setUsername(props.username)
       })()
     }
-  },[props.user_id])
+  },[props.user_id, props.username])
 
   DynamicHeight(textRef, commentValue);
-  console.log(props)
+
   const onExpand = () => {
     if (!isExpanded) {
       outerHeight.current = containerRef.current.scrollHeight;
@@ -44,9 +44,25 @@ const CommentBox = (props) => {
     setIsExpanded(false);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
-    console.log('send the form data somewhere')
+    const res = await fetch(`/api/comments/${props.deck_id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "user_id": props.user_id,
+        "user_avatar": avatar,
+        "deck_id": props.deck_id,
+        "content": commentValue
+      }),
+    });
+    if (!res.ok) {
+      throw res;
+    }
+    setCommentValue("");
+    setPostFlag(true);
   }
 
   return (
@@ -89,7 +105,7 @@ const CommentBox = (props) => {
         <button type="button" className="comment-box__cancel" onClick={onClose}>
           Cancel
       </button>
-        <button type="submit" disabled={commentValue.length < 1}>
+        <button type="submit" disabled={commentValue.length < 1} onSubmit={onClose}>
           Comment
       </button>
       </div>

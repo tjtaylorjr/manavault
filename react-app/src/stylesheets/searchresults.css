@@ -1,8 +1,9 @@
 .search-page {
-
+  min-height: 100vh;
   width: 100%;
   margin: 0;
   padding: 0;
+  padding-bottom: 2.5rem;
   background-color: #06090F;
   position: relative;
   padding-bottom: 50px;

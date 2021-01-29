@@ -3,7 +3,9 @@ from app.models import db, Card, Deck, User, Illustration
 from sqlalchemy import or_, func, desc, text
 from sqlalchemy.orm import joinedload
 from sqlalchemy_searchable import search
+
 search_routes = Blueprint('search', __name__)
+
 
 @search_routes.route('/<params>')
 def general_search(params):

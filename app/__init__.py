@@ -7,8 +7,10 @@ from flask_login import LoginManager
 from sqlalchemy_searchable import make_searchable
 
 
-from .models import db, User, User_Profile, Set, Card, Alternate_Cardface, Format_List, Illustration, Deck, Deck_Card, CardQuery, DeckQuery
-from .api import user_routes, auth_routes, card_routes, deck_routes, illustration_routes, search_routes
+from .models import db, User, followers, User_Profile, Set, Card, Alternate_Cardface, Format_List, Illustration, Deck, Deck_Card, CardQuery, DeckQuery, Star_Rating, Comment
+
+#  Comment, followers, Star_Rating, likes, upvotes, downvotes
+from .api import user_routes, auth_routes, card_routes, deck_routes, illustration_routes, search_routes, comment_routes
 
 from .seeds import seed_commands
 
@@ -30,19 +32,26 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
+
 make_searchable(db.metadata)
-app.register_blueprint(user_routes, url_prefix='/api/users')
+
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(card_routes, url_prefix='/api/cards')
+app.register_blueprint(comment_routes, url_prefix='/api/comments')
 app.register_blueprint(deck_routes, url_prefix='/api/decks')
-app.register_blueprint(search_routes, url_prefix='/api/search')
 app.register_blueprint(illustration_routes, url_prefix='/api/illustrations')
+app.register_blueprint(search_routes, url_prefix='/api/search')
+app.register_blueprint(user_routes, url_prefix='/api/users')
+
 db.init_app(app)
+
 db.configure_mappers()
+
 Migrate(app, db)
 
 # Application Security
 CORS(app)
+
 
 # Added later and may not actually work
 @app.before_request

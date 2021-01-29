@@ -3,7 +3,7 @@ import React from 'react';
 const Avatar = (props) => {
   const { avatar } = props;
   const { size } = props;
-  console.log(props, avatar, size)
+  // console.log(props, avatar, size)
   return (
     <>
       <div className={`avatar__container ${size}`} >

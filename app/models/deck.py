@@ -3,6 +3,7 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import backref
 from datetime import datetime
 from flask_sqlalchemy import BaseQuery
+from sqlalchemy.sql import func
 from sqlalchemy_searchable import SearchQueryMixin
 from sqlalchemy_utils import aggregated
 from sqlalchemy_utils.types import TSVectorType
@@ -23,7 +24,7 @@ class Deck_Card(db.Model):
     card_id = db.Column(db.Integer, db.ForeignKey('cards.id'), primary_key = True)
     in_deck = db.Column(db.Integer, default=0)
     in_sideboard = db.Column(db.Integer, default=0)
-    card = db.relationship('Card', lazy="joined")
+    card = db.relationship('Card', sync_backref=False)
     deck = db.relationship('Deck', back_populates='card_list')
 
     def __init__(self, deck_id, card_id, in_deck, in_sideboard):
@@ -57,8 +58,10 @@ class Deck(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     creator_name = db.Column(db.String, db.ForeignKey('users.username'))
     deck_name = db.Column(db.String, default = "Unnamed Deck")
-    created_at = db.Column(db.DateTime, default = datetime.now())
-    updated_at = db.Column(db.DateTime, default = datetime.now())
+    # created_at = db.Column(db.DateTime, default = datetime.now())
+    # updated_at = db.Column(db.DateTime, default = datetime.now())
+    created_at = db.Column(db.DateTime(timezone=True), server_default = func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     description = db.Column(db.Text, nullable = True)
     background_img = db.Column(db.String, nullable = True)
     video_url = db.Column(db.String, nullable = True)
@@ -69,7 +72,7 @@ class Deck(db.Model):
     @aggregated('deck_comments', db.Column(db.Integer, default=0))
     def total_comments(self):
         return db.func.count('1')
-    search_vector = db.Column(TSVectorType('deck_name'))
+    search_vector = db.Column(TSVectorType('deck_name', 'description', 'creator_name', weights={'deck_name': 'A', 'creator_name': 'B', 'description': 'C'}))
     card_list = db.relationship("Deck_Card", back_populates="deck", cascade="delete, delete-orphan")
     user = db.relationship("User", back_populates="decks", foreign_keys='Deck.user_id')
     deck_likes = db.relationship("User", secondary=likes, back_populates="user_likes")

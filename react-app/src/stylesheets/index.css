@@ -1,9 +1,12 @@
 @import url('./reset.css');
 @import url('./navbar.css');
+@import url('./main.css');
 @import url('./login.css');
 @import url('./signup.css');
 @import url('./footer.css');
 @import url('./deckobject.css');
+@import url('./userobject.css');
+@import url('./deckcardobject.css');
 @import url('./deckviewer.css');
 @import url('./userprofile.css');
 @import url('./starrating.css');

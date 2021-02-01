@@ -13,19 +13,39 @@
   font-weight: 700;
   font-size: 1.3rem;
   /* margin-top: 1rem; */
-  /* background-color: #21262D;
-  border-top: 2px groove #0D1117; */
+  background-color: #21262D;
+  /* background-color: #212121; */
+  /* border-top: 2px groove #0D1117; */
+  border-top: 5px ridge #E6CD8C;
   padding-bottom: 10px;
 }
 
 .footer__icons {
-  color: lightgray;
+  /* color: lightgray; */
+  /* font-size: 1.3rem; */
+  /* font-size: 3rem; */
+  /* color: #B9DCEB; */
+  /* position: relative;
+  display: inline; */
+  /* color: -webkit-linear-gradient(45deg, #46646E, #89DCEB, #46646E); */
+  /* -webkit-background-clip: text;
+  /* background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
   margin: 7px 10px 0 10px;
+  /* -webkit-text-stroke: 2px black; */
 }
 
 .footer__text {
-  color: lightgray;
+  /* color: lightgray; */
+  color: #46646E;
+  position: relative;
+  display: inline;
   text-align: center;
   margin: 0 15px 0 15px;
-  font-size: .8rem;
+  font-size: 1rem;
+  /* background: -webkit-linear-gradient(45deg, #766237, #E6CD8C, #766237);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  -webkit-text-stroke: .25px black;
 }

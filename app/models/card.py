@@ -58,12 +58,13 @@ class Card(db.Model):
     flavor_text = db.Column(db.Text, nullable = True)
     is_multifaced = db.Column(db.Boolean, default = False)
     # avg_rating = db.Column(db.Float(precision = 1), nullable = True)
-    search_vector = db.Column(TSVectorType('name', 'type', weights={'name': 'A', 'type': 'B'}))
+    search_vector = db.Column(TSVectorType('name', 'type', weights={'name': 'A', 'type': 'B', 'keywords': 'C', 'set_code': 'D', 'rarity': 'E'}))
     format_list = db.relationship('Format_List', uselist=False, back_populates='card', cascade="delete, delete-orphan")
     illustration = db.relationship('Illustration', uselist=False, back_populates="card", cascade="delete, delete-orphan")
     set = db.relationship('Set', back_populates="cards")
     alternate_cardfaces = db.relationship('Alternate_Cardface', uselist=False, back_populates='card', cascade="delete, delete-orphan")
     card_star_ratings = db.relationship("Star_Rating", back_populates="card", cascade="delete, delete-orphan")
+    deck_list = db.relationship('Deck_Card', back_populates='card', viewonly=True)
 
     @aggregated('card_star_ratings', db.Column(db.Float(precision=1), nullable=True))
     def avg_rating(self):
@@ -128,6 +129,7 @@ class Card(db.Model):
             # "illustration": [image.to_dict() for image in self.illustration],
             # "alternate_cardfaces": self.alternate_cardfaces.to_dict()
         }
+
 
 
 # db.configure_mappers()

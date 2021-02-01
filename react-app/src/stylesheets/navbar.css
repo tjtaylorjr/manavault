@@ -22,7 +22,7 @@
   height: 100%;
 }
 
-.navbar-links li {
+/* .navbar-links li {
   background: -webkit-linear-gradient(270deg, #702d00, #f5bc2d);
   border: 2px solid #421408;
   border-radius: 16px;
@@ -30,7 +30,7 @@
   padding: 2px 4px;
   margin: 4px 2px;
   width: 80px;
-}
+} */
 
 .navbar-links__list {
   display: flex;
@@ -45,9 +45,10 @@
 
 }
 
+.navbar-links li,
 .navbar-links__right li {
-  background: -webkit-linear-gradient(270deg, #702d00, #f5bc2d);
-  border: 2px solid #421408;
+  background: -webkit-linear-gradient(45deg, #766237 10%, #E6CD8C 50%, #766237 90%);
+  border: 2px groove #0D1117;
   border-radius: 16px;
   text-align: center;
   padding: 2px 4px;
@@ -84,7 +85,7 @@
 .title {
   font-family: "Satmin";
   font-size: 60px;
-  background: -webkit-linear-gradient(270deg, #700d00, #f5bc2d);
+  background: -webkit-linear-gradient(270deg, #700D00 20%, #f5bc2d 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

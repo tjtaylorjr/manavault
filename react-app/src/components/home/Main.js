@@ -1,7 +1,6 @@
 import React from "react";
 import '../../stylesheets/index.css';
 import SearchBar from "../search/SearchBar";
-import "../../stylesheets/main.css";
 
 const Main = () => {
 

@@ -2,6 +2,7 @@ from .db import db
 from .deck import Deck
 from .user import User, upvotes, downvotes
 from sqlalchemy_utils import aggregated
+from sqlalchemy.sql import func
 from datetime import datetime
 
 
@@ -12,7 +13,7 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user_avatar = db.Column(db.String)
     deck_id = db.Column(db.Integer, db.ForeignKey('decks.id'))
-    created_at = db.Column(db.DateTime, default = datetime.now())
+    created_at = db.Column(db.DateTime(timezone=True), server_default = func.now())
     content = db.Column(db.String(1000), nullable=False)
     @aggregated('comment_upvotes', db.Column(db.Integer))
     def upvote_count(self):

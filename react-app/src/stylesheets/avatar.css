@@ -15,23 +15,23 @@
   border-radius: 50%;
   height: 194px;
   width: 194px;
-  background: -webkit-linear-gradient(270deg, #700d00, #f5bc2d);
+  background: -webkit-linear-gradient(45deg, #766237 10%, #e6CD8C 50%, #766237 90%);
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #f5bc2d;
+  border: 2px solid #0D1117;
 }
 
 .avatar__image.LRG {
   position: relative;
-  height: 174px;
-  width: 174px;
+  height: 170px;
+  width: 170px;
   background-size: 100px;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-size: cover;
   background-clip: content-box;
-  border: 2px solid #700d00;
+  border: 2px solid #0D1117;
 }
 
 
@@ -52,23 +52,26 @@
   border-radius: 50%;
   height: 110px;
   width: 110px;
-  background: -webkit-linear-gradient(270deg, #700d00, #f5bc2d);
+  /* background: -webkit-linear-gradient(270deg, #700d00, #f5bc2d); */
+  background: -webkit-linear-gradient(45deg, #766237 10%, #e6CD8C 50%, #766237 90%);
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #f5bc2d;
+  /* border: 2px solid #f5bc2d; */
+  border: 2px solid #0D1117;
 }
 
 .avatar__image.MED {
   position: relative;
-  height: 100px;
-  width: 100px;
+  height: 96px;
+  width: 96px;
   background-size: 100px;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-size: cover;
   background-clip: content-box;
-  border: 1px solid #700d00;
+  /* border: 1px solid #700d00; */
+  border: 2px solid #0D1117;
 }
 
 .avatar__container.SML {
@@ -88,21 +91,24 @@
   border-radius: 50%;
   height: 48px;
   width: 48px;
-  background: -webkit-linear-gradient(270deg, #700d00, #f5bc2d);
+  /* background: -webkit-linear-gradient(270deg, #700d00, #f5bc2d); */
+  background: -webkit-linear-gradient(45deg, #766237 10%, #e6CD8C 50%, #766237 90%);
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #f5bc2d;
+  /* border: 1px solid #f5bc2d; */
+  border: 1px solid #0D1117;
 }
 
 .avatar__image.SML {
   position: relative;
-  height: 45px;
-  width: 45px;
+  height: 42px;
+  width: 42px;
   background-size: 100px;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-size: cover;
   background-clip: content-box;
-  border: 1px solid #700d00;
+  /* border: 1px solid #700d00; */
+  border: 1px solid #0D1117;
 }

@@ -5,7 +5,7 @@ def seed_comments():
     comment1 = Comment(user_id=1,
                        user_avatar="faceless-walker.png",
                        deck_id=1,
-                       content="Demo example of a comment")
+                       content="Will play this at FNM this weekend")
 
     comment2 = Comment(user_id=3,
                        user_avatar="faceless-walker.png",

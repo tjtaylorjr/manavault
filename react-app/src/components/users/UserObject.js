@@ -11,10 +11,13 @@ const UserObject = (user) => {
   const renderUserProfile = () => {
     history.push(`/users/${data.id}`)
   }
-  console.log(avatar);
+  console.log(data.info.VIP)
+  const isVIP = data.info.VIP;
+
+
   return (
     <>
-      <div className="user-object" onClick={renderUserProfile}>
+      <div className="user-object" style={{ background: isVIP ? "linear-gradient(45deg, #B43219 0%, #FF5500 25%, #F59105 50%, #FF5500 75%, #B43219 100%)" : "#21262D" }} onClick={renderUserProfile}>
         {avatar ? (
           <Avatar avatar={avatar} size={"MED"}/>
         ) : (

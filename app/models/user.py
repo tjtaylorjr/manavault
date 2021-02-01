@@ -52,6 +52,7 @@ class User(db.Model, UserMixin):
     # if you run into issues you changed upvotes, downvotes, and likes into back_populates instead of backref
     user_star_ratings = db.relationship("Star_Rating", back_populates="user", cascade="delete, delete-orphan")
     following = db.relationship('User', secondary="followers", primaryjoin=id == followers.c.follower_id, secondaryjoin=id == followers.c.followed_id, backref="followers")
+    comments = db.relationship("Comment", back_populates="posted_by")
 
 
     def __repr__(self):
@@ -96,6 +97,5 @@ class User(db.Model, UserMixin):
 
     def to_name_dict(self):
         return {
-            "id": self.id,
             "username": self.username
         }

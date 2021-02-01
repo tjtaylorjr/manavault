@@ -49,7 +49,7 @@ const DeckViewer = (props) => {
       const res = await fetch(`/api/comments/${deck_id}`);
       const commentList = await res.json()
       if(commentList) {
-        // console.log(commentList)
+        console.log(commentList)
         setComments(commentList.comments)
       }
     })()
@@ -71,7 +71,6 @@ const DeckViewer = (props) => {
     setMainDeck(main);
     setSideboard(side);
   },[data])
-
   return isLoaded ? (
     <>
       <div className="deckviewer">

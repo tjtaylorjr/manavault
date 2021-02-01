@@ -23,6 +23,7 @@ class Comment(db.Model):
         return db.func.count('1')
     comment_upvotes = db.relationship("User", secondary=upvotes, back_populates="user_upvotes")
     comment_downvotes = db.relationship("User", secondary=downvotes, back_populates="user_downvotes")
+    posted_by = db.relationship("User", back_populates="comments")
 
 
     def to_dict(self):
@@ -34,5 +35,6 @@ class Comment(db.Model):
           "created_at": self.created_at,
           "content": self.content,
           "comment_upvotes": [user.to_dict() for user in self.comment_upvotes],
-          "comment_downvotes": [user.to_dict() for user in self.comment_downvotes]
+          "comment_downvotes": [user.to_dict() for user in self.comment_downvotes],
+          "posted_by": self.posted_by.to_name_dict()
         }

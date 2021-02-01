@@ -76,7 +76,7 @@ const Comment = (props) => {
     })
     setDownvote(true);
   }
-
+  console.log(props);
   return (
     <div className="comment__container">
       <div className="comment__wrapper">
@@ -95,7 +95,7 @@ const Comment = (props) => {
               Posted by:
             </div>
             <div style={{ marginLeft: '.25rem', fontWeight: 'bold'}}>
-              {props.user.username}
+              {props.comment.posted_by.username}
             </div>
           </div>
           <div>

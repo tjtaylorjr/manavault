@@ -64,7 +64,7 @@ class Card(db.Model):
     set = db.relationship('Set', back_populates="cards")
     alternate_cardfaces = db.relationship('Alternate_Cardface', uselist=False, back_populates='card', cascade="delete, delete-orphan")
     card_star_ratings = db.relationship("Star_Rating", back_populates="card", cascade="delete, delete-orphan")
-    deck_list = db.relationship('Deck_Card', back_populates='card', viewonly=True)
+    # deck_list = db.relationship('Deck_Card', back_populates='card', viewonly=True)
 
     @aggregated('card_star_ratings', db.Column(db.Float(precision=1), nullable=True))
     def avg_rating(self):

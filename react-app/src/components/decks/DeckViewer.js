@@ -11,21 +11,26 @@ const DeckViewer = (props) => {
   const [avatar, setAvatar] = useState("");
   const [comments, setComments] = useState([]);
   const [postFlag, setPostFlag] = useState(false);
-  const [isVIP, setIsVIP] = useState("");
+  // const [isVIP, setIsVIP] = useState(false);
   const [mainDeck, setMainDeck] = useState([]);
   const [sideboard, setSideboard] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const location = useLocation();
-  const {data} = location.state;  //save the deck object in state to variable
-  const deck_id = data.id;
-  const creator = data.creator_name;
-  const deckName = data.deck_name;
+  const [deck, setDeck] = useState(location.state.data);
+  //const deck = location.state.data;  //save the deck object in state to variable
+  // const deck_id = deck.id;
+  // const creator = deck.creator_name;
+  // const deckName = deck.deck_name;
   const {id, username} = props.user;
 
+  console.log(deck); // what does my deck object look like?
+  console.log(props.user);
   useEffect(() => {
     if (!id) {
-      return
+      setIsLoaded(false);
+      return;
     }
+
     setIsLoaded(false);
     (async () => {
       const response = await fetch(`/api/users/${id}`);
@@ -37,16 +42,15 @@ const DeckViewer = (props) => {
   useEffect(() => {
     if (Object.keys(user).length === 12) {
       const avatar_img = user.info.avatar;
-      const VIP = user.info.VIP;
+      // const VIP = user.info.VIP;
       setAvatar(avatar_img);
-      setIsVIP(VIP);
-      setIsLoaded(true);
+      // setIsVIP(VIP);
     }
   }, [user])
 
   useEffect(() => {
     (async() => {
-      const res = await fetch(`/api/comments/${deck_id}`);
+      const res = await fetch(`/api/comments/${deck.id}`);
       const commentList = await res.json()
       if(commentList) {
         console.log(commentList)
@@ -54,13 +58,13 @@ const DeckViewer = (props) => {
       }
     })()
     setPostFlag(false)
-  },[deck_id, postFlag])
+  },[deck.id, postFlag])
 
-  console.log(data);
+
   useEffect(() => {
     let main = []
     let side = []
-    data.card_list.forEach((card) => {
+    deck.card_list.forEach((card) => {
       if (card.in_deck > 0) {
         main.push(card)
       } else {
@@ -70,29 +74,29 @@ const DeckViewer = (props) => {
 
     setMainDeck(main);
     setSideboard(side);
-  },[data])
+    setIsLoaded(true);
+  },[deck])
+
   return isLoaded ? (
     <>
       <div className="deckviewer">
         <div className="deckviewer__header">
-          {isVIP &&
             <div className="deckviewer__VIP-user-panel-background">
               <div className="deckviewer__VIP-user-panel-background-wrapper">
-                <div className="deckviewer__VIP-user-panel-background-image" style={{ backgroundImage: `url(${data.background_img})` }}></div>
+                <div className="deckviewer__VIP-user-panel-background-image" style={{ backgroundImage: `url(${deck.background_img})` }}></div>
               </div>
               <div className="deckviewer__VIP-user-panel-gradient"></div>
             </div>
-          }
           <div className="deckviewer__navbar-background"></div>
           <div className="deckviewer__buffer"></div>
           <div className="deckviewer-header__main">
             <div className="deckviewer-header__deck-panel" >
-              <div className="deckviewer-header__deck-panel-name" >{data.deck_name.toUpperCase()}</div>
+              <div className="deckviewer-header__deck-panel-name" >{deck.deck_name.toUpperCase()}</div>
               <div className="deckviewer-header__deck-panel-attribution" >
-                by {data.creator_name}
+                by {deck.creator_name}
               </div>
               <div className="deckviewer-header__deck-description">
-                <p>{data.description}</p>
+                <p>{deck.description}</p>
               </div>
             </div>
           </div>
@@ -107,7 +111,7 @@ const DeckViewer = (props) => {
           </div>
           <div className="deckviewer__comments-container">
             <div className="deckviewer__comments-wrapper">
-              <CommentBox setPostFlag={setPostFlag} authenticated={props.authenticated} user_id={id} username={username} creator={creator} deckName={deckName} deck_id={deck_id}/>
+              <CommentBox setPostFlag={setPostFlag} authenticated={props.authenticated} user_id={id} username={username} creator={deck.creator_name} deckName={deck.deck_name} deck_id={deck.id}/>
               {comments.map((comment, i) => (
                 <Comment key={i} authenticated={props.authenticated} user={props.user} comment={comment}/>
               ))}

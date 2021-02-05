@@ -22,7 +22,7 @@ const UserProfile = (props) => {
       setUser(user);
     })();
   }, [userId]);
-  console.log(props.user);
+  
   useEffect(() => {
     if(Object.keys(user).length === 12) {
       const avatar = user.info.avatar;
@@ -44,14 +44,12 @@ const UserProfile = (props) => {
     <>
       <div className="user-profile">
         <div className="user-profile__header">
-          {isVIP &&
             <div className="user-profile__VIP-user-panel-background">
               <div className="user-profile__VIP-user-panel-background-wrapper">
                 <div className="user-profile__VIP-user-panel-background-image" style={{ backgroundImage: `url(${user.info.background_img})` }}></div>
               </div>
               <div className="user-profile__VIP-user-panel-gradient"></div>
             </div>
-          }
           <div className="user-profile__navbar-background"></div>
           <div className="user-profile__buffer"></div>
           <div className="user-profile__user-panel">

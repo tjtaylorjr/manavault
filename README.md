@@ -154,7 +154,10 @@
   <h2>Technologies and Packages</h2>
 </div>
 
+- Postgresql
+- Flask-Sqlalchemy
+- React
 - Pandas
 - sqlalchemy-searchable
-- 
+- react-sortable-hoc
 ---

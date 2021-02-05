@@ -11,7 +11,7 @@ const UserObject = (user) => {
   const renderUserProfile = () => {
     history.push(`/users/${data.id}`)
   }
-  console.log(data.info.VIP)
+  //console.log(data.info.VIP)
   const isVIP = data.info.VIP;
 
 

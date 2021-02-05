@@ -75,8 +75,10 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             "id": self.id,
+            "created_at": self.created_at,
             "username": self.username,
-            "email": self.email
+            "email": self.email,
+            "info": self.info.to_dict()
         }
 
     def to_dict_all(self):
@@ -97,5 +99,6 @@ class User(db.Model, UserMixin):
 
     def to_name_dict(self):
         return {
+            "id": self.id,
             "username": self.username
         }

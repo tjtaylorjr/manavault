@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Avatar from "../users/Avatar";
 import cn from "classnames";
 import DynamicHeight from "./DynamicHeight";
+
 
 const INITIAL_HEIGHT = 100;
 
@@ -10,11 +12,12 @@ const CommentBox = (props) => {
   const [commentValue, setCommentValue] = useState("");
   const [avatar, setAvatar] = useState("faceless-walker.png");
   const [username, setUsername] = useState("")
-
   const outerHeight = useRef(INITIAL_HEIGHT);
   const textRef = useRef(null);
   const containerRef = useRef(null);
   const {setPostFlag} = props;
+  const history = useHistory();
+
   useEffect(() => {
     if (props.user_id) {
       (async () => {
@@ -46,27 +49,32 @@ const CommentBox = (props) => {
 
   const onSubmit = async(e) => {
     e.preventDefault();
-    const res = await fetch(`/api/comments/${props.deck_id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "user_id": props.user_id,
-        "user_avatar": avatar,
-        "deck_id": props.deck_id,
-        "content": commentValue
-      }),
-    });
-    if (!res.ok) {
-      throw res;
+
+    if(props.authenticated) {
+      const res = await fetch(`/api/comments/${props.deck_id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "user_id": props.user_id,
+          "user_avatar": avatar,
+          "deck_id": props.deck_id,
+          "content": commentValue
+        }),
+      });
+      if (!res.ok) {
+        throw res;
+      }
+      setCommentValue("");
+      setPostFlag(true);
+    } else {
+      setCommentValue("");
+      history.push("/login");
     }
-    setCommentValue("");
-    setPostFlag(true);
   }
 
   return (
-    props.authenticated &&
     <form
       onSubmit={onSubmit}
       ref={containerRef}

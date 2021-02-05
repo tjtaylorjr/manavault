@@ -7,7 +7,7 @@ import SearchBar from "./SearchBar";
 import "../../stylesheets/searchresults.css";
 
 
-const SearchResults = () => {
+const SearchResults = (props) => {
   const [userQueryResults, setUserQueryResults] = useState([]);
   const [deckQueryResults, setDeckQueryResults] = useState([]);
   const [cardQueryResults, setCardQueryResults] = useState([]);
@@ -16,9 +16,8 @@ const SearchResults = () => {
   const [isUsersLoaded, setIsUsersLoaded] = useState(false);
   const [isDecksLoaded, setIsDecksLoaded] = useState(false);
   const [isCardsLoaded, setIsCardsLoaded] = useState(false);
-
   const { query } = useParams();
-
+  
   useEffect(() => {
     if (query && query !== queryString) {
       setIsPageLoaded(false);
@@ -107,7 +106,7 @@ const SearchResults = () => {
 
           //   return perfectMatches.concat(notPerfectMatches)
           // })()
-          
+
           // setCardQueryResults(sortedCardResults)
           setCardQueryResults(cardSearch)
         }

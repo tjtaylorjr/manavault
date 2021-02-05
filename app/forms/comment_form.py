@@ -14,5 +14,6 @@ class CommentForm(FlaskForm):
 class UpvoteForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
 
+
 class DownvoteForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])

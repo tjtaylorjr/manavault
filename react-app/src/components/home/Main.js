@@ -2,8 +2,8 @@ import React from "react";
 import '../../stylesheets/index.css';
 import SearchBar from "../search/SearchBar";
 
-const Main = () => {
-
+const Main = (props) => {
+ 
   return (
     <>
       <div className="splash">

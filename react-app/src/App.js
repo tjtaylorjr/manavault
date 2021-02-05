@@ -109,10 +109,10 @@ function App() {
           <Footer />
         </Route>
         <Route path="/search/:query" exact={true}>
-          <SearchResults />
+          <SearchResults user={currentUser}/>
         </Route>
         <Route path="/" exact={true} authenticated={authenticated}>
-          <Main />
+          <Main user={currentUser} authenticated={authenticated}/>
         </Route>
       </Switch>
       <Footer />

@@ -4,9 +4,12 @@ from sqlalchemy import text
 
 card_routes = Blueprint('cards', __name__)
 
+
 """
 look up info for a card
 """
+
+
 @card_routes.route('/<int:id>')
 def card(id):
     card = Card.query.get(id)

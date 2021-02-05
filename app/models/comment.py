@@ -13,28 +13,32 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user_avatar = db.Column(db.String)
     deck_id = db.Column(db.Integer, db.ForeignKey('decks.id'))
-    created_at = db.Column(db.DateTime(timezone=True), server_default = func.now())
+    created_at = db.Column(db.DateTime(timezone=True),
+                           server_default=func.now())
     content = db.Column(db.String(1000), nullable=False)
+
     @aggregated('comment_upvotes', db.Column(db.Integer))
     def upvote_count(self):
         return db.func.count('1')
+
     @aggregated('comment_downvotes', db.Column(db.Integer))
     def downvote_count(self):
         return db.func.count('1')
-    comment_upvotes = db.relationship("User", secondary=upvotes, back_populates="user_upvotes")
-    comment_downvotes = db.relationship("User", secondary=downvotes, back_populates="user_downvotes")
+    comment_upvotes = db.relationship("User", secondary=upvotes,
+                                      back_populates="user_upvotes")
+    comment_downvotes = db.relationship("User", secondary=downvotes,
+                                        back_populates="user_downvotes")
     posted_by = db.relationship("User", back_populates="comments")
-
 
     def to_dict(self):
         return {
           "id": self.id,
-          "user_id": self.user_id,
-          "user_avatar": self.user_avatar,
           "deck_id": self.deck_id,
           "created_at": self.created_at,
           "content": self.content,
-          "comment_upvotes": [user.to_dict() for user in self.comment_upvotes],
-          "comment_downvotes": [user.to_dict() for user in self.comment_downvotes],
-          "posted_by": self.posted_by.to_name_dict()
+          "comment_upvotes": [user.to_dict() for user in
+                              self.comment_upvotes],
+          "comment_downvotes": [user.to_dict() for user in
+                                self.comment_downvotes],
+          "posted_by": self.posted_by.to_dict()
         }

@@ -19,26 +19,62 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser}) => {
     }
   };
 
+  const demoEmail = "demo@user.io";
+  let emailIndex = 0;
+  const demoPass = "password";
+  let passIndex = 0;
   const demoLogin = async (e) => {
     e.preventDefault();
-    const emailField = document.querySelector(".login-page__form-email");
-    const passwordField = document.querySelector(".login-page__form-password");
-    if (email || password) {
-      setEmail("");
-      setPassword("");
-    }
-    emailField.value = "demo@spark.io";
-    passwordField.value = "password";
+    demoAutomation();
+  }
 
-    const user = await login(emailField.value, passwordField.value);
-    if (!user.errors) {
-      setAuthenticated(true);
-      setCurrentUser(user);
-      return history.push("/");
+  const demoAutomation = async () => {
+    const emailField = document.querySelector(".email");
+    const passwordField = document.querySelector(".password");
+    if (emailIndex < demoEmail.length) {
+      setTimeout(() => {
+        emailField.value = demoEmail.substr(0, emailIndex + 1)
+        emailIndex++
+        demoAutomation();
+      }, 100)
+    } else if (passIndex < demoPass.length) {
+      setTimeout(() => {
+        passwordField.value = demoPass.substr(0, passIndex + 1)
+        passIndex++
+        demoAutomation();
+      }, 100)
     } else {
-      setErrors(user.errors);
+      const user = await login(emailField.value, passwordField.value);
+      if (!user.errors) {
+        setAuthenticated(true);
+        setCurrentUser(user);
+        return history.push("/");
+      } else {
+        setErrors(user.errors);
+      }
     }
-  };
+  }
+
+  // const demoLogin = async (e) => {
+  //   e.preventDefault();
+  //   const emailField = document.querySelector(".login-page__form-email");
+  //   const passwordField = document.querySelector(".login-page__form-password");
+  //   if (email || password) {
+  //     setEmail("");
+  //     setPassword("");
+  //   }
+  //   emailField.value = "demo@spark.io";
+  //   passwordField.value = "password";
+
+  //   const user = await login(emailField.value, passwordField.value);
+  //   if (!user.errors) {
+  //     setAuthenticated(true);
+  //     setCurrentUser(user);
+  //     return history.push("/");
+  //   } else {
+  //     setErrors(user.errors);
+  //   }
+  // };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);

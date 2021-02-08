@@ -19,7 +19,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser}) => {
     }
   };
 
-  const demoEmail = "demo@user.io";
+  const demoEmail = "demo@spark.io";
   let emailIndex = 0;
   const demoPass = "password";
   let passIndex = 0;

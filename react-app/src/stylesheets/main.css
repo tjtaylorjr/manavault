@@ -1,8 +1,10 @@
 
 .splash {
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  min-height: 845px;
+  /* height: 100%; */
   width: 100%;
-  bottom: 0;
+  /* bottom: 0; */
   /* padding-bottom: 2.5rem; */
   position: relative;
   background: transparent;
@@ -10,7 +12,7 @@
   /* position: fixed; */
   justify-content: center;
   z-index: 1;
-  /* padding-bottom: 50px; */
+  /* padding-bottom: 5px; */
 }
 .splash-search {
   grid-row-start: 1;
@@ -50,7 +52,7 @@
   display: grid;
   min-height: 100vh;
   width: 100%;
-  grid-template-rows: 700px 1fr 100px;
+  grid-template-rows: 700px 1fr 85px 60px;
   /* background: url('../assets/backgrounds/land-color-morph.png') no-repeat center center fixed; */
   /* background-color: #cccccc; */
   background-color: transparent;

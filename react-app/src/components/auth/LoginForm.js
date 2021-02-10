@@ -29,8 +29,8 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser}) => {
   }
 
   const demoAutomation = async () => {
-    const emailField = document.querySelector(".email");
-    const passwordField = document.querySelector(".password");
+    const emailField = document.querySelector(".login-page__form-email");
+    const passwordField = document.querySelector(".login-page__form-password");
     if (emailIndex < demoEmail.length) {
       setTimeout(() => {
         emailField.value = demoEmail.substr(0, emailIndex + 1)

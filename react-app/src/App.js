@@ -38,85 +38,89 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <NavBar
-        authenticated={authenticated}
-        setAuthenticated={setAuthenticated}
-        currentUser={currentUser}
-        setCurrentUser={setCurrentUser}
-      />
-      <Switch>
-        <Route
-          path="/users/:userId"
-          exact={true}
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
-        >
-          <UserProfile
+    <div className="site-container">
+      <div className="site-wrapper">
+        <BrowserRouter>
+          <NavBar
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
-            user={currentUser}
-          />
-        </Route>
-        <ProtectedRoute
-          path="/users/:id/edit"
-          exact={true}
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
-        >
-          <ProfileEditor user={currentUser} />
-          </ProtectedRoute>
-        <ProtectedRoute
-          path="/decks/build"
-          exact={true}
-          authenticated={authenticated}
-        >
-          <DeckBuilder />
-        </ProtectedRoute>
-        <Route path="/users" exact={true} authenticated={authenticated}>
-          <UsersBrowser />
-        </Route>
-        <ProtectedRoute
-          path="/decks/:id/edit"
-          exact={true}
-          authenticated={authenticated}
-        >
-          <DeckEditor />
-        </ProtectedRoute>
-        <Route path="/login" exact={true}>
-          <LoginForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
+            currentUser={currentUser}
             setCurrentUser={setCurrentUser}
           />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-            setCurrentUser={setCurrentUser}
-          />
-        </Route>
-        <Route path="/decks/:id" exact={true} authenticated={authenticated}>
-          <DeckViewer user={currentUser} authenticated={authenticated} />
-        </Route>
-        <Route path="/decks" exact={true} authenticated={authenticated}>
-          <DeckBrowser user={currentUser} authenticated={authenticated} />
-          <Footer />
-        </Route>
-        <Route path="/cards" exact={true} authenticated={authenticated}>
-          <CardBrowser user={currentUser} authenticated={authenticated} />
-          <Footer />
-        </Route>
-        <Route path="/search/:query" exact={true}>
-          <SearchResults user={currentUser}/>
-        </Route>
-        <Route path="/" exact={true} authenticated={authenticated}>
-          <Main user={currentUser} authenticated={authenticated}/>
-        </Route>
-      </Switch>
+          <Switch>
+            <Route
+              path="/users/:userId"
+              exact={true}
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+            >
+              <UserProfile
+                authenticated={authenticated}
+                setAuthenticated={setAuthenticated}
+                user={currentUser}
+              />
+            </Route>
+            <ProtectedRoute
+              path="/users/:id/edit"
+              exact={true}
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+            >
+              <ProfileEditor user={currentUser} />
+              </ProtectedRoute>
+            <ProtectedRoute
+              path="/decks/build"
+              exact={true}
+              authenticated={authenticated}
+            >
+              <DeckBuilder />
+            </ProtectedRoute>
+            <Route path="/users" exact={true} authenticated={authenticated}>
+              <UsersBrowser />
+            </Route>
+            <ProtectedRoute
+              path="/decks/:id/edit"
+              exact={true}
+              authenticated={authenticated}
+            >
+              <DeckEditor />
+            </ProtectedRoute>
+            <Route path="/login" exact={true}>
+              <LoginForm
+                authenticated={authenticated}
+                setAuthenticated={setAuthenticated}
+                setCurrentUser={setCurrentUser}
+              />
+            </Route>
+            <Route path="/sign-up" exact={true}>
+              <SignUpForm
+                authenticated={authenticated}
+                setAuthenticated={setAuthenticated}
+                setCurrentUser={setCurrentUser}
+              />
+            </Route>
+            <Route path="/decks/:id" exact={true} authenticated={authenticated}>
+              <DeckViewer user={currentUser} authenticated={authenticated} />
+            </Route>
+            <Route path="/decks" exact={true} authenticated={authenticated}>
+              <DeckBrowser user={currentUser} authenticated={authenticated} />
+              <Footer />
+            </Route>
+            <Route path="/cards" exact={true} authenticated={authenticated}>
+              <CardBrowser user={currentUser} authenticated={authenticated} />
+              <Footer />
+            </Route>
+            <Route path="/search/:query" exact={true}>
+              <SearchResults user={currentUser}/>
+            </Route>
+            <Route path="/" exact={true} authenticated={authenticated}>
+              <Main user={currentUser} authenticated={authenticated}/>
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </div>
       <Footer />
-    </BrowserRouter>
+    </div>
   );
 }
 

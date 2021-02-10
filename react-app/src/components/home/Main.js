@@ -3,7 +3,7 @@ import '../../stylesheets/index.css';
 import SearchBar from "../search/SearchBar";
 
 const Main = (props) => {
- 
+
   return (
     <>
       <div className="splash">

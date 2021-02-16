@@ -29,7 +29,8 @@ const Comment = (props) => {
     setCurrentVotes(voteTally);
   }, [comment_upvotes, comment_downvotes]);
 
-  console.log(currentVotes);
+  // console.log(currentVotes);
+
   const newUpvote = async (e) => {
     try {
       await fetch(`/api/comments/${id}/upvote`, {

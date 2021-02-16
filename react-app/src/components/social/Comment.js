@@ -31,16 +31,20 @@ const Comment = (props) => {
 
   console.log(currentVotes);
   const newUpvote = async (e) => {
-    await fetch(`/api/comments/${id}/upvote`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "user_id": props.user.id,
+    try {
+      await fetch(`/api/comments/${id}/upvote`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "user_id": props.user.id,
+        })
       })
-    })
-    setUpvote(true);
+      setUpvote(true);
+    } catch (err) {
+      console.warn(err);
+    }
   }
 
   const newDownvote = async (e) => {

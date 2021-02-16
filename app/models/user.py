@@ -115,7 +115,7 @@ class User(db.Model, UserMixin):
         return f'User({self.id}, {self.username}, {self.email}, {self.hashed_password}, {self.created_at})'
 
     def __str__(self):
-        return f'{self.id} can be reached at {self.email}'
+        return f'User ID: {self.id}, Username: {self.username}'
 
     @property
     def password(self):

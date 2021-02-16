@@ -45,9 +45,14 @@ def new_comment(id):
 @login_required
 def manage_upvote(id):
     form = UpvoteForm()
+    print(f'PRINT STATEMENT - This is the comment ID: {id}')
     comment = Comment.query.get(id)
+    print(f'PRINT STATEMENT - This is the comment: {comment}')
+    print(f'PRINT STATEMENT - This is the comment\'s upvotes: {comment.comment_upvotes}')
     user = User.query.get(form.data['user_id'])
+    print(f'PRINT STATMENT - This is the user who is voting: {user}')
     if form.validate_on_submit():
+        print(f'the form validated')
         if user in comment.comment_upvote:
             comment.comment_upvote.remove(user)
             db.session.commit()
@@ -58,6 +63,9 @@ def manage_upvote(id):
             comment.comment_upvote.append(user)
             db.session.commit()
             return comment.to_dict()
+    else:
+        print(f'the form failed to validate')
+        print(form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 

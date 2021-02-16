@@ -187,7 +187,7 @@
   border-color: #E6CD8C;
   border-width: 0 1px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 450px;
   /* grid-template-rows: auto 80px; */
   width: 100%;
   margin-top: 0;

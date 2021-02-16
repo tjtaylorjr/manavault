@@ -9,29 +9,61 @@ from sqlalchemy.orm import backref
 upvotes = db.Table(
     'upvotes',
     db.Model.metadata,
-    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-    db.Column('comment_id', db.Integer, db.ForeignKey('comments.id'), primary_key=True)
+    db.Column(
+              'user_id',
+              db.Integer,
+              db.ForeignKey('users.id'),
+              primary_key=True),
+    db.Column(
+              'comment_id',
+              db.Integer,
+              db.ForeignKey('comments.id'),
+              primary_key=True)
 )
 
 downvotes = db.Table(
     'downvotes',
     db.Model.metadata,
-    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-    db.Column('comment_id', db.Integer, db.ForeignKey('comments.id'), primary_key=True)
+    db.Column(
+              'user_id',
+              db.Integer,
+              db.ForeignKey('users.id'),
+              primary_key=True),
+    db.Column(
+              'comment_id',
+              db.Integer,
+              db.ForeignKey('comments.id'),
+              primary_key=True)
 )
 
 likes = db.Table(
     'likes',
     db.Model.metadata,
-    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-    db.Column('deck_id', db.Integer, db.ForeignKey('decks.id'), primary_key=True)
+    db.Column(
+              'user_id',
+              db.Integer,
+              db.ForeignKey('users.id'),
+              primary_key=True),
+    db.Column(
+              'deck_id',
+              db.Integer,
+              db.ForeignKey('decks.id'),
+              primary_key=True)
 )
 
 followers = db.Table(
     'followers',
     db.Model.metadata,
-    db.Column('followed_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-    db.Column('follower_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    db.Column(
+              'followed_id',
+              db.Integer,
+              db.ForeignKey('users.id'),
+              primary_key=True),
+    db.Column(
+              'follower_id',
+              db.Integer,
+              db.ForeignKey('users.id'),
+              primary_key=True)
 )
 
 
@@ -42,18 +74,42 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True), server_default = func.now())
-    decks = db.relationship("Deck", back_populates="user",
-                            cascade="delete, delete-orphan", foreign_keys='Deck.user_id')
-    info = db.relationship("User_Profile", uselist=False, back_populates="user", cascade="delete, delete-orphan")
-    user_upvotes = db.relationship("Comment", secondary=upvotes, back_populates="comment_upvotes")
-    user_downvotes = db.relationship("Comment", secondary=downvotes, back_populates="comment_downvotes")
-    user_likes = db.relationship("Deck", secondary=likes, back_populates="deck_likes")
-    # if you run into issues you changed upvotes, downvotes, and likes into back_populates instead of backref
-    user_star_ratings = db.relationship("Star_Rating", back_populates="user", cascade="delete, delete-orphan")
-    following = db.relationship('User', secondary="followers", primaryjoin=id == followers.c.follower_id, secondaryjoin=id == followers.c.followed_id, backref="followers")
+    created_at = db.Column(
+                           db.DateTime(timezone=True),
+                           server_default=func.now())
+    decks = db.relationship(
+                            "Deck", back_populates="user",
+                            cascade="delete, delete-orphan",
+                            foreign_keys='Deck.user_id')
+    info = db.relationship(
+                           "User_Profile", uselist=False,
+                           back_populates="user",
+                           cascade="delete, delete-orphan")
+    user_upvotes = db.relationship(
+                                   "Comment",
+                                   secondary=upvotes,
+                                   back_populates="comment_upvotes")
+    user_downvotes = db.relationship(
+                                     "Comment",
+                                     secondary=downvotes,
+                                     back_populates="comment_downvotes")
+    user_likes = db.relationship(
+                                 "Deck",
+                                 secondary=likes,
+                                 back_populates="deck_likes")
+    # if you run into issues you changed upvotes, downvotes,
+    # and likes into back_populates instead of backref
+    user_star_ratings = db.relationship(
+                                        "Star_Rating",
+                                        back_populates="user",
+                                        cascade="delete, delete-orphan")
+    following = db.relationship(
+                                'User',
+                                secondary="followers",
+                                primaryjoin=id == followers.c.follower_id,
+                                secondaryjoin=id == followers.c.followed_id,
+                                backref="followers")
     comments = db.relationship("Comment", back_populates="posted_by")
-
 
     def __repr__(self):
         return f'User({self.id}, {self.username}, {self.email}, {self.hashed_password}, {self.created_at})'

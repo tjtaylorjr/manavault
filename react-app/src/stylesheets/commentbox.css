@@ -6,6 +6,7 @@
   position: relative;
   display: flex;
   flex-wrap: wrap;
+  /* justify-content: center; */
   max-width: 400px;
   margin: 0px auto;
   margin-bottom: 6px;
@@ -81,7 +82,7 @@
   line-height: 1;
   border: 2px inset #06090F;
   resize: none;
-  margin-left: 5px;
+  margin-left: 8px;
 }
 
 

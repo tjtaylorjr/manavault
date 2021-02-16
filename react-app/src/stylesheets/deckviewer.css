@@ -6,6 +6,7 @@
   display: grid;
   grid-template-columns: 50px 2fr 1fr 50px;
   grid-template-rows: 500px auto auto;
+  padding-bottom: 60px;
 }
 
 .deckviewer h3 {
@@ -187,9 +188,11 @@
   border-width: 0 1px;
   display: grid;
   grid-template-columns: 2fr 1fr;
+  /* grid-template-rows: auto 80px; */
   width: 100%;
   margin-top: 0;
   border-top: 2px solid #E6CD8C;
+  padding-top: 4px;
 }
 
 

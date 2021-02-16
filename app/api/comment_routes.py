@@ -10,13 +10,18 @@ comment_routes = Blueprint('comments', __name__)
 
 @comment_routes.route('/<int:id>')
 def last_100_comments(id):
-    comments = Comment.query.filter(Comment.deck_id == id).order_by((Comment.upvote_count - Comment.downvote_count).desc(), Comment.created_at.desc()).limit(100)
+    comments = Comment.query.filter(
+                   Comment.deck_id == id).order_by((
+                       Comment.upvote_count - Comment.downvote_count).desc(),
+                       Comment.created_at.desc()).limit(100)
     return {"comments": [comment.to_dict() for comment in comments]}
 
 
 @comment_routes.route('/<int:id>/latest')
 def latest_comment(id):
-    comment = Comment.query.filter(Comment.deck_id == id).order_by(Comment.created_at.desc()).first()
+    comment = Comment.query.filter(
+                  Comment.deck_id == id).order_by(
+                      Comment.created_at.desc()).first()
     return comment.to_dict()
 
 
@@ -54,6 +59,7 @@ def manage_upvote(id):
             db.session.commit()
             return comment.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}
+
 
 @comment_routes.route('/<int:id>/downvote', methods=["PATCH"])
 @login_required

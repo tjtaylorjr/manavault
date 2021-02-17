@@ -251,12 +251,12 @@
 
 .deckviewer__comments-list {
   overflow-y: scroll;
-  height: 500px;
+  height: 300px;
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
 }
-/* 
+/*
 .deckviewer__comments-list::-webkit-scrollbar {
   width: 5px;
 }

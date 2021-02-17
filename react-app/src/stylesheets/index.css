@@ -37,6 +37,32 @@ html, body {
   /* z-index: 0; */
 }
 
+html {
+  --scrollbarBG: #06090F;
+  --thumbBG: #21262D;
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  /* background: var(--scrollbarBG); */
+  /* display: none; */
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 1px outset #E6CD8C;
+}
+
 .site-container {
   position: relative;
   min-height: 100%;

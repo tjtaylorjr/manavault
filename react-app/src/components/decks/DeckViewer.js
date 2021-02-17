@@ -112,9 +112,11 @@ const DeckViewer = (props) => {
           <div className="deckviewer__comments-container">
             <div className="deckviewer__comments-wrapper">
               <CommentBox setPostFlag={setPostFlag} authenticated={props.authenticated} user_id={id} username={username} creator={deck.creator_name} deckName={deck.deck_name} deck_id={deck.id}/>
-              {comments.map((comment, i) => (
-                <Comment key={i} authenticated={props.authenticated} user={props.user} comment={comment}/>
-              ))}
+              <ul className="deckviewer__comments-list">
+                {comments.map((comment, i) => (
+                  <Comment key={i} authenticated={props.authenticated} user={props.user} comment={comment}/>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

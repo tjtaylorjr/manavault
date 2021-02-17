@@ -187,7 +187,7 @@
   border-color: #E6CD8C;
   border-width: 0 1px;
   display: grid;
-  grid-template-columns: 1fr 450px;
+  grid-template-columns: 1fr 460px;
   /* grid-template-rows: auto 80px; */
   width: 100%;
   margin-top: 0;
@@ -221,8 +221,6 @@
 .deckviewer__comments-container {
   position: relative;
   grid-column: 2;
-
-
   display: flex;
   flex-direction: column;
   /* background: #121E2F; */
@@ -250,3 +248,25 @@
   max-width: 98%;
   justify-content: flex-start;
 }
+
+.deckviewer__comments-list {
+  overflow-y: scroll;
+  height: 500px;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+/* 
+.deckviewer__comments-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.deckviewer__comments-list::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+
+.deckviewer__comments-list::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 1px outset #E6CD8C;
+} */

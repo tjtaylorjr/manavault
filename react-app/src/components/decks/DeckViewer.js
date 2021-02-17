@@ -50,7 +50,7 @@ const DeckViewer = (props) => {
 
   useEffect(() => {
     (async() => {
-      const res = await fetch(`/api/comments/${deck.id}`);
+      const res = await fetch(`/api/decks/${deck.id}/comments`);
       const commentList = await res.json()
       if(commentList) {
         console.log(commentList)

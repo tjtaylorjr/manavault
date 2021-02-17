@@ -51,7 +51,7 @@ const CommentBox = (props) => {
     e.preventDefault();
 
     if(props.authenticated) {
-      const res = await fetch(`/api/comments/${props.deck_id}`, {
+      const res = await fetch(`/api/decks/${props.deck_id}/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

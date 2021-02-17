@@ -8,82 +8,71 @@ from .auth_routes import validation_errors_to_error_messages
 comment_routes = Blueprint('comments', __name__)
 
 
-@comment_routes.route('/<int:id>')
-def last_100_comments(id):
-    comments = Comment.query.filter(
-                   Comment.deck_id == id).order_by((
-                       Comment.upvote_count - Comment.downvote_count).desc(),
-                       Comment.created_at.desc()).limit(100)
-    return {"comments": [comment.to_dict() for comment in comments]}
+# @comment_routes.route('/<int:id>')
+# def last_100_comments(id):
+#     comments = Comment.query.filter(
+#                    Comment.deck_id == id).order_by((
+#                        Comment.upvote_count - Comment.downvote_count).desc(),
+#                        Comment.created_at.desc()).limit(100)
+#     return {"comments": [comment.to_dict() for comment in comments]}
 
 
-@comment_routes.route('/<int:id>/latest')
-def latest_comment(id):
-    comment = Comment.query.filter(
-                  Comment.deck_id == id).order_by(
-                      Comment.created_at.desc()).first()
-    return comment.to_dict()
+# @comment_routes.route('/<int:id>/latest')
+# def latest_comment(id):
+#     comment = Comment.query.filter(
+#                   Comment.deck_id == id).order_by(
+#                       Comment.created_at.desc()).first()
+#     return comment.to_dict()
 
 
-@comment_routes.route('/<int:id>', methods=["POST"])
-@login_required
-def new_comment(id):
-    form = CommentForm()
-    deck = Deck.query.get(id)
-    comment = Comment(
-        user_id=form.data['user_id'],
-        user_avatar=form.data['user_avatar'],
-        deck_id=id,
-        content=form.data['content']
-    )
-    db.session.add(comment)
-    db.session.commit()
-    return comment.to_dict()
-
-
-@comment_routes.route('/<int:id>/upvote', methods=["PATCH"])
+# @comment_routes.route('/<int:id>', methods=["POST"])
 # @login_required
-def manage_upvote(id):
-    form = UpvoteForm()
-    print(f'PRINT STATEMENT - This is the comment ID: {id}')
-    comment = Comment.query.get(id)
-    print(f'PRINT STATEMENT - This is the comment: {comment}')
-    print(f'PRINT STATEMENT - This is the comment\'s upvotes: {comment.comment_upvotes}')
-    user = User.query.get(form.data['user_id'])
-    print(f'PRINT STATMENT - This is the user who is voting: {user}')
-    # if form.validate_on_submit():
-    #     print(f'the form validated')
-    if user in comment.comment_upvotes:
-        comment.comment_upvotes.remove(user)
-        db.session.commit()
-        return comment.to_dict()
-    else:
-        if user in comment.comment_downvotes:
-            comment.comment_downvotes.remove(user)
-        comment.comment_upvotes.append(user)
-        db.session.commit()
-        return comment.to_dict()
-    # else:
-    #     print(f'the form failed to validate')
-    #     print(form.errors)
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+# def new_comment(id):
+#     form = CommentForm()
+#     deck = Deck.query.get(id)
+#     comment = Comment(
+#         user_id=form.data['user_id'],
+#         user_avatar=form.data['user_avatar'],
+#         deck_id=id,
+#         content=form.data['content']
+#     )
+#     db.session.add(comment)
+#     db.session.commit()
+#     return comment.to_dict()
 
 
-@comment_routes.route('/<int:id>/downvote', methods=["PATCH"])
-@login_required
-def manage_downvote(id):
-    form = DownvoteForm()
-    comment = Comment.query.get(id)
-    user = User.query.get(form.data['user_id'])
-    if form.validate_on_submit():
-        if user in comment.comment_downvote:
-            comment.comment_downvote.remove(user)
-            db.session.commit()
-            return comment.to_dict()
-        else:
-            if user in comment.comment_upvote:
-                comment.comment_upvote.remove(user)
-            comment.comment_downvote.append(user)
-            db.session.commit()
-            return comment.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+# @comment_routes.route('/<int:id>/upvote', methods=["PATCH"])
+# @login_required
+# def manage_upvote(id):
+#     form = UpvoteForm()
+#     comment = Comment.query.get(id)
+#     user = User.query.get(form.data['user_id'])
+#     if user in comment.comment_upvotes:
+#         comment.comment_upvotes.remove(user)
+#         db.session.commit()
+#         return comment.to_dict()
+#     else:
+#         if user in comment.comment_downvotes:
+#             comment.comment_downvotes.remove(user)
+#         comment.comment_upvotes.append(user)
+#         db.session.commit()
+#         return comment.to_dict()
+
+
+
+# @comment_routes.route('/<int:id>/downvote', methods=["PATCH"])
+# @login_required
+# def manage_downvote(id):
+#     form = DownvoteForm()
+#     comment = Comment.query.get(id)
+#     user = User.query.get(form.data['user_id'])
+#     if user in comment.comment_downvotes:
+#         comment.comment_downvotes.remove(user)
+#         db.session.commit()
+#         return comment.to_dict()
+#     else:
+#         if user in comment.comment_upvotes:
+#             comment.comment_upvotes.remove(user)
+#         comment.comment_downvotes.append(user)
+#         db.session.commit()
+#         return comment.to_dict()

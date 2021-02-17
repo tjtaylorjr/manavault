@@ -23,7 +23,7 @@ export const convertTimeStamp = (timestamp) => {
 
     const hours = Number(time[0]);
     const minutes = Number(time[1]);
-    const seconds = Number(time[2]);
+    // const seconds = Number(time[2]);
 
     let timeValue;
 
@@ -31,7 +31,7 @@ export const convertTimeStamp = (timestamp) => {
       timeValue = "" + hours;
     } else if (hours > 12) {
       timeValue = "" + (hours - 12);
-    } else if (hours == 0) {
+    } else if (hours === 0) {
       timeValue = "12";
     }
 

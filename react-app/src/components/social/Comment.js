@@ -5,17 +5,18 @@ import { convertTimeStamp } from '../../utils/helpers';
 
 
 const Comment = (props) => {
-  const [downvote, setDownvote] = useState(false);
-  const [upvote, setUpvote] = useState(false);
+  const [downvote, setDownvote] = useState(0);
+  const [upvote, setUpvote] = useState(0);
   const [currentVotes, setCurrentVotes] = useState(0);
-  // console.log(props)
+  console.log(props)
   const {
     id,
     comment_upvotes,
     comment_downvotes,
     created_at,
     content,
-    posted_by
+    posted_by,
+    deck_id
   } = props.comment;
   const {
     username,
@@ -26,14 +27,31 @@ const Comment = (props) => {
 
   useEffect(() => {
     const voteTally = comment_upvotes.length - comment_downvotes.length;
+    console.log(upvote);
+
     setCurrentVotes(voteTally);
-  }, [comment_upvotes, comment_downvotes]);
+  }, []);
+
+  useEffect(() => {
+    let mounted;
+    if (upvote || downvote) {
+      (async () => {
+        const res = await fetch(`/api/decks/${deck_id}/comments/${id}`);
+        const data = await res.json();
+        if (data) {
+          console.log(data);
+        }
+      })();
+    }
+    return () => mounted = false;
+  },[upvote, downvote])
 
   // console.log(currentVotes);
 
   const newUpvote = async (e) => {
-    try {
-      await fetch(`/api/comments/${id}/upvote`, {
+    console.log(upvote)
+    if (props.user.id !== posted_by.id) {
+      await fetch(`/api/decks/${deck_id}comments/${id}/upvote`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -43,22 +61,22 @@ const Comment = (props) => {
         })
       })
       setUpvote(true);
-    } catch (err) {
-      console.warn(err);
     }
   }
 
   const newDownvote = async (e) => {
-    await fetch(`/api/comments/${id}/downvote`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "user_id": props.user.id,
+    if(props.user.id !== posted_by.id) {
+      await fetch(`/api/decks/${deck_id}comments/${id}/downvote`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "user_id": props.user.id,
+        })
       })
-    })
-    setDownvote(true);
+      setDownvote(true);
+    }
   }
 
   return (

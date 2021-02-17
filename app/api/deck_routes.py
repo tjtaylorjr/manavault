@@ -11,14 +11,19 @@ deck_routes = Blueprint('decks', __name__)
 """
 recently created decks
 """
+
+
 @deck_routes.route('/browse')
 def recent_decks():
     decks = Deck.query.order_by(Deck.created_at.desc()).limit(50).all()
     return {"decks": [deck.to_dict() for deck in decks]}
 
+
 """
 create a deck
 """
+
+
 @deck_routes.route('/create', methods=["POST"])
 @login_required
 def new_deck():
@@ -39,9 +44,12 @@ def new_deck():
     print(form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
+
 """
 get information about a specific deck
 """
+
+
 @deck_routes.route('/<int:id>')
 def deck(id):
     deck = Deck.query.get(id)
@@ -52,6 +60,8 @@ def deck(id):
 """
 add/edit card list of deck
 """
+
+
 @deck_routes.route('/<int:deck_id>/cardlist', methods=["POST"])
 @login_required
 def new_cardlist(deck_id):
@@ -90,6 +100,8 @@ def new_cardlist(deck_id):
 """
 edit a deck
 """
+
+
 @deck_routes.route('/<int:deck_id>/edit', methods=["PUT"])
 @login_required
 def edit_deck(deck_id):
@@ -108,6 +120,8 @@ def edit_deck(deck_id):
 """
 delete a deck
 """
+
+
 @deck_routes.route('/<int:deck_id>/delete', methods=["DELETE"])
 @login_required
 def delete_deck(deck_id):
@@ -123,6 +137,8 @@ def delete_deck(deck_id):
 """
 like a deck
 """
+
+
 @deck_routes.route('/<int:deck_id>/like', methods=['PATCH'])
 @login_required
 def like_deck(deck_id):
@@ -141,9 +157,12 @@ def like_deck(deck_id):
             return deck.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
+
 """
 get last 100 comments for deck / or post a new message
 """
+
+
 @deck_routes.route('/<int:deck_id>/comments')
 def last_100_comments(deck_id):
     comments = Comment.query.filter(
@@ -152,9 +171,12 @@ def last_100_comments(deck_id):
         Comment.created_at.desc()).limit(100)
     return {"comments": [comment.to_dict() for comment in comments]}
 
+
 """
 get newest posted comment
 """
+
+
 @deck_routes.route('/<int:deck_id>/comments/newest')
 def latest_comment(deck_id):
     comment = Comment.query.filter(
@@ -162,9 +184,22 @@ def latest_comment(deck_id):
         Comment.created_at.desc()).first()
     return comment.to_dict()
 
+
+"""
+get a specific comment
+"""
+
+@deck_routes.route('/<int:deck_id>/comments/<int:comment_id>')
+def fetch_comment_info(deck_id, comment_id):
+    comment = Comment.query.get(comment_id)
+    return comment.to_dict()
+
+
 """
 post a comment
 """
+
+
 @deck_routes.route('/<int:deck_id>/comments', methods=["POST"])
 @login_required
 def new_comment(deck_id):
@@ -180,13 +215,15 @@ def new_comment(deck_id):
     db.session.commit()
     return comment.to_dict()
 
+
 """
 upvote a comment
 """
 
+
 @deck_routes.route('/<int:deck_id>/comments/<int:comment_id>/upvote', methods=["PATCH"])
 @login_required
-def manage_upvote(comment_id):
+def manage_upvote(deck_id, comment_id):
     form = UpvoteForm()
     comment = Comment.query.get(comment_id)
     user = User.query.get(form.data['user_id'])
@@ -202,16 +239,18 @@ def manage_upvote(comment_id):
         db.session.commit()
         return comment.to_dict()
 
+
 """
 downvote a comment
 """
+
+
 @deck_routes.route('/<int:deck_id>/comments/<int:comment_id>/downvote', methods=["PATCH"])
 @login_required
-def manage_downvote(comment_id):
+def manage_downvote(deck_id, comment_id):
     form = DownvoteForm()
     comment = Comment.query.get(comment_id)
     user = User.query.get(form.data['user_id'])
-    # if form.validate_on_submit():
     if user in comment.comment_downvotes:
         comment.comment_downvotes.remove(user)
         db.session.commit()

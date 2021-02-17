@@ -6,8 +6,8 @@ import { convertTimeStamp } from '../../utils/helpers';
 
 const Comment = (props) => {
   const [downvote, setDownvote] = useState(0);
-  const [upvote, setUpvote] = useState(0);
-  const [currentVotes, setCurrentVotes] = useState(0);
+  const [upvote, setUpvote] = useState(false);
+  const [currentVotes, setCurrentVotes] = useState(false);
   console.log(props)
   const {
     id,
@@ -33,17 +33,19 @@ const Comment = (props) => {
   }, []);
 
   useEffect(() => {
-    let mounted;
     if (upvote || downvote) {
       (async () => {
         const res = await fetch(`/api/decks/${deck_id}/comments/${id}`);
         const data = await res.json();
         if (data) {
           console.log(data);
+          const voteTally = data.comment_upvotes.length - data.comment_downvotes.length;
+          setCurrentVotes(voteTally)
         }
       })();
     }
-    return () => mounted = false;
+    setUpvote(false)
+    setDownvote(false)
   },[upvote, downvote])
 
   // console.log(currentVotes);
@@ -51,7 +53,7 @@ const Comment = (props) => {
   const newUpvote = async (e) => {
     console.log(upvote)
     if (props.user.id !== posted_by.id) {
-      await fetch(`/api/decks/${deck_id}comments/${id}/upvote`, {
+      await fetch(`/api/decks/${deck_id}/comments/${id}/upvote`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +68,7 @@ const Comment = (props) => {
 
   const newDownvote = async (e) => {
     if(props.user.id !== posted_by.id) {
-      await fetch(`/api/decks/${deck_id}comments/${id}/downvote`, {
+      await fetch(`/api/decks/${deck_id}/comments/${id}/downvote`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

@@ -210,12 +210,12 @@
   grid-column: 1;
   position: relative;
   display: grid;
-  grid-template-rows: 3fr 1fr;
+  grid-template-rows: 2rem 2fr 1fr 6rem;
   background-color: #0D1117;
 }
 
 .deckviewer__main-container {
-  grid-row: 1;
+  grid-row: 2;
   position: relative;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -314,7 +314,7 @@
 }
 
 .deckviewer__side-container {
-  grid-row: 2;
+  grid-row: 3;
   position: relative;
   display: grid;
   grid-template-columns: 1fr;

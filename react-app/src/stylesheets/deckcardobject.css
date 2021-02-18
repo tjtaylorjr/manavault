@@ -15,12 +15,17 @@
 }
 
 .deckcard-object:not(:first-child) {
-  margin-top: -9rem;
+  margin-top: -8.5rem;
 }
 
-.deckcard-object:hover,
-.deckcard-object:focus-within {
-  transform: translateY(-1rem);
+.deckcard-object:not(:last-child):hover,
+.deckcard-object:not(:last-child):focus-within {
+  transform: translateY(-2rem);
+}
+
+.deckcard-object:not(:last-child):hover ~ .deckcard-object,
+.deckcard-object:not(:last-child):focus-within ~ .deckcard-object {
+  transform: translateY(6rem);
 }
 
 .deckcard-object h4{

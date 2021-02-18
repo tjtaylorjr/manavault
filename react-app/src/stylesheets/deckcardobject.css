@@ -11,6 +11,16 @@
   cursor: pointer;
   background-color: transparent;
   /* margin: 0 5px; */
+  transition: 0.2s;
+}
+
+.deckcard-object:not(:first-child) {
+  margin-top: -8rem;
+}
+
+.deckcard-object:hover,
+.deckcard-object:focus-within {
+  transform: translateY(-1rem);
 }
 
 .deckcard-object h4{

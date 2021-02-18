@@ -77,6 +77,10 @@ const DeckViewer = (props) => {
     setIsLoaded(true);
   },[deck])
 
+  if(mainDeck.length > 0) {
+    
+  }
+
   return isLoaded ? (
     <>
       <div className="deckviewer">
@@ -105,9 +109,24 @@ const DeckViewer = (props) => {
         <div className="deckviewer__statistics-container"></div>
         <div className="deckviewer__body">
           <div className="deckviewer__deck-container">
-            <div className="deckviewer__main-container">{mainDeck.length > 0 && mainDeck.map((card, i) => (
-              <DeckCardObject key={i} data={card}/>
-            ))}</div>
+            <div className="deckviewer__main-container">
+              <div className="deckviewer__creature-container01">
+                {mainDeck.length > 0 && mainDeck.map((card, i) => (
+                <DeckCardObject key={i} data={card}/>
+              ))}</div>
+              </div>
+              <div className="deckviewer__creature-container2"></div>
+              <div className="deckviewer__creature-container3"></div>
+              <div className="deckviewer__creature-container4"></div>
+              <div className="deckviewer__creature-container5"></div>
+              <div className="deckviewer__creature-container6plus"></div>
+              <div className="deckviewer__land-container"></div>
+              <div className="deckviewer__spell-container01"></div>
+              <div className="deckviewer__spell-container2"></div>
+              <div className="deckviewer__spell-container3"></div>
+              <div className="deckviewer__spell-container4"></div>
+              <div className="deckviewer__spell-container5"></div>
+              <div className="deckviewer__spell-container6plus"></div>
             <div className="deckviewer__side-container"></div>
           </div>
           <div className="deckviewer__comments-container">

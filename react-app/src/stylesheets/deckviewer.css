@@ -272,8 +272,8 @@
 }
 
 .deckviewer__spell-container01 {
-  grid-column: 2;
-  grid-row: 1;
+  grid-column: 1;
+  grid-row: 2;
   display: flex;
   flex-direction: column;
 }
@@ -286,29 +286,29 @@
 }
 
 .deckviewer__spell-container3 {
-  grid-column: 2;
-  grid-row: 3;
+  grid-column: 3;
+  grid-row: 2;
   display: flex;
   flex-direction: column;
 }
 
 .deckviewer__spell-container4 {
-  grid-column: 2;
-  grid-row: 4;
+  grid-column: 4;
+  grid-row: 2;
   display: flex;
   flex-direction: column;
 }
 
 .deckviewer__spell-container5 {
-  grid-column: 2;
-  grid-row: 5;
+  grid-column: 5;
+  grid-row: 2;
   display: flex;
   flex-direction: column;
 }
 
 .deckviewer__spell-container6plus {
-  grid-column: 2;
-  grid-row: 6;
+  grid-column: 6;
+  grid-row: 2;
   display: flex;
   flex-direction: column;
 }
@@ -331,7 +331,7 @@
   border-radius: 4px;
   border: 2px outset #0d1117;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  height: 715px;
+  height: 930px;
 
 }
 
@@ -348,14 +348,14 @@
   margin: 1px;
   /* border: 3px groove #0d1117; */
   border: 3px groove #766237;
-  min-height: 98.25%;
+  min-height: 98.5%;
   max-width: 98%;
   justify-content: space-between;
 }
 
 .deckviewer__comments-list {
   overflow-y: scroll;
-  height: 330px;
+  height: 550px;
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);

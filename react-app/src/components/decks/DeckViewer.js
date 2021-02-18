@@ -94,23 +94,75 @@ const DeckViewer = (props) => {
   },[deck])
 
   // console.log(mainDeck)
-  // const indexResults = mainDeck.map(card => console.log(card.card.type.indexOf("Creature")));
-  // const booleanResults = mainDeck.map(card => console.log((card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") !== -1 || card.card.type.indexOf("Planeswalker" !== -1))));
+
   useEffect(() => {
     let mounted = true;
     if(mainDeck.length > 0 && mounted) {
       const mainCreature01 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") != -1 || card.card.type.indexOf("Planeswalker" != -1))
+        (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
       )
-
-      const booleanResults = mainCreature01.forEach(card => console.log((card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))));
 
       const mainCreature2 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+        (card.card.conv_mana_cost === 2) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
       )
 
-      console.log(mainCreature01);
-      console.log(mainCreature2);
+      const mainCreature3 = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost === 3) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+      )
+
+      const mainCreature4 = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost === 4) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+      )
+
+      const mainCreature5 = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost === 5) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+      )
+
+      const mainCreature6Plus = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost >= 6) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+      )
+
+      const lands = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost === 0) && (card.card.type.includes("Land"))
+      )
+
+      const mainSpell01 = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact"))
+      )
+
+      const mainSpell2 = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost === 2) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact"))
+      )
+
+      const mainSpell3 = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost === 3) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact"))
+      )
+
+      const mainSpell4 = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost === 4) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact"))
+      )
+
+      const mainSpell5 = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost === 5) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact"))
+      )
+
+      const mainSpell6Plus = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost >= 6) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact"))
+      )
+
+      // console.log(mainCreature01);
+      // console.log(mainCreature2);
+      // console.log(mainCreature3);
+      // console.log(mainCreature4);
+      // console.log(mainCreature5);
+      // console.log(mainCreature6Plus);
+      // console.log(lands);
+      console.log(mainSpell01);
+      console.log(mainSpell2);
+      console.log(mainSpell3);
+      console.log(mainSpell4);
+      console.log(mainSpell5);
+      console.log(mainSpell6Plus);
 
       if(mainCreature01.length > 0) {
         setCreatures0Or1(mainCreature01)
@@ -118,6 +170,50 @@ const DeckViewer = (props) => {
 
       if(mainCreature2) {
         setCreatures2(mainCreature2)
+      }
+
+      if (mainCreature3) {
+        setCreatures3(mainCreature3)
+      }
+
+      if (mainCreature4) {
+        setCreatures4(mainCreature4)
+      }
+
+      if (mainCreature5) {
+        setCreatures5(mainCreature5)
+      }
+
+      if (mainCreature6Plus) {
+        setCreatures6Plus(mainCreature6Plus)
+      }
+
+      if (lands) {
+        setLands(lands)
+      }
+
+      if (mainSpell01.length > 0) {
+        setSpells0Or1(mainSpell01)
+      }
+
+      if (mainSpell2) {
+        setSpells2(mainSpell2)
+      }
+
+      if (mainSpell3) {
+        setSpells3(mainSpell3)
+      }
+
+      if (mainSpell4) {
+        setSpells4(mainSpell4)
+      }
+
+      if (mainSpell5) {
+        setSpells5(mainSpell5)
+      }
+
+      if (mainSpell6Plus) {
+        setSpells6Plus(mainSpell6Plus)
       }
     }
 
@@ -245,19 +341,44 @@ const DeckViewer = (props) => {
                 {creatures0Or1.length > 0 && creatures0Or1.map((card, i) => (
                 <DeckCardObject key={i} data={card}/>
               ))}</div>
-              </div>
-              <div className="deckviewer__creature-container2"></div>
-              <div className="deckviewer__creature-container3"></div>
-              <div className="deckviewer__creature-container4"></div>
-              <div className="deckviewer__creature-container5"></div>
-              <div className="deckviewer__creature-container6plus"></div>
-              <div className="deckviewer__land-container"></div>
-              <div className="deckviewer__spell-container01"></div>
-              <div className="deckviewer__spell-container2"></div>
-              <div className="deckviewer__spell-container3"></div>
-              <div className="deckviewer__spell-container4"></div>
-              <div className="deckviewer__spell-container5"></div>
-              <div className="deckviewer__spell-container6plus"></div>
+              <div className="deckviewer__creature-container2">{creatures2.length > 0 && creatures2.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__creature-container3">{creatures3.length > 0 && creatures3.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__creature-container4">{creatures4.length > 0 && creatures4.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__creature-container5">{creatures5.length > 0 && creatures5.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__creature-container6plus">{creatures6Plus.length > 0 && creatures6Plus.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__land-container">{lands.length > 0 && lands.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__spell-container01">
+                {spells0Or1.length > 0 && spells0Or1.map((card, i) => (
+                  <DeckCardObject key={i} data={card} />
+                ))}</div>
+              <div className="deckviewer__spell-container2">{spells2.length > 0 && spells2.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__spell-container3">{spells3.length > 0 && spells3.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__spell-container4">{spells4.length > 0 && spells4.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__spell-container5">{spells5.length > 0 && spells5.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__spell-container6plus">{spells6Plus.length > 0 && spells6Plus.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+            </div>
             <div className="deckviewer__side-container"></div>
           </div>
           <div className="deckviewer__comments-container">

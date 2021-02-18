@@ -15,7 +15,7 @@
 }
 
 .deckcard-object:not(:first-child) {
-  margin-top: -8rem;
+  margin-top: -9rem;
 }
 
 .deckcard-object:hover,

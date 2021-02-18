@@ -1,7 +1,7 @@
 
 .splash {
   /* min-height: 100vh; */
-  min-height: 845px;
+  min-height: 840px;
   /* height: 100%; */
   width: 100%;
   /* bottom: 0; */
@@ -50,9 +50,9 @@
 .splash-contents {
   position: relative;
   display: grid;
-  min-height: 100vh;
+  min-height: 100%;
   width: 100%;
-  grid-template-rows: 700px 1fr 85px 60px;
+  grid-template-rows: 700px 1fr 85px;
   /* background: url('../assets/backgrounds/land-color-morph.png') no-repeat center center fixed; */
   /* background-color: #cccccc; */
   background-color: transparent;

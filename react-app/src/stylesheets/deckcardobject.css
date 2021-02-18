@@ -1,13 +1,16 @@
 .deckcard-object {
-  background-color: transparent;
+  /* background-color: transparent; */
   text-align: center;
-  width: 190px;
+  width: 115px;
+  height: 161px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 30px;
-  position: relative;
+  /* padding-top: 30px; */
+  position: absolute;
   cursor: pointer;
+  background-color: pink;
+  /* margin: 0 5px; */
 }
 
 .deckcard-object h4{

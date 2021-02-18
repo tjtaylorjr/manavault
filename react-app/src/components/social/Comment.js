@@ -8,7 +8,7 @@ const Comment = (props) => {
   const [downvote, setDownvote] = useState(0);
   const [upvote, setUpvote] = useState(false);
   const [currentVotes, setCurrentVotes] = useState(false);
-  console.log(props)
+  // console.log(props)
   const {
     id,
     comment_upvotes,
@@ -27,7 +27,7 @@ const Comment = (props) => {
 
   useEffect(() => {
     const voteTally = comment_upvotes.length - comment_downvotes.length;
-    console.log(upvote);
+    // console.log(upvote);
 
     setCurrentVotes(voteTally);
   }, []);
@@ -38,7 +38,7 @@ const Comment = (props) => {
         const res = await fetch(`/api/decks/${deck_id}/comments/${id}`);
         const data = await res.json();
         if (data) {
-          console.log(data);
+          // console.log(data);
           const voteTally = data.comment_upvotes.length - data.comment_downvotes.length;
           setCurrentVotes(voteTally)
         }
@@ -51,7 +51,7 @@ const Comment = (props) => {
   // console.log(currentVotes);
 
   const newUpvote = async (e) => {
-    console.log(upvote)
+    // console.log(upvote)
     if (props.user.id !== posted_by.id) {
       await fetch(`/api/decks/${deck_id}/comments/${id}/upvote`, {
         method: "PATCH",

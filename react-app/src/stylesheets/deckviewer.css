@@ -5,8 +5,7 @@
   /* padding-bottom: 2.5rem; */
   display: grid;
   grid-template-columns: 50px 2fr 1fr 50px;
-  grid-template-rows: 500px auto auto;
-  padding-bottom: 60px;
+  grid-template-rows: 500px 256px 715px lfr 60px;
 }
 
 .deckviewer h3 {
@@ -176,23 +175,34 @@
   background: linear-gradient(45deg, rgba(103, 12, 7, 1) 40%, rgba(103, 12, 7, .5) 60%, transparent 100%);
 }
 
-
+.deckviewer__statistics-container {
+  grid-row: 2;
+  grid-column: 2 /span 2;
+  height: 200px;
+  width: 100%;
+  /* border: 1px groove #E6CD8C; */
+  background-color: #21262D;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  margin-top: 50px;
+  background: center/35% repeat url('../assets/backgrounds/smooth-stone.jpg');
+  background-blend-mode: multiply;
+  border: 3px groove #21262D;
+}
 
 .deckviewer__body {
   grid-column: 2 / span 2;
-  grid-row: 7 / span 2;
+  grid-row: 3 / span 2;
   position: relative;
-  border-style: solid;
-  /* border-color: #F5BC2D; */
-  border-color: #E6CD8C;
+  border-style: groove;
+  border-color: #21262D;
+  /* border-color: #E6CD8C; */
   border-width: 0 1px;
   display: grid;
   grid-template-columns: 1fr 460px;
   /* grid-template-rows: auto 80px; */
   width: 100%;
-  margin-top: 0;
-  border-top: 2px solid #E6CD8C;
-  padding-top: 4px;
+  /* padding-top: 4px; */
 }
 
 
@@ -200,19 +210,20 @@
   grid-column: 1;
   position: relative;
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-rows: 3fr 1fr;
+  background-color: #0D1117;
 }
 
 .deckviewer__main-container {
-  grid-column: 1;
+  grid-row: 1;
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto, auto;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .deckviewer__side-container {
-  grid-column: 2;
+  grid-row: 2;
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
@@ -229,6 +240,7 @@
   border-radius: 4px;
   border: 2px outset #0d1117;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  height: 715px;
 
 }
 
@@ -239,19 +251,20 @@
   display: flex;
   flex-direction: column;
   padding: 5px;
+  padding-bottom: 0;
   background-color: #0D1117;
   color: #0d1117;
   margin: 1px;
   /* border: 3px groove #0d1117; */
   border: 3px groove #766237;
-  max-height: 100%;
+  min-height: 98.25%;
   max-width: 98%;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .deckviewer__comments-list {
   overflow-y: scroll;
-  height: 300px;
+  height: 330px;
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);

@@ -102,6 +102,7 @@ const DeckViewer = (props) => {
           </div>
           <div className="deckviewer-header__lower-panel"></div>
         </div>
+        <div className="deckviewer__statistics-container"></div>
         <div className="deckviewer__body">
           <div className="deckviewer__deck-container">
             <div className="deckviewer__main-container">{mainDeck.length > 0 && mainDeck.map((card, i) => (

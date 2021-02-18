@@ -13,6 +13,19 @@ const DeckViewer = (props) => {
   const [postFlag, setPostFlag] = useState(false);
   // const [isVIP, setIsVIP] = useState(false);
   const [mainDeck, setMainDeck] = useState([]);
+  const [creatures0Or1, setCreatures0Or1] = useState([]);
+  const [creatures2, setCreatures2] = useState([]);
+  const [creatures3, setCreatures3] = useState([]);
+  const [creatures4, setCreatures4] = useState([]);
+  const [creatures5, setCreatures5] = useState([]);
+  const [creatures6Plus, setCreatures6Plus] = useState([]);
+  const [lands, setLands] = useState([]);
+  const [spells0Or1, setSpells0Or1] = useState([]);
+  const [spells2, setSpells2] = useState([]);
+  const [spells3, setSpells3] = useState([]);
+  const [spells4, setSpells4] = useState([]);
+  const [spells5, setSpells5] = useState([]);
+  const [spells6Plus, setSpells6Plus] = useState([]);
   const [sideboard, setSideboard] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const location = useLocation();
@@ -23,8 +36,8 @@ const DeckViewer = (props) => {
   // const deckName = deck.deck_name;
   const {id, username} = props.user;
 
-  console.log(deck); // what does my deck object look like?
-  console.log(props.user);
+  // console.log(deck); // what does my deck object look like?
+  // console.log(props.user);
   useEffect(() => {
     if (!id) {
       setIsLoaded(false);
@@ -53,7 +66,7 @@ const DeckViewer = (props) => {
       const res = await fetch(`/api/decks/${deck.id}/comments`);
       const commentList = await res.json()
       if(commentList) {
-        console.log(commentList)
+        // console.log(commentList)
         setComments(commentList.comments)
       }
     })()
@@ -62,24 +75,142 @@ const DeckViewer = (props) => {
 
 
   useEffect(() => {
+    let mounted = true;
     let main = []
     let side = []
-    deck.card_list.forEach((card) => {
-      if (card.in_deck > 0) {
-        main.push(card)
-      } else {
-        side.push(card)
-      }
-    })
+    if (mounted) {
+      deck.card_list.forEach((card) => {
+        if (card.in_deck > 0) {
+          main.push(card)
+        } else {
+          side.push(card)
+        }
+      })
+    }
 
     setMainDeck(main);
     setSideboard(side);
-    setIsLoaded(true);
+    return () => mounted = false;
   },[deck])
 
-  if(mainDeck.length > 0) {
-    
-  }
+  // console.log(mainDeck)
+  // const indexResults = mainDeck.map(card => console.log(card.card.type.indexOf("Creature")));
+  // const booleanResults = mainDeck.map(card => console.log((card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") !== -1 || card.card.type.indexOf("Planeswalker" !== -1))));
+  useEffect(() => {
+    let mounted = true;
+    if(mainDeck.length > 0 && mounted) {
+      const mainCreature01 = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") != -1 || card.card.type.indexOf("Planeswalker" != -1))
+      )
+
+      const booleanResults = mainCreature01.forEach(card => console.log((card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))));
+
+      const mainCreature2 = mainDeck.filter((card) =>
+        (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+      )
+
+      console.log(mainCreature01);
+      console.log(mainCreature2);
+
+      if(mainCreature01.length > 0) {
+        setCreatures0Or1(mainCreature01)
+      }
+
+      if(mainCreature2) {
+        setCreatures2(mainCreature2)
+      }
+    }
+
+    // if (mainDeck.length > 0 && mounted) {
+    //   const main2 = mainDeck.filter((card) =>
+    //     (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+    //   )
+    //   console.log(main2);
+    //   setCreatures2(main2)
+    // }
+
+    // if (mainDeck.length > 0 && mounted) {
+    //   const main01 = mainDeck.filter((card) =>
+    //     (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+    //   )
+    //   console.log(main01);
+    //   setCreatures0Or1(main01)
+    // }
+
+    // if (mainDeck.length > 0 && mounted) {
+    //   const main01 = mainDeck.filter((card) =>
+    //     (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+    //   )
+    //   console.log(main01);
+    //   setCreatures0Or1(main01)
+    // }
+
+    // if (mainDeck.length > 0 && mounted) {
+    //   const main01 = mainDeck.filter((card) =>
+    //     (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+    //   )
+    //   console.log(main01);
+    //   setCreatures0Or1(main01)
+    // }
+
+    // if (mainDeck.length > 0 && mounted) {
+    //   const main01 = mainDeck.filter((card) =>
+    //     (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+    //   )
+    //   console.log(main01);
+    //   setCreatures0Or1(main01)
+    // }
+
+    // if (mainDeck.length > 0 && mounted) {
+    //   const main01 = mainDeck.filter((card) =>
+    //     (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+    //   )
+    //   console.log(main01);
+    //   setCreatures0Or1(main01)
+    // }
+
+    // if (mainDeck.length > 0 && mounted) {
+    //   const main01 = mainDeck.filter((card) =>
+    //     (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+    //   )
+    //   console.log(main01);
+    //   setCreatures0Or1(main01)
+    // }
+
+    // const main2 = mainDeck.filter((card) =>
+    //   (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+    // )
+    // console.log(main2);
+    // setCreatures2(main2)
+
+    // const main2 = mainDeck.filter((card) =>
+    //   (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+    // )
+    // console.log(main2);
+    // setCreatures2(main2)
+
+    // const main2 = mainDeck.filter((card) =>
+    //   (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+    // )
+    // console.log(main2);
+    // setCreatures2(main2)
+
+    // const main2 = mainDeck.filter((card) =>
+    //   (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+    // )
+    // console.log(main2);
+    // setCreatures2(main2)
+
+    // const main2 = mainDeck.filter((card) =>
+    //   (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
+    // )
+    // console.log(main2);
+    // setCreatures2(main2)
+    setIsLoaded(true);
+    return () => mounted = false;
+  },[mainDeck])
+
+  console.log(creatures0Or1);
 
   return isLoaded ? (
     <>
@@ -111,7 +242,7 @@ const DeckViewer = (props) => {
           <div className="deckviewer__deck-container">
             <div className="deckviewer__main-container">
               <div className="deckviewer__creature-container01">
-                {mainDeck.length > 0 && mainDeck.map((card, i) => (
+                {creatures0Or1.length > 0 && creatures0Or1.map((card, i) => (
                 <DeckCardObject key={i} data={card}/>
               ))}</div>
               </div>

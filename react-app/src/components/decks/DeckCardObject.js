@@ -70,8 +70,9 @@ import React, { useState, useEffect } from 'react'
 
 const DeckCardObject = (data) => {
   const [smallIMG, setSmallIMG] = useState("")
+  const [normalIMG, setNormalIMG] = useState("")
   const { card } = data.data;
-  console.log(card)
+  // console.log(card)
   //const formatted_name = card.name.split(" //")
 
   useEffect(() => {

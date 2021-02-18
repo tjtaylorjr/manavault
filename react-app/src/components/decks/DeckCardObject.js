@@ -69,14 +69,18 @@
 import React, { useState, useEffect } from 'react'
 
 const DeckCardObject = (data) => {
-  // const [smallIMG, setSmallIMG] = useState("")
-  // const { card } = data;
-  // console.log(card)
-  // const formatted_name = data.name.split(" //")
+  const [smallIMG, setSmallIMG] = useState("")
+  const { card } = data.data;
+  console.log(card)
+  //const formatted_name = card.name.split(" //")
 
-  // useEffect(() => {
-  //   setSmallIMG(data.illustration.small_image)
-  // }, [card, data.illustration.small_image])
+  useEffect(() => {
+    let mounted = true;
+    if (mounted) {
+      setSmallIMG(card.illustration.small_image)
+    }
+    return () => mounted = false;
+  }, [card])
 
   const renderCardPage = () => {
     alert('Card information modal coming soon!');
@@ -84,12 +88,11 @@ const DeckCardObject = (data) => {
 
   return (
     <section className="deckcard-object" onClick={renderCardPage}>
-      {/* <h4 style={{ color: "#FFF" }}>{formatted_name[0]}</h4>
       <div className="deckcard-object__image-container">
         {smallIMG ? (
           <img src={smallIMG} alt={data.name + " card image"} />
         ) : null}
-      </div> */}
+      </div>
     </section>
   )
 }

@@ -3,13 +3,13 @@
   text-align: center;
   width: 115px;
   height: 161px;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   align-items: center;
   /* padding-top: 30px; */
-  position: absolute;
+  /* position: relative; */
   cursor: pointer;
-  background-color: pink;
+  background-color: transparent;
   /* margin: 0 5px; */
 }
 
@@ -19,11 +19,11 @@
 }
 
 .deckcard-object__image-container {
-  border-top: 1px solid #21262D;
-  background-color: transparent;
-  max-width: 146px;
-  height: 204px;
-  padding: 10px 0px;
+  /* border-top: 1px solid #21262D; */
+  /* background-color: transparent; */
+  /* max-width: 100%; */
+  height: 161px;
+  /* padding: 10px 0px; */
   position: relative;
 }
 
@@ -31,7 +31,7 @@
   overflow: hidden;
   border-radius: 7px;
   background-color: #06090F;
-  width: 142px;
-  height: 204px;
+  width: 100%;
+  /* height: 204px; */
   object-fit: cover;
 }

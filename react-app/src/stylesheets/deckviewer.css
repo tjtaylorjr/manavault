@@ -181,28 +181,31 @@
   height: 200px;
   width: 100%;
   /* border: 1px groove #E6CD8C; */
-  background-color: #21262D;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  margin-top: 50px;
-  background: center/35% repeat url('../assets/backgrounds/smooth-stone.jpg');
-  background-blend-mode: multiply;
-  border: 3px groove #21262D;
+  /* background-color: #0D1117; */
+  /* background-color: #21262D; */
+  border-radius: 5px;
+  margin-top: 10px;
+  /* background: center/35% repeat url('../assets/backgrounds/smooth-stone.jpg'); */
+  /* border-bottom: 3px groove #21262D; */
 }
 
 .deckviewer__body {
   grid-column: 2 / span 2;
   grid-row: 3 / span 2;
   position: relative;
-  border-style: groove;
-  border-color: #21262D;
+  /* border-style: ridge;
+  border-color: #21262D; */
   /* border-color: #E6CD8C; */
-  border-width: 0 1px;
+  /* border-width: 3px; */
   display: grid;
   grid-template-columns: 1fr 460px;
   /* grid-template-rows: auto 80px; */
   width: 100%;
   /* padding-top: 4px; */
+  margin-bottom: 10px;
+  border-top: 3px ridge #21262D;
+  padding-top: 10px;
+
 }
 
 
@@ -211,7 +214,7 @@
   position: relative;
   display: grid;
   grid-template-rows: 2rem 2fr 1fr 6rem;
-  background-color: #0D1117;
+  /* background-color: #0D1117; */
 }
 
 .deckviewer__main-container {
@@ -317,7 +320,45 @@
   grid-row: 3;
   position: relative;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+
+.deckviewer__sideslot01-container {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.deckviewer__sideslot2-container {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+}
+.deckviewer__sideslot3-container {
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+}
+.deckviewer__sideslot4-container {
+  grid-column: 4;
+  display: flex;
+  flex-direction: column;
+}
+.deckviewer__sideslot5-container {
+  grid-column: 5;
+  display: flex;
+  flex-direction: column;
+}
+.deckviewer__sideslot6plus-container {
+  grid-column: 6;
+  display: flex;
+  flex-direction: column;
+}
+.deckviewer__sideslotlands-container {
+  grid-column: 7;
+  display: flex;
+  flex-direction: column;
 }
 
 .deckviewer__comments-container {
@@ -327,11 +368,15 @@
   flex-direction: column;
   /* background: #121E2F; */
   /* background: -webkit-linear-gradient(45deg, #46646E, #89DCEB, #46646E); */
-  background: #e6CD8C;
+  /* background: #e6CD8C; */
+  /* background: center/cover url('../assets/backgrounds/parchment-long.jpg'); */
+
+  /* background: center/50% url('../assets/backgrounds/smooth-stone.jpg'); */
   border-radius: 4px;
-  border: 2px outset #0d1117;
+  /* border: 2px outset #0d1117; */
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   height: 930px;
+  margin-top: 2rem;
 
 }
 
@@ -343,14 +388,15 @@
   flex-direction: column;
   padding: 5px;
   padding-bottom: 0;
-  background-color: #0D1117;
+  /* background-color: #0D1117; */
   color: #0d1117;
   margin: 1px;
   /* border: 3px groove #0d1117; */
-  border: 3px groove #766237;
-  min-height: 98.5%;
+  /* border: 3px groove #766237; */
+  /* min-height: 98.5%; */
+  height: 100%;
   max-width: 98%;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .deckviewer__comments-list {
@@ -360,6 +406,7 @@
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
 }
+
 /*
 .deckviewer__comments-list::-webkit-scrollbar {
   width: 5px;

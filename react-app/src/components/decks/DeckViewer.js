@@ -27,6 +27,13 @@ const DeckViewer = (props) => {
   const [spells5, setSpells5] = useState([]);
   const [spells6Plus, setSpells6Plus] = useState([]);
   const [sideboard, setSideboard] = useState([]);
+  const [sideSlot01, setSideSlot01] = useState([]);
+  const [sideSlot2, setSideSlot2] = useState([]);
+  const [sideSlot3, setSideSlot3] = useState([]);
+  const [sideSlot4, setSideSlot4] = useState([]);
+  const [sideSlot5, setSideSlot5] = useState([]);
+  const [sideSlot6Plus, setSideSlot6Plus] = useState([]);
+  const [sideSlotLands, setSideSlotLands] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const location = useLocation();
   const [deck, setDeck] = useState(location.state.data);
@@ -82,7 +89,8 @@ const DeckViewer = (props) => {
       deck.card_list.forEach((card) => {
         if (card.in_deck > 0) {
           main.push(card)
-        } else {
+        }
+        if (card.in_sideboard > 0) {
           side.push(card)
         }
       })
@@ -150,45 +158,31 @@ const DeckViewer = (props) => {
         (card.card.conv_mana_cost >= 6) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
       )
 
-      // console.log(mainCreature01);
-      // console.log(mainCreature2);
-      // console.log(mainCreature3);
-      // console.log(mainCreature4);
-      // console.log(mainCreature5);
-      // console.log(mainCreature6Plus);
-      // console.log(lands);
-      console.log(mainSpell01);
-      console.log(mainSpell2);
-      console.log(mainSpell3);
-      console.log(mainSpell4);
-      console.log(mainSpell5);
-      console.log(mainSpell6Plus);
-
       if(mainCreature01.length > 0) {
         setCreatures0Or1(mainCreature01)
       }
 
-      if(mainCreature2) {
+      if(mainCreature2.length > 0) {
         setCreatures2(mainCreature2)
       }
 
-      if (mainCreature3) {
+      if (mainCreature3.length > 0) {
         setCreatures3(mainCreature3)
       }
 
-      if (mainCreature4) {
+      if (mainCreature4.length > 0) {
         setCreatures4(mainCreature4)
       }
 
-      if (mainCreature5) {
+      if (mainCreature5.length > 0) {
         setCreatures5(mainCreature5)
       }
 
-      if (mainCreature6Plus) {
+      if (mainCreature6Plus.length > 0) {
         setCreatures6Plus(mainCreature6Plus)
       }
 
-      if (lands) {
+      if (lands.length > 0) {
         setLands(lands)
       }
 
@@ -196,117 +190,94 @@ const DeckViewer = (props) => {
         setSpells0Or1(mainSpell01)
       }
 
-      if (mainSpell2) {
+      if (mainSpell2.length > 0) {
         setSpells2(mainSpell2)
       }
 
-      if (mainSpell3) {
+      if (mainSpell3.length > 0) {
         setSpells3(mainSpell3)
       }
 
-      if (mainSpell4) {
+      if (mainSpell4.length > 0) {
         setSpells4(mainSpell4)
       }
 
-      if (mainSpell5) {
+      if (mainSpell5.length > 0) {
         setSpells5(mainSpell5)
       }
 
-      if (mainSpell6Plus) {
+      if (mainSpell6Plus.length > 0) {
         setSpells6Plus(mainSpell6Plus)
       }
     }
-
-    // if (mainDeck.length > 0 && mounted) {
-    //   const main2 = mainDeck.filter((card) =>
-    //     (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
-    //   )
-    //   console.log(main2);
-    //   setCreatures2(main2)
-    // }
-
-    // if (mainDeck.length > 0 && mounted) {
-    //   const main01 = mainDeck.filter((card) =>
-    //     (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
-    //   )
-    //   console.log(main01);
-    //   setCreatures0Or1(main01)
-    // }
-
-    // if (mainDeck.length > 0 && mounted) {
-    //   const main01 = mainDeck.filter((card) =>
-    //     (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
-    //   )
-    //   console.log(main01);
-    //   setCreatures0Or1(main01)
-    // }
-
-    // if (mainDeck.length > 0 && mounted) {
-    //   const main01 = mainDeck.filter((card) =>
-    //     (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
-    //   )
-    //   console.log(main01);
-    //   setCreatures0Or1(main01)
-    // }
-
-    // if (mainDeck.length > 0 && mounted) {
-    //   const main01 = mainDeck.filter((card) =>
-    //     (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
-    //   )
-    //   console.log(main01);
-    //   setCreatures0Or1(main01)
-    // }
-
-    // if (mainDeck.length > 0 && mounted) {
-    //   const main01 = mainDeck.filter((card) =>
-    //     (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
-    //   )
-    //   console.log(main01);
-    //   setCreatures0Or1(main01)
-    // }
-
-    // if (mainDeck.length > 0 && mounted) {
-    //   const main01 = mainDeck.filter((card) =>
-    //     (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
-    //   )
-    //   console.log(main01);
-    //   setCreatures0Or1(main01)
-    // }
-
-    // const main2 = mainDeck.filter((card) =>
-    //   (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
-    // )
-    // console.log(main2);
-    // setCreatures2(main2)
-
-    // const main2 = mainDeck.filter((card) =>
-    //   (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
-    // )
-    // console.log(main2);
-    // setCreatures2(main2)
-
-    // const main2 = mainDeck.filter((card) =>
-    //   (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
-    // )
-    // console.log(main2);
-    // setCreatures2(main2)
-
-    // const main2 = mainDeck.filter((card) =>
-    //   (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
-    // )
-    // console.log(main2);
-    // setCreatures2(main2)
-
-    // const main2 = mainDeck.filter((card) =>
-    //   (card.card.conv_mana_cost === 2) && (card.card.type.indexOf("Creature") > -1 || card.card.type.indexOf("Planeswalker" > -1))
-    // )
-    // console.log(main2);
-    // setCreatures2(main2)
     setIsLoaded(true);
     return () => mounted = false;
   },[mainDeck])
+  console.log(sideboard);
+  console.log(mainDeck);
+  useEffect(() => {
+    let mounted = true;
+    if (sideboard.length > 0 && mounted) {
+      const side01 = sideboard.filter((card) =>
+        (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (!card.card.type.includes("Land"))
+      )
 
-  console.log(creatures0Or1);
+      const side2 = sideboard.filter((card) =>
+        card.card.conv_mana_cost === 2
+      )
+
+      const side3 = sideboard.filter((card) =>
+        card.card.conv_mana_cost === 3
+      )
+
+      const side4 = sideboard.filter((card) =>
+        card.card.conv_mana_cost === 4
+      )
+
+      const side5 = sideboard.filter((card) =>
+        card.card.conv_mana_cost === 5
+      )
+
+      const side6Plus = sideboard.filter((card) =>
+        card.card.conv_mana_cost >= 6
+      )
+
+      const sideLands = sideboard.filter((card) =>
+        (card.card.conv_mana_cost === 0) && (card.card.type.includes("Land"))
+      )
+
+      if (side01.length > 0) {
+        setSideSlot01(side01)
+      }
+
+      if (side2.length > 0) {
+        setSideSlot2(side2)
+      }
+
+      if (side3.length > 0) {
+        setSideSlot3(side3)
+      }
+
+      if (side4.length > 0) {
+        setSideSlot4(side4)
+      }
+
+      if (side5.length > 0) {
+        setSideSlot5(side5)
+      }
+
+      if (side6Plus.length > 0) {
+        setSideSlot6Plus(side6Plus)
+      }
+
+      if (sideLands.length > 0) {
+        setSideSlotLands(sideLands)
+      }
+
+    }
+    setIsLoaded(true);
+    return () => mounted = false;
+  }, [sideboard])
 
   return isLoaded ? (
     <>
@@ -379,16 +350,39 @@ const DeckViewer = (props) => {
                 <DeckCardObject key={i} data={card} />
               ))}</div>
             </div>
-            <div className="deckviewer__side-container"></div>
+            <div className="deckviewer__side-container">
+              <div className="deckviewer__sideslot01-container01">
+                {sideSlot01.length > 0 && sideSlot01.map((card, i) => (
+                  <DeckCardObject key={i} data={card} />
+                ))}</div>
+              <div className="deckviewer__sideslot2-container2">{sideSlot2.length > 0 && sideSlot2.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__sideslot3-container3">{sideSlot3.length > 0 && sideSlot3.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__sideslot4-container4">{sideSlot4.length > 0 && sideSlot4.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__sideslot5-container5">{sideSlot5.length > 0 && sideSlot5.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__sideslot6plus-container6plus">{sideSlot6Plus.length > 0 && sideSlot6Plus.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+              <div className="deckviewer__sideslotlands-container">{sideSlotLands.length > 0 && sideSlotLands.map((card, i) => (
+                <DeckCardObject key={i} data={card} />
+              ))}</div>
+            </div>
           </div>
           <div className="deckviewer__comments-container">
             <div className="deckviewer__comments-wrapper">
-              <CommentBox setPostFlag={setPostFlag} authenticated={props.authenticated} user_id={id} username={username} creator={deck.creator_name} deckName={deck.deck_name} deck_id={deck.id}/>
               <ul className="deckviewer__comments-list">
                 {comments.map((comment, i) => (
                   <Comment key={i} authenticated={props.authenticated} user={props.user} comment={comment}/>
-                ))}
+                  ))}
               </ul>
+              <CommentBox setPostFlag={setPostFlag} authenticated={props.authenticated} user_id={id} username={username} creator={deck.creator_name} deckName={deck.deck_name} deck_id={deck.id}/>
             </div>
           </div>
         </div>

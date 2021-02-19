@@ -5,7 +5,7 @@ import cn from "classnames";
 import DynamicHeight from "./DynamicHeight";
 
 
-const INITIAL_HEIGHT = 100;
+const INITIAL_HEIGHT = 16;
 
 const CommentBox = (props) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -89,12 +89,12 @@ const CommentBox = (props) => {
     >
       <div className="comment-box__header">
         <div className="comment-box__user">
-          <Avatar avatar={avatar} size={"SML"}/>
+          {/* <Avatar avatar={avatar} size={"SML"}/> */}
           {/* <img
             src={props.avatar}
             alt="Your avatar"
           /> */}
-          <span>{username}</span>
+          {/* <span>{username}</span> */}
         </div>
       </div>
       <label htmlFor="comment">Leave a comment</label>
@@ -104,7 +104,8 @@ const CommentBox = (props) => {
         onFocus={onExpand}
         onChange={onChange}
         className="comment-box__comment-field"
-        placeholder={`Tell ${props.creator} what you think about ${props.deckName}`}
+        // placeholder={`Tell ${props.creator} what you think about ${props.deckName}`}
+        placeholder={"Leave a comment"}
         value={commentValue}
         name="comment"
         id="comment"

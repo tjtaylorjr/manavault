@@ -162,14 +162,14 @@
   background: linear-gradient(45deg, rgba(103, 12, 7, 1) 40%, rgba(103, 12, 7, .5) 60%, transparent 100%);
 }
 
-.deckviewer__statistics-container {
+/* .deckviewer__statistics-container {
   grid-row: 2;
   grid-column: 2 /span 2;
   height: 200px;
   width: 100%;
   border-radius: 5px;
   margin-top: 10px;
-}
+} */
 
 .deckviewer__body {
   grid-column: 2 / span 2;
@@ -178,8 +178,10 @@
   display: grid;
   grid-template-columns: 1fr 460px;
   width: 100%;
-  margin-bottom: 10px;
-  border-top: 3px ridge #21262D;
+  margin-bottom: 0;
+  border: 2px inset #21262D;
+  border-bottom: none;
+  border-top: none;
   padding-top: 10px;
 
 }
@@ -338,9 +340,10 @@
 .deckviewer__multipurpose-box {
   overflow: hidden;
   position: relative;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   width: 460px;
-  height: 930px;
+  height: 925px;
+
 }
 
 .deckviewer__comments-drawer {
@@ -361,7 +364,7 @@
 }
 
 .deckviewer__comments-drawer--reveal {
-  right: -9px;
+  right: 0px;
 }
 .deckviewer__comments-pulltab {
 
@@ -369,16 +372,18 @@
   position: relative;
   height: 50px;
   width: 29px;
-  background-color: #21262D;
+  background-color: #0D1117;
   grid-column: 1;
-  margin-top: 7px;
+  /* margin-top: 7px; */
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;
   border: 2px ridge #E6CD8C;
-  right: -10%;
+  border-right: none;
+  right: -8%;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 .deckviewer__pulltab-svg {
@@ -395,11 +400,14 @@
   flex-direction: column;
   border-radius: 4px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  height: 930px;
+  height: 928px;
   width: 460px;
-
-
-
+  background-color: #0D1117;
+  padding-left: 9px;
+  padding-top: 10px;
+  border: 2px ridge #E6CD8C;
+  /* border-bottom: 2px ridge #E6CD8C; */
+  border-right: 5px inset #0D1117;
 }
 
 .deckviewer__comments-wrapper {
@@ -408,11 +416,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  /* padding: 5px; */
   padding-left: 0;
   padding-bottom: 0;
   color: #0d1117;
   margin: 1px;
+  margin-top: 0;
   height: 100%;
   max-width: 98%;
   justify-content: flex-start;
@@ -421,7 +430,7 @@
 .deckviewer__comments-list {
   overflow-y: scroll;
   height: 550px;
-  width: 420px;
+  width: 415px;
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);

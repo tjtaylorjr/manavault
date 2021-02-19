@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import CommentBox from "../social/CommentBox.js";
 import Comment from "../social/Comment.js";
 import DeckCardObject from "./DeckCardObject.js";
 import DeckObject from "./DeckObject.js";
 import { AiFillDislike, AiFillLike, } from 'react-icons/ai';
+import { GiQuillInk } from 'react-icons/gi';
 
 const DeckViewer = (props) => {
   const [user, setUser] = useState({}); //needed for current user's avatar
@@ -37,6 +38,9 @@ const DeckViewer = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const location = useLocation();
   const [deck, setDeck] = useState(location.state.data);
+
+  const drawerRef = useRef();
+  console.log(drawerRef.current);
   //const deck = location.state.data;  //save the deck object in state to variable
   // const deck_id = deck.id;
   // const creator = deck.creator_name;
@@ -276,6 +280,16 @@ const DeckViewer = (props) => {
     return () => mounted = false;
   }, [sideboard])
 
+  const toggleDrawer = () => {
+    if (drawerRef.current.classList.contains("deckviewer__comments-drawer--hide")) {
+      drawerRef.current.classList.remove("deckviewer__comments-drawer--hide");
+      drawerRef.current.classList.add("deckviewer__comments-drawer--reveal");
+    } else if (drawerRef.current.classList.contains("deckviewer__comments-drawer--reveal")) {
+      drawerRef.current.classList.remove("deckviewer__comments-drawer--reveal");
+      drawerRef.current.classList.add("deckviewer__comments-drawer--hide");
+    }
+  };
+
   return isLoaded ? (
     <>
       <div className="deckviewer">
@@ -372,14 +386,21 @@ const DeckViewer = (props) => {
               ))}</div>
             </div>
           </div>
-          <div className="deckviewer__comments-container">
-            <div className="deckviewer__comments-wrapper">
-              <ul className="deckviewer__comments-list">
-                {comments.map((comment, i) => (
-                  <Comment key={i} authenticated={props.authenticated} user={props.user} comment={comment}/>
-                  ))}
-              </ul>
-              <CommentBox setPostFlag={setPostFlag} authenticated={props.authenticated} user_id={id} username={username} creator={deck.creator_name} deckName={deck.deck_name} deck_id={deck.id}/>
+          <div className="deckviewer__multipurpose-box">
+            <div className="deckviewer__comments-drawer deckviewer__comments-drawer--hide" ref={drawerRef}>
+              <div className="deckviewer__comments-pulltab" onClick={toggleDrawer}>
+                <GiQuillInk className="deckviewer__pulltab-svg"></GiQuillInk>
+              </div>
+              <div className="deckviewer__comments-container">
+                <div className="deckviewer__comments-wrapper">
+                  <ul className="deckviewer__comments-list">
+                    {comments.map((comment, i) => (
+                      <Comment key={i} authenticated={props.authenticated} user={props.user} comment={comment}/>
+                      ))}
+                  </ul>
+                  <CommentBox setPostFlag={setPostFlag} authenticated={props.authenticated} user_id={id} username={username} creator={deck.creator_name} deckName={deck.deck_name} deck_id={deck.id}/>
+                </div>
+              </div>
             </div>
           </div>
         </div>

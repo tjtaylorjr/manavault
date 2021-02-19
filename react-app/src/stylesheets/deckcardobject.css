@@ -42,13 +42,13 @@
 
 .deckcard-object__reported-copies {
   position: absolute;
-  height: 100%;
-  width: 100%;
+  height: 25%;
+  width: 40%;
   background: transparent;
   color: #FFFFFF;
   -webkit-text-stroke: 2px black;
   top: 14px;
-  left: 28px;
+  left: 62px;
   font-weight: 700;
   font-size: 38px;
 }

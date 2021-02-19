@@ -2,7 +2,6 @@
   position: relative;
   min-height: 100vh;
   width: 100%;
-  /* padding-bottom: 2.5rem; */
   display: grid;
   grid-template-columns: 50px 2fr 1fr 50px;
   grid-template-rows: 500px 256px 715px lfr 60px;
@@ -31,7 +30,6 @@
   grid-column: 1 / span 5;
   border-top: 1px solid #E6CD8C;
   background-color: #670C07;
-  /* background-color: #FF5500; */
 }
 
 .deckviewer-header__main {
@@ -40,10 +38,6 @@
   display: grid;
   grid-template-columns: 50px 1fr 1fr 1fr 50px;
   background-color: #670C07;
-  /* background-color: #FF5500; */
-  /* background-color: #46646E; */
-  /* background-color: #F59105; */
-  /* background-color: #B43219; */
   border-bottom: 1px solid #E6CD8C;
   width: 100%;
 }
@@ -58,8 +52,6 @@
   grid-row: 1;
   font-size: 2.5rem;
   font-weight: 700;
-  /* color: #F5BC2D;
-  -webkit-text-stroke: 1px #B43219; */
   color: #D21502;
   -webkit-text-stroke: 1px #420D09;
   line-height: 3rem;
@@ -92,8 +84,6 @@
   grid-column: 2 / span 3;
   width: 100%;
   border-bottom: 1px solid #E6CD8C;
-  /* border-left: 1px solid #E6CD8C;
-  border-right: 1px solid #E6CD8C; */
 }
 
 .deckviewer__VIP-user-panel-background {
@@ -136,7 +126,6 @@
   position: relative;
   width: 100%;
   height: 500px;
-  /* overflow: hidden; */
   opacity: 1;
   background-color: #670C07;
   background-repeat: no-repeat;
@@ -144,7 +133,6 @@
   transform-origin: top right;
   transform: skewX(-45deg);
   mask-image: linear-gradient(to right top, rbga(0, 0, 0, 0) 0%, #000000 100%);
-  /* background-blend-mode: multiply; */
   left: 10%;
 }
 
@@ -171,7 +159,6 @@
   top: 0;
   transform-origin: top right;
   transform: skewX(-45deg);
-  /* background: linear-gradient(45deg, rgba(76, 8, 5, 1) 40%, rgba(76, 8, 5, .5) 60%, transparent 100%); */
   background: linear-gradient(45deg, rgba(103, 12, 7, 1) 40%, rgba(103, 12, 7, .5) 60%, transparent 100%);
 }
 
@@ -180,28 +167,17 @@
   grid-column: 2 /span 2;
   height: 200px;
   width: 100%;
-  /* border: 1px groove #E6CD8C; */
-  /* background-color: #0D1117; */
-  /* background-color: #21262D; */
   border-radius: 5px;
   margin-top: 10px;
-  /* background: center/35% repeat url('../assets/backgrounds/smooth-stone.jpg'); */
-  /* border-bottom: 3px groove #21262D; */
 }
 
 .deckviewer__body {
   grid-column: 2 / span 2;
   grid-row: 3 / span 2;
   position: relative;
-  /* border-style: ridge;
-  border-color: #21262D; */
-  /* border-color: #E6CD8C; */
-  /* border-width: 3px; */
   display: grid;
   grid-template-columns: 1fr 460px;
-  /* grid-template-rows: auto 80px; */
   width: 100%;
-  /* padding-top: 4px; */
   margin-bottom: 10px;
   border-top: 3px ridge #21262D;
   padding-top: 10px;
@@ -214,7 +190,6 @@
   position: relative;
   display: grid;
   grid-template-rows: 2rem 2fr 1fr 6rem;
-  /* background-color: #0D1117; */
 }
 
 .deckviewer__main-container {
@@ -323,7 +298,6 @@
   grid-template-columns: repeat(7, 1fr);
 }
 
-
 .deckviewer__sideslot01-container {
   grid-column: 1;
   display: flex;
@@ -366,14 +340,7 @@
   grid-column: 2;
   display: flex;
   flex-direction: column;
-  /* background: #121E2F; */
-  /* background: -webkit-linear-gradient(45deg, #46646E, #89DCEB, #46646E); */
-  /* background: #e6CD8C; */
-  /* background: center/cover url('../assets/backgrounds/parchment-long.jpg'); */
-
-  /* background: center/50% url('../assets/backgrounds/smooth-stone.jpg'); */
   border-radius: 4px;
-  /* border: 2px outset #0d1117; */
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   height: 930px;
   margin-top: 2rem;
@@ -388,12 +355,8 @@
   flex-direction: column;
   padding: 5px;
   padding-bottom: 0;
-  /* background-color: #0D1117; */
   color: #0d1117;
   margin: 1px;
-  /* border: 3px groove #0d1117; */
-  /* border: 3px groove #766237; */
-  /* min-height: 98.5%; */
   height: 100%;
   max-width: 98%;
   justify-content: flex-start;
@@ -406,18 +369,3 @@
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
 }
-
-/*
-.deckviewer__comments-list::-webkit-scrollbar {
-  width: 5px;
-}
-
-.deckviewer__comments-list::-webkit-scrollbar-track {
-  background: var(--scrollbarBG);
-}
-
-.deckviewer__comments-list::-webkit-scrollbar-thumb {
-  background-color: var(--thumbBG) ;
-  border-radius: 6px;
-  border: 1px outset #E6CD8C;
-} */

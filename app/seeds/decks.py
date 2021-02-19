@@ -76,7 +76,7 @@ def seed_deck_cards():
 
     card2 = Deck_Card(
         deck_id = 1,
-        card_id = 2857,
+        card_id = 30672,
         in_deck = 4,
         in_sideboard = 0
     )
@@ -84,7 +84,7 @@ def seed_deck_cards():
 
     card3 = Deck_Card(
         deck_id = 1,
-        card_id = 4312,
+        card_id = 23235,
         in_deck = 1,
         in_sideboard = 0
     )
@@ -92,7 +92,7 @@ def seed_deck_cards():
 
     card4 = Deck_Card(
         deck_id = 1,
-        card_id = 2320,
+        card_id = 11584,
         in_deck = 2,
         in_sideboard = 0
     )
@@ -108,7 +108,7 @@ def seed_deck_cards():
 
     card6 = Deck_Card(
         deck_id = 1,
-        card_id = 2144,
+        card_id = 10192,
         in_deck = 4,
         in_sideboard = 0
     )
@@ -116,7 +116,7 @@ def seed_deck_cards():
 
     card7 = Deck_Card(
         deck_id = 1,
-        card_id = 11249,
+        card_id = 16447,
         in_deck = 4,
         in_sideboard = 0
     )
@@ -124,7 +124,7 @@ def seed_deck_cards():
 
     card8 = Deck_Card(
         deck_id = 1,
-        card_id = 17796,
+        card_id = 49032,
         in_deck = 2,
         in_sideboard = 0
     )
@@ -132,7 +132,7 @@ def seed_deck_cards():
 
     card9 = Deck_Card(
         deck_id = 1,
-        card_id = 13382,
+        card_id = 17184,
         in_deck = 1,
         in_sideboard = 1
     )
@@ -148,7 +148,7 @@ def seed_deck_cards():
 
     card11 = Deck_Card(
         deck_id = 1,
-        card_id = 7808,
+        card_id = 40436,
         in_deck = 4,
         in_sideboard = 0
     )
@@ -180,7 +180,7 @@ def seed_deck_cards():
 
     card15 = Deck_Card(
         deck_id = 1,
-        card_id = 1099,
+        card_id = 46931,
         in_deck = 4,
         in_sideboard = 0
     )
@@ -188,7 +188,7 @@ def seed_deck_cards():
 
     card16 = Deck_Card(
         deck_id = 1,
-        card_id = 13424,
+        card_id = 45383,
         in_deck = 4,
         in_sideboard = 0
     )
@@ -196,7 +196,7 @@ def seed_deck_cards():
 
     card17 = Deck_Card(
         deck_id = 1,
-        card_id = 53343,
+        card_id = 17080,
         in_deck = 9,
         in_sideboard = 0
     )
@@ -204,7 +204,7 @@ def seed_deck_cards():
 
     card18 = Deck_Card(
         deck_id = 1,
-        card_id = 10906,
+        card_id = 52290,
         in_deck = 4,
         in_sideboard = 0
     )
@@ -244,7 +244,7 @@ def seed_deck_cards():
 
     card24 = Deck_Card(
         deck_id = 1,
-        card_id = 12246,
+        card_id = 25137,
         in_deck = 0,
         in_sideboard = 3
     )

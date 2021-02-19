@@ -43,7 +43,7 @@ const DeckViewer = (props) => {
   // const deckName = deck.deck_name;
   const {id, username} = props.user;
 
-  // console.log(deck); // what does my deck object look like?
+  // console.log(deck); // to take a peek at deck object
   // console.log(props.user);
   useEffect(() => {
     if (!id) {
@@ -62,9 +62,7 @@ const DeckViewer = (props) => {
   useEffect(() => {
     if (Object.keys(user).length === 12) {
       const avatar_img = user.info.avatar;
-      // const VIP = user.info.VIP;
       setAvatar(avatar_img);
-      // setIsVIP(VIP);
     }
   }, [user])
 
@@ -73,7 +71,6 @@ const DeckViewer = (props) => {
       const res = await fetch(`/api/decks/${deck.id}/comments`);
       const commentList = await res.json()
       if(commentList) {
-        // console.log(commentList)
         setComments(commentList.comments)
       }
     })()
@@ -310,68 +307,68 @@ const DeckViewer = (props) => {
             <div className="deckviewer__main-container">
               <div className="deckviewer__creature-container01">
                 {creatures0Or1.length > 0 && creatures0Or1.map((card, i) => (
-                <DeckCardObject key={i} data={card}/>
+                  <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
               <div className="deckviewer__creature-container2">{creatures2.length > 0 && creatures2.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
               <div className="deckviewer__creature-container3">{creatures3.length > 0 && creatures3.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
               <div className="deckviewer__creature-container4">{creatures4.length > 0 && creatures4.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
               <div className="deckviewer__creature-container5">{creatures5.length > 0 && creatures5.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
               <div className="deckviewer__creature-container6plus">{creatures6Plus.length > 0 && creatures6Plus.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
               <div className="deckviewer__land-container">{lands.length > 0 && lands.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
               <div className="deckviewer__spell-container01">
                 {spells0Or1.length > 0 && spells0Or1.map((card, i) => (
-                  <DeckCardObject key={i} data={card} />
+                  <DeckCardObject key={i} data={card} num={card.in_deck}/>
                 ))}</div>
               <div className="deckviewer__spell-container2">{spells2.length > 0 && spells2.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
               <div className="deckviewer__spell-container3">{spells3.length > 0 && spells3.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
               <div className="deckviewer__spell-container4">{spells4.length > 0 && spells4.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
               <div className="deckviewer__spell-container5">{spells5.length > 0 && spells5.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
               <div className="deckviewer__spell-container6plus">{spells6Plus.length > 0 && spells6Plus.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
             </div>
             <div className="deckviewer__side-container">
               <div className="deckviewer__sideslot01-container01">
                 {sideSlot01.length > 0 && sideSlot01.map((card, i) => (
-                  <DeckCardObject key={i} data={card} />
+                  <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
                 ))}</div>
               <div className="deckviewer__sideslot2-container2">{sideSlot2.length > 0 && sideSlot2.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
               ))}</div>
               <div className="deckviewer__sideslot3-container3">{sideSlot3.length > 0 && sideSlot3.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
               ))}</div>
               <div className="deckviewer__sideslot4-container4">{sideSlot4.length > 0 && sideSlot4.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
               ))}</div>
               <div className="deckviewer__sideslot5-container5">{sideSlot5.length > 0 && sideSlot5.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
               ))}</div>
               <div className="deckviewer__sideslot6plus-container6plus">{sideSlot6Plus.length > 0 && sideSlot6Plus.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
               ))}</div>
               <div className="deckviewer__sideslotlands-container">{sideSlotLands.length > 0 && sideSlotLands.map((card, i) => (
-                <DeckCardObject key={i} data={card} />
+                <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
               ))}</div>
             </div>
           </div>

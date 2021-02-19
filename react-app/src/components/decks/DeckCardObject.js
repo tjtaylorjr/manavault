@@ -68,10 +68,12 @@
 
 import React, { useState, useEffect } from 'react'
 
-const DeckCardObject = (data) => {
+const DeckCardObject = (props) => {
   const [smallIMG, setSmallIMG] = useState("")
   const [normalIMG, setNormalIMG] = useState("")
-  const { card } = data.data;
+  const { card } = props.data;
+  // const numCopies = props.num;
+
   // console.log(card)
   //const formatted_name = card.name.split(" //")
 
@@ -91,7 +93,10 @@ const DeckCardObject = (data) => {
     <section className="deckcard-object" onClick={renderCardPage}>
       <div className="deckcard-object__image-container">
         {smallIMG ? (
-          <img src={smallIMG} alt={data.name + " card image"} />
+          <img src={smallIMG} alt={props.data.name + " card image"} />
+        ) : null}
+        {smallIMG ? (
+          <div className="deckcard-object__reported-copies">{`x` + props.num}</div>
         ) : null}
       </div>
     </section>

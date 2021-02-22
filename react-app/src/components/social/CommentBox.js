@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import Avatar from "../users/Avatar";
 import cn from "classnames";
 import DynamicHeight from "./DynamicHeight";
+import defaultAvatar from '../../assets/images/avatars/faceless-walker.png';
 
 
 const INITIAL_HEIGHT = 16;
@@ -10,7 +11,7 @@ const INITIAL_HEIGHT = 16;
 const CommentBox = (props) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [commentValue, setCommentValue] = useState("");
-  const [avatar, setAvatar] = useState("faceless-walker.png");
+  const [avatar, setAvatar] = useState(defaultAvatar);
   const [username, setUsername] = useState("")
   const outerHeight = useRef(INITIAL_HEIGHT);
   const textRef = useRef(null);
@@ -23,7 +24,9 @@ const CommentBox = (props) => {
       (async () => {
         const res = await fetch(`/api/users/${props.user_id}`);
         const data = await res.json();
-        setAvatar(data.info.avatar);
+        if (data.info.avatar) {
+          setAvatar(data.info.avatar);
+        }
         setUsername(props.username)
       })()
     }

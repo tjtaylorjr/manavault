@@ -4,7 +4,7 @@ class User_Profile(db.Model):
     __tablename__ = 'user_profiles'
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, primary_key=True, autoincrement=False)
-    avatar = db.Column(db.String, default="faceless-walker.png")
+    avatar = db.Column(db.String, nullable=True)
     location = db.Column(db.String, nullable=True)
     about = db.Column(db.Text, nullable=True)
     VIP = db.Column(db.Boolean, default=False)

@@ -3,17 +3,14 @@ from app.models import db, Comment, User, User_Profile
 
 def seed_comments():
     comment1 = Comment(user_id=1,
-                       user_avatar="faceless-walker.png",
                        deck_id=1,
                        content="Will play this at FNM this weekend")
 
     comment2 = Comment(user_id=3,
-                       user_avatar="faceless-walker.png",
                        deck_id=1,
                        content="Love this deck!")
 
     comment3 = Comment(user_id=4,
-                       user_avatar="faceless-walker.png",
                        deck_id=1,
                        content="Gruul clan best clan")
 
@@ -31,11 +28,11 @@ def seed_comments():
     db.session.add_all([comment1, comment2, comment3, new_user, user_profile27])
     db.session.commit()
 
-    print('---COMMENTS---', comment1.to_dict())
-    print('---COMMENTS---', comment2.to_dict())
-    print('---COMMENTS---', comment3.to_dict())
-    print('---UPVOTED_BY---', comment1.comment_upvotes)
-    print('---DOWNVOTED_BY---', comment3.comment_downvotes)
+    # print('---COMMENTS---', comment1.to_dict())
+    # print('---COMMENTS---', comment2.to_dict())
+    # print('---COMMENTS---', comment3.to_dict())
+    # print('---UPVOTED_BY---', comment1.comment_upvotes)
+    # print('---DOWNVOTED_BY---', comment3.comment_downvotes)
 
 
 def undo_comments():

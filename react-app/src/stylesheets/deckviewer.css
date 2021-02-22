@@ -191,20 +191,29 @@
   position: relative;
   display: grid;
   grid-template-columns: 6fr 1fr;
-  grid-template-rows: 2rem 1fr 2rem 1fr 2rem 1fr 6rem;
+  grid-template-rows: 2rem 1fr 2rem 1fr 2rem 1fr 12rem;
+  border-right: 1px ridge #21262D;
+}
+
+.deckviewer__main-container1-title {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 25px 1fr 25px;
+}
+
+.deckviewer__main-container1-title-text {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  border-bottom: 1px solid #21262D;
 }
 
 .deckviewer__main-container1 {
-  gird-column: 1;
-  grid-row: 2;
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-}
-
-.deckviewer__main-container2 {
+  padding-top: 10px;
   grid-column: 1;
-  grid-row: 4;
+  grid-row: 2;
   position: relative;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -246,11 +255,51 @@
   flex-direction: column;
 }
 
+.deckviewer__land-container-title {
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 25px 1fr 25px;
+}
+
+.deckviewer__land-container-title-text {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  border-bottom: 1px solid #21262D;
+}
+
 .deckviewer__land-container {
+  padding-top: 10px;
   grid-column: 2;
   grid-row: 2 /span 3;
   display: flex;
   flex-direction: column;
+}
+
+.deckviewer__main-container2-title {
+  grid-row: 3;
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: 25px 1fr 25px;
+}
+
+.deckviewer__main-container2-title-text {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  border-bottom: 1px solid #21262D;
+}
+
+.deckviewer__main-container2 {
+  padding-top: 10px;
+  grid-column: 1;
+  grid-row: 4;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .deckviewer__spell-container01 {
@@ -289,7 +338,23 @@
   flex-direction: column;
 }
 
+.deckviewer__side-container-title {
+  grid-column: 1 /span 2;
+  grid-row: 5;
+  display: grid;
+  grid-template-columns: 25px 1fr 25px;
+}
+
+.deckviewer__side-container-title-text {
+  grid-column: 2;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #21262D;
+}
+
 .deckviewer__side-container {
+  padding-top: 10px;
   grid-row: 6;
   position: relative;
   display: grid;

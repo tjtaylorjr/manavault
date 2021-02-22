@@ -318,6 +318,9 @@ const DeckViewer = (props) => {
         <div className="deckviewer__statistics-container"></div>
         <div className="deckviewer__body">
           <div className="deckviewer__deck-container">
+            <div className="deckviewer__main-container1-title">
+              <div className="deckviewer__main-container1-title-text">Creatures & Planeswalkers</div>
+            </div>
             <div className="deckviewer__main-container1">
               <div className="deckviewer__creature-container01">
                 {creatures0Or1.length > 0 && creatures0Or1.map((card, i) => (
@@ -339,9 +342,15 @@ const DeckViewer = (props) => {
                 <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
             </div>
+            <div className="deckviewer__land-container-title">
+              <div className="deckviewer__land-container-title-text">Lands</div>
+            </div>
             <div className="deckviewer__land-container">{lands.length > 0 && lands.map((card, i) => (
               <DeckCardObject key={i} data={card} num={card.in_deck}/>
             ))}</div>
+            <div className="deckviewer__main-container2-title">
+              <div className="deckviewer__main-container2-title-text">Spells & Artifacts</div>
+            </div>
             <div className="deckviewer__main-container2">
               <div className="deckviewer__spell-container01">
                 {spells0Or1.length > 0 && spells0Or1.map((card, i) => (
@@ -362,6 +371,9 @@ const DeckViewer = (props) => {
               <div className="deckviewer__spell-container6plus">{spells6Plus.length > 0 && spells6Plus.map((card, i) => (
                 <DeckCardObject key={i} data={card} num={card.in_deck}/>
               ))}</div>
+            </div>
+            <div className="deckviewer__side-container-title">
+              <div className="deckviewer__side-container-title-text">Sideboard</div>
             </div>
             <div className="deckviewer__side-container">
               <div className="deckviewer__sideslot01-container01">

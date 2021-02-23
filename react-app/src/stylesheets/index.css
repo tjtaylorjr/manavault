@@ -89,6 +89,22 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { 
+   text-align: center;
+}
+
+::-moz-placeholder {
+   text-align: center;
+}
+
+:-ms-input-placeholder {
+   text-align: center;
+}
+
 @font-face {
   font-family: "Matrixbsc";
   src: url("matrixbsc.ttf");

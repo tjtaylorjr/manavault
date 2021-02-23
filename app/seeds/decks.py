@@ -92,7 +92,7 @@ def seed_deck_cards():
 
     card4 = Deck_Card(
         deck_id = 1,
-        card_id = 11584,
+        card_id = 15484,
         in_deck = 2,
         in_sideboard = 0
     )
@@ -164,7 +164,7 @@ def seed_deck_cards():
 
     card13 = Deck_Card(
         deck_id = 1,
-        card_id = 3894,
+        card_id = 37658,
         in_deck = 2,
         in_sideboard = 0
     )

@@ -71,31 +71,32 @@ import React, { useState, useEffect } from 'react'
 const DeckCardObject = (props) => {
   const [smallIMG, setSmallIMG] = useState("")
   const [normalIMG, setNormalIMG] = useState("")
-  const { card } = props.data;
+  const { card} = props.data;
+  const { showImagePreview, dropImagePreview} = props;
   // const numCopies = props.num;
-
+  // console.log(showImagePreview);
   // console.log(card)
   //const formatted_name = card.name.split(" //")
 
   useEffect(() => {
     let mounted = true;
     if (mounted) {
-      setSmallIMG(card.illustration.small_image)
+      setNormalIMG(card.illustration.normal_image)
     }
     return () => mounted = false;
   }, [card])
 
-  const renderCardPage = () => {
-    alert('Card information modal coming soon!');
-  }
+  // const renderCardPage = () => {
+  //   alert('Card information modal coming soon!');
+  // }
 
   return (
-    <section className="deckcard-object" onClick={renderCardPage}>
+    <section className="deckcard-object">
       <div className="deckcard-object__image-container">
-        {smallIMG ? (
-          <img src={smallIMG} alt={props.data.name + " card image"} />
+        {normalIMG ? (
+          <img src={normalIMG} alt={props.data.name + " card image"} onMouseEnter={showImagePreview} onMouseLeave={dropImagePreview}/>
         ) : null}
-        {smallIMG ? (
+        {normalIMG ? (
           <div className="deckcard-object__reported-copies">{`x` + props.num}</div>
         ) : null}
       </div>

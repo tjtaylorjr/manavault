@@ -6,6 +6,7 @@ import DeckCardObject from "./DeckCardObject.js";
 import DeckObject from "./DeckObject.js";
 import { AiFillDislike, AiFillLike, } from 'react-icons/ai';
 import { GiQuillInk } from 'react-icons/gi';
+import cardBack from '../../assets/images/cards/cardback.jpg';
 
 const DeckViewer = (props) => {
   const [user, setUser] = useState({}); //needed for current user's avatar
@@ -38,9 +39,13 @@ const DeckViewer = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const location = useLocation();
   const [deck, setDeck] = useState(location.state.data);
+  const [imagePreview, setImagePreview] = useState(cardBack);
 
   const drawerRef = useRef();
-  console.log(drawerRef.current);
+  const hoverRef = useRef();
+
+  // const cardView = "color: #fff"
+  // console.log(drawerRef.current);
   //const deck = location.state.data;  //save the deck object in state to variable
   // const deck_id = deck.id;
   // const creator = deck.creator_name;
@@ -208,14 +213,15 @@ const DeckViewer = (props) => {
       }
 
       if (mainSpell6Plus.length > 0) {
+        console.log(mainSpell6Plus)
         setSpells6Plus(mainSpell6Plus)
       }
     }
     setIsLoaded(true);
     return () => mounted = false;
   },[mainDeck])
-  console.log(sideboard);
-  console.log(mainDeck);
+  // console.log(sideboard);
+  // console.log(mainDeck);
   useEffect(() => {
     let mounted = true;
     if (sideboard.length > 0 && mounted) {
@@ -290,6 +296,26 @@ const DeckViewer = (props) => {
     }
   };
 
+  const hoverAction = (e) => {
+    // console.log(e.target.src);
+    setImagePreview(e.target.src)
+  };
+  // useEffect(() => {
+  //   setImagePreview(hoverAction);
+  // },[hoverAction])
+
+  // const unHoverAction = (e) => {
+  //   e.preventDefault();
+  //   setImagePreview("")
+  // };
+    const unHoverAction = () => {
+      console.log('hello!')
+    }
+
+  // useEffect(() => {
+
+  // },[imagePreview])
+
   return isLoaded ? (
     <>
       <div className="deckviewer">
@@ -315,7 +341,6 @@ const DeckViewer = (props) => {
           </div>
           <div className="deckviewer-header__lower-panel"></div>
         </div>
-        <div className="deckviewer__statistics-container"></div>
         <div className="deckviewer__body">
           <div className="deckviewer__deck-container">
             <div className="deckviewer__main-container1-title">
@@ -324,29 +349,29 @@ const DeckViewer = (props) => {
             <div className="deckviewer__main-container1">
               <div className="deckviewer__creature-container01">
                 {creatures0Or1.length > 0 && creatures0Or1.map((card, i) => (
-                  <DeckCardObject key={i} data={card} num={card.in_deck}/>
+                  <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__creature-container2">{creatures2.length > 0 && creatures2.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck}/>
+                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__creature-container3">{creatures3.length > 0 && creatures3.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck}/>
+                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__creature-container4">{creatures4.length > 0 && creatures4.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck}/>
+                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__creature-container5">{creatures5.length > 0 && creatures5.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck}/>
+                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__creature-container6plus">{creatures6Plus.length > 0 && creatures6Plus.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck}/>
+                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
             </div>
             <div className="deckviewer__land-container-title">
               <div className="deckviewer__land-container-title-text">Lands</div>
             </div>
             <div className="deckviewer__land-container">{lands.length > 0 && lands.map((card, i) => (
-              <DeckCardObject key={i} data={card} num={card.in_deck}/>
+              <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
             ))}</div>
             <div className="deckviewer__main-container2-title">
               <div className="deckviewer__main-container2-title-text">Spells & Artifacts</div>
@@ -354,22 +379,22 @@ const DeckViewer = (props) => {
             <div className="deckviewer__main-container2">
               <div className="deckviewer__spell-container01">
                 {spells0Or1.length > 0 && spells0Or1.map((card, i) => (
-                  <DeckCardObject key={i} data={card} num={card.in_deck}/>
+                  <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
                 ))}</div>
               <div className="deckviewer__spell-container2">{spells2.length > 0 && spells2.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck}/>
+                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__spell-container3">{spells3.length > 0 && spells3.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck}/>
+                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__spell-container4">{spells4.length > 0 && spells4.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck}/>
+                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__spell-container5">{spells5.length > 0 && spells5.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck}/>
+                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__spell-container6plus">{spells6Plus.length > 0 && spells6Plus.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck}/>
+                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
             </div>
             <div className="deckviewer__side-container-title">
@@ -378,27 +403,30 @@ const DeckViewer = (props) => {
             <div className="deckviewer__side-container">
               <div className="deckviewer__sideslot01-container01">
                 {sideSlot01.length > 0 && sideSlot01.map((card, i) => (
-                  <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
+                  <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
                 ))}</div>
               <div className="deckviewer__sideslot2-container2">{sideSlot2.length > 0 && sideSlot2.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
+                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__sideslot3-container3">{sideSlot3.length > 0 && sideSlot3.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
+                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__sideslot4-container4">{sideSlot4.length > 0 && sideSlot4.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
+                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__sideslot5-container5">{sideSlot5.length > 0 && sideSlot5.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
+                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
               <div className="deckviewer__sideslot6plus-container6plus">{sideSlot6Plus.length > 0 && sideSlot6Plus.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
+                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
               ))}</div>
             </div>
             <div className="deckviewer__sideslotlands-container">{sideSlotLands.length > 0 && sideSlotLands.map((card, i) => (
-              <DeckCardObject key={i} data={card} num={card.in_sideboard}/>
+              <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction}/>
             ))}</div>
+          </div>
+          <div className="deckviewer__card-display">
+            <div className="deckviewer__card-display-image" style={{ backgroundImage: `url(${imagePreview})`}}></div>
           </div>
           <div className="deckviewer__multipurpose-box">
             <div className="deckviewer__comments-drawer deckviewer__comments-drawer--hide" ref={drawerRef}>

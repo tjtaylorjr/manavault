@@ -11,7 +11,6 @@
   color: #ffffff;
 }
 
-
 .deckviewer__header {
   grid-column: 1 / span 4;
   grid-row: 1;
@@ -161,15 +160,6 @@
   transform: skewX(-45deg);
   background: linear-gradient(45deg, rgba(103, 12, 7, 1) 40%, rgba(103, 12, 7, .5) 60%, transparent 100%);
 }
-
-/* .deckviewer__statistics-container {
-  grid-row: 2;
-  grid-column: 2 /span 2;
-  height: 200px;
-  width: 100%;
-  border-radius: 5px;
-  margin-top: 10px;
-} */
 
 .deckviewer__body {
   grid-column: 2 / span 2;
@@ -406,10 +396,8 @@
 .deckviewer__multipurpose-box {
   overflow: hidden;
   position: relative;
-  /* margin-top: 2rem; */
   width: 460px;
   height: 985px;
-  /* height: 100%; */
 
 }
 
@@ -424,11 +412,8 @@
 
 .deckviewer__card-display-image {
   top: 0;
-  /* margin-left: 30px; */
-  /* margin-top: 2rem; */
   position: sticky;
-  /* position: -webkit-sticky; */
-  /* float: left; */
+  position: -webkit-sticky;
   border: 2px ridge #21262D;
   border-radius: 20px;
   width: 300px;
@@ -467,7 +452,6 @@
   width: 29px;
   background-color: #0D1117;
   grid-column: 1;
-  /* margin-top: 7px; */
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;
   border: 2px ridge #E6CD8C;
@@ -499,7 +483,6 @@
   padding-left: 9px;
   padding-top: 10px;
   border: 2px ridge #E6CD8C;
-  /* border-bottom: 2px ridge #E6CD8C; */
   border-right: 5px inset #0D1117;
 }
 
@@ -509,7 +492,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  /* padding: 5px; */
   padding-left: 0;
   padding-bottom: 0;
   color: #0d1117;

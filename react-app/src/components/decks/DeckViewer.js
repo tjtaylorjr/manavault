@@ -44,16 +44,10 @@ const DeckViewer = (props) => {
   const drawerRef = useRef();
   const hoverRef = useRef();
 
-  // const cardView = "color: #fff"
-  // console.log(drawerRef.current);
-  //const deck = location.state.data;  //save the deck object in state to variable
-  // const deck_id = deck.id;
-  // const creator = deck.creator_name;
-  // const deckName = deck.deck_name;
   const {id, username} = props.user;
 
   // console.log(deck); // to take a peek at deck object
-  // console.log(props.user);
+
   useEffect(() => {
     if (!id) {
       setIsLoaded(false);
@@ -106,8 +100,6 @@ const DeckViewer = (props) => {
     setSideboard(side);
     return () => mounted = false;
   },[deck])
-
-  // console.log(mainDeck)
 
   useEffect(() => {
     let mounted = true;
@@ -213,15 +205,13 @@ const DeckViewer = (props) => {
       }
 
       if (mainSpell6Plus.length > 0) {
-        console.log(mainSpell6Plus)
         setSpells6Plus(mainSpell6Plus)
       }
     }
     setIsLoaded(true);
     return () => mounted = false;
   },[mainDeck])
-  // console.log(sideboard);
-  // console.log(mainDeck);
+
   useEffect(() => {
     let mounted = true;
     if (sideboard.length > 0 && mounted) {
@@ -297,24 +287,12 @@ const DeckViewer = (props) => {
   };
 
   const hoverAction = (e) => {
-    // console.log(e.target.src);
     setImagePreview(e.target.src)
   };
-  // useEffect(() => {
-  //   setImagePreview(hoverAction);
-  // },[hoverAction])
 
-  // const unHoverAction = (e) => {
-  //   e.preventDefault();
-  //   setImagePreview("")
-  // };
-    const unHoverAction = () => {
-      console.log('hello!')
-    }
-
-  // useEffect(() => {
-
-  // },[imagePreview])
+  const unHoverAction = () => {
+    setImagePreview(cardBack);
+  }
 
   return isLoaded ? (
     <>

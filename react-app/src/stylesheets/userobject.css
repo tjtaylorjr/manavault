@@ -7,13 +7,63 @@
   justify-content: center;
   align-items: center;
   /* background-color: transparent; */
-  border-left: 1px solid #21262d;
-  border-right: 1px solid #21262D;
-  border-radius: 10%;
+  /* border-left: 1px solid #21262d;
+  border-right: 1px solid #21262D; */
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
+  overflow: hidden;
 }
 
 .user-object__username {
   font-size: 18px;
   color: #ffffff;
   cursor: pointer;
+}
+
+.user-object--VIP:after {
+  animation: shine 10s ease-in-out  infinite;
+  animation-fill-mode: forwards;
+  content: "";
+  position: absolute;
+  top: -300%;
+  left: -300%;
+  width: 180%;
+  height: 250%;
+  opacity: .5;
+  transform: rotate(45deg);
+  /* background: rgba(227, 252, 2, 0.13);
+  background: linear-gradient(
+    to right,
+    rgba(227, 252, 2, 0.13) 0%,
+    rgba(227, 252, 2, 0.13) 77%,
+    rgba(227, 252, 2, 0.5) 92%,
+    rgba(227, 252, 2, 0.0) 100% */
+      background: rgba(112, 13, 0, 0.13);
+  background: linear-gradient(
+    to right,
+    rgba(112, 13, 0, 0.13) 0%,
+    rgba(112, 13, 0, 0.13) 77%,
+    rgba(245, 188, 45, 0.5) 92%,
+    rgba(112, 13, 0, 0.0) 100%
+  );
+  z-index: 1;
+}
+
+@keyframes shine{
+  10% {
+    opacity: 1;
+    top: -30%;
+    left: -30%;
+    transition-property: left, top, opacity;
+    transition-duration: 0.7s, 0.7s, 0.15s;
+    transition-timing-function: ease;
+  }
+  100% {
+    opacity: 0;
+    top: -30%;
+    left: -30%;
+    transition-property: left, top, opacity;
+  }
 }

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import Avatar from "./Avatar";
 import defaultAvatar from  '../../assets/images/avatars/faceless-walker.png';
 
 const UserObject = (user) => {
+  const userRef = useRef();
   const {data} = user
   const avatar = data.info.avatar;
   // const defaultAvatar = "faceless-walker.png";
@@ -15,15 +16,21 @@ const UserObject = (user) => {
   const isVIP = data.info.VIP;
 
 
+  useEffect(() => {
+    if(isVIP) {
+      userRef.current.classList.add("user-object--VIP")
+    }
+  },[user])
+
   return (
     <>
-      <div className="user-object" style={{ background: isVIP ? "linear-gradient(45deg, #B43219 0%, #FF5500 25%, #F59105 50%, #FF5500 75%, #B43219 100%)" : "#21262D" }} onClick={renderUserProfile}>
+      <div className="user-object" ref={userRef} style={{ background: isVIP ? "linear-gradient(135deg, #FF5500 5%, #F59105 50%, #FF5500 95%)" : "transparent" }} onClick={renderUserProfile}>
         {/* {avatar !== null ? (
           <Avatar avatar={avatar} size={"MED"}/>
         ) : (
           <Avatar avatar={defaultAvatar} size={"MED"}/>
         )} */}
-        <Avatar avatar={avatar} size={"MED"} />
+        <Avatar avatar={avatar} isVIP={isVIP} size={"MED"} />
         <p className="user-object__username">{data.username}</p>
       </div>
     </>

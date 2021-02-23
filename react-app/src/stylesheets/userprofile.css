@@ -269,7 +269,8 @@
   height: 25px;
   border-radius: 45%;
   /* background: -webkit-linear-gradient(270deg, #f8d300, #f5bc2d); */
-  background: -webkit-linear-gradient(135deg, #766237, #E6CD8C, #766237);
+  /* background: -webkit-linear-gradient(135deg, #766237, #E6CD8C, #766237); */
+  background: -webkit-linear-gradient(135deg, #FF5500, #F59105, #FF5500);
   border: 2px solid #0D1117;
   color: #0D1117;
   text-align: center;

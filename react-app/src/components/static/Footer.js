@@ -7,7 +7,7 @@ const MainFooter = () => {
 
     const footer_gradient = (
         <svg width="0" height="0">
-            <linearGradient id="footer_gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+            <linearGradient id="footer_gradient" x1="100%" y1="100%" x2="0%" y2="0%">
                 <stop stopColor="#766237" offset="0%" />
                 <stop stopColor="#E6CD8C" offset="50%" />
                 <stop stopColor="#766237"

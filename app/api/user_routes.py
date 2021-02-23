@@ -14,9 +14,9 @@ def recently_joined_users():
     users = User.query.order_by(User.created_at.desc()).limit(50).all()
     return {"users": [user.to_dict_all() for user in users]}
 
-@user_routes.route('browse/<char>')
+@user_routes.route('/browse/<char>')
 def users_by_alphabet(char):
-    users = User.query.filter(User.username.ilike('char%')).all()
+    users = User.query.filter(User.username.ilike(f'{char}%')).all()
     return {"users": [user.to_dict_all() for user in users]}
 
 @user_routes.route('/<int:id>')

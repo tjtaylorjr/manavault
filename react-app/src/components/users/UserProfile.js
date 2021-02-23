@@ -22,7 +22,7 @@ const UserProfile = (props) => {
       setUser(user);
     })();
   }, [userId]);
-  
+
   useEffect(() => {
     if(Object.keys(user).length === 12) {
       const avatar = user.info.avatar;
@@ -40,6 +40,7 @@ const UserProfile = (props) => {
   }
   // console.log(props.user);
   // console.log(decks)
+  console.log(isVIP);
   return isLoaded ? (
     <>
       <div className="user-profile">
@@ -69,7 +70,7 @@ const UserProfile = (props) => {
                 <div></div>
               </div>
             </div>
-            <Avatar avatar={avatar} size={"LRG"}/>
+            <Avatar avatar={avatar} isVIP={isVIP} size={"LRG"}/>
             {/* <div className="user-profile__user-panel-avatar-container">
               <div className="user-profile__user-panel-avatar-wrapper">
                 <div className="user-profile__user-panel-avatar-image" style={{ backgroundImage: `url("/avatars/${avatar}")`}}></div>

@@ -24,7 +24,6 @@ const Comment = (props) => {
   } = posted_by;
   const {avatar} = info;
   const messageTStamp = convertTimeStamp(created_at);
-
   useEffect(() => {
     const voteTally = comment_upvotes.length - comment_downvotes.length;
     // console.log(upvote);
@@ -112,7 +111,7 @@ const Comment = (props) => {
           {content}
         </div>
         <div className="comment__avatar-container">
-          <Avatar avatar={avatar} size={"SML"}/>
+          <Avatar avatar={avatar} isVIP={info.VIP} size={"SML"}/>
         </div>
       </div>
     </div>

@@ -47,7 +47,7 @@
 
 .navbar-links li,
 .navbar-links__right li {
-  background: -webkit-linear-gradient(45deg, #766237 10%, #E6CD8C 50%, #766237 90%);
+  background: -webkit-linear-gradient(135deg, #766237 10%, #E6CD8C 50%, #766237 90%);
   border: 2px groove #0D1117;
   border-radius: 16px;
   text-align: center;

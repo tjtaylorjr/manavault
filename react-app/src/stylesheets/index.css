@@ -10,6 +10,7 @@
 @import url('./deckviewer.css');
 @import url('./deckbuilder.css');
 @import url('./userprofile.css');
+@import url('./usersbrowser.css');
 @import url('./starrating.css');
 @import url('./commentbox.css');
 @import url('./comment.css');
@@ -93,7 +94,7 @@ input[type="search"]::-webkit-search-results-decoration {
    text-align: center;
 }
 
-:-moz-placeholder { 
+:-moz-placeholder {
    text-align: center;
 }
 

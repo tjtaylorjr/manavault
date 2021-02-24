@@ -7,15 +7,6 @@
   grid-template-rows: 60px 50px 50px 100px 1fr;
 }
 
-/* .usersbrowser h1 {
-  grid-column: 3;
-  grid-row: 3;
-  align-self: end;
-  justify-self: center;
-  font-weight: 700;
-  font-size: 32px;
-} */
-
 .usersbrowser__select-bar {
   color: #000;
   width: 150px;

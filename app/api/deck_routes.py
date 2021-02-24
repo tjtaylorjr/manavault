@@ -35,19 +35,32 @@ most liked decks
 """
 @deck_routes.route('/browse/most-liked')
 def most_liked_decks():
-    decks = Deck.query.order_by(Deck.PLACEHOLDER.desc()).limit(50).all()
+    decks = Deck.query.order_by(Deck.total_likes.desc()).limit(50).all()
     return {"decks": [deck.to_dict() for deck in decks]}
 
 
 """
 most viewed decks
+
+will work on this later.  Needs special handling due to reacts nature as single page application
 """
 
 
-@deck_routes.route('/browse/most-viewed')
-def most_liked_decks():
-    decks = Deck.query.order_by(Deck.PLACEHOLDER.desc()).limit(50).all()
+# @deck_routes.route('/browse/most-viewed')
+# def most_viewed_decks():
+#     decks = Deck.query.order_by(Deck.PLACEHOLDER.desc()).limit(50).all()
+#     return {"decks": [deck.to_dict() for deck in decks]}
+
+
+"""
+most discussed decks
+"""
+
+@deck_routes.route('/browse/most-discussed')
+def most_commented_decks():
+    decks = Deck.query.order_by(Deck.total_comments.desc()).limit(50).all()
     return {"decks": [deck.to_dict() for deck in decks]}
+
 
 """
 create a deck

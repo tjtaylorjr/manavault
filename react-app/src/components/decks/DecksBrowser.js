@@ -9,45 +9,11 @@ function DecksBrowser() {
   const [decks, setDecks] = useState([]);
   const optionSelect = [
     { value: "Latest", label: "Latest" },
+    { value: "Most Discussed", label: "Most Discussed" },
     { value: "Most Liked", label: "Most Liked" },
-    { value: "Most Viewed", label: "Most Viewed" },
   ];
 
-  // useEffect(() => {
-  //   let mounted = true;
-  //   if (option.value.length === 0 & mounted) {
-  //     (async () => {
-  //       const res = await fetch("/api/decks/browse");
-  //       if (!res.ok) {
-  //         throw res;
-  //       }
-
-  //       const data = await res.json();
-
-  //       if (data) {
-  //         setDecks(data.decks);
-  //       }
-  //     })()
-  //   } else {
-  //     if (mounted) {
-  //       (async () => {
-  //         const query = option.value.toLowerCase();
-  //         const res = await fetch(`/api/decks/browse/${query}`);
-  //         if (!res.ok) {
-  //           throw res;
-  //         }
-
-  //         const data = await res.json();
-
-  //         if (data) {
-  //           setDecks(data.decks);
-  //         }
-  //       })()
-  //     }
-  //   }
-
-  //   return () => mounted = false;
-  // }, [option]);
+  // { value: "Most Viewed", label: "Most Viewed" },
 
   useEffect(() => {
     let mounted = true;
@@ -125,9 +91,6 @@ function DecksBrowser() {
   const deckObjects = decks.map((deck, i) => {
     return (
         <DeckObject key={i} data={deck} />
-      // <li key={user.id}>
-      //   <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
-      // </li>
     );
   });
 

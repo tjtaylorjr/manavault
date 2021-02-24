@@ -14,16 +14,13 @@
   grid-row: 4;
   align-self: center;
   justify-self: center;
-  /* z-index: 3; */
 }
 
 .decksbrowser__deck-list {
-  /* padding-top: 50px; */
   grid-column: 2;
   grid-row: 5;
   padding-bottom: 25px;
   position: relative;
-  /* height: 100%; */
 }
 
 .decksbrowser__deck-list-wrapper {

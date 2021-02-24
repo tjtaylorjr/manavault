@@ -90,7 +90,6 @@ function UsersBrowser() {
 
   return (
     <div className="usersbrowser">
-      <h1>Users</h1>
       <Select
         className="usersbrowser__select-bar"
         placeholder="Filter Users"

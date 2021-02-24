@@ -1,0 +1,40 @@
+.decksbrowser {
+  position: relative;
+  color: #fff;
+  min-height: 840px;
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  grid-template-rows: 60px 50px 50px 100px 1fr;
+}
+
+.decksbrowser__select-bar {
+  color: #000;
+  width: 200px;
+  grid-column: 2;
+  grid-row: 4;
+  align-self: center;
+  justify-self: center;
+  /* z-index: 3; */
+}
+
+.decksbrowser__deck-list {
+  /* padding-top: 50px; */
+  grid-column: 2;
+  grid-row: 5;
+  padding-bottom: 25px;
+  position: relative;
+  /* height: 100%; */
+}
+
+.decksbrowser__deck-list-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 100%;
+  position: relative;
+}
+
+.decksbrowser__deck-list-wrapper > .deck-object__displaycard {
+  background-color: pink;
+}

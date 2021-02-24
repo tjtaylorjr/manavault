@@ -13,7 +13,7 @@ import ProfileEditor from "./components/users/ProfileEditor"
 import DeckBuilder from "./components/decks/DeckBuilder";
 import DeckViewer from "./components/decks/DeckViewer";
 import DeckEditor from "./components/decks/DeckEditor";
-import DeckBrowser from "./components/decks/DeckBrowser";
+import DecksBrowser from "./components/decks/DecksBrowser";
 import SearchResults from "./components/search/SearchResults";
 import CardBrowser from "./components/cards/CardBrowser";
 
@@ -103,7 +103,7 @@ function App() {
               <DeckViewer user={currentUser} authenticated={authenticated} />
             </Route>
             <Route path="/decks" exact={true} authenticated={authenticated}>
-              <DeckBrowser user={currentUser} authenticated={authenticated} />
+              <DecksBrowser user={currentUser} authenticated={authenticated} />
               <Footer />
             </Route>
             <Route path="/cards" exact={true} authenticated={authenticated}>

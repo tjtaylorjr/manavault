@@ -28,6 +28,7 @@
   top: 122px;
   /* top: 160px;
   left: 10px; */
+  float: left;
   border-radius: 20px;
   border: 2px outset #21262D;
 }

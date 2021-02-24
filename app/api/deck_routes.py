@@ -3,21 +3,51 @@ from flask_login import login_required, current_user
 from app.models import db, Deck, Deck_Card, User, Comment
 from app.forms import DeckForm, DeckCardForm, DeckLikeForm, CommentForm, UpvoteForm, DownvoteForm
 from .auth_routes import validation_errors_to_error_messages
+from sqlalchemy.sql.expression import func
 
 
 deck_routes = Blueprint('decks', __name__)
 
 
 """
-recently created decks
+a selection of random decks
 """
 
 
 @deck_routes.route('/browse')
 def recent_decks():
+    decks = Deck.query.order_by(func.random()).limit(50).all()
+    return {"decks": [deck.to_dict() for deck in decks]}
+
+
+"""
+latest decks
+"""
+
+@deck_routes.route('/browse/latest')
+def latest_decks():
     decks = Deck.query.order_by(Deck.created_at.desc()).limit(50).all()
     return {"decks": [deck.to_dict() for deck in decks]}
 
+
+"""
+most liked decks
+"""
+@deck_routes.route('/browse/most-liked')
+def most_liked_decks():
+    decks = Deck.query.order_by(Deck.PLACEHOLDER.desc()).limit(50).all()
+    return {"decks": [deck.to_dict() for deck in decks]}
+
+
+"""
+most viewed decks
+"""
+
+
+@deck_routes.route('/browse/most-viewed')
+def most_liked_decks():
+    decks = Deck.query.order_by(Deck.PLACEHOLDER.desc()).limit(50).all()
+    return {"decks": [deck.to_dict() for deck in decks]}
 
 """
 create a deck

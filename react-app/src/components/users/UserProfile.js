@@ -38,9 +38,7 @@ const UserProfile = (props) => {
   if (!user) {
     return null;
   }
-  // console.log(props.user);
-  // console.log(decks)
-  console.log(isVIP);
+
   return isLoaded ? (
     <>
       <div className="user-profile">
@@ -71,11 +69,6 @@ const UserProfile = (props) => {
               </div>
             </div>
             <Avatar avatar={avatar} isVIP={isVIP} size={"LRG"}/>
-            {/* <div className="user-profile__user-panel-avatar-container">
-              <div className="user-profile__user-panel-avatar-wrapper">
-                <div className="user-profile__user-panel-avatar-image" style={{ backgroundImage: `url("/avatars/${avatar}")`}}></div>
-              </div>
-            </div> */}
           </div>
           <div className="user-profile__header-buffer">
             <div className="user-profile__user-panel-about-container">

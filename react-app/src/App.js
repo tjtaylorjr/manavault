@@ -73,7 +73,7 @@ function App() {
               exact={true}
               authenticated={authenticated}
             >
-              <DeckBuilder />
+              <DeckBuilder user={currentUser} authenticated={authenticated}/>
             </ProtectedRoute>
             <Route path="/users" exact={true} authenticated={authenticated}>
               <UsersBrowser />
@@ -83,7 +83,7 @@ function App() {
               exact={true}
               authenticated={authenticated}
             >
-              <DeckEditor />
+              <DeckEditor user={currentUser} authenticated={authenticated}/>
             </ProtectedRoute>
             <Route path="/login" exact={true}>
               <LoginForm

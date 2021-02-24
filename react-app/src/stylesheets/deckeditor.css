@@ -1,17 +1,17 @@
-.deckbuilder {
+.deckeditor {
   position: relative;
-  min-height: 1630px;
+  min-height: 1495px;
   width: 100%;
   display: grid;
-  grid-template-columns: 50px 1fr 50px;
-  grid-template-rows: 500px 300px 995px 1fr;
+  grid-template-columns: 50px 2fr 1fr 50px;
+  grid-template-rows: 500px 715px 1fr;
 }
 
-.deckbuilder h3 {
+.deckeditor h3 {
   color: #ffffff;
 }
 
-.deckbuilder__header {
+.deckeditor__header {
   grid-column: 1 / span 4;
   grid-row: 1;
   display: grid;
@@ -19,35 +19,35 @@
   grid-template-rows: 75px 25px 200px 100px 100px;
 }
 
-.deckbuilder__navbar-background {
+.deckeditor__navbar-background {
   grid-row-start: 3;
   grid-column: 1 / span 5;
 }
 
-.deckbuilder__buffer {
+.deckeditor__buffer {
   grid-row-start: 2;
   grid-column: 1 / span 5;
   border-top: 1px solid #E6CD8C;
-  background-color: #FF5500;
+  background-color: #642878;
 }
 
-.deckbuilder-header__main {
+.deckeditor-header__main {
   grid-row: 3 / span 2;
   grid-column: 1 / span 5;
   display: grid;
   grid-template-columns: 50px 1fr 1fr 1fr 50px;
-  background-color: #FF5500;
+  background-color: #642878;
   border-bottom: 1px solid #E6CD8C;
   width: 100%;
 }
 
-.deckbuilder-header__deck-panel {
+.deckeditor-header__deck-panel {
   grid-column-start: 2;
   display: grid;
   grid-template-rows: 100px 25px 175px;
 }
 
-.deckbuilder-header__deck-panel-name {
+.deckeditor-header__deck-panel-name {
   grid-row: 1;
   font-size: 2.5rem;
   font-weight: 700;
@@ -58,7 +58,7 @@
   align-self: end;
 }
 
-.deckbuilder-header__deck-panel-attribution {
+.deckeditor-header__deck-panel-attribution {
   grid-row: 2;
   font-size: 11px;
   align-self: start;
@@ -67,7 +67,7 @@
   z-index: 1;
 }
 
-.deckbuilder-header__deck-description {
+.deckeditor-header__deck-description {
   grid-row: 3;
   z-index: 1;
   padding: 10px;
@@ -78,34 +78,34 @@
   font-size: 20px;
 }
 
-.deckbuilder-header__lower-panel {
+.deckeditor-header__lower-panel {
   grid-row: 5;
   grid-column: 2 / span 3;
   width: 100%;
   border-bottom: 1px solid #E6CD8C;
 }
 
-.deckbuilder__VIP-user-panel-background {
+.deckeditor__VIP-user-panel-background {
   position: absolute;
   grid-column: 1 / span 5;
   width: 100%;
   height: 500px;
-  background-color: #FF5500;
+  background-color: #642878;
   border-top: 3px outset #E6CD8C;
   border-bottom: 3px outset #E6CD8C;
   overflow: hidden;
   z-index: 1;
 }
 
-.deckbuilder__VIP-user-panel-background-wrapper {
-  background-color: #FF5500;
+.deckeditor__VIP-user-panel-background-wrapper {
+  background-color: #642878;
   position: absolute;
-  width: 100%;
+  width: 80%;
   content: "";
   top: 0;
   bottom: 0;
   right: 0;
-  left: 0;
+  left: 10%;
   overflow: hidden;
   /* transform-origin: top right;
   transform: skewX(45deg); */
@@ -121,12 +121,12 @@
   mix-blend-mode: multiply;
 }
 
-.deckbuilder__VIP-user-panel-background-image {
+.deckeditor__VIP-user-panel-background-image {
   position: relative;
   width: 100%;
   height: 500px;
-  opacity: .5;
-  background-color: #FF5500;
+  opacity: .9;
+  background-color: #642878;
   background-repeat: no-repeat;
   background-size: cover;
   /* transform-origin: top right;
@@ -135,18 +135,18 @@
   /* left: 10%; */
 }
 
-.deckbuilder__VIP-user-panel-gradient {
+.deckeditor__VIP-user-panel-gradient {
   position: relative;
   /* transform-origin: top right;
   transform: skewX(45deg); */
-  width: 100%;
+  width: 84%;
   height: 500px;
-  /* top: 0;
-  right: 0; */
-  /* left: 10%; */
+  top: 0;
+  right: 0;
+  left: 10%;
 }
 
-.deckbuilder__VIP-user-panel-gradient:after {
+.deckeditor__VIP-user-panel-gradient:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -158,66 +158,41 @@
   top: 0;
   /* transform-origin: top right;
   transform: skewX(-45deg); */
-  background: radial-gradient(transparent 0%, rgba(255, 85, 0, .5) 25%, rgba(255, 85, 0, 1) 60%);
+  background: radial-gradient(transparent 0%, rgba(100, 40, 120, 1) 60%);
 }
 
-.deckbuilder__body {
+.deckeditor__body {
   grid-column: 2 / span 2;
-  grid-row: 2 / span 3;
+  grid-row: 2 / span 2;
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 360px;
-  grid-template-rows: 435px 1fr;
+  grid-template-columns: 1fr 460px;
   width: 100%;
   margin-bottom: 0;
   border: 2px ridge #21262D;
   border-bottom: none;
   border-top: none;
   padding-top: 10px;
-  min-height: 1595px;
-
+  height: 100%;
 }
 
-.deckbuilder__search-panel {
+.deckeditor__deck-container {
   grid-column: 1;
-  grid-row: 1;
-  background-color: pink;
-  border-right: 1px ridge #21262D;
-}
-
-.deckbuilder__deck-container {
-  grid-column: 1;
-  grid-row: 2;
   position: relative;
   display: grid;
   grid-template-columns: 6fr 1fr;
-  grid-template-rows: 50px 2.75rem 1fr 2.75rem 1fr 2.75rem 1fr 12rem;
+  grid-template-rows: 2.75rem 1fr 2.75rem 1fr 2.75rem 1fr 12rem;
   border-right: 1px ridge #21262D;
 }
 
-.deckbuilder__display-buttons-wrapper {
-  height: 50px;
+.deckeditor__main-container1-title {
+  grid-column: 1;
   grid-row: 1;
-  grid-column: 1 /span 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.deckbuilder__display-buttons-wrapper button {
-  margin-left: 3px;
-  margin-right: 3px;
-  width: 50px;
-}
-
-.deckbuilder__main-container1-title {
-  grid-column: 1;
-  grid-row: 2;
   display: grid;
   grid-template-columns: 25px 1fr 25px;
 }
 
-.deckbuilder__main-container1-title-text {
+.deckeditor__main-container1-title-text {
   grid-column: 2;
   display: flex;
   justify-content: center;
@@ -226,59 +201,83 @@
   padding-top: 5px;
 }
 
-.deckbuilder__main-container1 {
+.deckeditor__main-container1 {
   padding-top: 10px;
   grid-column: 1;
+  grid-row: 2;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.deckeditor__creature-container01 {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.deckeditor__creature-container2 {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.deckeditor__creature-container3 {
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.deckeditor__creature-container4 {
+  grid-column: 4;
+  display: flex;
+  flex-direction: column;
+}
+
+.deckeditor__creature-container5 {
+  grid-column: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+.deckeditor__creature-container6plus {
+  grid-column: 6;
+  display: flex;
+  flex-direction: column;
+}
+
+.deckeditor__land-container-title {
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 25px 1fr 25px;
+}
+
+.deckeditor__land-container-title-text {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  border-bottom: 1px solid #21262D;
+  padding-top: 5px;
+}
+
+.deckeditor__land-container {
+  padding-top: 10px;
+  grid-column: 2;
+  grid-row: 2 /span 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.deckeditor__main-container2-title {
   grid-row: 3;
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-}
-
-.deckbuilder__creature-container01 {
   grid-column: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.deckbuilder__creature-container2 {
-  grid-column: 2;
-  display: flex;
-  flex-direction: column;
-}
-
-.deckbuilder__creature-container3 {
-  grid-column: 3;
-  display: flex;
-  flex-direction: column;
-}
-
-.deckbuilder__creature-container4 {
-  grid-column: 4;
-  display: flex;
-  flex-direction: column;
-}
-
-.deckbuilder__creature-container5 {
-  grid-column: 5;
-  display: flex;
-  flex-direction: column;
-}
-
-.deckbuilder__creature-container6plus {
-  grid-column: 6;
-  display: flex;
-  flex-direction: column;
-}
-
-.deckbuilder__land-container-title {
-  grid-column: 2;
-  grid-row: 2;
   display: grid;
   grid-template-columns: 25px 1fr 25px;
 }
 
-.deckbuilder__land-container-title-text {
+.deckeditor__main-container2-title-text {
   grid-column: 2;
   display: flex;
   justify-content: center;
@@ -287,83 +286,59 @@
   padding-top: 5px;
 }
 
-.deckbuilder__land-container {
+.deckeditor__main-container2 {
   padding-top: 10px;
-  grid-column: 2;
-  grid-row: 3 /span 3;
-  display: flex;
-  flex-direction: column;
-}
-
-.deckbuilder__main-container2-title {
+  grid-column: 1;
   grid-row: 4;
-  grid-column: 1;
-  display: grid;
-  grid-template-columns: 25px 1fr 25px;
-}
-
-.deckbuilder__main-container2-title-text {
-  grid-column: 2;
-  display: flex;
-  justify-content: center;
-  color: #fff;
-  border-bottom: 1px solid #21262D;
-  padding-top: 5px;
-}
-
-.deckbuilder__main-container2 {
-  padding-top: 10px;
-  grid-column: 1;
-  grid-row: 5;
   position: relative;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 }
 
-.deckbuilder__spell-container01 {
+.deckeditor__spell-container01 {
   grid-column: 1;
   display: flex;
   flex-direction: column;
 }
 
-.deckbuilder__spell-container2 {
+.deckeditor__spell-container2 {
   grid-column: 2;
   display: flex;
   flex-direction: column;
 }
 
-.deckbuilder__spell-container3 {
+.deckeditor__spell-container3 {
   grid-column: 3;
   display: flex;
   flex-direction: column;
 }
 
-.deckbuilder__spell-container4 {
+.deckeditor__spell-container4 {
   grid-column: 4;
   display: flex;
   flex-direction: column;
 }
 
-.deckbuilder__spell-container5 {
+.deckeditor__spell-container5 {
   grid-column: 5;
   display: flex;
   flex-direction: column;
 }
 
-.deckbuilder__spell-container6plus {
+.deckeditor__spell-container6plus {
   grid-column: 6;
   display: flex;
   flex-direction: column;
 }
 
-.deckbuilder__side-container-title {
+.deckeditor__side-container-title {
   grid-column: 1 /span 2;
-  grid-row: 6;
+  grid-row: 5;
   display: grid;
   grid-template-columns: 25px 1fr 25px;
 }
 
-.deckbuilder__side-container-title-text {
+.deckeditor__side-container-title-text {
   grid-column: 2;
   color: #fff;
   display: flex;
@@ -372,71 +347,70 @@
   padding-top: 5px;
 }
 
-.deckbuilder__side-container {
+.deckeditor__side-container {
   padding-top: 10px;
-  grid-row: 7;
+  grid-row: 6;
   position: relative;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 }
 
-.deckbuilder__sideslot01-container {
+.deckeditor__sideslot01-container {
   grid-column: 1;
   display: flex;
   flex-direction: column;
 }
 
-.deckbuilder__sideslot2-container {
+.deckeditor__sideslot2-container {
   grid-column: 2;
   display: flex;
   flex-direction: column;
 }
-.deckbuilder__sideslot3-container {
+.deckeditor__sideslot3-container {
   grid-column: 3;
   display: flex;
   flex-direction: column;
 }
-.deckbuilder__sideslot4-container {
+.deckeditor__sideslot4-container {
   grid-column: 4;
   display: flex;
   flex-direction: column;
 }
-.deckbuilder__sideslot5-container {
+.deckeditor__sideslot5-container {
   grid-column: 5;
   display: flex;
   flex-direction: column;
 }
-.deckbuilder__sideslot6plus-container {
+.deckeditor__sideslot6plus-container {
   grid-column: 6;
   display: flex;
   flex-direction: column;
 }
-.deckbuilder__sideslotlands-container {
+.deckeditor__sideslotlands-container {
   grid-column: 2;
   grid-row: 6;
   display: flex;
   flex-direction: column;
 }
 
-/* .deckbuilder__multipurpose-box {
+.deckeditor__multipurpose-box {
   overflow: hidden;
   position: relative;
   width: 460px;
   height: 985px;
-} */
-
-.deckbuilder__card-display {
-  grid-column: 2;
-  grid-row: 1 /span 2;
-  position: absolute;
-  padding: 5px 0;
-  right: 50px;
-  height: 1595px;
-  width: 300px;
 
 }
 
-.deckbuilder__card-display-image {
+.deckeditor__card-display {
+  position: absolute;
+  right: 0;
+  height: 955px;
+  width: 385px;
+  padding-top: 2.5rem;
+
+}
+
+.deckeditor__card-display-image {
   top: 0;
   position: sticky;
   position: -webkit-sticky;
@@ -449,8 +423,53 @@
   background-position: center;
 }
 
+.deckeditor__comments-drawer {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  width: 460px;
+  z-index: 2;
+  height: 100%;
+  -webkit-transition: right 0.5s ease-in-out;
+  -moz-transition: right 0.5s ease-in-out;
+  -o-transition: right 0.5s ease-in-out;
+  -ms-transition: right 0.5s ease-in-out;
+  transition: right 0.5s ease-in-out;
+}
 
-.deckbuilder__comments-container {
+.deckeditor__comments-drawer--hide {
+  right: -430px;
+}
+
+.deckeditor__comments-drawer--reveal {
+  right: 0px;
+}
+.deckeditor__comments-pulltab {
+
+  justify-self: end;
+  position: relative;
+  height: 50px;
+  width: 29px;
+  background-color: #0D1117;
+  grid-column: 1;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  border: 2px ridge #E6CD8C;
+  border-right: none;
+  right: -8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.deckeditor__pulltab-svg {
+  font-size: 1.6rem;
+  fill: #C0C0C0;
+  margin-left: 3px;
+}
+
+.deckeditor__comments-container {
   grid-column: 2;
   position: relative;
   grid-column: 2;
@@ -467,7 +486,7 @@
   border-right: 5px inset #0D1117;
 }
 
-.deckbuilder__comments-wrapper {
+.deckeditor__comments-wrapper {
   grid-column: 3;
   grid-row: 8;
   position: relative;
@@ -483,7 +502,7 @@
   justify-content: flex-start;
 }
 
-.deckbuilder__comments-list {
+.deckeditor__comments-list {
   overflow-y: scroll;
   max-height: 550px;
   width: 415px;

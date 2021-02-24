@@ -103,7 +103,6 @@ function DecksBrowser() {
         options={optionSelect}
         onChange={setOption}
       />
-      {/* <div className="decksbrowser__deck-list">{deckObjects}</div> */}
       <div className="decksbrowser__deck-list">
         <div className="decksbrowser__deck-list-wrapper">
           {decks.map((deck, i) =>

@@ -304,8 +304,6 @@ const DeckViewer = (props) => {
               </div>
               <div className="deckviewer__user-panel-gradient"></div>
             </div>
-          {/* <div className="deckviewer__navbar-background"></div>
-          <div className="deckviewer__buffer"></div> */}
           <div className="deckviewer-header__main">
             <div className="deckviewer-header__deck-panel" >
               <div className="deckviewer-header__deck-panel-name" >{deck.deck_name.toUpperCase()}</div>
@@ -317,7 +315,6 @@ const DeckViewer = (props) => {
               </div>
             </div>
           </div>
-          {/* <div className="deckviewer-header__lower-panel"></div> */}
         </div>
         <div className="deckviewer__body">
           <div className="deckviewer__deck-container">

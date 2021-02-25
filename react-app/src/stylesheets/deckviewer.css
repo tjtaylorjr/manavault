@@ -164,7 +164,7 @@
 }
 
 .deckviewer__body {
-  grid-column: 2 / span 2;
+  grid-column: 1 / span 4;
   grid-row: 3 / span 2;
   position: relative;
   display: grid;
@@ -184,7 +184,8 @@
   display: grid;
   grid-template-columns: 6fr 1fr;
   grid-template-rows: 2.75rem 1fr 2.75rem 1fr 2.75rem 1fr 12rem;
-  border-right: 1px ridge #21262D;
+  padding-left: 50px;
+  /* border-right: 1px ridge #21262D; */
 }
 
 .deckviewer__main-container1-title {

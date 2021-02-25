@@ -150,7 +150,7 @@
   /* left: 10%; */
 }
 
-.deckbuilder__VIP-user-panel-gradient:after {
+.deckbuilder__user-panel-gradient:after {
   content: "";
   position: absolute;
   width: 100%;

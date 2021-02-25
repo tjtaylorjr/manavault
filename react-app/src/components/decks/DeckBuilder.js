@@ -361,16 +361,16 @@ const DeckBuilder = (props) => {
     <>
       <div className="deckbuilder">
         <div className="deckbuilder__header">
-          <div className="deckbuilder__VIP-user-panel-background">
+          <div className="deckbuilder__user-panel-background">
             <div className="deckbuilder__VIP-user-panel-background-wrapper">
               <div className="deckbuilder__VIP-user-panel-background-image" style={{ backgroundImage: `url(${backgroundIMG})` }}></div>
             </div>
             <div className="deckbuilder__VIP-user-panel-gradient"></div>
           </div>
-          <div className="deckbuilder__navbar-background"></div>
-          <div className="deckbuilder__buffer"></div>
+          {/* <div className="deckbuilder__navbar-background"></div> */}
+          {/* <div className="deckbuilder__buffer"></div> */}
           <div className="deckbuilder-header__main">
-            <div className="deckbuilder-header__deck-panel" >
+            {/* <div className="deckbuilder-header__deck-panel" > */}
               {/* <div className="deckbuilder-header__deck-panel-name" >{deck.deck_name.toUpperCase()}</div> */}
               {/* <div className="deckbuilder-header__deck-panel-attribution" >
                 by {deck.creator_name}
@@ -378,9 +378,9 @@ const DeckBuilder = (props) => {
               {/* <div className="deckbuilder-header__deck-description">
                 <p>{deck.description}</p>
               </div> */}
-            </div>
+            {/* </div> */}
           </div>
-          <div className="deckbuilder-header__lower-panel"></div>
+          {/* <div className="deckbuilder-header__lower-panel"></div> */}
         </div>
         <div className="deckbuilder__body">
           <div className="deckbuilder__search-panel">

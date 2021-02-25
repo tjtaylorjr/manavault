@@ -14,6 +14,8 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser}) => {
     const user = await login(email, password);
     if (!user.errors) {
       setAuthenticated(true);
+      setCurrentUser(user);
+      return history.push("/");
     } else {
       setErrors(user.errors);
     }
@@ -100,7 +102,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setCurrentUser}) => {
           </div>
           <section className="login-page__form-header">
             <h1>Sign In</h1>
-            <button type="submit" onClick={demoLogin}>Demo</button>
+            <button type="button" onClick={demoLogin}>Demo</button>
           </section>
           <div>
             <label htmlFor="email">Email</label>

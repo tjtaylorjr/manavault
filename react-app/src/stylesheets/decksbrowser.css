@@ -7,11 +7,35 @@
   grid-template-rows: 60px 50px 50px 100px 1fr;
 }
 
+.deckbrowser__header {
+  grid-column: 2;
+  grid-row: 4;
+  display: grid;
+  grid-template-columns: 1fr 200px 60px 1fr;
+}
+
 .decksbrowser__select-bar {
   color: #000;
   width: 200px;
   grid-column: 2;
-  grid-row: 4;
+  align-self: center;
+  justify-self: center;
+}
+
+.deckbrowser__header-button {
+  grid-column: 3;
+  margin-left: 3px;
+  margin-right: 3px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  line-height: 1.2rem;
+  border: 2px ridge #E6CD8C;
+  font-size: 1.4rem;
+  background-color: #21262D;
+  color: #E6CD8C;
+  cursor: pointer;
+  outline: none;
   align-self: center;
   justify-self: center;
 }

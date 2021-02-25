@@ -1,12 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import Select from 'react-select';
+import { useHistory } from 'react-router-dom';
 import DeckObject from './DeckObject.js';
+import { IoBuild } from 'react-icons/io5'
 
 
 
 function DecksBrowser() {
   const [option, setOption] = useState("");
   const [decks, setDecks] = useState([]);
+
+  const history = useHistory();
+  
   const optionSelect = [
     { value: "Latest", label: "Latest" },
     { value: "Most Discussed", label: "Most Discussed" },
@@ -96,13 +101,18 @@ function DecksBrowser() {
 
   return (
     <div className="decksbrowser">
-      <Select
-        className="decksbrowser__select-bar"
-        placeholder="Pick a Category"
-        defaultValue={option}
-        options={optionSelect}
-        onChange={setOption}
-      />
+      <div className="deckbrowser__header">
+        <Select
+          className="decksbrowser__select-bar"
+          placeholder="Pick a Category"
+          defaultValue={option}
+          options={optionSelect}
+          onChange={setOption}
+        />
+        <button className="deckbrowser__header-button" onClick={() => history.push("/decks/build")}>
+          <IoBuild />
+        </button>
+      </div>
       <div className="decksbrowser__deck-list">
         <div className="decksbrowser__deck-list-wrapper">
           {decks.map((deck, i) =>

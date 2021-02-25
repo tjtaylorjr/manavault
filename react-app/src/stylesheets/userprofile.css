@@ -243,6 +243,33 @@
   margin: 10px;
 }
 
+.user-profile__body-decks-container-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 60px;
+  align-items: center;
+}
+
+.user-profile__body-decks-container-header h1 {
+  font-size: 22px;
+}
+
+.user-profile__body-decks-container-header button {
+  margin-left: 10px;
+  margin-right: 3px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  line-height: 1.2rem;
+  border: 2px ridge #E6CD8C;
+  font-size: 1.4rem;
+  background-color: #21262D;
+  color: #E6CD8C;
+  cursor: pointer;
+  outline: none;
+}
+
 .user-profile__body-decks-wrapper {
   display: flex;
   flex-wrap: wrap;

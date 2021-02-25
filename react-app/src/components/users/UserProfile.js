@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import DeckObject from "../decks/DeckObject";
 import Avatar from "./Avatar";
+import { IoBuild } from 'react-icons/io5';
 
 const UserProfile = (props) => {
   const [user, setUser] = useState({});
@@ -10,6 +11,8 @@ const UserProfile = (props) => {
   const [isVIP, setIsVIP] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const { userId } = useParams();
+
+  const history = useHistory();
 
   useEffect(() => {
     if (!userId) {
@@ -78,6 +81,14 @@ const UserProfile = (props) => {
         </div>
         <div className="user-profile__body">
           <div className="user-profile__body-decks-container">
+            <div className="user-profile__body-decks-container-header">
+              <h1>Decks by {user.username}</h1>
+              {parseInt(userId) === props.user.id && (
+                <button alt="build" onClick={() => history.push("/decks/build")}>
+                  <IoBuild />
+                </button>
+              )}
+            </div>
             <div className="user-profile__body-decks-wrapper">
               {decks.map((deck, i) => (
                 <DeckObject key={i} data={deck} />

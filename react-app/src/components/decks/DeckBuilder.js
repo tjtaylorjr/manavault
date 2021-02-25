@@ -4,6 +4,9 @@ import DeckCardObject from "./DeckCardObject.js";
 import DeckObject from "./DeckObject.js";
 import cardBack from '../../assets/images/cards/cardback.jpg';
 import backgroundIMG from '../../assets/backgrounds/urzas-tome.jpg';
+import { CgStack } from 'react-icons/cg';
+import { RiBarChartFill } from 'react-icons/ri';
+import { BiListUl } from 'react-icons/bi';
 
 const DeckBuilder = (props) => {
   const [user, setUser] = useState({}); //needed for current user's avatar
@@ -324,9 +327,15 @@ const DeckBuilder = (props) => {
           <div className="deckbuilder__search-panel"></div>
           <div className="deckbuilder__deck-container">
             <div className="deckbuilder__display-buttons-wrapper">
-              <button className="deckbuilder__curve-button">Curve</button>
-              <button className="deckbuilder__list-button">List</button>
-              <button className="deckbuilder__stack-button">Stack</button>
+              <button className="deckbuilder__curve-button">
+                <RiBarChartFill />
+              </button>
+              <button className="deckbuilder__list-button">
+                <BiListUl />
+              </button>
+              <button className="deckbuilder__stack-button">
+                <CgStack />
+              </button>
             </div>
             <div className="deckbuilder__main-container1-title">
               <div className="deckbuilder__main-container1-title-text">Creatures & Planeswalkers</div>

@@ -129,6 +129,7 @@
   background-color: #FF5500;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: 0 20%;
   /* transform-origin: top right;
   transform: skewX(-45deg); */
   mask-image: linear-gradient(to right top, rbga(0, 0, 0, 0) 0%, #000000 100%);
@@ -191,12 +192,12 @@
   position: relative;
   display: grid;
   grid-template-columns: 6fr 1fr;
-  grid-template-rows: 50px 2.75rem 1fr 2.75rem 1fr 2.75rem 1fr 12rem;
+  grid-template-rows: 60px 2.75rem 1fr 2.75rem 1fr 2.75rem 1fr 12rem;
   border-right: 1px ridge #21262D;
 }
 
 .deckbuilder__display-buttons-wrapper {
-  height: 50px;
+  height: 60px;
   grid-row: 1;
   grid-column: 1 /span 2;
   display: flex;
@@ -207,7 +208,15 @@
 .deckbuilder__display-buttons-wrapper button {
   margin-left: 3px;
   margin-right: 3px;
-  width: 50px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  line-height: 1.2rem;
+  border: 2px ridge #E6CD8C;
+  font-size: 1.4rem;
+  background-color: #21262D;
+  color: #E6CD8C;
+  cursor: pointer;
 }
 
 .deckbuilder__main-container1-title {

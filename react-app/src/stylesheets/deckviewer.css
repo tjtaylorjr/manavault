@@ -4,7 +4,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 50px 2fr 1fr 50px;
-  grid-template-rows: 500px 715px 1fr;
+  grid-template-rows: 75px 350px 715px 1fr;
 }
 
 .deckviewer h3 {
@@ -13,30 +13,31 @@
 
 .deckviewer__header {
   grid-column: 1 / span 4;
-  grid-row: 1;
+  grid-row: 2;
   display: grid;
   grid-template-columns: 50px 1fr 1fr 1fr 50px;
-  grid-template-rows: 75px 25px 200px 100px 100px;
+  grid-template-rows: 25px 200px 100px 25px;
 }
 
-.deckviewer__navbar-background {
+/* .deckviewer__navbar-background {
   grid-row-start: 3;
   grid-column: 1 / span 5;
-}
+} */
 
-.deckviewer__buffer {
+/* .deckviewer__buffer {
   grid-row-start: 2;
   grid-column: 1 / span 5;
   border-top: 1px solid #E6CD8C;
   background-color: #670C07;
-}
+} */
 
 .deckviewer-header__main {
-  grid-row: 3 / span 2;
+  grid-row: 2 / span 2;
   grid-column: 1 / span 5;
   display: grid;
   grid-template-columns: 50px 1fr 1fr 1fr 50px;
   background-color: #670C07;
+  border-top: 1px solid #E6CD8C;
   border-bottom: 1px solid #E6CD8C;
   width: 100%;
 }
@@ -78,26 +79,27 @@
   font-size: 20px;
 }
 
-.deckviewer-header__lower-panel {
+/* .deckviewer-header__lower-panel {
   grid-row: 5;
   grid-column: 2 / span 3;
   width: 100%;
   border-bottom: 1px solid #E6CD8C;
-}
+} */
 
-.deckviewer__VIP-user-panel-background {
+.deckviewer__user-panel-background {
   position: absolute;
   grid-column: 1 / span 5;
   width: 100%;
-  height: 500px;
+  height: 350px;
   background-color: #670C07;
-  border-top: 3px outset #E6CD8C;
-  border-bottom: 3px outset #E6CD8C;
+  border-top: 3px ridge #E6CD8C;
+  border-bottom: 3px ridge #E6CD8C;
   overflow: hidden;
   z-index: 1;
+  margin-top: 75px;
 }
 
-.deckviewer__VIP-user-panel-background-wrapper {
+.deckviewer__user-panel-background-wrapper {
   background-color: #670C07;
   position: absolute;
   width: 84%;
@@ -121,10 +123,10 @@
   mix-blend-mode: multiply;
 }
 
-.deckviewer__VIP-user-panel-background-image {
+.deckviewer__user-panel-background-image {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 350px;
   opacity: 1;
   background-color: #670C07;
   background-repeat: no-repeat;
@@ -135,22 +137,22 @@
   left: 10%;
 }
 
-.deckviewer__VIP-user-panel-gradient {
+.deckviewer__user-panel-gradient {
   position: relative;
   transform-origin: top right;
   transform: skewX(45deg);
   width: 84%;
-  height: 500px;
+  height: 350px;
   top: 0;
   right: 0;
   left: 17%;
 }
 
-.deckviewer__VIP-user-panel-gradient:after {
+.deckviewer__user-panel-gradient:after {
   content: "";
   position: absolute;
   width: 100%;
-  height: 500px;
+  height: 350px;
   overflow: hidden;
   left: 0;
   right: 0;
@@ -163,7 +165,7 @@
 
 .deckviewer__body {
   grid-column: 2 / span 2;
-  grid-row: 2 / span 2;
+  grid-row: 3 / span 2;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 460px;

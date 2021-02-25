@@ -298,14 +298,14 @@ const DeckViewer = (props) => {
     <>
       <div className="deckviewer">
         <div className="deckviewer__header">
-            <div className="deckviewer__VIP-user-panel-background">
-              <div className="deckviewer__VIP-user-panel-background-wrapper">
-                <div className="deckviewer__VIP-user-panel-background-image" style={{ backgroundImage: `url(${deck.background_img})` }}></div>
+            <div className="deckviewer__user-panel-background">
+              <div className="deckviewer__user-panel-background-wrapper">
+                <div className="deckviewer__user-panel-background-image" style={{ backgroundImage: `url(${deck.background_img})` }}></div>
               </div>
-              <div className="deckviewer__VIP-user-panel-gradient"></div>
+              <div className="deckviewer__user-panel-gradient"></div>
             </div>
-          <div className="deckviewer__navbar-background"></div>
-          <div className="deckviewer__buffer"></div>
+          {/* <div className="deckviewer__navbar-background"></div>
+          <div className="deckviewer__buffer"></div> */}
           <div className="deckviewer-header__main">
             <div className="deckviewer-header__deck-panel" >
               <div className="deckviewer-header__deck-panel-name" >{deck.deck_name.toUpperCase()}</div>
@@ -317,7 +317,7 @@ const DeckViewer = (props) => {
               </div>
             </div>
           </div>
-          <div className="deckviewer-header__lower-panel"></div>
+          {/* <div className="deckviewer-header__lower-panel"></div> */}
         </div>
         <div className="deckviewer__body">
           <div className="deckviewer__deck-container">

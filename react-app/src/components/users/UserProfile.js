@@ -43,14 +43,14 @@ const UserProfile = (props) => {
     <>
       <div className="user-profile">
         <div className="user-profile__header">
-            <div className="user-profile__VIP-user-panel-background">
-              <div className="user-profile__VIP-user-panel-background-wrapper">
-                <div className="user-profile__VIP-user-panel-background-image" style={{ backgroundImage: `url(${user.info.background_img})` }}></div>
+            <div className="user-profile__user-panel-background">
+              <div className="user-profile__user-panel-background-wrapper">
+                <div className="user-profile__user-panel-background-image" style={{ backgroundImage: `url(${user.info.background_img})` }}></div>
               </div>
-              <div className="user-profile__VIP-user-panel-gradient"></div>
+              <div className="user-profile__user-panel-gradient"></div>
             </div>
-          <div className="user-profile__navbar-background"></div>
-          <div className="user-profile__buffer"></div>
+          {/* <div className="user-profile__navbar-background"></div>
+          <div className="user-profile__buffer"></div> */}
           <div className="user-profile__user-panel">
             <div className="user-profile__user-panel-info-container">
               <div className="user-profile__user-panel-info-container-header">
@@ -70,11 +70,11 @@ const UserProfile = (props) => {
             </div>
             <Avatar avatar={avatar} isVIP={isVIP} size={"LRG"}/>
           </div>
-          <div className="user-profile__header-buffer">
-            <div className="user-profile__user-panel-about-container">
-              <p>{user.info.about}</p>
-            </div>
+          <div className="user-profile__user-panel-about-container">
+            <p>{user.info.about}</p>
           </div>
+          {/* <div className="user-profile__header-buffer">
+          </div> */}
         </div>
         <div className="user-profile__body">
           <div className="user-profile__body-decks-container">
@@ -85,7 +85,7 @@ const UserProfile = (props) => {
             </div>
           </div>
           <div className="user-profile__body-stats-container"></div>
-          <div className="user-profile__body-comments-container"></div>
+          {/* <div className="user-profile__body-comments-container"></div> */}
         </div>
       </div>
     </>

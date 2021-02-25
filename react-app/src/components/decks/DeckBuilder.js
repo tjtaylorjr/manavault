@@ -12,7 +12,9 @@ const DeckBuilder = (props) => {
   const [user, setUser] = useState({}); //needed for current user's avatar
   const [avatar, setAvatar] = useState("");
   const [comments, setComments] = useState([]);
-  const [postFlag, setPostFlag] = useState(false);
+  const [curveFlag, setCurveFlag] = useState(true);
+  const [listFlag, setlistFlag] = useState(false);
+  const [stacksFlag, setStacksFlag] = useState(false);
   // const [isVIP, setIsVIP] = useState(false);
   const [mainDeck, setMainDeck] = useState([]);
   const [creatures0Or1, setCreatures0Or1] = useState([]);
@@ -42,7 +44,7 @@ const DeckBuilder = (props) => {
   const [deckChange, setDeckChange] = useState(false);
   const [imagePreview, setImagePreview] = useState(cardBack);
 
-  const drawerRef = useRef();
+  // const drawerRef = useRef();
   const hoverRef = useRef();
 
   const { id, username } = props.user;
@@ -298,6 +300,36 @@ const DeckBuilder = (props) => {
     setImagePreview(cardBack);
   }
 
+  const showCurve = () => {
+    let mounted = true;
+    if (mounted) {
+      setlistFlag(false);
+      setStacksFlag(false);
+      setCurveFlag(true);
+    }
+    return () => mounted = false;
+  }
+
+  const showList = () => {
+    let mounted = true;
+    if (mounted) {
+      setStacksFlag(false);
+      setCurveFlag(false);
+      setlistFlag(true);
+    }
+    return () => mounted = false;
+  }
+
+  const showStack = () => {
+    let mounted = true;
+    if (mounted) {
+      setlistFlag(false);
+      setCurveFlag(false);
+      setStacksFlag(true);
+    }
+    return () => mounted = false;
+  }
+
   return isLoaded ? (
     <>
       <div className="deckbuilder">
@@ -327,13 +359,13 @@ const DeckBuilder = (props) => {
           <div className="deckbuilder__search-panel"></div>
           <div className="deckbuilder__deck-container">
             <div className="deckbuilder__display-buttons-wrapper">
-              <button className="deckbuilder__curve-button">
+              <button className="deckbuilder__curve-button" onClick={showCurve} >
                 <RiBarChartFill />
               </button>
-              <button className="deckbuilder__list-button">
+              <button className="deckbuilder__list-button" onClick={showList} >
                 <BiListUl />
               </button>
-              <button className="deckbuilder__stack-button">
+              <button className="deckbuilder__stack-button" onClick={showStack} >
                 <CgStack />
               </button>
             </div>

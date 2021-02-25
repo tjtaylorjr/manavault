@@ -127,6 +127,15 @@
   flex-direction: row;
   flex-wrap: wrap;
   position: relative;
+  text-align: center;
+}
+
+.search-page__results-list-deck-item {
+  height: 350px;
+}
+
+.search-page__results-list-deck-item p {
+  font-size: 12px;
 }
 
 .card-object {

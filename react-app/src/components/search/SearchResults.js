@@ -17,7 +17,7 @@ const SearchResults = (props) => {
   const [isDecksLoaded, setIsDecksLoaded] = useState(false);
   const [isCardsLoaded, setIsCardsLoaded] = useState(false);
   const { query } = useParams();
-  
+
   useEffect(() => {
     if (query && query !== queryString) {
       setIsPageLoaded(false);
@@ -158,7 +158,12 @@ const SearchResults = (props) => {
           </h3>
           <ul className='search-page__results-list'>
             {deckQueryResults.map((deck, i) => (
-              <DeckObject key={i} data={deck} />
+              <div className="search-page__results-list-deck-item">
+                <h4>{deck.deck_name}</h4>
+                <p>{'by ' + deck.creator_name}</p>
+                <div></div>
+                <DeckObject key={i} data={deck} />
+              </div>
             ))}
           </ul>
         </div>

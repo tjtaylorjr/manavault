@@ -11,7 +11,7 @@ function DecksBrowser() {
   const [decks, setDecks] = useState([]);
 
   const history = useHistory();
-  
+
   const optionSelect = [
     { value: "Latest", label: "Latest" },
     { value: "Most Discussed", label: "Most Discussed" },
@@ -115,9 +115,14 @@ function DecksBrowser() {
       </div>
       <div className="decksbrowser__deck-list">
         <div className="decksbrowser__deck-list-wrapper">
-          {decks.map((deck, i) =>
-            <DeckObject key={i} data={deck} />
-          )}
+          {decks.map((deck, i) => (
+            <div className="decksbrowser__deck-list-item">
+              <h4>{deck.deck_name}</h4>
+              <p>{'by ' + deck.creator_name}</p>
+              <div></div>
+              <DeckObject key={i} data={deck} />
+            </div>
+          ))}
         </div>
       </div>
     </div>

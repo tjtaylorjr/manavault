@@ -8,7 +8,7 @@ const Avatar = (props) => {
   return (
     <>
       <div className={`avatar__container ${size}`} >
-        <div className={`avatar__wrapper ${size}`} style={{ background: isVIP ? "linear-gradient(135deg, #FF5500 10%, #F59105 50%, #FF5500 90%)" : "linear-gradient(135deg, #766237 10%, #E6CD8C 50%, #766237 90%)"}}>
+        <div className={`avatar__wrapper ${size}`} >
           {avatar !== null ? (
             <div className={`avatar__image ${size}`} styel={{ backgroundImage: `url(${avatar})`}}></div>
           ) : (

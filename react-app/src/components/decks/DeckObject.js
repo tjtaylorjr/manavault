@@ -29,9 +29,9 @@ const DeckObject = ( deck ) => {
   return (
     <section className="deck-object-container">
       <div className="deck-object__wrapper">
-        <div className="deck-object__displaycard"></div>
-        <h4 onClick={renderDeckPage}>{data.deck_name}</h4>
-        <p className="deck-object__creator" onClick={renderUserProfile}>{'by ' + data.creator_name}</p>
+        {/* <div className="deck-object__displaycard"></div> */}
+        {/* <h4 onClick={renderDeckPage}>{data.deck_name}</h4> */}
+        {/* <p className="deck-object__creator" onClick={renderUserProfile}>{'by ' + data.creator_name}</p> */}
         <div className="deck-object__3d-render" onClick={renderDeckPage}>
           <div className="deck-object__3d-render-deckbox">
             <div className="deck-object__3d-render-deckbox-front">

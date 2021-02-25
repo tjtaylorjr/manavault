@@ -1,7 +1,7 @@
 .user-object {
   position: relative;
-  width: 200px;
-  height: 175px;
+  width: 140px;
+  height: 140px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,15 +11,19 @@
   border-right: 1px solid #21262D; */
   border-top-left-radius: 50%;
   border-top-right-radius: 50%;
-  border-bottom-left-radius: 5%;
-  border-bottom-right-radius: 5%;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
   overflow: hidden;
+  z-index: 2;
+  margin: 10px;
 }
 
 .user-object__username {
   font-size: 18px;
   color: #ffffff;
   cursor: pointer;
+  text-align: center;
+  padding-top: 5px;
 }
 
 .user-object--VIP:after {
@@ -48,7 +52,7 @@
     rgba(245, 188, 45, 0.5) 92%,
     rgba(112, 13, 0, 0.0) 100%
   );
-  z-index: 1;
+  z-index: 2;
 }
 
 @keyframes shine{

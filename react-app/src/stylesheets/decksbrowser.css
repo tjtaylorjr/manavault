@@ -54,6 +54,15 @@
   justify-content: space-around;
   height: 100%;
   position: relative;
+  text-align: center;
+}
+
+.decksbrowser__deck-list-item {
+  height: 350px;
+}
+
+.decksbrowser__deck-list-item p {
+  font-size: 12px;
 }
 
 .decksbrowser__deck-list-wrapper > .deck-object__displaycard {

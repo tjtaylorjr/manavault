@@ -90,9 +90,13 @@ const UserProfile = (props) => {
               )}
             </div>
             <div className="user-profile__body-decks-wrapper">
-              {decks.map((deck, i) => (
-                <DeckObject key={i} data={deck} />
-              ))}
+                {decks.map((deck, i) => (
+                  <div className="user-profile__body-decks-result">
+                    <h4>{deck.deck_name}</h4>
+                    <div></div>
+                    <DeckObject key={i} data={deck} />
+                  </div>
+                ))}
             </div>
           </div>
           <div className="user-profile__body-stats-container"></div>

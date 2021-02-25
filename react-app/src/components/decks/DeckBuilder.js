@@ -6,7 +6,7 @@ import cardBack from '../../assets/images/cards/cardback.jpg';
 import backgroundIMG from '../../assets/backgrounds/urzas-tome.jpg';
 import { CgStack } from 'react-icons/cg';
 import { RiBarChartFill } from 'react-icons/ri';
-import { BiListUl } from 'react-icons/bi';
+import { BiListUl, BiSave } from 'react-icons/bi';
 
 const DeckBuilder = (props) => {
   const [user, setUser] = useState({}); //needed for current user's avatar
@@ -15,6 +15,7 @@ const DeckBuilder = (props) => {
   const [curveFlag, setCurveFlag] = useState(true);
   const [listFlag, setlistFlag] = useState(false);
   const [stacksFlag, setStacksFlag] = useState(false);
+  const [saveFlag, setSaveFlag] = useState(false);
   // const [isVIP, setIsVIP] = useState(false);
   const [mainDeck, setMainDeck] = useState([]);
   const [creatures0Or1, setCreatures0Or1] = useState([]);
@@ -43,9 +44,11 @@ const DeckBuilder = (props) => {
   const [deck, setDeck] = useState({});
   const [deckChange, setDeckChange] = useState(false);
   const [imagePreview, setImagePreview] = useState(cardBack);
+  const [searchText, setSearchText] = useState("");
 
   // const drawerRef = useRef();
   const hoverRef = useRef();
+  const searchInput = useRef();
 
   const { id, username } = props.user;
 
@@ -292,6 +295,22 @@ const DeckBuilder = (props) => {
   //   }
   // };
 
+  useEffect(() => {
+    let mounted = true;
+    if (saveFlag && mounted) {
+
+    }
+    setSaveFlag(false);
+    return () => mounted = false;
+  }, [saveFlag])
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const query = searchText.toLowerCase();
+    searchInput.current.value = "";
+
+  };
+
   const hoverAction = (e) => {
     setImagePreview(e.target.src)
   };
@@ -330,6 +349,14 @@ const DeckBuilder = (props) => {
     return () => mounted = false;
   }
 
+  const saveDeck = () => {
+    let mounted = true;
+    if (mounted) {
+      setSaveFlag(true);
+    }
+    return () => mounted = false;
+  }
+
   return isLoaded ? (
     <>
       <div className="deckbuilder">
@@ -356,7 +383,17 @@ const DeckBuilder = (props) => {
           <div className="deckbuilder-header__lower-panel"></div>
         </div>
         <div className="deckbuilder__body">
-          <div className="deckbuilder__search-panel"></div>
+          <div className="deckbuilder__search-panel">
+            <div className="deckbuilder__search-options-container">
+              <form className="deckbuilder__search-options-form">
+                <div className="deckbuilder__search-options-form-text-field">
+                  <input type="search" results="5" ref={searchInput} onChange={(e) => setSearchText(e.target.value)} placeholder="Find Cards"></input>
+                  <button onClick={handleSearch}></button>
+                </div>
+              </form>
+            </div>
+            <div className="deckbuilder__search-results-container"></div>
+          </div>
           <div className="deckbuilder__deck-container">
             <div className="deckbuilder__display-buttons-wrapper">
               <button className="deckbuilder__curve-button" onClick={showCurve} >
@@ -367,6 +404,9 @@ const DeckBuilder = (props) => {
               </button>
               <button className="deckbuilder__stack-button" onClick={showStack} >
                 <CgStack />
+              </button>
+              <button className="deckbuilder__save-button" onClick={saveDeck} >
+                <BiSave />
               </button>
             </div>
             {curveFlag && (

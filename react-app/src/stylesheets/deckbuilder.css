@@ -100,7 +100,7 @@
   margin-top: 75px;
 }
 
-.deckbuilder__VIP-user-panel-background-wrapper {
+.deckbuilder__user-panel-background-wrapper {
   background-color: #003C28;
   position: absolute;
   width: 100%;
@@ -124,7 +124,7 @@
   mix-blend-mode: multiply;
 }
 
-.deckbuilder__VIP-user-panel-background-image {
+.deckbuilder__user-panel-background-image {
   position: relative;
   width: 100%;
   height: 350px;
@@ -139,7 +139,7 @@
   /* left: 10%; */
 }
 
-.deckbuilder__VIP-user-panel-gradient {
+.deckbuilder__user-panel-gradient {
   position: relative;
   /* transform-origin: top right;
   transform: skewX(45deg); */

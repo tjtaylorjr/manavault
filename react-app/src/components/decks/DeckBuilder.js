@@ -362,10 +362,10 @@ const DeckBuilder = (props) => {
       <div className="deckbuilder">
         <div className="deckbuilder__header">
           <div className="deckbuilder__user-panel-background">
-            <div className="deckbuilder__VIP-user-panel-background-wrapper">
-              <div className="deckbuilder__VIP-user-panel-background-image" style={{ backgroundImage: `url(${backgroundIMG})` }}></div>
+            <div className="deckbuilder__user-panel-background-wrapper">
+              <div className="deckbuilder__user-panel-background-image" style={{ backgroundImage: `url(${backgroundIMG})` }}></div>
             </div>
-            <div className="deckbuilder__VIP-user-panel-gradient"></div>
+            <div className="deckbuilder__user-panel-gradient"></div>
           </div>
           {/* <div className="deckbuilder__navbar-background"></div> */}
           {/* <div className="deckbuilder__buffer"></div> */}

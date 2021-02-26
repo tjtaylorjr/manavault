@@ -7,14 +7,17 @@ import cardBack from '../../assets/images/cards/cardback.jpg';
 import backgroundIMG from '../../assets/backgrounds/urzas-tome.jpg';
 import { CgStack } from 'react-icons/cg';
 import { RiBarChartFill } from 'react-icons/ri';
-import { BiListUl, BiSave } from 'react-icons/bi';
+import { BiListUl } from 'react-icons/bi';
+import { AiFillSave } from 'react-icons/ai';
 import { ImSearch } from 'react-icons/im';
+import { RiInboxArchiveFill } from 'react-icons/ri';
 
 const DeckBuilder = (props) => {
   const [user, setUser] = useState({}); //needed for current user's avatar
   const [avatar, setAvatar] = useState("");
   const [comments, setComments] = useState([]);
-  const [curveFlag, setCurveFlag] = useState(true);
+  const [containerFlag, setContainerFlag] = useState(true);
+  const [curveFlag, setCurveFlag] = useState(false);
   const [listFlag, setlistFlag] = useState(false);
   const [stacksFlag, setStacksFlag] = useState(false);
   const [saveFlag, setSaveFlag] = useState(false);
@@ -349,9 +352,21 @@ const DeckBuilder = (props) => {
     setImagePreview(cardBack);
   }
 
+  const showCardContainer = () => {
+    let mounted = true;
+    if (mounted) {
+      setlistFlag(false);
+      setStacksFlag(false);
+      setCurveFlag(false);
+      setContainerFlag(true);
+    }
+    return () => mounted = false;
+  }
+
   const showCurve = () => {
     let mounted = true;
     if (mounted) {
+      setContainerFlag(false);
       setlistFlag(false);
       setStacksFlag(false);
       setCurveFlag(true);
@@ -362,6 +377,7 @@ const DeckBuilder = (props) => {
   const showList = () => {
     let mounted = true;
     if (mounted) {
+      setContainerFlag(false);
       setStacksFlag(false);
       setCurveFlag(false);
       setlistFlag(true);
@@ -372,6 +388,7 @@ const DeckBuilder = (props) => {
   const showStack = () => {
     let mounted = true;
     if (mounted) {
+      setContainerFlag(false);
       setlistFlag(false);
       setCurveFlag(false);
       setStacksFlag(true);
@@ -429,12 +446,14 @@ const DeckBuilder = (props) => {
             <div className="deckbuilder__search-results-container">
               {foundCards.length > 0 && foundCards.map((card, i) => (
                 <CardObjectSmall key={i} data={card}/>
-
-                ))}
+              ))}
             </div>
           </div>
           <div className="deckbuilder__deck-container">
             <div className="deckbuilder__display-buttons-wrapper">
+              <button className="deckbuilder__container-button" onClick={showCardContainer} >
+                <RiInboxArchiveFill />
+              </button>
               <button className="deckbuilder__curve-button" onClick={showCurve} >
                 <RiBarChartFill />
               </button>
@@ -445,9 +464,12 @@ const DeckBuilder = (props) => {
                 <CgStack />
               </button>
               <button className="deckbuilder__save-button" onClick={saveDeck} >
-                <BiSave />
+                <AiFillSave />
               </button>
             </div>
+            {containerFlag && (
+              <div className="deckbuilder__container-view">This is the Card Container view</div>
+            )}
             {curveFlag && (
               <div className="deckbuilder__curve-view">
                 <div className="deckbuilder__main-container1-title">
@@ -535,6 +557,9 @@ const DeckBuilder = (props) => {
             )}
             {listFlag && (
               <div className="deckbuilder__list-view">This is the list view</div>
+            )}
+            {stacksFlag && (
+              <div className="deckbuilder__stack-view">This is the stack view</div>
             )}
           </div>
           <div className="deckbuilder__card-display">

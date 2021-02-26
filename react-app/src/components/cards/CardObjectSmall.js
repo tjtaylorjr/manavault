@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { ItemTypes } from '../../utils/helpers';
+import { useDrag } from 'react-dnd';
 
 const CardObjectSmall = ( card ) => {
   const [smallIMG, setSmallIMG] = useState("")
@@ -14,8 +16,20 @@ const CardObjectSmall = ( card ) => {
     alert('Card information modal coming soon!');
   }
 
+
+  // const [{ isDragging }, dragRef] = useDrag(() => ({
+  //   item: { type: ItemTypes.CARD },
+  //   collect: monitor => ({
+  //     isDragging: !!monitor.isDragging(),
+  //   }),
+  // }))
+
+
   return (
-    <section className="small-card-object" onClick={renderCardPage}>
+    <section className="small-card-object" onClick={renderCardPage}
+      // ref={dragRef}
+      // style={{opacity: isDragging ? .5 : 1, cursor: 'move',}}
+    >
       {/* <h4 style={{ color:"#FFF" }}>{formatted_name[0]}</h4> */}
       <div className="small-card-object__image-container">
         {smallIMG ? (

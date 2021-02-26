@@ -1,18 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from "react-router-dom";
-import CommentBox from "../social/CommentBox.js";
-import Comment from "../social/Comment.js";
 import DeckCardObject from "./DeckCardObject.js";
 import DeckObject from "./DeckObject.js";
-import { AiFillDislike, AiFillLike, } from 'react-icons/ai';
-import { GiQuillInk } from 'react-icons/gi';
+import CardObjectSmall from "../cards/CardObjectSmall.js";
 import cardBack from '../../assets/images/cards/cardback.jpg';
+import backgroundIMG from '../../assets/backgrounds/urzas-tome.jpg';
+import { CgStack } from 'react-icons/cg';
+import { RiBarChartFill } from 'react-icons/ri';
+import { BiListUl } from 'react-icons/bi';
+import { AiFillSave } from 'react-icons/ai';
+import { ImSearch } from 'react-icons/im';
+import { RiInboxArchiveFill } from 'react-icons/ri';
 
-const DeckEditor = (props) => {
+const DeckBuilder = (props) => {
   const [user, setUser] = useState({}); //needed for current user's avatar
   const [avatar, setAvatar] = useState("");
   const [comments, setComments] = useState([]);
-  const [postFlag, setPostFlag] = useState(false);
+  const [containerFlag, setContainerFlag] = useState(true);
+  const [curveFlag, setCurveFlag] = useState(false);
+  const [listFlag, setlistFlag] = useState(false);
+  const [stacksFlag, setStacksFlag] = useState(false);
+  const [saveFlag, setSaveFlag] = useState(false);
   // const [isVIP, setIsVIP] = useState(false);
   const [mainDeck, setMainDeck] = useState([]);
   const [creatures0Or1, setCreatures0Or1] = useState([]);
@@ -39,10 +47,14 @@ const DeckEditor = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const location = useLocation();
   const [deck, setDeck] = useState({});
+  const [deckChange, setDeckChange] = useState(false);
   const [imagePreview, setImagePreview] = useState(cardBack);
+  const [searchInput, setSearchInput] = useState("");
+  const [foundCards, setFoundCards] = useState([]);
 
-  const drawerRef = useRef();
+  // const drawerRef = useRef();
   const hoverRef = useRef();
+  const searchRef = useRef();
 
   const { id, username } = props.user;
 
@@ -70,22 +82,25 @@ const DeckEditor = (props) => {
   }, [user])
 
   useEffect(() => {
-    (async () => {
-      const res = await fetch(`/api/decks/${deck.id}`);
-      const deckList = await res.json()
-      if (deckList) {
-        setDeck(deckList)
-      }
-    })()
-    setPostFlag(false)
-  }, [deck.id, postFlag])
+    let mounted = true;
+    if (deck.id && mounted) {
+      (async () => {
+        const res = await fetch(`/api/decks/${deck.id}`);
+        const deckList = await res.json()
+        if (deckList) {
+          setDeck(deckList)
+        }
+      })()
+      setDeckChange(false)
+    }
+  }, [deckChange])
 
 
   useEffect(() => {
     let mounted = true;
     let main = []
     let side = []
-    if (mounted) {
+    if (deck.card_list && mounted) {
       deck.card_list.forEach((card) => {
         if (card.in_deck > 0) {
           main.push(card)
@@ -99,7 +114,7 @@ const DeckEditor = (props) => {
     setMainDeck(main);
     setSideboard(side);
     return () => mounted = false;
-  }, [deck])
+  }, [deck.card_list])
 
   useEffect(() => {
     let mounted = true;
@@ -276,14 +291,57 @@ const DeckEditor = (props) => {
     return () => mounted = false;
   }, [sideboard])
 
-  const toggleDrawer = () => {
-    if (drawerRef.current.classList.contains("deckeditor__comments-drawer--hide")) {
-      drawerRef.current.classList.remove("deckeditor__comments-drawer--hide");
-      drawerRef.current.classList.add("deckeditor__comments-drawer--reveal");
-    } else if (drawerRef.current.classList.contains("deckeditor__comments-drawer--reveal")) {
-      drawerRef.current.classList.remove("deckeditor__comments-drawer--reveal");
-      drawerRef.current.classList.add("deckeditor__comments-drawer--hide");
+  // const toggleDrawer = () => {
+  //   if (drawerRef.current.classList.contains("deckbuilder__comments-drawer--hide")) {
+  //     drawerRef.current.classList.remove("deckbuilder__comments-drawer--hide");
+  //     drawerRef.current.classList.add("deckbuilder__comments-drawer--reveal");
+  //   } else if (drawerRef.current.classList.contains("deckbuilder__comments-drawer--reveal")) {
+  //     drawerRef.current.classList.remove("deckbuilder__comments-drawer--reveal");
+  //     drawerRef.current.classList.add("deckbuilder__comments-drawer--hide");
+  //   }
+  // };
+
+  useEffect(() => {
+    let mounted = true;
+    if (saveFlag && mounted) {
+
     }
+    setSaveFlag(false);
+    return () => mounted = false;
+  }, [saveFlag])
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    let mounted = true;
+    const search_text = searchInput.toLowerCase();
+    searchRef.current.value = "";
+    // console.log(searchInput);
+    // console.log(search_text);
+    if (mounted) {
+      (async () => {
+        const res = await fetch(`/api/search/build`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            search_text
+          }),
+        })
+
+        if (!res.ok) {
+          throw res;
+        }
+
+        const data = await res.json();
+
+        if (data) {
+          console.log(data);
+          setFoundCards(data.cards);
+        }
+      })()
+    }
+    return () => mounted = false;
   };
 
   const hoverAction = (e) => {
@@ -294,126 +352,227 @@ const DeckEditor = (props) => {
     setImagePreview(cardBack);
   }
 
+  const showCardContainer = () => {
+    let mounted = true;
+    if (mounted) {
+      setlistFlag(false);
+      setStacksFlag(false);
+      setCurveFlag(false);
+      setContainerFlag(true);
+    }
+    return () => mounted = false;
+  }
+
+  const showCurve = () => {
+    let mounted = true;
+    if (mounted) {
+      setContainerFlag(false);
+      setlistFlag(false);
+      setStacksFlag(false);
+      setCurveFlag(true);
+    }
+    return () => mounted = false;
+  }
+
+  const showList = () => {
+    let mounted = true;
+    if (mounted) {
+      setContainerFlag(false);
+      setStacksFlag(false);
+      setCurveFlag(false);
+      setlistFlag(true);
+    }
+    return () => mounted = false;
+  }
+
+  const showStack = () => {
+    let mounted = true;
+    if (mounted) {
+      setContainerFlag(false);
+      setlistFlag(false);
+      setCurveFlag(false);
+      setStacksFlag(true);
+    }
+    return () => mounted = false;
+  }
+
+  const saveDeck = () => {
+    let mounted = true;
+    if (mounted) {
+      setSaveFlag(true);
+    }
+    return () => mounted = false;
+  }
+
   return isLoaded ? (
     <>
-      <div className="deckeditor">
-        <div className="deckeditor__header">
-          <div className="deckeditor__VIP-user-panel-background">
-            <div className="deckeditor__VIP-user-panel-background-wrapper">
-              <div className="deckeditor__VIP-user-panel-background-image" style={{ backgroundImage: `url(${deck.background_img})` }}></div>
+      <div className="deckbuilder">
+        <div className="deckbuilder__header">
+          <div className="deckbuilder__user-panel-background">
+            <div className="deckbuilder__user-panel-background-wrapper">
+              <div className="deckbuilder__user-panel-background-image" style={{ backgroundImage: `url(${backgroundIMG})` }}></div>
             </div>
-            <div className="deckeditor__VIP-user-panel-gradient"></div>
+            <div className="deckbuilder__user-panel-gradient"></div>
           </div>
-          <div className="deckeditor__navbar-background"></div>
-          <div className="deckeditor__buffer"></div>
-          <div className="deckeditor-header__main">
-            <div className="deckeditor-header__deck-panel" >
-              <div className="deckeditor-header__deck-panel-name" >{deck.deck_name.toUpperCase()}</div>
-              <div className="deckeditor-header__deck-panel-attribution" >
+          {/* <div className="deckbuilder__navbar-background"></div> */}
+          {/* <div className="deckbuilder__buffer"></div> */}
+          <div className="deckbuilder-header__main">
+            {/* <div className="deckbuilder-header__deck-panel" > */}
+            {/* <div className="deckbuilder-header__deck-panel-name" >{deck.deck_name.toUpperCase()}</div> */}
+            {/* <div className="deckbuilder-header__deck-panel-attribution" >
                 by {deck.creator_name}
-              </div>
-              <div className="deckeditor-header__deck-description">
+              </div> */}
+            {/* <div className="deckbuilder-header__deck-description">
                 <p>{deck.description}</p>
-              </div>
+              </div> */}
+            {/* </div> */}
+          </div>
+          {/* <div className="deckbuilder-header__lower-panel"></div> */}
+        </div>
+        <div className="deckbuilder__body">
+          <div className="deckbuilder__search-panel">
+            <div className="deckbuilder__search-options-container">
+              <form onSubmit={handleSearch} className="deckbuilder__search-options-form">
+                <div className="deckbuilder__search-options-form-text-field">
+                  <input type="search" results="5" ref={searchRef} onChange={(e) => setSearchInput(e.target.value)} placeholder="Find Cards"></input>
+                  <button></button>
+                </div>
+                <div className="deckbuilder__search-options-form-filter-buttons-container"></div>
+                <button className="deckbuilder__search-options-form-submit-button">
+                  <ImSearch />
+                </button>
+              </form>
+            </div>
+            <div className="deckbuilder__search-results-container">
+              {foundCards.length > 0 && foundCards.map((card, i) => (
+                <CardObjectSmall key={i} data={card} />
+              ))}
             </div>
           </div>
-          <div className="deckeditor-header__lower-panel"></div>
-        </div>
-        <div className="deckeditor__body">
-          <div className="deckeditor__deck-container">
-            <div className="deckeditor__main-container1-title">
-              <div className="deckeditor__main-container1-title-text">Creatures & Planeswalkers</div>
+          <div className="deckbuilder__deck-container">
+            <div className="deckbuilder__display-buttons-wrapper">
+              <button className="deckbuilder__container-button" onClick={showCardContainer} >
+                <RiInboxArchiveFill />
+              </button>
+              <button className="deckbuilder__curve-button" onClick={showCurve} >
+                <RiBarChartFill />
+              </button>
+              <button className="deckbuilder__list-button" onClick={showList} >
+                <BiListUl />
+              </button>
+              <button className="deckbuilder__stack-button" onClick={showStack} >
+                <CgStack />
+              </button>
+              <button className="deckbuilder__save-button" onClick={saveDeck} >
+                <AiFillSave />
+              </button>
             </div>
-            <div className="deckeditor__main-container1">
-              <div className="deckeditor__creature-container01">
-                {creatures0Or1.length > 0 && creatures0Or1.map((card, i) => (
+            {containerFlag && (
+              <div className="deckbuilder__container-view">This is the Card Container view</div>
+            )}
+            {curveFlag && (
+              <div className="deckbuilder__curve-view">
+                <div className="deckbuilder__main-container1-title">
+                  <div className="deckbuilder__main-container1-title-text">Creatures & Planeswalkers</div>
+                </div>
+                <div className="deckbuilder__main-container1">
+                  <div className="deckbuilder__creature-container01">
+                    {creatures0Or1.length > 0 && creatures0Or1.map((card, i) => (
+                      <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                    ))}</div>
+                  <div className="deckbuilder__creature-container2">{creatures2.length > 0 && creatures2.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckbuilder__creature-container3">{creatures3.length > 0 && creatures3.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckbuilder__creature-container4">{creatures4.length > 0 && creatures4.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckbuilder__creature-container5">{creatures5.length > 0 && creatures5.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckbuilder__creature-container6plus">{creatures6Plus.length > 0 && creatures6Plus.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                </div>
+                <div className="deckbuilder__land-container-title">
+                  <div className="deckbuilder__land-container-title-text">Lands</div>
+                </div>
+                <div className="deckbuilder__land-container">{lands.length > 0 && lands.map((card, i) => (
                   <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
                 ))}</div>
-              <div className="deckeditor__creature-container2">{creatures2.length > 0 && creatures2.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckeditor__creature-container3">{creatures3.length > 0 && creatures3.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckeditor__creature-container4">{creatures4.length > 0 && creatures4.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckeditor__creature-container5">{creatures5.length > 0 && creatures5.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckeditor__creature-container6plus">{creatures6Plus.length > 0 && creatures6Plus.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-            </div>
-            <div className="deckeditor__land-container-title">
-              <div className="deckeditor__land-container-title-text">Lands</div>
-            </div>
-            <div className="deckeditor__land-container">{lands.length > 0 && lands.map((card, i) => (
-              <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-            ))}</div>
-            <div className="deckeditor__main-container2-title">
-              <div className="deckeditor__main-container2-title-text">Spells & Artifacts</div>
-            </div>
-            <div className="deckeditor__main-container2">
-              <div className="deckeditor__spell-container01">
-                {spells0Or1.length > 0 && spells0Or1.map((card, i) => (
-                  <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-                ))}</div>
-              <div className="deckeditor__spell-container2">{spells2.length > 0 && spells2.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckeditor__spell-container3">{spells3.length > 0 && spells3.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckeditor__spell-container4">{spells4.length > 0 && spells4.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckeditor__spell-container5">{spells5.length > 0 && spells5.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckeditor__spell-container6plus">{spells6Plus.length > 0 && spells6Plus.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-            </div>
-            <div className="deckeditor__side-container-title">
-              <div className="deckeditor__side-container-title-text">Sideboard</div>
-            </div>
-            <div className="deckeditor__side-container">
-              <div className="deckeditor__sideslot01-container01">
-                {sideSlot01.length > 0 && sideSlot01.map((card, i) => (
+                <div className="deckbuilder__main-container2-title">
+                  <div className="deckbuilder__main-container2-title-text">Spells & Artifacts</div>
+                </div>
+                <div className="deckbuilder__main-container2">
+                  <div className="deckbuilder__spell-container01">
+                    {spells0Or1.length > 0 && spells0Or1.map((card, i) => (
+                      <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                    ))}</div>
+                  <div className="deckbuilder__spell-container2">{spells2.length > 0 && spells2.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckbuilder__spell-container3">{spells3.length > 0 && spells3.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckbuilder__spell-container4">{spells4.length > 0 && spells4.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckbuilder__spell-container5">{spells5.length > 0 && spells5.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckbuilder__spell-container6plus">{spells6Plus.length > 0 && spells6Plus.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                </div>
+                <div className="deckbuilder__side-container-title">
+                  <div className="deckbuilder__side-container-title-text">Sideboard</div>
+                </div>
+                <div className="deckbuilder__side-container">
+                  <div className="deckbuilder__sideslot01-container01">
+                    {sideSlot01.length > 0 && sideSlot01.map((card, i) => (
+                      <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                    ))}</div>
+                  <div className="deckbuilder__sideslot2-container2">{sideSlot2.length > 0 && sideSlot2.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckbuilder__sideslot3-container3">{sideSlot3.length > 0 && sideSlot3.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckbuilder__sideslot4-container4">{sideSlot4.length > 0 && sideSlot4.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckbuilder__sideslot5-container5">{sideSlot5.length > 0 && sideSlot5.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckbuilder__sideslot6plus-container6plus">{sideSlot6Plus.length > 0 && sideSlot6Plus.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                </div>
+                <div className="deckbuilder__sideslotlands-container">{sideSlotLands.length > 0 && sideSlotLands.map((card, i) => (
                   <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
                 ))}</div>
-              <div className="deckeditor__sideslot2-container2">{sideSlot2.length > 0 && sideSlot2.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckeditor__sideslot3-container3">{sideSlot3.length > 0 && sideSlot3.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckeditor__sideslot4-container4">{sideSlot4.length > 0 && sideSlot4.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckeditor__sideslot5-container5">{sideSlot5.length > 0 && sideSlot5.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckeditor__sideslot6plus-container6plus">{sideSlot6Plus.length > 0 && sideSlot6Plus.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-            </div>
-            <div className="deckeditor__sideslotlands-container">{sideSlotLands.length > 0 && sideSlotLands.map((card, i) => (
-              <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-            ))}</div>
+              </div>
+            )}
+            {listFlag && (
+              <div className="deckbuilder__list-view">This is the list view</div>
+            )}
+            {stacksFlag && (
+              <div className="deckbuilder__stack-view">This is the stack view</div>
+            )}
           </div>
-          <div className="deckeditor__card-display">
-            <div className="deckeditor__card-display-image" style={{ backgroundImage: `url(${imagePreview})` }}></div>
+          <div className="deckbuilder__card-display">
+            <div className="deckbuilder__card-display-image" style={{ backgroundImage: `url(${imagePreview})` }}></div>
           </div>
         </div>
       </div>
     </>
   ) : (
       <>
-        <div className="deckeditor"></div>
+        <div className="deckbuilder"></div>
       </>
     )
 }
 
-export default DeckEditor;
+export default DeckBuilder;

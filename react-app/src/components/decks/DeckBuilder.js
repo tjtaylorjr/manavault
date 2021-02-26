@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import DeckCardObject from "./DeckCardObject.js";
 import DeckObject from "./DeckObject.js";
@@ -11,6 +11,10 @@ import { BiListUl } from 'react-icons/bi';
 import { AiFillSave } from 'react-icons/ai';
 import { ImSearch } from 'react-icons/im';
 import { RiInboxArchiveFill } from 'react-icons/ri';
+import DeckDnd from '../../utils/DeckDnd';
+import SideboardDnd from '../../utils/SideboardDnd';
+import { useDrop } from 'react-dnd';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 const DeckBuilder = (props) => {
   const [user, setUser] = useState({}); //needed for current user's avatar
@@ -51,6 +55,7 @@ const DeckBuilder = (props) => {
   const [imagePreview, setImagePreview] = useState(cardBack);
   const [searchInput, setSearchInput] = useState("");
   const [foundCards, setFoundCards] = useState([]);
+  // const [index, setIndex] = useState(1);
 
   // const drawerRef = useRef();
   const hoverRef = useRef();
@@ -344,6 +349,17 @@ const DeckBuilder = (props) => {
     return () => mounted = false;
   };
 
+  const builderReducer = (state, action) => {
+    switch (action.type) {
+      default:
+          return state;
+    }
+  };
+
+  const [data, dispatch] = React.useReducer(
+    builderReducer, { cardList: []}
+  )
+
   const hoverAction = (e) => {
     setImagePreview(e.target.src)
   };
@@ -403,6 +419,15 @@ const DeckBuilder = (props) => {
     }
     return () => mounted = false;
   }
+
+  // const [{ isOver }, dropRef] = useDrop({
+  //   accept: "card",
+  //   drop: () => moveCard(),
+  //   collect: (monitor) => ({
+  //     isOver: !!monitor.isOver(),
+  //   })
+  // })
+
 
   return isLoaded ? (
     <>
@@ -468,7 +493,16 @@ const DeckBuilder = (props) => {
               </button>
             </div>
             {containerFlag && (
-              <div className="deckbuilder__container-view">This is the Card Container view</div>
+              <div className="deckbuilder__container-view">
+                <div className="deckbuilder__container-view-maindeck-wrapper">
+                  <div className="deckbuilder__container-view-maindeck-header">Main Deck</div>
+                  <DeckDnd />
+                </div>
+                <div className="deckbuilder__container-view-sideboard-wrapper">
+                  <div className="deckbuilder__container-view-sideboard-header">Sideboard</div>
+                  <SideboardDnd />
+                </div>
+              </div>
             )}
             {curveFlag && (
               <div className="deckbuilder__curve-view">

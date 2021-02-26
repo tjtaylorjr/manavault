@@ -44,3 +44,7 @@ export const convertTimeStamp = (timestamp) => {
 
   return "on " + postDate + " at " + postTime;
 }
+
+// export const ItemTypes = {
+//   CARD: 'card'
+// }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const CardObject = ( card ) => {
+const CardObjectSmall = ( card ) => {
   const [smallIMG, setSmallIMG] = useState("")
   const {data} = card;
 
@@ -15,9 +15,9 @@ const CardObject = ( card ) => {
   }
 
   return (
-    <section className="card-object" onClick={renderCardPage}>
-      <h4 style={{ color:"#FFF" }}>{formatted_name[0]}</h4>
-      <div className="card-object__image-container">
+    <section className="small-card-object" onClick={renderCardPage}>
+      {/* <h4 style={{ color:"#FFF" }}>{formatted_name[0]}</h4> */}
+      <div className="small-card-object__image-container">
         {smallIMG ? (
           <img src={smallIMG} alt={data.name + " card image"}/>
         ) : null}
@@ -26,4 +26,4 @@ const CardObject = ( card ) => {
   )
 }
 
-export default CardObject;
+export default CardObjectSmall;

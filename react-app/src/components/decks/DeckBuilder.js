@@ -2,11 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import DeckCardObject from "./DeckCardObject.js";
 import DeckObject from "./DeckObject.js";
+import CardObjectSmall from "../cards/CardObjectSmall.js";
 import cardBack from '../../assets/images/cards/cardback.jpg';
 import backgroundIMG from '../../assets/backgrounds/urzas-tome.jpg';
 import { CgStack } from 'react-icons/cg';
 import { RiBarChartFill } from 'react-icons/ri';
 import { BiListUl, BiSave } from 'react-icons/bi';
+import { ImSearch } from 'react-icons/im';
 
 const DeckBuilder = (props) => {
   const [user, setUser] = useState({}); //needed for current user's avatar
@@ -44,11 +46,12 @@ const DeckBuilder = (props) => {
   const [deck, setDeck] = useState({});
   const [deckChange, setDeckChange] = useState(false);
   const [imagePreview, setImagePreview] = useState(cardBack);
-  const [searchText, setSearchText] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [foundCards, setFoundCards] = useState([]);
 
   // const drawerRef = useRef();
   const hoverRef = useRef();
-  const searchInput = useRef();
+  const searchRef = useRef();
 
   const { id, username } = props.user;
 
@@ -306,9 +309,36 @@ const DeckBuilder = (props) => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const query = searchText.toLowerCase();
-    searchInput.current.value = "";
+    let mounted = true;
+    const search_text = searchInput.toLowerCase();
+    searchRef.current.value = "";
+    // console.log(searchInput);
+    // console.log(search_text);
+    if(mounted) {
+      (async() => {
+        const res = await fetch(`/api/search/build`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            search_text
+          }),
+        })
 
+        if(!res.ok) {
+          throw res;
+        }
+
+        const data = await res.json();
+
+        if(data) {
+          console.log(data);
+          setFoundCards(data.cards);
+        }
+      })()
+    }
+    return () => mounted = false;
   };
 
   const hoverAction = (e) => {
@@ -385,14 +415,23 @@ const DeckBuilder = (props) => {
         <div className="deckbuilder__body">
           <div className="deckbuilder__search-panel">
             <div className="deckbuilder__search-options-container">
-              <form className="deckbuilder__search-options-form">
+              <form onSubmit={handleSearch} className="deckbuilder__search-options-form">
                 <div className="deckbuilder__search-options-form-text-field">
-                  <input type="search" results="5" ref={searchInput} onChange={(e) => setSearchText(e.target.value)} placeholder="Find Cards"></input>
-                  <button onClick={handleSearch}></button>
+                  <input type="search" results="5" ref={searchRef} onChange={(e) => setSearchInput(e.target.value)} placeholder="Find Cards"></input>
+                  <button></button>
                 </div>
+                <div className="deckbuilder__search-options-form-filter-buttons-container"></div>
+                <button className="deckbuilder__search-options-form-submit-button">
+                  <ImSearch />
+                </button>
               </form>
             </div>
-            <div className="deckbuilder__search-results-container"></div>
+            <div className="deckbuilder__search-results-container">
+              {foundCards.length > 0 && foundCards.map((card, i) => (
+                <CardObjectSmall key={i} data={card}/>
+
+                ))}
+            </div>
           </div>
           <div className="deckbuilder__deck-container">
             <div className="deckbuilder__display-buttons-wrapper">

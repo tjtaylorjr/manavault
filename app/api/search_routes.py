@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, redirect, request
 from app.models import db, Card, Deck, User, Illustration
+from app.forms import BuildSearchForm
 from sqlalchemy import or_, func, desc, text
 from sqlalchemy.orm import joinedload
 from sqlalchemy_searchable import search
@@ -34,3 +35,17 @@ def general_search(params):
     # result3 = Card.query.filter(or_(Card.name.ilike(f"%{query}%"), Card.type.ilike(f"%{query}%"), Card.keywords.ilike(f"%{query}%"), Card.rules_text.ilike(f"%{query}%"), Card.flavor_text.ilike(f"%{query}%"))).distinct(Card.uuid).all()
 
     return {"results": [{"users": data}, {"decks": data2}, {"cards": data3}]}
+
+@search_routes.route('/build', methods=["POST"])
+def deck_build_search():
+    form = BuildSearchForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        text = form.data['search_text']
+        # print(text)
+        # return {"result": text}
+
+        results = Card.query.search(text, sort=True).filter(func.LENGTH(Card.set_code) <= 3).distinct(
+        ).options(joinedload(Card.illustration)).order_by(Card.name, Card.set_code).limit(100).all()
+        return {"cards": [card.to_dict() for card in results]}

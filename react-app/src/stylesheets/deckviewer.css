@@ -183,6 +183,7 @@
   grid-template-columns: 6fr 1fr;
   grid-template-rows: 2.75rem 1fr 2.75rem 1fr 2.75rem 1fr 12rem;
   padding-left: 50px;
+  margin-top: 30px;
 }
 
 .deckviewer__main-container1-title {
@@ -403,9 +404,9 @@
 
 .deckviewer__card-display {
   position: absolute;
-  right: 0;
+  right: 12px;
   height: 955px;
-  width: 385px;
+  width: 340px;
   padding-top: 2.5rem;
 
 }

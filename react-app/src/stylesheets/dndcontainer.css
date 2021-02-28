@@ -1,0 +1,41 @@
+.dnd-list {
+  grid-row: 3;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 3px inset #21262D;
+  background-color: #0D1117;
+  min-height: 180px;
+  max-height: 720px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.dnd-list p {
+  color: #fff;
+  text-align: center;
+  height: 20px;
+  margin-top: 5px;
+}
+
+.dnd-card {
+  width: 180px;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  color: #fff;
+}
+
+.dnd-card__counter-container {
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dnd-card__counter-container p {
+  height: 12px;
+  font-size: 12px;
+}

@@ -25,26 +25,32 @@
 .navbar-links__build-button {
   /* margin-left: 10px; */
   grid-column: 4;
-  margin-right: 3px;
-  width: 30px;
-  height: 30px;
+  margin-right: 4px;
+  width: 25px;
+  height: 25px;
   margin-top: 7.5px;
   justify-self: end;
+  border-radius: 50%;
+  border: 2px solid #0D1117;
 }
 
 .navbar-links__build-button button{
   /* margin-left: 10px; */
   grid-column: 4;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
-  line-height: .7rem;
+  /* line-height: .4rem; */
   border: 2px ridge #E6CD8C;
-  font-size: .8rem;
+  font-size: 12px;
   background-color: #21262D;
   color: #E6CD8C;
   cursor: pointer;
   outline: none;
+  /* text-align: left; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* .navbar-links li {
@@ -64,21 +70,21 @@
   padding-top: 6px;
 }
 
-.navbar-links__right {
+/* .navbar-links__right {
   grid-column-start: 5;
   height: 100%;
 
-}
+} */
 
-.navbar-links li,
-.navbar-links__right li {
+.navbar-links li {
   background: -webkit-linear-gradient(135deg, #766237 10%, #E6CD8C 50%, #766237 90%);
   border: 2px groove #0D1117;
   border-radius: 16px;
   text-align: center;
-  padding: 2px 4px;
-  margin: 4px 2px;
+  padding: 4px 4px;
+  margin: 1px 2px;
   width: 80px;
+  height: 18px;
 }
 
 .navbar-links__list-logout-button label {

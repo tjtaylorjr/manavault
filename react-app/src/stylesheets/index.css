@@ -1,3 +1,6 @@
+@import url('./counter.css');
+@import url('./dndcardobject.css');
+@import url('./dndcontainer.css');
 @import url('./reset.css');
 @import url('./navbar.css');
 @import url('./main.css');
@@ -16,6 +19,7 @@
 @import url('./commentbox.css');
 @import url('./comment.css');
 @import url('./avatar.css');
+
 
 
 

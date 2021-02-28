@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import UserObject from "../users/UserObject";
 import DeckObject from "../decks/DeckObject";
-import CardObjectNormal from "../cards/CardObjectNormal";
+import CardObjectNormal from "../cards/SearchCardObject";
+import SearchCardObject from "../cards/SearchCardObject";
 import SearchBar from "./SearchBar";
 import "../../stylesheets/searchresults.css";
 
@@ -184,7 +185,7 @@ const SearchResults = (props) => {
           </h3>
           <ul className='search-page__results-list'>
             {cardQueryResults.map((card, i) => (
-              <CardObjectNormal key={i} data={card} />
+              <SearchCardObject key={i} data={card} />
             ))}
           </ul>
         </div>

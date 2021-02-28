@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 const DeckCardObject = (props) => {
   const [smallIMG, setSmallIMG] = useState("")
   const [normalIMG, setNormalIMG] = useState("")
-  const { card} = props.data;
+  const { card } = props.data;
   const { showImagePreview, dropImagePreview} = props;
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const DeckCardObject = (props) => {
         {normalIMG ? (
           <img src={normalIMG} alt={props.data.name + " card image"} onMouseEnter={showImagePreview} onMouseLeave={dropImagePreview}/>
         ) : null}
-        {normalIMG ? (
+        {normalIMG && props.num > 0 ? (
           <div className="deckcard-object__reported-copies">{`x` + props.num}</div>
         ) : null}
       </div>

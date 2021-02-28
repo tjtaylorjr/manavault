@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import DeckCardObject from "./DeckCardObject.js";
 import DeckObject from "./DeckObject.js";
-import CardObjectSmall from "../cards/CardObjectSmall.js";
+import BuildSearchCardObject from "../cards/BuildSearchCardObject.js";
 import cardBack from '../../assets/images/cards/cardback.jpg';
 import backgroundIMG from '../../assets/backgrounds/urzas-tome.jpg';
 import { CgStack } from 'react-icons/cg';
@@ -336,7 +336,7 @@ const DeckBuilder = (props) => {
         const data = await res.json();
 
         if (data) {
-          console.log(data);
+          // console.log(data);
           setFoundCards(data.cards);
         }
       })()
@@ -445,7 +445,7 @@ const DeckBuilder = (props) => {
             </div>
             <div className="deckbuilder__search-results-container">
               {foundCards.length > 0 && foundCards.map((card, i) => (
-                <CardObjectSmall key={i} data={card} />
+                <BuildSearchCardObject key={i} data={card} />
               ))}
             </div>
           </div>

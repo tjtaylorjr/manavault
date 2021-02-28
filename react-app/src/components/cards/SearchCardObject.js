@@ -15,9 +15,9 @@ const CardObjectNormal = ( card ) => {
   }
 
   return (
-    <section className="normal-card-object" onClick={renderCardPage}>
+    <section className="search-card-object" onClick={renderCardPage}>
       <h4 style={{ color:"#FFF" }}>{formatted_name[0]}</h4>
-      <div className="normal-card-object__image-container">
+      <div className="search-card-object__image-container">
         {normalIMG ? (
           <img src={normalIMG} alt={data.name + " card image"}/>
         ) : null}

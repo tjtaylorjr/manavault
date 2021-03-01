@@ -25,7 +25,7 @@ const DeckBuilder = (props) => {
       case 'ADD_CARD_TO_DECKLIST':
         return { ...state, deckList: state.deckList.concat(action.newCard) };
       case 'REMOVE_CARD_FROM_DECKLIST':
-        return {deckList: [...state.deckList.filter(el => el.card.id !== action.payload)]};
+        return {...state, deckList: state.deckList.filter(el => el.card.id !== action.payload)};
       case 'RESET_DECKLIST':
         return init(action.payload);
       default:

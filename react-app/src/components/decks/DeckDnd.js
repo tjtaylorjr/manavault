@@ -50,14 +50,8 @@ const DeckDnd = (props) => {
     e.stopPropagation();
     console.log("leaving the area")
     console.log(currentCard)
-    const referenceID = () => {
-      if(currentCard.card_id.includes("deckBuilder")){
-        return currentCard.card_id.slice(11)
-      } else {
-        return currentCard.card_id
-      }
-    }
-    // console.log(referenceID)
+    const referenceID = currentCard.card_id.includes("deckBuilder") ? currentCard.card_id.slice(11) : currentCard.card_id
+    console.log(referenceID)
     dispatch({type: 'REMOVE_CARD_FROM_DECKLIST', payload: referenceID});
   };
 

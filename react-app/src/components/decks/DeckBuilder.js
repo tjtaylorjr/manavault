@@ -26,6 +26,10 @@ const DeckBuilder = (props) => {
         return { ...state, deckList: state.deckList.concat(action.newCard) };
       case 'REMOVE_CARD_FROM_DECKLIST':
         return {...state, deckList: state.deckList.filter(el => el.card.id !== action.payload)};
+      case 'UPDATE_CARD_COUNT_IN_MAINDECK':
+        return { ...state, deckList: state.deckList.map((el) => el.card.id === action.payload.card_id ? { ...el, in_deck: action.payload.count } : el) };
+      case 'UPDATE_CARD_COUNT_IN_SIDEBOARD':
+        return { ...state, deckList: state.deckList.map((el) => el.card.id === action.payload.card_id ? {...el, in_sideboard: action.payload.count } : el)};
       case 'RESET_DECKLIST':
         return init(action.payload);
       default:

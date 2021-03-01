@@ -35,7 +35,7 @@ const DndCardObject = (props) => {
     <section className="dndcard-object" ref={dragRef}>
       <div className="dndcard-object__image-container">
         {normalIMG ? (
-          <img src={normalIMG} id={`deckBuilder${cardImgId}`} name={props.data.card.name} alt={props.data.card.name + " card image"} onDragStart={dragStart} onMouseEnter={showImagePreview} onMouseLeave={dropImagePreview} />
+          <img src={normalIMG} id={`deckBuilder${cardImgId}`} name={props.data.card.name} alt={props.data.card.name + " card image"} cmc={props.data.card.conv_mana_cost} onDragStart={dragStart} onMouseEnter={showImagePreview} onMouseLeave={dropImagePreview} />
         ) : null}
       </div>
     </section>

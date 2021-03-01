@@ -63,7 +63,7 @@ const DeckDnd = (props) => {
   const dragStart = (e) => {
     console.log(e.target);
     // console.log(e.target.name);
-    const data = { src: e.target.src, card_id: e.target.id, name: e.target.name};
+    const data = { src: e.target.src, card_id: e.target.id, name: e.target.name, cmc: e.target.getAttribute('cmc')};
     setCurrentCard(data);
   }
 
@@ -82,6 +82,7 @@ const DeckDnd = (props) => {
       const newCard = {
         "card": {
           "id": currentCard.card_id.includes("deckBuilder") ? currentCard.card_id.slice(11) : currentCard.card_id,
+          "conv_mana_cost": currentCard.cmc,
           "illustration": {
             "normal_image": currentCard.src
           },

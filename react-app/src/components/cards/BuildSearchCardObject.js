@@ -51,7 +51,7 @@ const BuildSearchCardObject = ( props ) => {
       {/* <h4 style={{ color:"#FFF" }}>{formatted_name[0]}</h4> */}
       <div className="build-search-card-object__image-container">
         {normalIMG ? (
-          <img src={normalIMG} id={ID} name={name} alt={data.name + " card image"} onDragStart={dragStart} onDrop={cardDrop} onMouseEnter={showImagePreview} onMouseLeave={dropImagePreview}/>
+          <img src={normalIMG} id={ID} name={name} alt={data.name + " card image"} cmc={data.conv_mana_cost} onDragStart={dragStart} onDrop={cardDrop} onMouseEnter={showImagePreview} onMouseLeave={dropImagePreview}/>
         ) : null}
       </div>
     </section>

@@ -140,7 +140,8 @@ const DeckBuilder = (props) => {
         }
       })
     }
-
+    console.log(main)
+    // console.log(side)
     setMainDeck(main);
     setSideboard(side);
     return () => mounted = false;
@@ -148,6 +149,7 @@ const DeckBuilder = (props) => {
 
   useEffect(() => {
     let mounted = true;
+    // console.log(mainDeck);
     if (mainDeck.length > 0 && mounted) {
       const mainCreature01 = mainDeck.filter((card) =>
         (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
@@ -366,7 +368,7 @@ const DeckBuilder = (props) => {
         const data = await res.json();
 
         if(data) {
-          // console.log(data);
+          console.log(data);
           setFoundCards(data.cards);
         }
       })()
@@ -445,7 +447,9 @@ const DeckBuilder = (props) => {
   const dragStart = (e) => {
     // console.log(e.target.id);
     // console.log(e.target.name);
-    const data = { src: e.target.src, card_id: e.target.id, name: e.target.name };
+    // const cmc = e.target.value;
+    // console.log(cmc);
+    const data = { src: e.target.src, card_id: e.target.id, name: e.target.name, cmc: e.target.getAttribute('cmc')};
     setDropData(data);
     // console.log(JSON.stringify(data));
     // e.dataTransfer.setData("text/plain", JSON.stringify(data));
@@ -517,12 +521,12 @@ const DeckBuilder = (props) => {
               <button className="deckbuilder__curve-button" title="Curve Display" onClick={showCurve} >
                 <RiBarChartFill />
               </button>
-              <button className="deckbuilder__list-button" title="List Display" onClick={showList} >
+              {/* <button className="deckbuilder__list-button" title="List Display" onClick={showList} >
                 <BiListUl />
               </button>
               <button className="deckbuilder__stack-button" title="Stack Display" onClick={showStack} >
                 <CgStack />
-              </button>
+              </button> */}
               <button className="deckbuilder__save-button" title="Save" onClick={saveDeck} >
                 <AiFillSave />
               </button>

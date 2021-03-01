@@ -38,7 +38,7 @@ function App() {
   }
 
   return (
-    <div className="site-container">
+    <>
       <div className="site-wrapper">
         <BrowserRouter>
           <NavBar
@@ -120,7 +120,7 @@ function App() {
         </BrowserRouter>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

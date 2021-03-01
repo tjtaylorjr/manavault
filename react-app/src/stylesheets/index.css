@@ -20,16 +20,6 @@
 @import url('./comment.css');
 @import url('./avatar.css');
 
-
-
-
-#root {
-  bottom: 0;
-  top: 0;
-  right: 0;
-  left: 0;
-}
-
 html, body {
   margin: 0;
   padding: 0;
@@ -47,6 +37,21 @@ html {
 body {
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+#root {
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  position: relative;
+  min-height: 100vh;
+}
+
+.site-wrapper {
+  min-height: 840px;
+  height: 100%;
+  padding-bottom: 60px;
 }
 
 ::-webkit-scrollbar {
@@ -67,14 +72,7 @@ body {
   border: 1px outset #E6CD8C;
 }
 
-.site-container {
-  position: relative;
-  min-height: 100vh;
-}
 
-.site-wrapper {
-  padding-bottom: 60px;
-}
 
 input[type=search]::-ms-clear {
   display: none;

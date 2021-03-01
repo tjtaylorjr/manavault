@@ -28,12 +28,14 @@ const DndCardObject = (props) => {
     }),
   }))
 
+  const cardImgId = props.data.card.id.includes("deckBuilder") ? props.data.card.id.slice(11) : props.data.card.id;
+
 
   return (
     <section className="dndcard-object" ref={dragRef}>
       <div className="dndcard-object__image-container">
         {normalIMG ? (
-          <img src={normalIMG} id={`deckBuilder${props.data.card.id}`} name={props.data.card.name} alt={props.data.card.name + " card image"} onDragStart={dragStart} onMouseEnter={showImagePreview} onMouseLeave={dropImagePreview} />
+          <img src={normalIMG} id={`deckBuilder${cardImgId}`} name={props.data.card.name} alt={props.data.card.name + " card image"} onDragStart={dragStart} onMouseEnter={showImagePreview} onMouseLeave={dropImagePreview} />
         ) : null}
       </div>
     </section>

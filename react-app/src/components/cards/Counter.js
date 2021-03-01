@@ -15,7 +15,11 @@ export const Counter = (props) => {
   useEffect(() => {
     let mounted = true;
     if(card_id && mounted) {
-      setCounterID(card_id);
+      if (card_id.includes("deckBuilder")) {
+        setCounterID(card_id.slice(11));
+      } else {
+        setCounterID(card_id);
+      }
     }
     return () => mounted = false;
   },[props.card_id])

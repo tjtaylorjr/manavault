@@ -50,9 +50,15 @@ const DeckDnd = (props) => {
     e.stopPropagation();
     console.log("leaving the area")
     console.log(currentCard)
-    //const referenceID = currentCard.card_id.slice(11)
+    const referenceID = () => {
+      if(currentCard.card_id.includes("deckBuilder")){
+        return currentCard.card_id.slice(11)
+      } else {
+        return currentCard.card_id
+      }
+    }
     // console.log(referenceID)
-    dispatch({type: 'REMOVE_CARD_FROM_DECKLIST', payload: currentCard.card_id});
+    dispatch({type: 'REMOVE_CARD_FROM_DECKLIST', payload: referenceID});
   };
 
   const handleDragOver = e => {
@@ -81,7 +87,7 @@ const DeckDnd = (props) => {
       console.log(existingCardIds)
       const newCard = {
         "card": {
-          "id": currentCard.card_id,
+          "id": currentCard.card_id.includes("deckBuilder") ? currentCard.card_id.slice(11) : currentCard.card_id,
           "illustration": {
             "normal_image": currentCard.src
           },

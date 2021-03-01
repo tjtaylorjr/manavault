@@ -111,27 +111,27 @@ const DeckBuilder = (props) => {
   //   }
   }, [user])
 
-  useEffect(() => {
-    let mounted = true;
-    if(deck.id && mounted) {
-      (async () => {
-        const res = await fetch(`/api/decks/${deck.id}`);
-        const deckList = await res.json()
-        if (deckList) {
-          setDeck(deckList)
-        }
-      })()
-      setDeckChange(false)
-    }
-  }, [deckChange])
+  // useEffect(() => {
+  //   let mounted = true;
+  //   if(deck.id && mounted) {
+  //     (async () => {
+  //       const res = await fetch(`/api/decks/${deck.id}`);
+  //       const deckList = await res.json()
+  //       if (deckList) {
+  //         setDeck(deckList)
+  //       }
+  //     })()
+  //     setDeckChange(false)
+  //   }
+  // }, [deckChange])
 
 
   useEffect(() => {
     let mounted = true;
     let main = []
     let side = []
-    if (deck.card_list && mounted) {
-      deck.card_list.forEach((card) => {
+    if (deckBuilderData.deckList && mounted) {
+      deckBuilderData.deckList.forEach((card) => {
         if (card.in_deck > 0) {
           main.push(card)
         }

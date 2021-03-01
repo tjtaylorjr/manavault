@@ -12,12 +12,31 @@ import { BiListUl } from 'react-icons/bi';
 import { AiFillSave } from 'react-icons/ai';
 import { ImSearch } from 'react-icons/im';
 import { RiInboxArchiveFill } from 'react-icons/ri';
+import { FaTrashAlt } from 'react-icons/fa';
 import DeckDnd from './DeckDnd';
 import SideboardDnd from './SideboardDnd';
 import { useDrop } from 'react-dnd';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 const DeckBuilder = (props) => {
+  const initialState = [];
+  const deckListReducer = (state, action) => {
+    switch (action.type) {
+      case 'ADD_CARD_TO_DECKLIST':
+        return { ...state, deckList: state.deckList.concat(action.newCard) };
+      case 'REMOVE_CARD_FROM_DECKLIST':
+        return {deckList: [...state.deckList.filter(el => el.card.id !== action.payload)]}
+      case 'RESET_DECKLIST':
+        return init(action.payload);
+      default:
+        return state;
+    }
+  }
+  const init = (initialState) => {
+    return { deckList: initialState }
+  }
+  const [deckBuilderData, dispatch] = useReducer(deckListReducer, initialState, init);
+
   const [user, setUser] = useState({}); //needed for current user's avatar
   const [avatar, setAvatar] = useState("");
   const [comments, setComments] = useState([]);
@@ -351,18 +370,6 @@ const DeckBuilder = (props) => {
     return () => mounted = false;
   };
 
-  // function init()
-  // const builderReducer = (state, action) => {
-  //   switch (action.type) {
-  //     default:
-  //         return state;
-  //   }
-  // };
-
-  // const [data, dispatch] = useReducer(
-  //   builderReducer, initial[], init
-  // )
-
   const hoverAction = (e) => {
     // console.log(e.target);
     setImagePreview(e.target.src)
@@ -477,20 +484,25 @@ const DeckBuilder = (props) => {
           <div className="deckbuilder__search-panel">
             <div className="deckbuilder__search-options-container">
               <form onSubmit={handleSearch} className="deckbuilder__search-options-form">
-                <div className="deckbuilder__search-options-form-text-field">
-                  <input type="search" results="5" ref={searchRef} onChange={(e) => setSearchInput(e.target.value)} placeholder="Find Cards"></input>
-                  <button></button>
+                <div className="deckbuilder__search-options-form-top">
+                  <div className="deckbuilder__search-options-form-text-field">
+                    <input type="search" results="5" ref={searchRef} onChange={(e) => setSearchInput(e.target.value)} placeholder="Find Cards"></input>
+                    <button></button>
+                  </div>
+                  <button className="deckbuilder__search-options-form-submit-button">
+                    <ImSearch />
+                  </button>
                 </div>
                 <div className="deckbuilder__search-options-form-filter-buttons-container"></div>
-                <button className="deckbuilder__search-options-form-submit-button">
-                  <ImSearch />
-                </button>
               </form>
             </div>
-            <div className="deckbuilder__search-results-container">
-              {foundCards.length > 0 && foundCards.map((card, i) => (
-                <BuildSearchCardObject key={i} data={card} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} dragStart={dragStart} cardDrop={cardDrop}/>
-              ))}
+            <div className="deckbuilder__search-results-wrapper">
+              <div className="deckbuilder__search-results-filters"></div>
+              <div className="deckbuilder__search-results-container">
+                {foundCards.length > 0 && foundCards.map((card, i) => (
+                  <BuildSearchCardObject key={i} data={card} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} dragStart={dragStart} cardDrop={cardDrop}/>
+                ))}
+              </div>
             </div>
           </div>
           <div className="deckbuilder__deck-container">
@@ -510,13 +522,16 @@ const DeckBuilder = (props) => {
               <button className="deckbuilder__save-button" title="Save" onClick={saveDeck} >
                 <AiFillSave />
               </button>
+              <button className="deckbuilder__delete-build-button" title="Reset Deck" onClick={() => dispatch({type: 'RESET_DECKLIST', payload: initialState})}>
+                <FaTrashAlt />
+              </button>
             </div>
             {containerFlag && (
               <div className="deckbuilder__container-view">
                 <div className="deckbuilder__container-view-wrapper">
-                  <div className="deckbuilder__container-view-header"></div>
+                  {/* <div className="deckbuilder__container-view-header"></div> */}
                   <p>Drag cards here to add them to your deck</p>
-                  <DeckDnd mainDeck={mainDeck} setMainDeck={setMainDeck} dropData={dropData} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction}/>
+                  <DeckDnd deckBuilderData={deckBuilderData} dispatch={dispatch}mainDeck={mainDeck} setMainDeck={setMainDeck} dropData={dropData} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction}/>
                 </div>
                 {/* <div className="deckbuilder__container-view-sideboard-wrapper">
                   <div className="deckbuilder__container-view-sideboard-header">Sideboard</div>

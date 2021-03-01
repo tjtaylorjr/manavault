@@ -7,10 +7,11 @@
   flex-wrap: wrap;
   border: 3px inset #21262D;
   background-color: #0D1117;
-  min-height: 180px;
+  min-height: 360px;
   max-height: 720px;
   align-items: flex-start;
   justify-content: flex-start;
+  padding: 0 7px;
 }
 
 .dnd-list p {
@@ -26,10 +27,12 @@
   flex-direction: row;
   align-items: start;
   color: #fff;
+  padding: 2px;
 }
 
 .dnd-card__counter-container {
-  height: 180px;
+  width: 35px;
+  height: 175px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,5 +40,7 @@
 
 .dnd-card__counter-container p {
   height: 12px;
+  width: 100%;
   font-size: 12px;
+  text-align: center;
 }

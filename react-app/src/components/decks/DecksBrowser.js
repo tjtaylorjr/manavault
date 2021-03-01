@@ -109,7 +109,7 @@ function DecksBrowser() {
           options={optionSelect}
           onChange={setOption}
         />
-        <button className="deckbrowser__header-button" onClick={() => history.push("/decks/build")}>
+        <button title="Build" className="deckbrowser__header-button" onClick={() => history.push("/decks/build")}>
           <IoBuild />
         </button>
       </div>

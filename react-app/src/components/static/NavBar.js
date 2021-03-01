@@ -16,7 +16,7 @@ const NavBar = ({ authenticated, setAuthenticated, setCurrentUser, currentUser }
             {/* <h1 className="title">Spark</h1> */}
           </div>
           <div className="navbar-links__build-button">
-            <button alt="build" onClick={() => history.push("/decks/build")}>
+            <button title="Build" alt="build" onClick={() => history.push("/decks/build")}>
               <IoBuild />
             </button>
           </div>

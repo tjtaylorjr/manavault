@@ -99,6 +99,25 @@ function DecksBrowser() {
     );
   });
 
+  const selectStyles = {
+    control: styles => ({ ...styles, backgroundColor: '#21262D', borderRadius: '18px', border: '1px solid #E6CD8C', color: '#E6CD8C', }),
+    singleValue: styles => ({ ...styles, color: '#46646E', }),
+    dropdownIndicator: styles => ({ ...styles, color: '#46646E', }),
+    menu: styles => ({ ...styles, backgroundColor: '#21262D', border: '1px solid #E6CD8C' }),
+    indicatorSeparator: styles => ({ ...styles, backgroundColor: '#46646E', }),
+    input: styles => ({ ...styles, textAlign: 'center' }),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      //const color = chroma(data.color);
+      return {
+        ...styles,
+        backgroundColor: isSelected ? '#E6CD8C' : '#21262D',
+        color: '#46646E',
+        cursor: isDisabled ? 'not-allowed' : 'default',
+        textAlign: 'center',
+      };
+    },
+  }
+
   return (
     <div className="decksbrowser">
       <div className="deckbrowser__header">
@@ -108,6 +127,15 @@ function DecksBrowser() {
           defaultValue={option}
           options={optionSelect}
           onChange={setOption}
+          styles={selectStyles}
+          theme={theme => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary25: '#E6CD8C',
+              primary: '#21262D',
+            },
+          })}
         />
         <button title="Build" className="deckbrowser__header-button" onClick={() => history.push("/decks/build")}>
           <IoBuild />

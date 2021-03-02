@@ -38,6 +38,7 @@ function UsersBrowser() {
     {value: "Z", label: "Z" },
   ];
 
+
   // const handleSelect = (selected) => {
   //   console.log(selected);
   //   setLetter(selected);
@@ -88,14 +89,43 @@ function UsersBrowser() {
     );
   });
 
+  const selectStyles = {
+    control: styles => ({...styles, backgroundColor: '#21262D', borderRadius: '18px', border: '1px solid #E6CD8C', color: '#E6CD8C', }),
+    singleValue: styles => ({ ...styles, color: '#46646E', }),
+    dropdownIndicator: styles => ({ ...styles, color: '#46646E', }),
+    menu: styles => ({...styles, backgroundColor: '#21262D', border: '1px solid #E6CD8C'}),
+    indicatorSeparator: styles => ({ ...styles, backgroundColor: '#46646E', }),
+    input: styles => ({ ...styles, textAlign: 'center'}),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      //const color = chroma(data.color);
+      return {
+        ...styles,
+        backgroundColor: isSelected ? '#E6CD8C' : '#21262D',
+        color: '#46646E',
+        cursor: isDisabled ? 'not-allowed' : 'default',
+        textAlign: 'center',
+      };
+    },
+  }
+
   return (
     <div className="usersbrowser">
       <Select
         className="usersbrowser__select-bar"
-        placeholder="Filter Users"
+        classNamePrefix="select-bar"
+        placeholder="Users"
         defaultValue={letter}
         options={letterSelect}
         onChange={setLetter}
+        styles={selectStyles}
+        theme={theme => ({
+          ...theme,
+          colors: {
+            ...theme.colors,
+            primary25: '#E6CD8C',
+            primary: '#21262D',
+          },
+        })}
       />
       <ul className="usersbrowser__user-list">{userObjects}</ul>
     </div>

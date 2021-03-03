@@ -5,7 +5,10 @@ import { useDrag } from 'react-dnd';
 const BuildSearchCardObject = ( props ) => {
   const [normalIMG, setNormalIMG] = useState("");
   const [ID, setID] = useState("");
-  // console.log(props);
+  const [type, setType] = useState("");
+  // const [card, setCard] = useState("");
+
+  //console.log(props);
   const {
          data,
          showImagePreview,
@@ -24,9 +27,13 @@ const BuildSearchCardObject = ( props ) => {
     if (mounted) {
       setNormalIMG(data.illustration.normal_image);
       setID(data.id)
+      // let cardData = JSON.stringify(data)
+      // setCard(cardData)
+      // const cardType = data.type.split(" //")
+      setType(data.type)
     }
     return () => mounted = false;
-  },[props.card, data.illustration.normal_image])
+  },[props.data, data.illustration.normal_image])
 
   // const renderCardPage = () => {
   //   alert('Card information modal coming soon!');
@@ -50,7 +57,7 @@ const BuildSearchCardObject = ( props ) => {
     >
       <div className="build-search-card-object__image-container">
         {normalIMG ? (
-          <img src={normalIMG} id={ID} name={name} alt={data.name + " card image"} cmc={data.conv_mana_cost} onDragStart={dragStart} onDrop={cardDrop} onMouseEnter={showImagePreview} onMouseLeave={dropImagePreview}/>
+          <img src={normalIMG} id={ID} name={name} alt={data.name + " card image"} cmc={data.conv_mana_cost} type={type} onDragStart={dragStart} onDrop={cardDrop} onMouseEnter={showImagePreview} onMouseLeave={dropImagePreview}/>
         ) : null}
       </div>
     </section>

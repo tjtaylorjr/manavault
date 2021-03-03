@@ -1,9 +1,7 @@
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import DeckCardObject from "./DeckCardObject.js";
-import DeckObject from "./DeckObject.js";
 import BuildSearchCardObject from "../cards/BuildSearchCardObject.js";
-import CardObjectNormal from "../cards/SearchCardObject.js";
 import cardBack from '../../assets/images/cards/cardback.jpg';
 import backgroundIMG from '../../assets/backgrounds/urzas-tome.jpg';
 import { CgStack } from 'react-icons/cg';
@@ -14,7 +12,6 @@ import { ImSearch } from 'react-icons/im';
 import { RiInboxArchiveFill } from 'react-icons/ri';
 import { FaTrashAlt } from 'react-icons/fa';
 import DeckDnd from './DeckDnd';
-import SideboardDnd from './SideboardDnd';
 import { useDrop } from 'react-dnd';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
@@ -80,9 +77,6 @@ const DeckBuilder = (props) => {
   const [searchInput, setSearchInput] = useState("");
   const [foundCards, setFoundCards] = useState([]);
   const [dropData, setDropData] = useState("");
-  // const [index, setIndex] = useState(1);
-
-  // const drawerRef = useRef();
   const hoverRef = useRef();
   const searchRef = useRef();
 
@@ -95,20 +89,6 @@ const DeckBuilder = (props) => {
       setIsLoaded(false);
       return;
     }
-
-  //   setIsLoaded(false);
-  //   (async () => {
-  //     const response = await fetch(`/api/users/${id}`);
-  //     const user = await response.json();
-  //     setUser(user);
-  //   })();
-  // }, [id]);
-
-  // useEffect(() => {
-  //   if (Object.keys(user).length === 12) {
-  //     const avatar_img = user.info.avatar;
-  //     setAvatar(avatar_img);
-  //   }
   }, [user])
 
   // useEffect(() => {
@@ -130,6 +110,7 @@ const DeckBuilder = (props) => {
     let mounted = true;
     let main = []
     let side = []
+    console.log(deckBuilderData);
     if (deckBuilderData.deckList && mounted) {
       deckBuilderData.deckList.forEach((card) => {
         if (card.in_deck > 0) {
@@ -141,117 +122,173 @@ const DeckBuilder = (props) => {
       })
     }
     console.log(main)
-    // console.log(side)
+    //console.log(side)
     setMainDeck(main);
     setSideboard(side);
     return () => mounted = false;
-  }, [deck.card_list])
+  }, [deckBuilderData])
 
   useEffect(() => {
     let mounted = true;
-    // console.log(mainDeck);
-    if (mainDeck.length > 0 && mounted) {
+    console.log(mainDeck);
+    // if (mainDeck.length > 0 && mounted) {
+    //   const mainCreature01 = mainDeck.filter((card) =>
+    //     (parseInt(card.card.conv_mana_cost) === 0 || parseInt(card.card.conv_mana_cost) === 1) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+    //   )
+
+    if (mounted) {
       const mainCreature01 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+        (parseInt(card.card.conv_mana_cost) === 0 || parseInt(card.card.conv_mana_cost) === 1) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
       )
 
       const mainCreature2 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 2) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+        (parseInt(card.card.conv_mana_cost) === 2) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
       )
 
       const mainCreature3 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 3) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+        (parseInt(card.card.conv_mana_cost) === 3) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
       )
 
       const mainCreature4 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 4) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+        (parseInt(card.card.conv_mana_cost) === 4) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
       )
 
       const mainCreature5 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 5) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+        (parseInt(card.card.conv_mana_cost) === 5) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
       )
 
       const mainCreature6Plus = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost >= 6) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+        (parseInt(card.card.conv_mana_cost) >= 6) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
       )
 
       const lands = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 0) && (card.card.type.includes("Land"))
+        (parseInt(card.card.conv_mana_cost) === 0) && (card.card.type.includes("Land"))
       )
 
       const mainSpell01 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
+        (parseInt(card.card.conv_mana_cost) === 0 || parseInt(card.card.conv_mana_cost) === 1) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
       )
 
       const mainSpell2 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 2) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
+        (parseInt(card.card.conv_mana_cost) === 2) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
       )
 
       const mainSpell3 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 3) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
+        (parseInt(card.card.conv_mana_cost) === 3) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
       )
 
       const mainSpell4 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 4) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
+        (parseInt(card.card.conv_mana_cost) === 4) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
       )
 
       const mainSpell5 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 5) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
+        (parseInt(card.card.conv_mana_cost) === 5) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
       )
 
       const mainSpell6Plus = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost >= 6) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
+        (parseInt(card.card.conv_mana_cost) >= 6) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
       )
 
-      if (mainCreature01.length > 0) {
+      // if (mainCreature01.length > 0) {
+      //   setCreatures0Or1(mainCreature01)
+      // }
+
+      // if (mainCreature2.length > 0) {
+      //   setCreatures2(mainCreature2)
+      // }
+
+      // if (mainCreature3.length > 0) {
+      //   setCreatures3(mainCreature3)
+      // }
+
+      // if (mainCreature4.length > 0) {
+      //   setCreatures4(mainCreature4)
+      // }
+
+      // if (mainCreature5.length > 0) {
+      //   setCreatures5(mainCreature5)
+      // }
+
+      // if (mainCreature6Plus.length > 0) {
+      //   setCreatures6Plus(mainCreature6Plus)
+      // }
+
+      // if (lands.length > 0) {
+      //   setLands(lands)
+      // }
+
+      // if (mainSpell01.length > 0) {
+      //   setSpells0Or1(mainSpell01)
+      // }
+
+      // if (mainSpell2.length > 0) {
+      //   setSpells2(mainSpell2)
+      // }
+
+      // if (mainSpell3.length > 0) {
+      //   setSpells3(mainSpell3)
+      // }
+
+      // if (mainSpell4.length > 0) {
+      //   setSpells4(mainSpell4)
+      // }
+
+      // if (mainSpell5.length > 0) {
+      //   setSpells5(mainSpell5)
+      // }
+
+      // if (mainSpell6Plus.length > 0) {
+      //   setSpells6Plus(mainSpell6Plus)
+      // }
+      if (mainCreature01) {
         setCreatures0Or1(mainCreature01)
       }
 
-      if (mainCreature2.length > 0) {
+      if (mainCreature2) {
         setCreatures2(mainCreature2)
       }
 
-      if (mainCreature3.length > 0) {
+      if (mainCreature3) {
         setCreatures3(mainCreature3)
       }
 
-      if (mainCreature4.length > 0) {
+      if (mainCreature4) {
         setCreatures4(mainCreature4)
       }
 
-      if (mainCreature5.length > 0) {
+      if (mainCreature5) {
         setCreatures5(mainCreature5)
       }
 
-      if (mainCreature6Plus.length > 0) {
+      if (mainCreature6Plus) {
         setCreatures6Plus(mainCreature6Plus)
       }
 
-      if (lands.length > 0) {
+      if (lands) {
         setLands(lands)
       }
 
-      if (mainSpell01.length > 0) {
+      if (mainSpell01) {
         setSpells0Or1(mainSpell01)
       }
 
-      if (mainSpell2.length > 0) {
+      if (mainSpell2) {
         setSpells2(mainSpell2)
       }
 
-      if (mainSpell3.length > 0) {
+      if (mainSpell3) {
         setSpells3(mainSpell3)
       }
 
-      if (mainSpell4.length > 0) {
+      if (mainSpell4) {
         setSpells4(mainSpell4)
       }
 
-      if (mainSpell5.length > 0) {
+      if (mainSpell5) {
         setSpells5(mainSpell5)
       }
 
-      if (mainSpell6Plus.length > 0) {
+      if (mainSpell6Plus) {
         setSpells6Plus(mainSpell6Plus)
       }
     }
@@ -261,60 +298,88 @@ const DeckBuilder = (props) => {
 
   useEffect(() => {
     let mounted = true;
-    if (sideboard.length > 0 && mounted) {
+    if (mounted) {
       const side01 = sideboard.filter((card) =>
-        (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (!card.card.type.includes("Land"))
+        (parseInt(card.card.conv_mana_cost) === 0 || parseInt(card.card.conv_mana_cost) === 1) && (!card.card.type.includes("Land"))
       )
 
       const side2 = sideboard.filter((card) =>
-        card.card.conv_mana_cost === 2
+        parseInt(card.card.conv_mana_cost) === 2
       )
 
       const side3 = sideboard.filter((card) =>
-        card.card.conv_mana_cost === 3
+        parseInt(card.card.conv_mana_cost) === 3
       )
 
       const side4 = sideboard.filter((card) =>
-        card.card.conv_mana_cost === 4
+        parseInt(card.card.conv_mana_cost) === 4
       )
 
       const side5 = sideboard.filter((card) =>
-        card.card.conv_mana_cost === 5
+        parseInt(card.card.conv_mana_cost) === 5
       )
 
       const side6Plus = sideboard.filter((card) =>
-        card.card.conv_mana_cost >= 6
+        parseInt(card.card.conv_mana_cost) >= 6
       )
 
       const sideLands = sideboard.filter((card) =>
-        (card.card.conv_mana_cost === 0) && (card.card.type.includes("Land"))
+        (parseInt(card.card.conv_mana_cost) === 0) && (card.card.type.includes("Land"))
       )
 
-      if (side01.length > 0) {
+      // if (side01.length > 0) {
+      //   setSideSlot01(side01)
+      // }
+
+      // if (side2.length > 0) {
+      //   setSideSlot2(side2)
+      // }
+
+      // if (side3.length > 0) {
+      //   setSideSlot3(side3)
+      // }
+
+      // if (side4.length > 0) {
+      //   setSideSlot4(side4)
+      // }
+
+      // if (side5.length > 0) {
+      //   setSideSlot5(side5)
+      // }
+
+      // if (side6Plus.length > 0) {
+      //   setSideSlot6Plus(side6Plus)
+      // }
+
+      // if (sideLands.length > 0) {
+      //   setSideSlotLands(sideLands)
+      // }
+
+      if (side01) {
         setSideSlot01(side01)
       }
 
-      if (side2.length > 0) {
+      if (side2) {
         setSideSlot2(side2)
       }
 
-      if (side3.length > 0) {
+      if (side3) {
         setSideSlot3(side3)
       }
 
-      if (side4.length > 0) {
+      if (side4) {
         setSideSlot4(side4)
       }
 
-      if (side5.length > 0) {
+      if (side5) {
         setSideSlot5(side5)
       }
 
-      if (side6Plus.length > 0) {
+      if (side6Plus) {
         setSideSlot6Plus(side6Plus)
       }
 
-      if (sideLands.length > 0) {
+      if (sideLands) {
         setSideSlotLands(sideLands)
       }
 
@@ -449,7 +514,7 @@ const DeckBuilder = (props) => {
     // console.log(e.target.name);
     // const cmc = e.target.value;
     // console.log(cmc);
-    const data = { src: e.target.src, card_id: e.target.id, name: e.target.name, cmc: e.target.getAttribute('cmc')};
+    const data = { src: e.target.src, card_id: e.target.id, name: e.target.name, cmc: e.target.getAttribute('cmc'), type: e.target.getAttribute('type')};
     setDropData(data);
     // console.log(JSON.stringify(data));
     // e.dataTransfer.setData("text/plain", JSON.stringify(data));

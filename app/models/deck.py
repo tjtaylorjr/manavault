@@ -24,6 +24,8 @@ class Deck_Card(db.Model):
     card_id = db.Column(db.Integer, db.ForeignKey('cards.id'), primary_key = True)
     in_deck = db.Column(db.Integer, default=0)
     in_sideboard = db.Column(db.Integer, default=0)
+    isCommander = db.Column(db.Boolean, default=False)
+    isCompanion = db.Column(db.Boolean, default=False)
     # card = db.relationship('Card', sync_backref=False)
     card = db.relationship('Card', lazy="joined")
     deck = db.relationship('Deck', back_populates='card_list')
@@ -35,7 +37,7 @@ class Deck_Card(db.Model):
         self.in_sideboard = in_sideboard
 
     def __repr__(self):
-        return f'Deck_Card({self.deck_id}, {self.card_id}, {self.in_deck}, {self.in_sideboard})'
+        return f'Deck_Card({self.deck_id}, {self.card_id}, {self.in_deck}, {self.isCommander}, {self.isCompanion}, {self.in_sideboard})'
 
     def to_dict(self):
         return {
@@ -43,6 +45,8 @@ class Deck_Card(db.Model):
             # "card_id": self.card_id,
             "in_deck": self.in_deck,
             "in_sideboard": self.in_sideboard,
+            "isCommander": self.isCommander,
+            "isCompanion": self.isCompanion,
             "card": self.card.to_dict()
         }
 

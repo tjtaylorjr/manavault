@@ -151,6 +151,8 @@ def upgrade():
     sa.Column('card_id', sa.Integer(), nullable=False),
     sa.Column('in_deck', sa.Integer(), nullable=True),
     sa.Column('in_sideboard', sa.Integer(), nullable=True),
+    sa.Column('isCommander', sa.Boolean(), nullable=True),
+    sa.Column('isCompanion', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['card_id'], ['cards.id'], ),
     sa.ForeignKeyConstraint(['deck_id'], ['decks.id'], ),
     sa.PrimaryKeyConstraint('deck_id', 'card_id')

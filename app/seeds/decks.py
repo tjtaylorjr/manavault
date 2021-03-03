@@ -263,7 +263,8 @@ def seed_deck_cards():
         deck_id=2,
         card_id=19418,
         in_deck=0,
-        in_sideboard=1
+        in_sideboard=1,
+        isCompanion=True
     )
     db.session.add(card25)
 

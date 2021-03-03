@@ -474,37 +474,6 @@ def undo_decks():
     db.session.commit()
     print('unseed decks complete')
 
-# def seed_likes():
-#     like1 = likes(
-#         user_id = 1,
-#         deck_id = 1
-#     )
-#     db.session.add(like1)
-
-#     like2 = likes(
-#         user_id = 2,
-#         deck_id = 1
-#     )
-#     db.session.add(like2)
-
-#     like3 = likes(
-#         user_id = 3,
-#         deck_id = 1
-#     )
-#     db.session.add(like3)
-
-#     like4 = likes(
-#         user_id = 4,
-#         deck_id = 1
-#     )
-#     db.session.add(like4)
-
-#     like5 = likes(
-#         user_id = 10,
-#         deck_id = 1
-#     )
-#     db.session.add(like5)
-#     db.session.commit()
 
 # def undo_likes():
 #     db.session.execute('TRUNCATE likes;')

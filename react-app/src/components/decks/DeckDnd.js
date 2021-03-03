@@ -129,6 +129,7 @@ const DeckDnd = (props) => {
         <Counter dispatch={dispatch} deckBuilderData={deckBuilderData} deckList={cards} association={"in_sideboard"} card_id={card.card != undefined && card.card.id} />
       </div>
       <DndCardObject dragStart={dragStart} data={card} showImagePreview={props.showImagePreview} dropImagePreview={props.dropImagePreview} />
+      <CardDesignationButtons />
     </div>
   ))
 

@@ -26,11 +26,16 @@
   display: flex;
   flex-direction: row;
   align-items: start;
+
+  grid-template-columns: 35px, 125px;
+  grid-template-rows: 179px, 20px;
   color: #fff;
   padding: 2px;
 }
 
 .dnd-card__counter-container {
+  grid-column: 1;
+  grid-row: 1;
   width: 35px;
   height: 175px;
   display: flex;

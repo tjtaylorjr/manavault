@@ -27,6 +27,10 @@ const DeckBuilder = (props) => {
         return { ...state, deckList: state.deckList.map((el) => el.card.id === action.payload.card_id ? { ...el, in_deck: action.payload.count } : el) };
       case 'UPDATE_CARD_COUNT_IN_SIDEBOARD':
         return { ...state, deckList: state.deckList.map((el) => el.card.id === action.payload.card_id ? {...el, in_sideboard: action.payload.count } : el)};
+      case 'UPDATE_COMMANDER_STATUS':
+        return { ...state, deckList: state.deckList.map((el) => el.card.id === action.payload.card_id? {...el, isCommander: action.payload.isCommander} : el)};
+      case 'UPDATE_COMPANION_STATUS':
+        return { ...state, deckList: state.deckList.map((el) => el.card.id === action.payload.card_id ? { ...el, isCompanion: action.payload.isCompanion } : el) };
       case 'RESET_DECKLIST':
         return init(action.payload);
       default:

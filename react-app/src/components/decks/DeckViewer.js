@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import CommentBox from "../social/CommentBox.js";
 import Comment from "../social/Comment.js";
 import DeckCardObject from "./DeckCardObject.js";
-import DeckObject from "./DeckObject.js";
 import { AiFillDislike, AiFillLike, } from 'react-icons/ai';
 import { GiQuillInk } from 'react-icons/gi';
 import cardBack from '../../assets/images/cards/cardback.jpg';

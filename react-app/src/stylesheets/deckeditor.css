@@ -107,8 +107,6 @@
   right: 0;
   left: 10%;
   overflow: hidden;
-  /* transform-origin: top right;
-  transform: skewX(45deg); */
   border: none;
   outline: 1px solid transparent;
   padding: 1px transparent;
@@ -129,16 +127,11 @@
   background-color: #642878;
   background-repeat: no-repeat;
   background-size: cover;
-  /* transform-origin: top right;
-  transform: skewX(-45deg); */
   mask-image: linear-gradient(to right top, rbga(0, 0, 0, 0) 0%, #000000 100%);
-  /* left: 10%; */
 }
 
 .deckeditor__VIP-user-panel-gradient {
   position: relative;
-  /* transform-origin: top right;
-  transform: skewX(45deg); */
   width: 84%;
   height: 500px;
   top: 0;
@@ -156,8 +149,6 @@
   right: 0;
   bottom: 0;
   top: 0;
-  /* transform-origin: top right;
-  transform: skewX(-45deg); */
   background: radial-gradient(transparent 0%, rgba(100, 40, 120, 1) 60%);
 }
 

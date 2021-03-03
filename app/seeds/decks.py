@@ -10,6 +10,15 @@ def seed_decks():
         video_url = '<iframe width="560" height="315" src="https://www.youtube.com/embed/ts7pZ87yLjM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
     )
 
+    deck2 = Deck(
+        user_id=14,
+        creator_name='dbatbayar',
+        deck_name="Dimir Rogues",
+        description="How can you beat me, if you have no cards?",
+        background_img='https://https://c1.scryfall.com/file/scryfall-cards/art_crop/front/d/f/df99f770-2c39-4025-a8a2-a5890f61eb53.jpg?1594736416',
+        video_url='<iframe width="560" height="315" src="https://www.youtube.com/watch?v=BUzmdkeOLTw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+    )
+
     new_user1 = User(
         username="fcooper",
         email="fcooper@email.com",
@@ -61,7 +70,7 @@ def seed_decks():
         location="Deep River, CT"
     )
 
-    db.session.add_all([deck1, new_user1, new_user2,
+    db.session.add_all([deck1, deck2, new_user1, new_user2,
                         new_user3, new_user4, user_profile23, user_profile24, user_profile25, user_profile26])
     db.session.commit()
 
@@ -249,6 +258,214 @@ def seed_deck_cards():
         in_sideboard = 3
     )
     db.session.add(card24)
+
+    card25 = Deck_Card(
+        deck_id=2,
+        card_id=19418,
+        in_deck=0,
+        in_sideboard=1
+    )
+    db.session.add(card25)
+
+    card26 = Deck_Card(
+        deck_id=2,
+        card_id=3761,
+        in_deck=3,
+        in_sideboard=0
+    )
+    db.session.add(card26)
+
+    card27 = Deck_Card(
+        deck_id=2,
+        card_id=24666,
+        in_deck=4,
+        in_sideboard=0
+    )
+    db.session.add(card27)
+
+    card28 = Deck_Card(
+        deck_id=2,
+        card_id=48075,
+        in_deck=4,
+        in_sideboard=0
+    )
+    db.session.add(card28)
+
+    card29 = Deck_Card(
+        deck_id=2,
+        card_id=2955,
+        in_deck=4,
+        in_sideboard=0
+    )
+    db.session.add(card29)
+
+    card30 = Deck_Card(
+        deck_id=2,
+        card_id=1222,
+        in_deck=2,
+        in_sideboard=1
+    )
+    db.session.add(card30)
+
+    card31 = Deck_Card(
+        deck_id=2,
+        card_id=29877,
+        in_deck=4,
+        in_sideboard=0
+    )
+    db.session.add(card31)
+
+    card32 = Deck_Card(
+        deck_id=2,
+        card_id=53342,
+        in_deck=2,
+        in_sideboard=0
+    )
+    db.session.add(card32)
+
+    card33 = Deck_Card(
+        deck_id=2,
+        card_id=20440,
+        in_deck=1,
+        in_sideboard=0
+    )
+    db.session.add(card33)
+
+    card34 = Deck_Card(
+        deck_id=2,
+        card_id=49180,
+        in_deck=1,
+        in_sideboard=0
+    )
+    db.session.add(card34)
+
+    card35 = Deck_Card(
+        deck_id=2,
+        card_id=22232,
+        in_deck=2,
+        in_sideboard=0
+    )
+    db.session.add(card35)
+
+    card36 = Deck_Card(
+        deck_id=2,
+        card_id=25449,
+        in_deck=1,
+        in_sideboard=0
+    )
+    db.session.add(card36)
+
+    card37 = Deck_Card(
+        deck_id=2,
+        card_id=43239,
+        in_deck=2,
+        in_sideboard=0
+    )
+    db.session.add(card37)
+
+    card38 = Deck_Card(
+        deck_id=2,
+        card_id=43193,
+        in_deck=3,
+        in_sideboard=0
+    )
+    db.session.add(card38)
+
+    card39 = Deck_Card(
+        deck_id=2,
+        card_id=42949,
+        in_deck=4,
+        in_sideboard=0
+    )
+    db.session.add(card39)
+
+    card40 = Deck_Card(
+        deck_id=2,
+        card_id=38748,
+        in_deck=4,
+        in_sideboard=0
+    )
+    db.session.add(card40)
+
+    card41 = Deck_Card(
+        deck_id=2,
+        card_id=45383,
+        in_deck=4,
+        in_sideboard=0
+    )
+    db.session.add(card41)
+
+    card42 = Deck_Card(
+        deck_id=2,
+        card_id=2546,
+        in_deck=5,
+        in_sideboard=0
+    )
+    db.session.add(card42)
+
+    card43 = Deck_Card(
+        deck_id=2,
+        card_id=12169,
+        in_deck=4,
+        in_sideboard=0
+    )
+    db.session.add(card43)
+
+    card44 = Deck_Card(
+        deck_id=2,
+        card_id=48980,
+        in_deck=4,
+        in_sideboard=0
+    )
+    db.session.add(card44)
+
+    card45 = Deck_Card(
+        deck_id=2,
+        card_id=43858,
+        in_deck=2,
+        in_sideboard=0
+    )
+    db.session.add(card45)
+
+    card46 = Deck_Card(
+        deck_id=2,
+        card_id=17656,
+        in_deck=0,
+        in_sideboard=2
+    )
+    db.session.add(card46)
+
+    card47 = Deck_Card(
+        deck_id=2,
+        card_id=369,
+        in_deck=0,
+        in_sideboard=2
+    )
+    db.session.add(card47)
+
+    card48 = Deck_Card(
+        deck_id=2,
+        card_id=17270,
+        in_deck=0,
+        in_sideboard=3
+    )
+    db.session.add(card48)
+
+    card49 = Deck_Card(
+        deck_id=2,
+        card_id=53947,
+        in_deck=0,
+        in_sideboard=3
+    )
+    db.session.add(card49)
+
+    card50 = Deck_Card(
+        deck_id=2,
+        card_id=47289,
+        in_deck=0,
+        in_sideboard=3
+    )
+    db.session.add(card50)
 
     db.session.commit()
 

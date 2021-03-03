@@ -362,9 +362,46 @@
   flex-direction: column;
 }
 
-.deckbuilder__land-container-title {
+.deckbuilder__other-container {
+  padding-top: 10px;
+  grid-column: 2;
+  grid-row: 2 /span 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.deckbuilder__companion-commander-container-title {
   grid-column: 2;
   grid-row: 1;
+  display: grid;
+  grid-template-columns: 25px 1fr 25px;
+}
+
+.deckbuilder__companion-commander-container-title-text {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  border-bottom: 1px solid #21262D;
+  padding-top: 5px;
+}
+
+.deckbuilder__other-container {
+  padding-top: 10px;
+  grid-column: 2;
+  grid-row: 2 /span 3;
+  display: grid;
+  grid-template-rows: 1fr 2.75rem 1fr
+}
+
+.deckbuilder__companion-commander-container {
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.deckbuilder__land-container-title {
+  grid-row: 2;
   display: grid;
   grid-template-columns: 25px 1fr 25px;
 }
@@ -379,9 +416,7 @@
 }
 
 .deckbuilder__land-container {
-  padding-top: 10px;
-  grid-column: 2;
-  grid-row: 2 /span 3;
+  grid-row: 3;
   display: flex;
   flex-direction: column;
 }

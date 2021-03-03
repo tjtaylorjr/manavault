@@ -89,7 +89,7 @@ const DeckDnd = (props) => {
           },
           "name": currentCard.name
         },
-        "in_deck": 1,
+        "in_deck": 0,
         "in_sideboard": 0
       };
 

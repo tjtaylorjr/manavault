@@ -639,12 +639,18 @@ const DeckBuilder = (props) => {
                     <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
                   ))}</div>
                 </div>
-                <div className="deckbuilder__land-container-title">
-                  <div className="deckbuilder__land-container-title-text">Lands</div>
+                <div className="deckbuilder__companion-commander-container-title">
+                  <div className="deckbuilder__companion-commander-container-title-text">Companion/ Commander</div>
                 </div>
-                <div className="deckbuilder__land-container">{lands.length > 0 && lands.map((card, i) => (
-                  <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
-                ))}</div>
+                <div className="deckbuilder__other-container">
+                  <div className="deckbuilder__companion-commander-container"></div>
+                  <div className="deckbuilder__land-container-title">
+                    <div className="deckbuilder__land-container-title-text">Lands</div>
+                  </div>
+                  <div className="deckbuilder__land-container">{lands.length > 0 && lands.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                  ))}</div>
+                </div>
                 <div className="deckbuilder__main-container2-title">
                   <div className="deckbuilder__main-container2-title-text">Spells & Artifacts</div>
                 </div>

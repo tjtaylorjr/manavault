@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 const DeckCardObject = (props) => {
-  const [smallIMG, setSmallIMG] = useState("")
   const [normalIMG, setNormalIMG] = useState("")
   const { card } = props.data;
   const { showImagePreview, dropImagePreview} = props;

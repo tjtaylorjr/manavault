@@ -514,7 +514,7 @@ const DeckBuilder = (props) => {
     // console.log(e.target.name);
     // const cmc = e.target.value;
     // console.log(cmc);
-    const data = { src: e.target.src, card_id: e.target.id, name: e.target.name, cmc: e.target.getAttribute('cmc'), type: e.target.getAttribute('type')};
+    const data = { src: e.target.src, card_id: e.target.id, name: e.target.name, cmc: e.target.getAttribute('cmc'), keywords: e.target.getAttribute('keywords'), type: e.target.getAttribute('type')};
     setDropData(data);
     // console.log(JSON.stringify(data));
     // e.dataTransfer.setData("text/plain", JSON.stringify(data));

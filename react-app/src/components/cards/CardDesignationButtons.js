@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 const CardDesignationButtons = (props) => {
   const [updateCommander, setUpdateCommander] = useState(false);
   const [updateCompanion, setUpdateCompanion] = useState(false);
-  const [commanderIsSelected, setCommanderIsSelected] = useState(false);
-  const [companionIsSelected, setCompanionIsSelected] = useState(false);
+  const [commanderIsSelected, setCommanderIsSelected] = useState(props.data.isCommander);
+  const [companionIsSelected, setCompanionIsSelected] = useState(props.data.isCompanion);
   const [buttonsID, setButtonsID] = useState("");
   const [deck, setDeck] = useState([]);
   const [cardId, setCardId] = useState("");

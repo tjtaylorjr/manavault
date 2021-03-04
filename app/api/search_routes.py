@@ -47,5 +47,5 @@ def deck_build_search():
         # return {"result": text}
 
         results = Card.query.search(text, sort=True).filter(func.LENGTH(Card.set_code) <= 3).distinct(
-        ).options(joinedload(Card.illustration)).order_by(Card.name, Card.set_code).all()
+        ).options(joinedload(Card.illustration)).order_by(Card.name, Card.set_code).limit(100).all()
         return {"cards": [card.to_dict() for card in results]}

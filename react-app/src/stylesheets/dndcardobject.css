@@ -8,6 +8,7 @@
   cursor: pointer;
   background-color: transparent;
   transition: 0.2s;
+  justify-self: end;
 }
 
 .dndcard-object__image-container {

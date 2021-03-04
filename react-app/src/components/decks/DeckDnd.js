@@ -2,6 +2,7 @@ import React, { useEffect, useReducer, useState } from 'react';
 import { useDrag, useDrop } from "react-dnd";
 import DndCardObject from './DndCardObject.js';
 import Counter from '../cards/Counter.js';
+import CardDesignationButtons from '../cards/CardDesignationButtons.js';
 
 const DeckDnd = (props) => {
   const { dropData, deckBuilderData, dispatch } = props;
@@ -129,7 +130,7 @@ const DeckDnd = (props) => {
         <Counter dispatch={dispatch} deckBuilderData={deckBuilderData} deckList={cards} association={"in_sideboard"} card_id={card.card != undefined && card.card.id} />
       </div>
       <DndCardObject dragStart={dragStart} data={card} showImagePreview={props.showImagePreview} dropImagePreview={props.dropImagePreview} />
-      <CardDesignationButtons />
+      <CardDesignationButtons dispatch={dispatch} deckBuilderData={deckBuilderData} data={card}/>
     </div>
   ))
 

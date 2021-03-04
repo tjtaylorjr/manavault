@@ -43,12 +43,15 @@
 .deckcard-object__reported-copies {
   position: absolute;
   height: 25%;
-  width: 40%;
+  /* width: 40%; */
   background: transparent;
   color: #FFFFFF;
+  display: flex;
+  justify-content: flex-end;
   -webkit-text-stroke: 2px black;
-  top: 14px;
-  left: 62px;
+  top: 16px;
+  right: 10px;
   font-weight: 700;
   font-size: 38px;
+  pointer-events: none;
 }

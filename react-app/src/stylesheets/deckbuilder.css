@@ -308,7 +308,7 @@
 
 .deckbuilder__curve-view-special-cards-commander,
 .deckbuilder__curve-view-special-cards-companion {
-  width: 135px;
+  width: 180px;
   margin: 0 5px;
 }
 
@@ -405,17 +405,17 @@
 
 .deckbuilder__land-container-title-text {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 1;
   display: flex;
   justify-content: center;
   color: #fff;
   /* border-bottom: 1px solid #21262D; */
-  padding-bottom: 3px;
+  padding-top: 5px;
   align-items: flex-end;
 }
 
 .deckbuilder__land-container {
-  grid-row: 2;
+  grid-row: 2 /span 3;
   display: flex;
   flex-direction: column;
 }
@@ -528,45 +528,54 @@
 }
 
 .deckbuilder__side-container-title {
-  grid-column: 1;
+  grid-column: 1 /span 2;
   grid-row: 5;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(2, 1fr);
 }
 
 .deckbuilder__side-container-title-text {
-  grid-column: 1 /span 6;
+  grid-column: 1 /span 7;
   grid-row: 1;
   color: #fff;
   display: flex;
   justify-content: center;
-  /* border-bottom: 1px solid #21262D; */
   padding-top: 5px;
 }
 
 .deckbuilder__side-container-row-description {
-  grid-column: 1 /span 6;
+  grid-column: 1 /span 7;
   grid-row: 2;
   display: flex;
   flex-direction: row;
-  /* border-bottom: 1px solid #21262D; */
   align-items: flex-end;
   padding-bottom: 3px;
+  /* border: 3px ridge #21262D;
+  border-bottom: none;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px; */
 }
 
 .deckbuilder__side-container {
   padding-top: 10px;
   grid-row: 6;
+  grid-column: 1 /span 2;
   position: relative;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+  /* border: 3px ridge #21262D;
+  border-top: none;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px; */
+  min-height: 180px;
 }
 
 .deckbuilder__sideslot01-container {
   grid-column: 1;
   display: flex;
   flex-direction: column;
+
 }
 
 .deckbuilder__sideslot2-container {
@@ -584,13 +593,18 @@
   display: flex;
   flex-direction: column;
 }
-.deckbuilder__sideslot5plus-container {
+.deckbuilder__sideslot5-container {
   grid-column: 5;
   display: flex;
   flex-direction: column;
 }
-.deckbuilder__sideslotlands-container {
+.deckbuilder__sideslot5plus-container {
   grid-column: 6;
+  display: flex;
+  flex-direction: column;
+}
+.deckbuilder__sideslotlands-container {
+  grid-column: 7;
   display: flex;
   flex-direction: column;
 }

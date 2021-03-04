@@ -71,7 +71,8 @@ const DeckBuilder = (props) => {
   const [sideSlot2, setSideSlot2] = useState([]);
   const [sideSlot3, setSideSlot3] = useState([]);
   const [sideSlot4, setSideSlot4] = useState([]);
-  const [sideSlot5Plus, setSideSlot5Plus] = useState([]);
+  const [sideSlot5, setSideSlot5] = useState([]);
+  const [sideSlot6Plus, setSideSlot6Plus] = useState([]);
   const [sideSlotLands, setSideSlotLands] = useState([]);
   const [sideSlotCompanion, setSideSlotCompanion] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -328,8 +329,12 @@ const DeckBuilder = (props) => {
         parseInt(card.card.conv_mana_cost) === 4 && card.isCompanion === false
       )
 
-      const side5Plus = sideboard.filter((card) =>
-        parseInt(card.card.conv_mana_cost) >= 5 && card.isCompanion === false
+      const side5 = sideboard.filter((card) =>
+        parseInt(card.card.conv_mana_cost) === 5 && card.isCompanion === false
+      )
+
+      const side6Plus = sideboard.filter((card) =>
+        parseInt(card.card.conv_mana_cost) >= 6 && card.isCompanion === false
       )
 
       const sideLands = sideboard.filter((card) =>
@@ -384,8 +389,12 @@ const DeckBuilder = (props) => {
         setSideSlot4(side4)
       }
 
-      if (side5Plus) {
-        setSideSlot5Plus(side5Plus)
+      if (side5) {
+        setSideSlot5(side5)
+      }
+
+      if (side6Plus) {
+        setSideSlot6Plus(side6Plus)
       }
 
       if (sideLands) {
@@ -395,7 +404,6 @@ const DeckBuilder = (props) => {
       if (deckCompanion) {
         setSideSlotCompanion(deckCompanion)
       }
-
 
     }
     setIsLoaded(true);
@@ -667,7 +675,8 @@ const DeckBuilder = (props) => {
                 </div>
                 <div className="deckbuilder__curve-view-grid">
                   <div className="deckbuilder__main-container1-title">
-                    <div className="deckbuilder__main-container1-title-text">Creatures & Planeswalkers</div>
+                    <div className="deckbuilder__main-container1-title-text">{`Creatures & Planeswalkers (` + mainDeck.filter((card) =>
+                      card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")).reduce((total, el) => total + el.in_deck, 0) + `)`}</div>
                     <div className="deckbuilder__main-container1-row-description">
                       <p>{"(CMC 0-1)"}</p>
                       <p>{"(CMC 2)"}</p>
@@ -705,13 +714,15 @@ const DeckBuilder = (props) => {
                     ))}</div>
                   </div>
                   <div className="deckbuilder__land-container-title">
-                    <div className="deckbuilder__land-container-title-text"> Lands</div>
+                    <div className="deckbuilder__land-container-title-text">{`Lands (` + mainDeck.filter((card) =>
+                      card.card.type.includes("Land")).reduce((total, el) => total + el.in_deck, 0) + `)`}</div>
                   </div>
                   <div className="deckbuilder__land-container">{lands.length > 0 && lands.map((card, i) => (
                     <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
                   ))}</div>
                   <div className="deckbuilder__main-container2-title">
-                    <div className="deckbuilder__main-container2-title-text">Spells & Artifacts</div>
+                    <div className="deckbuilder__main-container2-title-text">{`Spells & Artifacts (` + mainDeck.filter((card) =>
+                      (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")).reduce((total, el) => total + el.in_deck, 0) + `)`}</div>
                     <div className="deckbuilder__main-container2-row-description">
                       <p>{"(CMC 0-1)"}</p>
                       <p>{"(CMC 2)"}</p>
@@ -748,13 +759,14 @@ const DeckBuilder = (props) => {
                     ))}</div>
                   </div>
                   <div className="deckbuilder__side-container-title">
-                    <div className="deckbuilder__side-container-title-text">Sideboard </div>
+                    <div className="deckbuilder__side-container-title-text">{`Sideboard (` + sideboard.reduce((total, el) => total + el.in_sideboard, 0) + `)`}</div>
                     <div className="deckbuilder__side-container-row-description">
                       <p>{"(CMC 0-1)"}</p>
                       <p>{"(CMC 2)"}</p>
                       <p>{"(CMC 3)"}</p>
                       <p>{"(CMC 4)"}</p>
-                      <p>{"(CMC 5+)"}</p>
+                      <p>{"(CMC 5)"}</p>
+                      <p>{"(CMC 6+)"}</p>
                       <p>{"(Extra Lands)"}</p>
                     </div>
                   </div>
@@ -775,8 +787,12 @@ const DeckBuilder = (props) => {
                       {sideSlot4.length > 0 && sideSlot4.map((card, i) => (
                       <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
                     ))}</div>
-                    <div className="deckbuilder__sideslot5plus-container">
-                      {sideSlot5Plus.length > 0 && sideSlot5Plus.map((card, i) => (
+                    <div className="deckbuilder__sideslot5-container">
+                      {sideSlot5.length > 0 && sideSlot5.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckbuilder__sideslot6plus-container">
+                      {sideSlot6Plus.length > 0 && sideSlot6Plus.map((card, i) => (
                       <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
                     ))}</div>
                     <div className="deckbuilder__sideslotlands-container">

@@ -6,7 +6,7 @@ import CardDesignationButtons from '../cards/CardDesignationButtons.js';
 
 const DeckDnd = (props) => {
   const { dropData, deckBuilderData, dispatch } = props;
-  console.log(dropData);
+  // console.log(dropData);
   const [currentCard, setCurrentCard] = useState({});
   const [cards, setCards] = useState([]);
   // const { deckList } = deckBuilderData;
@@ -49,10 +49,10 @@ const DeckDnd = (props) => {
   const handleDragLeave = e => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("leaving the area")
-    console.log(currentCard)
+    // console.log("leaving the area")
+    // console.log(currentCard)
     const referenceID = currentCard.card_id.includes("deckBuilder") ? currentCard.card_id.slice(11) : currentCard.card_id
-    console.log(referenceID)
+    // console.log(referenceID)
     dispatch({type: 'REMOVE_CARD_FROM_DECKLIST', payload: referenceID});
   };
 
@@ -62,7 +62,7 @@ const DeckDnd = (props) => {
   };
 
   const dragStart = (e) => {
-    console.log(e.target);
+    // console.log(e.target);
     // console.log(e.target.name);
     const data = { src: e.target.src, card_id: e.target.id, name: e.target.name, cmc: e.target.getAttribute('cmc'), keywords: e.target.getAttribute('keywords'), type: e.target.getAttribute('type')};
     setCurrentCard(data);
@@ -79,7 +79,7 @@ const DeckDnd = (props) => {
       //   }
       // }
       const existingCardIds = deckBuilderData.deckList.map(el => el.card.id)
-      console.log(existingCardIds)
+      // console.log(existingCardIds)
       const newCard = {
         "card": {
           "id": currentCard.card_id.includes("deckBuilder") ? currentCard.card_id.slice(11) : currentCard.card_id,
@@ -96,7 +96,7 @@ const DeckDnd = (props) => {
         "isCommander": false,
         "isCompanion": false,
       };
-      console.log(newCard);
+      // console.log(newCard);
       if(!existingCardIds.includes(newCard.card.id)) {
         dispatch({ type: 'ADD_CARD_TO_DECKLIST', newCard});
       }

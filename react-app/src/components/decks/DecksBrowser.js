@@ -92,7 +92,7 @@ function DecksBrowser() {
     return () => mounted = false;
   },[option]);
 
-  console.log(decks);
+  // console.log(decks);
   const deckObjects = decks.map((deck, i) => {
     return (
         <DeckObject key={i} data={deck} />

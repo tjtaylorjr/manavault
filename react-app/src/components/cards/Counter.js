@@ -8,8 +8,8 @@ export const Counter = (props) => {
   const [downCount, setDownCount] = useState(false);
   const [counterID, setCounterID] = useState("");
   const { association, card_id, dispatch, deckList } = props;
-  console.log(props);
-  console.log(deckList);
+  // console.log(props);
+  // console.log(deckList);
   // console.log(props.card_id);
   // console.log(card_id);
   useEffect(() => {
@@ -34,21 +34,21 @@ export const Counter = (props) => {
           idx = i;
         }
       }
-      console.log(deckList[idx])
-      console.log(association)
+      // console.log(deckList[idx])
+      // console.log(association)
 
       if(idx === undefined || idx === NaN || idx < 0) {
         setCount(0)
       } else if(association === "in_deck"){
         const newValue = deckList[idx].in_deck
-        console.log(newValue)
+        // console.log(newValue)
         setCount(newValue)
       } else {
         const newValue = deckList[idx].in_sideboard
-        console.log(newValue)
+        // console.log(newValue)
         setCount(newValue)
       }
-      
+
       // if(idx > -1 && !undefined){
       //   console.log(deckList[idx].association)
       //   const newValue = deckList[idx].association;

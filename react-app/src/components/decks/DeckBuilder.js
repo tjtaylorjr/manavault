@@ -116,7 +116,7 @@ const DeckBuilder = (props) => {
     let mounted = true;
     let main = []
     let side = []
-    console.log(deckBuilderData);
+    // console.log(deckBuilderData);
     if (deckBuilderData.deckList && mounted) {
       deckBuilderData.deckList.forEach((card) => {
         if (card.in_deck > 0) {
@@ -127,7 +127,7 @@ const DeckBuilder = (props) => {
         }
       })
     }
-    console.log(main)
+    // console.log(main)
     //console.log(side)
     setMainDeck(main);
     setSideboard(side);
@@ -136,7 +136,7 @@ const DeckBuilder = (props) => {
 
   useEffect(() => {
     let mounted = true;
-    console.log(mainDeck);
+    // console.log(mainDeck);
     // if (mainDeck.length > 0 && mounted) {
     //   const mainCreature01 = mainDeck.filter((card) =>
     //     (parseInt(card.card.conv_mana_cost) === 0 || parseInt(card.card.conv_mana_cost) === 1) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
@@ -455,7 +455,7 @@ const DeckBuilder = (props) => {
         const data = await res.json();
 
         if(data) {
-          console.log(data);
+          // console.log(data);
           setFoundCards(data.cards);
         }
       })()

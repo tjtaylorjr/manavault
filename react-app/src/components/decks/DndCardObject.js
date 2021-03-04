@@ -6,7 +6,7 @@ const DndCardObject = (props) => {
   const [normalIMG, setNormalIMG] = useState("")
   const { illustration } = props.data.card;
   // const { illustration } = card;
-  console.log(props);
+  // console.log(props);
   const { showImagePreview, dropImagePreview, dragStart } = props;
 
 

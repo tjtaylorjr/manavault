@@ -11,7 +11,7 @@ const CardDesignationButtons = (props) => {
   const [cardType, setCardType] = useState("");
   const [cardKeywords, setCardKeywords] = useState("");
 
-  console.log(props);
+  // console.log(props);
   // const selectionColor = isSelected ? {backgroundColor:'green'} : {backgroundColor:'red'};
 
   const {
@@ -29,12 +29,12 @@ const CardDesignationButtons = (props) => {
     type
   } = card;
 
-  console.log(id);
-  console.log(keywords);
-  console.log(type);
+  // console.log(id);
+  // console.log(keywords);
+  // console.log(type);
 
-  console.log(deckList);
-  console.log(card);
+  // console.log(deckList);
+  // console.log(card);
   useEffect(() => {
     let mounted = true;
 

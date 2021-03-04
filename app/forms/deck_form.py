@@ -14,8 +14,8 @@ class DeckForm(FlaskForm):
 
 
 class DeckCardForm(FlaskForm):
-    id = IntegerField('deck_id', validators=[DataRequired()])
-    card_id = IntegerField('deck_id', validators=[DataRequired()])
+    deck_id = IntegerField('deck_id', validators=[DataRequired()])
+    card_id = IntegerField('card_id', validators=[DataRequired()])
     in_deck = IntegerField('in_deck')
     in_sideboard = IntegerField('in_sideboard')
 

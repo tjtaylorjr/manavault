@@ -20,7 +20,7 @@ const BuildSearchCardObject = ( props ) => {
          dragStart,
         } = props;
 
- console.log(data);
+ // console.log(data);
   const id = data.id;
   const name = data.name;
   const formatted_name = data.name.split(" //")

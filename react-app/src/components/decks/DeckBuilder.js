@@ -576,7 +576,7 @@ const DeckBuilder = (props) => {
           {/* <div className="deckbuilder-header__lower-panel"></div> */}
         </div>
         <div className="deckbuilder__body">
-          <div className="deckbuilder__search-panel">
+          <div className="deckbuilder__deck-panel">
             <div className="deckbuilder__search-options-container">
               <form onSubmit={handleSearch} className="deckbuilder__search-options-form">
                 <div className="deckbuilder__search-options-form-top">

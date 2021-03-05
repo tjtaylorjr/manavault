@@ -67,7 +67,7 @@ create a deck
 """
 
 
-@deck_routes.route('/create', methods=["POST"])
+@deck_routes.route('/build', methods=["POST"])
 @login_required
 def new_deck():
     form = DeckForm()

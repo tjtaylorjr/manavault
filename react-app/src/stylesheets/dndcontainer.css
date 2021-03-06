@@ -23,9 +23,6 @@
 
 .dnd-card {
   width: 166px;
-  /* display: flex;
-  flex-direction: row;
-  align-items: start; */
   display: grid;
   grid-template-columns: 35px, 125px;
   grid-template-rows: 182px, 24px;

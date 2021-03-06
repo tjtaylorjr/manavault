@@ -18,7 +18,6 @@
   display: grid;
   grid-template-columns: 50px 1fr 1fr 1fr 50px;
   grid-template-rows: 25px 200px 100px 25px;
-  /* background-color: #670C07; */
   background-color: #121E2F;
   border-top: 1px solid #E6CD8C;
   border-bottom: 1px solid #E6CD8C;
@@ -31,9 +30,6 @@
   grid-column: 1 / span 5;
   display: grid;
   grid-template-columns: 50px 1fr 1fr 1fr 50px;
-  /* background-color: #670C07;
-  border-top: 1px solid #E6CD8C;
-  border-bottom: 1px solid #E6CD8C; */
   width: 100%;
 }
 
@@ -49,7 +45,6 @@
   grid-row: 1;
   font-size: 2.5rem;
   font-weight: 700;
-  /* color: #D21502; */
   color: #13B3E1;
   -webkit-text-stroke: 1px #420D09;
   line-height: 3rem;
@@ -62,7 +57,6 @@
   grid-row: 2;
   font-size: 11px;
   align-self: start;
-  /* color: #D21502; */
   color: #13B3E1;
   margin-left: 10px;
   z-index: 1;
@@ -85,17 +79,14 @@
   grid-column: 1 / span 5;
   width: 100%;
   height: 350px;
-  /* background-color: #670C07; */
   background-color: #121E2F;
   border-top: 3px ridge #E6CD8C;
   border-bottom: 3px ridge #E6CD8C;
   overflow: hidden;
   z-index: 1;
-  /* margin-top: 75px; */
 }
 
 .deckviewer__user-panel-background-wrapper {
-  /* background-color: #670C07; */
   background-color: #121E2F;
   position: absolute;
   width: 84%;
@@ -124,7 +115,6 @@
   width: 100%;
   height: 350px;
   opacity: 1;
-  /* background-color: #670C07; */
   background-color: #121E2F;
   background-repeat: no-repeat;
   background-size: cover;
@@ -157,7 +147,6 @@
   top: 0;
   transform-origin: top right;
   transform: skewX(-45deg);
-  /* background: linear-gradient(45deg, rgba(103, 12, 7, 1) 40%, rgba(103, 12, 7, .5) 60%, transparent 100%); */
   background: linear-gradient(45deg, rgba(18, 30, 47, 1) 40%, rgba(18, 30, 47, .5) 60%, transparent 100%);
 }
 

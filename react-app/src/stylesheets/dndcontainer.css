@@ -11,7 +11,7 @@
   max-height: 434px;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 0 7px;
+  padding: 0 3px;
 }
 
 .dnd-list p {
@@ -22,13 +22,13 @@
 }
 
 .dnd-card {
-  width: 166px;
+  width: 165px;
   display: grid;
   grid-template-columns: 35px, 125px;
   grid-template-rows: 182px, 24px;
   color: #fff;
-  padding: 3px;
-  margin: 5px;
+  padding: 2.5px;
+  margin: 3px;
 }
 
 .dnd-card__counter-container {

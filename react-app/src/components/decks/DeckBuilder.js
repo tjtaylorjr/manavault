@@ -6,6 +6,7 @@ import cardBack from '../../assets/images/cards/cardback.jpg';
 import backgroundIMG from '../../assets/backgrounds/urzas-tome.jpg';
 import { CgStack } from 'react-icons/cg';
 import { RiBarChartFill } from 'react-icons/ri';
+import { GiCardExchange } from 'react-icons/gi';
 import { BiListUl } from 'react-icons/bi';
 import { AiFillSave } from 'react-icons/ai';
 import { ImSearch } from 'react-icons/im';
@@ -576,55 +577,68 @@ const DeckBuilder = (props) => {
           {/* <div className="deckbuilder-header__lower-panel"></div> */}
         </div>
         <div className="deckbuilder__body">
-          <div className="deckbuilder__deck-panel">
-            <div className="deckbuilder__search-options-container">
-              <form onSubmit={handleSearch} className="deckbuilder__search-options-form">
-                <div className="deckbuilder__search-options-form-top">
-                  <div className="deckbuilder__search-options-form-text-field">
-                    <input type="search" results="5" ref={searchRef} onChange={(e) => setSearchInput(e.target.value)} placeholder="Find Cards"></input>
-                    <button></button>
-                  </div>
-                  <button className="deckbuilder__search-options-form-submit-button">
-                    <ImSearch />
-                  </button>
-                </div>
-                <div className="deckbuilder__search-options-form-filter-buttons-container"></div>
-              </form>
-            </div>
-            <div className="deckbuilder__search-results-wrapper">
-              <div className="deckbuilder__search-results-filters"></div>
-              <div className="deckbuilder__search-results-container">
-                {foundCards.length > 0 && foundCards.map((card, i) => (
-                  <BuildSearchCardObject key={i} data={card} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} dragStart={dragStart} cardDrop={cardDrop}/>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="deckbuilder__deck-container">
-            <div className="deckbuilder__display-buttons-wrapper">
-              <button className="deckbuilder__container-button" title="Deck Builder" onClick={showCardContainer} >
-                <RiInboxArchiveFill />
-              </button>
-              <button className="deckbuilder__curve-button" title="Curve Display" onClick={showCurve} >
-                <RiBarChartFill />
-              </button>
-              {/* <button className="deckbuilder__list-button" title="List Display" onClick={showList} >
+          <div className="deckbuilder__display-buttons-wrapper">
+            <button className="deckbuilder__container-button" title="Deck Builder" onClick={showCardContainer} >
+              <GiCardExchange />
+            </button>
+            <button className="deckbuilder__curve-button" title="Curve Display" onClick={showCurve} >
+              <RiBarChartFill />
+            </button>
+            {/* <button className="deckbuilder__list-button" title="List Display" onClick={showList} >
                 <BiListUl />
               </button>
               <button className="deckbuilder__stack-button" title="Stack Display" onClick={showStack} >
                 <CgStack />
               </button> */}
-              <button className="deckbuilder__save-button" title="Save" onClick={saveDeck} >
-                <AiFillSave />
-              </button>
-              <button className="deckbuilder__delete-build-button" title="Reset Deck" onClick={() => dispatch({type: 'RESET_DECKLIST', payload: initialState})}>
-                <FaTrashAlt />
-              </button>
-            </div>
+            <button className="deckbuilder__save-button" title="Save" onClick={saveDeck} >
+              <AiFillSave />
+            </button>
+            <button className="deckbuilder__delete-build-button" title="Reset Deck" onClick={() => dispatch({ type: 'RESET_DECKLIST', payload: initialState })}>
+              <FaTrashAlt />
+            </button>
+          </div>
+          <div className="deckbuilder__deck-container">
             {containerFlag && (
-              <div className="deckbuilder__container-view">
-                <div className="deckbuilder__container-view-wrapper">
-                  {/* <div className="deckbuilder__container-view-header"></div> */}
+              <div className="deckbuilder__build-view">
+                <div className="deckbuilder__search-panel">
+                  <div className="deckbuilder__search-options-container">
+                    <form onSubmit={handleSearch} className="deckbuilder__search-options-form">
+                      <div className="deckbuilder__search-options-form-top">
+                        <div className="deckbuilder__search-options-form-text-field">
+                          <input type="search" results="5" ref={searchRef} onChange={(e) => setSearchInput(e.target.value)} placeholder="Find Cards"></input>
+                          <button></button>
+                        </div>
+                      </div>
+                      <div className="deckbuilder__search-options-form-filter-buttons-container"></div>
+                      <button className="deckbuilder__search-options-form-submit-button">
+                        <ImSearch />
+                      </button>
+                    </form>
+                  </div>
+                  <div className="deckbuilder__search-results-wrapper">
+                    <div className="deckbuilder__search-results-filters"></div>
+                    <div className="deckbuilder__search-results-container">
+                      {foundCards.length > 0 && foundCards.map((card, i) => (
+                        <BuildSearchCardObject key={i} data={card} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} dragStart={dragStart} cardDrop={cardDrop}/>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="deckbuilder__deck-card-container">
+                  <form className="deckbuilder__deck-card-container-form-fields-container">
+                    <div className="deckbuilder__form-partition-1">
+                      <input className="deckbuild-form-input__name-field" placeholder="Deck Name"></input>
+                    </div>
+                    <div className="deckbuilder__form-partition-2">
+                      <input className="deckbuild-form-input__background-field" placeholder="Select deck image (optional)"></input>
+                    </div>
+                    <div className="deckbuilder__form-partition-3">
+                      {/* <input className="deckbuild-form-input__video-field" placeholder="Import a play video"></input> */}
+                    </div>
+                    <div className="deckbuilder__form-partition-4">
+                      <input className="deckbuild-form-input__description-field" placeholder="Add a description (optional)"></input>
+                    </div>
+                  </form>
                   <p>Drag cards here to add them to your deck</p>
                   <DeckDnd deckBuilderData={deckBuilderData} dispatch={dispatch}mainDeck={mainDeck} setMainDeck={setMainDeck} dropData={dropData} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction}/>
                 </div>
@@ -800,8 +814,6 @@ const DeckBuilder = (props) => {
                       <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
                     ))}</div>
                   </div>
-
-
                 </div>
               </div>
             )}

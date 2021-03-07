@@ -107,7 +107,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 310px;
-  grid-template-rows: 512px 1fr;
+  grid-template-rows: 85px 1fr;
   width: 100%;
   margin-bottom: 0;
   border-bottom: none;
@@ -117,28 +117,18 @@
 
 }
 
-.deckbuilder__deck-panel {
-  grid-column: 1;
-  grid-row: 1;
-  display: grid;
-  grid-template-rows: 80px 100px 382px;
-  grid-template-columns: 300px 1fr;
-  padding-top: 30px;
-}
-
 .deckbuilder__display-buttons-wrapper {
   padding-top: 30px;
-  width: 80px;
+  height: 50px;
   grid-column: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .deckbuilder__display-buttons-wrapper button {
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin: 3px;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -152,24 +142,43 @@
   padding-left: 5.5px;
 }
 
+.deckbuilder__deck-container {
+  margin-top: 5px;
+  grid-column: 1;
+  grid-row: 2;
+  position: relative;
+}
+
+.deckbuilder__build-view {
+  width: 1020px;
+  min-height: 360px;
+  display: grid;
+  grid-template-columns: 300px 720px;
+}
+
+.deckbuilder__search-panel {
+  grid-column: 1;
+  display: grid;
+  grid-template-rows: 180px 1fr;
+}
+
+
 .deckbuilder__search-options-container {
   grid-row: 1;
 }
 
 .deckbuilder__search-options-form {
   display: grid;
-  grid-template-rows: 35px 65px;
-  grid-template-columns: 1fr;
+  grid-template-rows: 35px 110px 35px;
 }
 
 .deckbuilder__search-options-form-top {
   grid-row: 1;
-  display: flex;
 }
 
 .deckbuilder__search-options-form-text-field {
   display: flex;
-  width: 350px;
+  width: 300px;
 }
 
 .deckbuilder__search-options-form-text-field input {
@@ -197,7 +206,7 @@
 
 .deckbuilder__search-options-form-filter-buttons-container {
   grid-row: 2;
-  height: 65px;
+  height: 120px;
 }
 
 .deckbuilder__search-options-form-filter-buttons-container button {
@@ -227,24 +236,24 @@
   line-height: 1rem;
   cursor: pointer;
   outline: none;
-  margin-left: 3px;
-  margin-top: 2px;
+  /* margin-left: 3px;
+  margin-top: 2px; */
+  justify-self: center;
 }
 
 .deckbuilder__search-results-wrapper {
   grid-row: 2;
   display: grid;
-  grid-template-columns: 80px 1fr;
+  grid-template-rows: 80px 1fr;
 }
 
 .deckbuilder__search-results-filters {
   grid-row: 1;
-  width: 80px;
 }
 
 .deckbuilder__search-results-container {
   margin: 10px 0;
-  grid-column: 2;
+  grid-row: 2;
   height: 362px;
   max-width: 100%;
   overflow-y: auto;
@@ -268,28 +277,88 @@
   border-radius: 9px;
 }
 
-.deckbuilder__deck-container {
-  margin-top: 10px;
+.deckbuilder__deck-card-container {
+  grid-column: 2;
+  display: grid;
+  grid-template-rows: 112px 32px 1fr;
+}
+
+.deckbuilder__deck-card-container-form-fields-container {
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 0 2px;
+}
+
+.deckbuilder__deck-card-container-form-fields-container input::placeholder {
+  text-align: left;
+  font-size: 20px;
+  color: #46646E;
+}
+
+.deckbuilder__form-partition-1 {
+  grid-column: 1;
+  grid-row: 1;
+  padding: 0 5px;
+}
+
+.deckbuilder__form-partition-2 {
   grid-column: 1;
   grid-row: 2;
-  position: relative;
-  display: grid;
-  grid-template-columns: 80px 940px;
+  padding: 0 5px;
 }
 
-.deckbuilder__container-view {
-
-  width: 940px;
-  min-height: 360px;
+.deckbuilder__form-partition-3 {
+  grid-column: 1;
+  grid-row: 3;
+  padding: 0 5px;
 }
 
-.deckbuilder__container-view-wrapper {
-  display: grid;
-  grid-template-rows: 32px 1fr;
+.deckbuilder__form-partition-4 {
+  grid-column: 2;
+  grid-row: 1 /span 2;
+  padding: 0 1px;
+}
+.deckbuild-form-input__name-field,
+.deckbuild-form-input__background-field,
+.deckbuild-form-input__video-field {
+  border-radius: 5px;
+  width: 96%;
+  height: 1.5rem;
+  background-color: #21262D;
+  color: #46646E;
+  font-size: 20px;
+  padding-left: 10px;
+  border: 2px solid;
+  /* outline: 1px solid #E6CD8C; */
 }
 
-.deckbuilder__container-view-wrapper p {
-  grid-row: 1;
+.deckbuild-form-input__name-field:focus,
+.deckbuild-form-input__background-field:focus,
+.deckbuild-form-input__video-field:focus {
+  outline: none !important;
+  border: 2px solid #E6CD8C;
+}
+
+.deckbuild-form-input__description-field {
+  border-radius: 5px;
+  width: 98%;
+  height: 3.9rem;
+  background-color: #21262D;
+  color: #46646E;
+  font-size: 20px;
+  padding-left: 10px;
+  border: 2px solid;
+}
+
+.deckbuild-form-input__description-field:focus {
+  outline: none !important;
+  border: 2px solid #E6CD8C;
+}
+
+.deckbuilder__deck-card-container p {
+  grid-row: 2;
   color: #fff;
   text-align: center;
   align-self: end;

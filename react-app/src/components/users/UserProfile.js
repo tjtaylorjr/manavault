@@ -99,7 +99,7 @@ const UserProfile = (props) => {
                 ))}
             </div>
           </div>
-          <div className="user-profile__body-stats-container"></div>
+          {/* <div className="user-profile__body-stats-container"></div> */}
           {/* <div className="user-profile__body-comments-container"></div> */}
         </div>
       </div>

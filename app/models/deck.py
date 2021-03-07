@@ -10,6 +10,7 @@ from sqlalchemy_utils.types import TSVectorType
 from .user import User, likes
 import uuid
 
+
 def generate_uuid():
     return str(uuid.uuid4())
 
@@ -26,9 +27,9 @@ class Deck_Card(db.Model):
     in_sideboard = db.Column(db.Integer, default=0)
     is_commander = db.Column(db.Boolean, default=False)
     is_companion = db.Column(db.Boolean, default=False)
-    # card = db.relationship('Card', sync_backref=False)
     card = db.relationship('Card', lazy="joined")
     deck = db.relationship('Deck', back_populates='card_list')
+    # card = db.relationship('Card', sync_backref=False)
 
     # def __init__(self, deck_id, card_id, in_deck, in_sideboard):
     #     self.deck_id = deck_id

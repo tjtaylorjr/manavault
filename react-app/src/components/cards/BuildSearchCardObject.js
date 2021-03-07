@@ -4,6 +4,7 @@ import { useDrag } from 'react-dnd';
 
 const BuildSearchCardObject = ( props ) => {
   const [normalIMG, setNormalIMG] = useState("");
+  const [artCrop, setArtCrop] = useState("");
   const [ID, setID] = useState("");
   const [type, setType] = useState("");
   const [cmc, setCMC] = useState("");
@@ -29,13 +30,14 @@ const BuildSearchCardObject = ( props ) => {
     let mounted = true;
     if (mounted) {
       setNormalIMG(data.illustration.normal_image);
-      setID(data.id)
+      setArtCrop(data.illustration.art_crop);
+      setID(data.id);
       // let cardData = JSON.stringify(data)
       // setCard(cardData)
       // const cardType = data.type.split(" //")
-      setType(data.type)
-      setCMC(data.conv_mana_cost)
-      setKeywords(data.keywords)
+      setType(data.type);
+      setCMC(data.conv_mana_cost);
+      setKeywords(data.keywords);
     }
     return () => mounted = false;
   },[props.data, data.illustration.normal_image])
@@ -62,7 +64,7 @@ const BuildSearchCardObject = ( props ) => {
     >
       <div className="build-search-card-object__image-container">
         {normalIMG ? (
-          <img src={normalIMG} id={ID} name={name} alt={data.name + " card image"} cmc={cmc} keywords={keywords} type={type} onDragStart={dragStart} onDrop={cardDrop} onMouseEnter={showImagePreview} onMouseLeave={dropImagePreview}/>
+          <img src={normalIMG} id={ID} name={name} alt={data.name + " card image"} cmc={cmc} keywords={keywords} type={type} art_crop={artCrop} onDragStart={dragStart} onDrop={cardDrop} onMouseEnter={showImagePreview} onMouseLeave={dropImagePreview}/>
         ) : null}
       </div>
     </section>

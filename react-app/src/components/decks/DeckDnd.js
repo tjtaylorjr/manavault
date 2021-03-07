@@ -64,7 +64,7 @@ const DeckDnd = (props) => {
   const dragStart = (e) => {
     // console.log(e.target);
     // console.log(e.target.name);
-    const data = { src: e.target.src, card_id: e.target.id, name: e.target.name, cmc: e.target.getAttribute('cmc'), keywords: e.target.getAttribute('keywords'), type: e.target.getAttribute('type')};
+    const data = { src: e.target.src, card_id: e.target.id, name: e.target.name, cmc: e.target.getAttribute('cmc'), keywords: e.target.getAttribute('keywords'), type: e.target.getAttribute('type'), art_crop: e.target.getAttribute('art_crop')};
     setCurrentCard(data);
   }
 
@@ -87,7 +87,8 @@ const DeckDnd = (props) => {
           "keywords": currentCard.keywords,
           "type": currentCard.type,
           "illustration": {
-            "normal_image": currentCard.src
+            "normal_image": currentCard.src,
+            "art_crop": currentCard.art_crop
           },
           "name": currentCard.name
         },

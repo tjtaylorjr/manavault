@@ -6,13 +6,14 @@ import cardBack from '../../assets/images/cards/cardback.jpg';
 import backgroundIMG from '../../assets/backgrounds/urzas-tome.jpg';
 import { CgStack } from 'react-icons/cg';
 import { RiBarChartFill } from 'react-icons/ri';
-import { GiCardExchange } from 'react-icons/gi';
+import { GiCardExchange, GiCardPick } from 'react-icons/gi';
 import { BiListUl } from 'react-icons/bi';
 import { AiFillSave } from 'react-icons/ai';
 import { ImSearch } from 'react-icons/im';
 import { RiInboxArchiveFill } from 'react-icons/ri';
 import { FaTrashAlt } from 'react-icons/fa';
 import DeckDnd from './DeckDnd';
+import Select from 'react-select';
 import { useDrop } from 'react-dnd';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
@@ -42,7 +43,8 @@ const DeckBuilder = (props) => {
     return { deckList: initialState }
   }
   const [deckBuilderData, dispatch] = useReducer(deckListReducer, initialState, init);
-
+  const [bgImage, setBgImage] = useState("");
+  const [bgImageSelect, setBgImageSelect] = useState([]);
   const [user, setUser] = useState({}); //needed for current user's avatar
   const [avatar, setAvatar] = useState("");
   const [comments, setComments] = useState([]);
@@ -84,6 +86,7 @@ const DeckBuilder = (props) => {
   const [searchInput, setSearchInput] = useState("");
   const [foundCards, setFoundCards] = useState([]);
   const [dropData, setDropData] = useState("");
+  const [multiface, setMultiface] = useState("");
   const hoverRef = useRef();
   const searchRef = useRef();
 
@@ -111,7 +114,19 @@ const DeckBuilder = (props) => {
   //     setDeckChange(false)
   //   }
   // }, [deckChange])
+  console.log(deckBuilderData.deckList);
+  useEffect(() => {
+    let mounted = true;
 
+    if(deckBuilderData.deckList && mounted) {
+      const bgMenuOptions = deckBuilderData.deckList.map((card) => {
+        return { value: card.card.illustration.art_crop, label: card.card.name }
+      })
+      console.log(bgMenuOptions)
+      setBgImageSelect(bgMenuOptions);
+    }
+    return () => mounted = false;
+  },[deckBuilderData.deckList])
 
   useEffect(() => {
     let mounted = true;
@@ -537,7 +552,7 @@ const DeckBuilder = (props) => {
     // console.log(e.target.name);
     // const cmc = e.target.value;
     // console.log(cmc);
-    const data = { src: e.target.src, card_id: e.target.id, name: e.target.name, cmc: e.target.getAttribute('cmc'), keywords: e.target.getAttribute('keywords'), type: e.target.getAttribute('type')};
+    const data = { src: e.target.src, card_id: e.target.id, name: e.target.name, cmc: e.target.getAttribute('cmc'), keywords: e.target.getAttribute('keywords'), type: e.target.getAttribute('type'), art_crop: e.target.getAttribute('art_crop')};
     setDropData(data);
     // console.log(JSON.stringify(data));
     // e.dataTransfer.setData("text/plain", JSON.stringify(data));
@@ -549,6 +564,37 @@ const DeckBuilder = (props) => {
     // const data = e.dataTransfer.getData("text/plain");
     // console.log(data);
     // setDropData(data.JSON());
+  }
+
+  const dumbshit = {
+    width: '96%',
+    height: '1.5rem',
+    backgroundColor: '#21262D',
+    color: '#46646E',
+    fontSize: '20px',
+    paddingLeft: '10px',
+    border: '2px solid'
+  }
+  const selectStyles = {
+    control: (styles, { isFocused }) => ({ ...styles, backgroundColor: '#21262D', borderRadius: '5px', border: isFocused ? '2px solid #E6CD8C' : '2px solid #46646E', color: '#46646E', height: '1.9rem', minHeight: '1.9rem', fontSize: '20px', lineHeight: '-5rem', '&:hover': { borderColor: isFocused ? '2px solid #E6CD8C' : '2px solid #46646E'}}),
+    singleValue: styles => ({ ...styles, color: '#46646E', top: '13px'}),
+    dropdownIndicator: styles => ({ ...styles, color: '#46646E', marginTop: '-8px'}),
+    menu: styles => ({ ...styles, backgroundColor: '#21262D', border: '2px solid #E6CD8C', width:'97.5%', color: '#46646E' }),
+    indicatorSeparator: styles => ({ ...styles, backgroundColor: '#46646E', marginTop: '5px', marginBottom: '12px'}),
+    indicatorContainers: styles => ({ ...styles, alignSelf: 'center'}),
+    input: styles => ({ ...styles, textAlign: 'center' }),
+    placeholder: styles => ({...styles, color: '#46646E', top: '13px'}),
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      //const color = chroma(data.color);
+      return {
+        ...styles,
+        backgroundColor: isSelected ? '#E6CD8C' : '#21262D',
+        color: '#46646E',
+        cursor: isDisabled ? 'not-allowed' : 'default',
+        textAlign: 'center',
+        fontSize: '20px',
+      };
+    },
   }
 
   return isLoaded ? (
@@ -629,14 +675,27 @@ const DeckBuilder = (props) => {
                     <div className="deckbuilder__form-partition-1">
                       <input className="deckbuild-form-input__name-field" placeholder="Deck Name"></input>
                     </div>
-                    <div className="deckbuilder__form-partition-2">
-                      <input className="deckbuild-form-input__background-field" placeholder="Select deck image (optional)"></input>
-                    </div>
-                    <div className="deckbuilder__form-partition-3">
-                      {/* <input className="deckbuild-form-input__video-field" placeholder="Import a play video"></input> */}
-                    </div>
+                    <Select
+                      className="deckbuilder__form-partition-2" placeholder="Select deck image (optional)"
+                      defaultValue={bgImage}
+                      options={bgImageSelect}
+                      onChange={setBgImage}
+                      styles={selectStyles}
+                      theme={theme => ({
+                        ...theme,
+                        colors: {
+                          ...theme.colors,
+                          primary25: '#E6CD8C',
+                          primary: '#46646E',
+                        },
+                      })}
+                    />
+                    {/* <div className="deckbuilder__form-partition-3">
+                      <input className="deckbuild-form-input__video-field" placeholder="Import a play video"></input>
+                    </div> */}
                     <div className="deckbuilder__form-partition-4">
-                      <input className="deckbuild-form-input__description-field" placeholder="Add a description (optional)"></input>
+                      <textarea className="deckbuild-form-input__description-field" placeholder="Add a description (optional)"
+                      maxlength="300"></textarea>
                     </div>
                   </form>
                   <p>Drag cards here to add them to your deck</p>
@@ -825,7 +884,10 @@ const DeckBuilder = (props) => {
             )}
           </div>
           <div className="deckbuilder__card-display">
-            <div className="deckbuilder__card-display-image" style={{ backgroundImage: `url(${imagePreview})` }}></div>
+            <div className="deckbuilder__card-display-sticky-track">
+              <div className="deckbuilder__card-display-image" style={{ backgroundImage: `url(${imagePreview})` }}></div>
+              {multiface.length > 0 && <div className="deckbuilder__card-display-multiface-image" style={{ backgroundImage: `url(${imagePreview})` }}></div>}
+            </div>
           </div>
         </div>
       </div>

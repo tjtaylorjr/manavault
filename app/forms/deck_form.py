@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField
+from wtforms import StringField, IntegerField, BooleanField
 from wtforms.validators import DataRequired
 from app.models import Deck, Deck_Card, User
 
@@ -20,6 +20,8 @@ class DeckCardForm(FlaskForm):
     card_id = IntegerField('card_id', validators=[DataRequired()])
     in_deck = IntegerField('in_deck')
     in_sideboard = IntegerField('in_sideboard')
+    is_commander = BooleanField('is_commander')
+    is_companion = BooleanField('is_companion')
 
 
 class DeckLikeForm(FlaskForm):

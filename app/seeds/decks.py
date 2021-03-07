@@ -15,8 +15,8 @@ def seed_decks():
         creator_name='dbatbayar',
         deck_name="Dimir Rogues",
         description="How can you beat me, if you have no cards?",
-        background_img='https://https://c1.scryfall.com/file/scryfall-cards/art_crop/front/d/f/df99f770-2c39-4025-a8a2-a5890f61eb53.jpg?1594736416',
-        video_url='<iframe width="560" height="315" src="https://www.youtube.com/watch?v=BUzmdkeOLTw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+        background_img='https://c1.scryfall.com/file/scryfall-cards/art_crop/front/d/f/df99f770-2c39-4025-a8a2-a5890f61eb53.jpg?1594736416',
+        video_url='<iframe width="560" height="315" src="https://www.youtube.com/embed/BUzmdkeOLTw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
     )
 
     new_user1 = User(
@@ -264,7 +264,7 @@ def seed_deck_cards():
         card_id=19418,
         in_deck=0,
         in_sideboard=1,
-        isCompanion=True
+        is_companion=True
     )
     db.session.add(card25)
 

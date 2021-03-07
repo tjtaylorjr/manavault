@@ -24,20 +24,20 @@ class Deck_Card(db.Model):
     card_id = db.Column(db.Integer, db.ForeignKey('cards.id'), primary_key = True)
     in_deck = db.Column(db.Integer, default=0)
     in_sideboard = db.Column(db.Integer, default=0)
-    isCommander = db.Column(db.Boolean, default=False)
-    isCompanion = db.Column(db.Boolean, default=False)
+    is_commander = db.Column(db.Boolean, default=False)
+    is_companion = db.Column(db.Boolean, default=False)
     # card = db.relationship('Card', sync_backref=False)
     card = db.relationship('Card', lazy="joined")
     deck = db.relationship('Deck', back_populates='card_list')
 
-    def __init__(self, deck_id, card_id, in_deck, in_sideboard):
-        self.deck_id = deck_id
-        self.card_id = card_id
-        self.in_deck = in_deck
-        self.in_sideboard = in_sideboard
+    # def __init__(self, deck_id, card_id, in_deck, in_sideboard):
+    #     self.deck_id = deck_id
+    #     self.card_id = card_id
+    #     self.in_deck = in_deck
+    #     self.in_sideboard = in_sideboard
 
     def __repr__(self):
-        return f'Deck_Card({self.deck_id}, {self.card_id}, {self.in_deck}, {self.isCommander}, {self.isCompanion}, {self.in_sideboard})'
+        return f'Deck_Card({self.deck_id}, {self.card_id}, {self.in_deck}, {self.is_commander}, {self.in_sideboard}, {self.is_companion})'
 
     def to_dict(self):
         return {
@@ -45,8 +45,8 @@ class Deck_Card(db.Model):
             # "card_id": self.card_id,
             "in_deck": self.in_deck,
             "in_sideboard": self.in_sideboard,
-            "isCommander": self.isCommander,
-            "isCompanion": self.isCompanion,
+            "is_commander": self.is_commander,
+            "is_companion": self.is_companion,
             "card": self.card.to_dict()
         }
 

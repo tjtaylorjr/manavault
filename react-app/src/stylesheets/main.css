@@ -52,16 +52,9 @@
   position: relative;
   display: grid;
   min-height: 840px;
-  /* height: 100vh; */
   width: 100%;
   grid-template-rows: 1fr 85px;
-  /* background: url('../assets/backgrounds/land-color-morph.png') no-repeat center center fixed; */
-  /* background-color: #cccccc; */
   background-color: transparent;
-  /* background-size: cover; */
-  /* text-align: center; */
-  /* border-left: 3px solid #ad6415;
-  border-right: 3px solid #ad6415; */
   z-index: 1;
 
 }

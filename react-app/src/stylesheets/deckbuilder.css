@@ -18,7 +18,6 @@
   display: grid;
   grid-template-columns: 45px 1fr 1fr 1fr 45px;
   grid-template-rows: 25px 300px 25px;
-  /* background-color: #003C28; */
   background-color: #121E2F;
   border-top: 1px solid #E6CD8C;
   border-bottom: 1px solid #E6CD8C;
@@ -779,9 +778,6 @@
 }
 
 .deckbuilder__card-display-image {
-  /* top: 0;
-  position: sticky;
-  position: -webkit-sticky; */
   border: 2px ridge #21262D;
   border-radius: 20px;
   width: 300px;
@@ -792,9 +788,6 @@
 }
 
 .deckbuilder__card-display-multiface-image {
-  /* top: 0;
-  position: sticky;
-  position: -webkit-sticky; */
   margin-top: 5px;
   border: 2px ridge #21262D;
   border-radius: 20px;

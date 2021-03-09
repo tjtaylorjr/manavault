@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useRef, useState } from 'react';
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import DeckCardObject from "./DeckCardObject.js";
 import BuildSearchCardObject from "../cards/BuildSearchCardObject.js";
 import cardBack from '../../assets/images/cards/cardback.jpg';
@@ -28,6 +28,8 @@ const DeckBuilder = (props) => {
     switch (action.type) {
       case 'ADD_CARD_TO_DECKLIST':
         return { ...state, deckList: state.deckList.concat(action.newCard) };
+      case 'REPLACE_DECKLIST':
+        return {...state, deckList: action.payload.cardsList }
       case 'REMOVE_CARD_FROM_DECKLIST':
         return {...state, deckList: state.deckList.filter(el => el.card.id !== action.payload)};
       case 'UPDATE_CARD_COUNT_IN_MAINDECK':
@@ -47,9 +49,12 @@ const DeckBuilder = (props) => {
   const init = (initialState) => {
     return { deckList: initialState }
   }
+
   const [deckBuilderData, dispatch] = useReducer(deckListReducer, initialState, init);
   const [bgImage, setBgImage] = useState("");
   const [bgImageSelect, setBgImageSelect] = useState([]);
+  const [deckName, setDeckName] = useState("");
+  const [deckDescription, setDeckDescription] = useState("");
   const [user, setUser] = useState({}); //needed for current user's avatar
   const [avatar, setAvatar] = useState("");
   const [comments, setComments] = useState([]);
@@ -92,6 +97,9 @@ const DeckBuilder = (props) => {
   const [foundCards, setFoundCards] = useState([]);
   const [dropData, setDropData] = useState("");
   const [multiface, setMultiface] = useState("");
+  const [videoUrl, setVideoUrl] = useState("");
+
+  const history = useHistory();
   const hoverRef = useRef();
   const searchRef = useRef();
 
@@ -119,6 +127,7 @@ const DeckBuilder = (props) => {
   //     setDeckChange(false)
   //   }
   // }, [deckChange])
+
   console.log(deckBuilderData.deckList);
   useEffect(() => {
     let mounted = true;
@@ -127,7 +136,7 @@ const DeckBuilder = (props) => {
       const bgMenuOptions = deckBuilderData.deckList.map((card) => {
         return { value: card.card.illustration.art_crop, label: card.card.name }
       })
-      console.log(bgMenuOptions)
+      // console.log(bgMenuOptions)
       setBgImageSelect(bgMenuOptions);
     }
     return () => mounted = false;
@@ -444,10 +453,51 @@ const DeckBuilder = (props) => {
   useEffect(() => {
     let mounted = true;
     if (saveFlag && mounted) {
+      const createDeck = async() => {
+        const res = await fetch('/api/decks/build', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_id: id,
+            creator_name: username,
+            deck_name: deckName,
+            description: deckDescription,
+            background_img: bgImage,
+            video_url: videoUrl,
+          }),
+        })
 
+        if(!res.ok) {
+          throw res;
+        }
+
+        const result = await res.json();
+        const deck_id = result.deck.id;
+
+        const res2 = await fetch(`/api/decks/${deck_id}/cardlist`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cardList: deckBuilderData.deckList
+          })
+        })
+
+        if(!res2.ok) {
+          throw res2;
+        }
+
+        const { card_list } = await res2.json();
+
+        dispatch({ type: 'REPLACE_DECKLIST', payload: {cardsList: card_list }})
+        setSaveFlag(false);
+        mounted = false;
+        history.push(`/decks/${deck_id}`);
+      }
     }
-    setSaveFlag(false);
-    return () => mounted = false;
   }, [saveFlag])
 
   const handleSearch = (e) => {
@@ -733,7 +783,10 @@ const DeckBuilder = (props) => {
                 <div className="deckbuilder__deck-card-container">
                   <form className="deckbuilder__deck-card-container-form-fields-container">
                     <div className="deckbuilder__form-partition-1">
-                      <input className="deckbuild-form-input__name-field" placeholder="Deck Name"></input>
+                      <input
+                        type="text" className="deckbuild-form-input__name-field" placeholder="Deck Name"
+                        value={deckName}
+                        onChange={(e) => setDeckName(e.target.value)}/>
                     </div>
                     <Select
                       className="deckbuilder__form-partition-2" placeholder="Select deck image (optional)"
@@ -751,11 +804,17 @@ const DeckBuilder = (props) => {
                       })}
                     />
                     {/* <div className="deckbuilder__form-partition-3">
-                      <input className="deckbuild-form-input__video-field" placeholder="Import a play video"></input>
+                      <input
+                        type="text"
+                        className="deckbuild-form-input__video-field" placeholder="Import a play video"
+                        value={videoUrl}
+                        onChange={(e) => setVideoUrl(e.target.value)}/>
                     </div> */}
                     <div className="deckbuilder__form-partition-4">
                       <textarea className="deckbuild-form-input__description-field" placeholder="Add a description (optional)"
-                      maxlength="300"></textarea>
+                      maxLength="300"
+                      value={deckDescription}
+                      onChange={(e) => setDeckDescription(e.target.value)}></textarea>
                     </div>
                   </form>
                   <p>Drag cards here to add them to your deck</p>

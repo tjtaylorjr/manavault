@@ -75,7 +75,9 @@ def new_deck():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         deck = Deck(
-            user_id = current_user.get_id(),
+            # user_id = current_user.get_id(),
+            user_id = form.data['user_id'],
+            creator_name = form.data['creator_name'],
             deck_name = form.data['deck_name'],
             description = form.data['description'],
             background_img = form.data['background_img'],
@@ -125,13 +127,15 @@ def new_cardlist(deck_id):
     purge_list = Deck_Card.query.filter(Deck_Card.deck_id == deck_id).delete(syncronize_session='fetch')
     db.session.execute(purge_list)
     db.session.commit()
-    cardlist = request.json
-    for card in cardlist:
+    data = request.json
+    for card in data.cardList:
         deckcard = Deck_Card(
           deck_id = deck_id,
-          card_id = card.card_id,
+          card_id = card.card.card_id,
           in_deck = card.in_deck,
-          in_sideboard = card.in_sideboard
+          in_sideboard = card.in_sideboard,
+          is_commander = card.is_commander,
+          is_companion = card.is_companion
         )
         db.session.add(deckcard)
         db.session.commit()

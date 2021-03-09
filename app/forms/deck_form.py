@@ -9,6 +9,7 @@ class DeckForm(FlaskForm):
     # would this even have an id slot?  It gets created in PostgreSQL.
     # unsure why I added this here so I am leaving it commented out for now
     user_id = IntegerField('user_id', validators=[DataRequired()])
+    creator_name = StringField('creator_name', validators=[DataRequired()])
     deck_name = StringField('deck_name', validators=[DataRequired()])
     description = StringField('description')
     background_img = StringField('background_img')

@@ -94,8 +94,8 @@ const DeckDnd = (props) => {
         },
         "in_deck": 0,
         "in_sideboard": 0,
-        "isCommander": false,
-        "isCompanion": false,
+        "is_commander": false,
+        "is_companion": false,
       };
       // console.log(newCard);
       if(!existingCardIds.includes(newCard.card.id)) {

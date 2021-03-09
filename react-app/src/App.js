@@ -16,6 +16,7 @@ import DeckEditor from "./components/decks/DeckEditor";
 import DecksBrowser from "./components/decks/DecksBrowser";
 import SearchResults from "./components/search/SearchResults";
 import CardBrowser from "./components/cards/CardBrowser";
+import DataFetch from "./components/updates/DataFetch";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -67,13 +68,13 @@ function App() {
               setAuthenticated={setAuthenticated}
             >
               <ProfileEditor user={currentUser} />
-              </ProtectedRoute>
+            </ProtectedRoute>
             <ProtectedRoute
               path="/decks/build"
               exact={true}
               authenticated={authenticated}
             >
-              <DeckBuilder user={currentUser} authenticated={authenticated}/>
+              <DeckBuilder user={currentUser} authenticated={authenticated} />
             </ProtectedRoute>
             <Route path="/users" exact={true} authenticated={authenticated}>
               <UsersBrowser />
@@ -83,7 +84,7 @@ function App() {
               exact={true}
               authenticated={authenticated}
             >
-              <DeckEditor user={currentUser} authenticated={authenticated}/>
+              <DeckEditor user={currentUser} authenticated={authenticated} />
             </ProtectedRoute>
             <Route path="/login" exact={true}>
               <LoginForm
@@ -111,10 +112,13 @@ function App() {
               <Footer />
             </Route>
             <Route path="/search/:query" exact={true}>
-              <SearchResults user={currentUser}/>
+              <SearchResults user={currentUser} />
+            </Route>
+            <Route path="/update" exact={true} authenticated={authenticated}>
+              <DataFetch user={currentUser} authenticated={authenticated} />
             </Route>
             <Route path="/" exact={true} authenticated={authenticated}>
-              <Main user={currentUser} authenticated={authenticated}/>
+              <Main user={currentUser} authenticated={authenticated} />
             </Route>
           </Switch>
         </BrowserRouter>

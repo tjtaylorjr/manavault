@@ -17,8 +17,10 @@ def generate_uuid():
 
 class Star_Rating(db.Model):
     __tablename__ = 'star_ratings'
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key = True)
-    card_id = db.Column(db.Integer, db.ForeignKey('cards.id'), primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'users.id'), primary_key=True)
+    card_id = db.Column(db.Integer, db.ForeignKey(
+        'cards.id'), primary_key=True)
     stars = db.Column(db.Float(precision=1))
     card = db.relationship('Card', back_populates='card_star_ratings')
     user = db.relationship('User', back_populates='user_star_ratings')
@@ -41,29 +43,36 @@ class Card(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     # uuid = db.Column(UUID(as_uuid=True), server_default=db.text("uuid_generate_v4()"), nullable = False, unique = True)
-    uuid = db.Column(db.String, default=generate_uuid, nullable=False, unique=True)
-    arena_id = db.Column(db.Integer, nullable = True)
-    name = db.Column(db.String(200), nullable = False)
-    set_code = db.Column(db.String(10), db.ForeignKey('sets.set_code'), nullable = True)
-    set_number = db.Column(db.String(10), nullable = True)
-    rarity = db.Column(db.String(10), nullable = True)
-    type = db.Column(db.String(100), nullable = True)
-    power = db.Column(db.String(10), nullable = True)
-    toughness = db.Column(db.String(10), nullable = True)
-    loyalty = db.Column(db.String(10), nullable = True)
-    mana_cost = db.Column(db.String(50), default = "")
-    conv_mana_cost = db.Column(db.Float(precision = 1), default = 0.0)
-    keywords = db.Column(db.String(150), nullable = True)
-    rules_text = db.Column(db.Text, nullable = True)
-    flavor_text = db.Column(db.Text, nullable = True)
-    is_multifaced = db.Column(db.Boolean, default = False)
+    uuid = db.Column(db.String, default=generate_uuid,
+                     nullable=False, unique=True)
+    arena_id = db.Column(db.Integer, nullable=True)
+    name = db.Column(db.String(200), nullable=False)
+    set_code = db.Column(db.String(10), db.ForeignKey(
+        'sets.set_code'), nullable=True)
+    set_number = db.Column(db.String(10), nullable=True)
+    rarity = db.Column(db.String(10), nullable=True)
+    type = db.Column(db.String(100), nullable=True)
+    power = db.Column(db.String(10), nullable=True)
+    toughness = db.Column(db.String(10), nullable=True)
+    loyalty = db.Column(db.String(10), nullable=True)
+    mana_cost = db.Column(db.String(50), default="")
+    conv_mana_cost = db.Column(db.Float(precision=1), default=0.0)
+    keywords = db.Column(db.String(150), nullable=True)
+    rules_text = db.Column(db.Text, nullable=True)
+    flavor_text = db.Column(db.Text, nullable=True)
+    is_multifaced = db.Column(db.Boolean, default=False)
     # avg_rating = db.Column(db.Float(precision = 1), nullable = True)
-    search_vector = db.Column(TSVectorType('name', 'type', weights={'name': 'A', 'type': 'B', 'keywords': 'C', 'set_code': 'D', 'rarity': 'E'}))
-    format_list = db.relationship('Format_List', uselist=False, back_populates='card', cascade="delete, delete-orphan")
-    illustration = db.relationship('Illustration', uselist=False, back_populates="card", cascade="delete, delete-orphan")
+    search_vector = db.Column(TSVectorType('name', 'type', weights={
+                              'name': 'A', 'type': 'B', 'keywords': 'C', 'set_code': 'D', 'rarity': 'E'}))
+    format_list = db.relationship(
+        'Format_List', uselist=False, back_populates='card', cascade="delete, delete-orphan")
+    illustration = db.relationship(
+        'Illustration', uselist=False, back_populates="card", cascade="delete, delete-orphan")
     set = db.relationship('Set', back_populates="cards")
-    alternate_cardfaces = db.relationship('Alternate_Cardface', uselist=False, back_populates='card', cascade="delete, delete-orphan")
-    card_star_ratings = db.relationship("Star_Rating", back_populates="card", cascade="delete, delete-orphan")
+    alternate_cardfaces = db.relationship(
+        'Alternate_Cardface', uselist=False, back_populates='card', cascade="delete, delete-orphan")
+    card_star_ratings = db.relationship(
+        "Star_Rating", back_populates="card", cascade="delete, delete-orphan")
     # deck_list = db.relationship('Deck_Card', back_populates='card', viewonly=True)
 
     @aggregated('card_star_ratings', db.Column(db.Float(precision=1), nullable=True))
@@ -87,7 +96,7 @@ class Card(db.Model):
         self.keywords = keywords
         self.rules_text = rules_text
         self.flavor_text = flavor_text
-        self.is_multifaced = multifaced
+        self.is_multifaced = is_multifaced
 
     def __repr__(self):
         return f'Card({self.id}, {self.uuid}, {self.arena_id}, {self.name}, {self.set_code}, {self.set_number}, {self.rarity}, {self.type}, {self.power}, {self.toughness}, {self.loyalty}, {self.mana_cost}, {self.conv_mana_cost}, {self.keywords}, {self.rules_text}, {self.flavor_text}, {self.is_multifaced}, {self.avg_rating})'
@@ -129,7 +138,6 @@ class Card(db.Model):
             # "illustration": [image.to_dict() for image in self.illustration],
             # "alternate_cardfaces": self.alternate_cardfaces.to_dict()
         }
-
 
 
 # db.configure_mappers()

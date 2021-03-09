@@ -144,11 +144,11 @@ function DecksBrowser() {
       <div className="decksbrowser__deck-list">
         <div className="decksbrowser__deck-list-wrapper">
           {decks.map((deck, i) => (
-            <div className="decksbrowser__deck-list-item">
+            <div key={i} className="decksbrowser__deck-list-item">
               <h4>{deck.deck_name}</h4>
               <p>{'by ' + deck.creator_name}</p>
               <div></div>
-              <DeckObject key={i} data={deck} />
+              <DeckObject data={deck} />
             </div>
           ))}
         </div>

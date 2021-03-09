@@ -282,30 +282,15 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  /* border: 3px groove #21262D;
-  border-radius: 5px; */
 }
 
 .user-profile__body-decks-result {
   height: 350px;
 }
-/* .user-profile__body-decks-wrapper > h4 {
-  text-align: center;
-} */
-
-/* .user-profile__body-comments-container {
-  grid-column: 2;
-  grid-row: 2;
-  position: relative;
-  width: 100%;
-  height: 100%;
-} */
 
 .user-profile__body-stats-container {
   margin: 10px;
   border-radius: 5px;
-  /* background-color: #0D1117;
-  border: 3px groove #21262D; */
   grid-column: 2;
   grid-row: 1;
   position: relative;

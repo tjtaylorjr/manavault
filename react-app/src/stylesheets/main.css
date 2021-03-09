@@ -65,18 +65,12 @@
   min-height: 550px;
   max-height: 700px;
   height: calc(100% - 40%);
-  /* top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0; */
   display: flex;
   justify-content: center;
   align-items: flex-end;
   position: relative;
   background: linear-gradient(to bottom, transparent 0%, transparent 80%, #06090F 100%);
   background-blend-mode: multiply;
-  /* z-index: 1; */
-
 }
 
 
@@ -87,9 +81,6 @@
   opacity: 0.325;
   background-size: cover;
   background-position: center top -150px;
-  /* height: calc(100% - 40px);
-  min-height: 550px;
-  max-height: 700px; */
   top: 0;
   left: 0;
   bottom: 0;

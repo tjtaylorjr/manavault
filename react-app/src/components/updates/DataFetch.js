@@ -154,6 +154,8 @@ const DataFetch = (props) => {
           modern: card.legalities.modern,
           legacy: card.legalities.legacy,
           pauper: card.legalities.pauper,
+          vintage: card.legalities.vintage,
+          penny: card.legalities.penny,
           commander: card.legalities.commander,
           brawl: card.legalities.brawl,
           duel: card.legalities.duel,
@@ -176,7 +178,8 @@ const DataFetch = (props) => {
 
           return {
             card_uuid: card.id,
-            // alternate_cardface_uuid: null,
+            alternate_cardface_id: null,
+            side: "Front",
             artist: card.artist,
             // image_uris: card.image_uris,
             small_image: small,
@@ -191,7 +194,8 @@ const DataFetch = (props) => {
 
           return {
             card_uuid: card.id,
-            //alternate_cardface_uuid: null,
+            alternate_cardface_uuid: null,
+            side: "Front",
             artist: mainCard.artist,
             small_image: small,
             normal_image: normal,
@@ -209,7 +213,8 @@ const DataFetch = (props) => {
 
           return {
             card_uuid: null,
-            //alternate_cardface_uuid: null,
+            alternate_cardface_uuid: null,
+            side: "Back",
             artist: backsideCard.artist,
             small_image: small,
             normal_image: normal,

@@ -10,6 +10,7 @@ class Illustration(db.Model):
     # card_uuid = db.Column(UUID(as_uuid=True), db.ForeignKey('cards.uuid'), nullable = True, unique = True)
     # alternate_cardface_uuid = db.Column(UUID(as_uuid=True), db.ForeignKey('alternate_cardfaces.uuid'), nullable = True, unique = True)
     alternate_cardface_id = db.Column(db.Integer, db.ForeignKey('alternate_cardfaces.id'), nullable = True, unique = True)
+    side = db.Column(db.String, nullable = False)
     artist = db.Column(db.String, default = "")
     small_image = db.Column(db.String, nullable = False)
     normal_image = db.Column(db.String, nullable = False)

@@ -202,6 +202,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('card_uuid', sa.String(), nullable=True),
     sa.Column('alternate_cardface_id', sa.Integer(), nullable=True),
+    sa.Column('side', sa.String(), nullable=False),
     sa.Column('artist', sa.String(), nullable=True),
     sa.Column('small_image', sa.String(), nullable=False),
     sa.Column('normal_image', sa.String(), nullable=False),

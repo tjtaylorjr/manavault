@@ -15,8 +15,6 @@ class Format_List(db.Model):
     modern = db.Column(db.String(10), nullable = False)
     legacy = db.Column(db.String(10), nullable = False)
     pauper = db.Column(db.String(10), nullable = False)
-    vintage = db.Column(db.String(10), nullable = False)
-    penny = db.Column(db.String(10), nullable = False)
     commander = db.Column(db.String(10), nullable = False)
     brawl = db.Column(db.String(10), nullable = False)
     duel = db.Column(db.String(10), nullable = False)
@@ -25,7 +23,7 @@ class Format_List(db.Model):
 
 
     def __repr__(self):
-        return f'Format Legality({self.id}, {self.card_uuid}, {self.standard}, {self.future}, {self.historic}, {self.pioneer}, {self.modern}, {self.legacy}, {self.pauper}, {self.vintage}, {self.penny}, {self.commander}, {self.brawl}, {self.duel}, {self.oldschool})'
+        return f'Format Legality({self.id}, {self.card_uuid}, {self.standard}, {self.future}, {self.historic}, {self.pioneer}, {self.modern}, {self.legacy}, {self.pauper}, {self.commander}, {self.brawl}, {self.duel}, {self.oldschool})'
 
     # def __str__(self):
     #     list = [self.standard, self.future, self.historic, self.pioneer, self.modern, self.legacy, self.pauper, self.vintage, self.penny, self.commander, self.brawl, self.duel, self.oldschool]
@@ -45,8 +43,6 @@ class Format_List(db.Model):
             "modern": self.modern,
             "legacy": self.legacy,
             "pauper": self.pauper,
-            "vintage": self.vintage,
-            "penny": self.penny,
             "commander": self.commander,
             "brawl": self.brawl,
             "duel": self.duel,

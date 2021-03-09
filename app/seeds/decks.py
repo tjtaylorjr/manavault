@@ -77,7 +77,7 @@ def seed_decks():
 def seed_deck_cards():
     card1 = Deck_Card(
         deck_id = 1,
-        card_id = 26518,
+        card_id = 26498,
         in_deck = 4,
         in_sideboard = 0
     )
@@ -85,7 +85,7 @@ def seed_deck_cards():
 
     card2 = Deck_Card(
         deck_id = 1,
-        card_id = 30672,
+        card_id = 30648,
         in_deck = 4,
         in_sideboard = 0
     )
@@ -93,23 +93,23 @@ def seed_deck_cards():
 
     card3 = Deck_Card(
         deck_id = 1,
-        card_id = 23235,
-        in_deck = 1,
+        card_id = 15472,
+        in_deck = 2,
         in_sideboard = 0
     )
     db.session.add(card3)
 
     card4 = Deck_Card(
         deck_id = 1,
-        card_id = 15484,
-        in_deck = 2,
+        card_id = 2178,
+        in_deck = 4,
         in_sideboard = 0
     )
     db.session.add(card4)
 
     card5 = Deck_Card(
         deck_id = 1,
-        card_id = 2180,
+        card_id = 10185,
         in_deck = 4,
         in_sideboard = 0
     )
@@ -117,7 +117,7 @@ def seed_deck_cards():
 
     card6 = Deck_Card(
         deck_id = 1,
-        card_id = 10192,
+        card_id = 16434,
         in_deck = 4,
         in_sideboard = 0
     )
@@ -125,47 +125,47 @@ def seed_deck_cards():
 
     card7 = Deck_Card(
         deck_id = 1,
-        card_id = 16447,
-        in_deck = 4,
+        card_id = 48996,
+        in_deck = 2,
         in_sideboard = 0
     )
     db.session.add(card7)
 
     card8 = Deck_Card(
         deck_id = 1,
-        card_id = 49032,
-        in_deck = 2,
+        card_id = 54953,
+        in_deck = 4,
         in_sideboard = 0
     )
     db.session.add(card8)
 
     card9 = Deck_Card(
         deck_id = 1,
-        card_id = 17184,
-        in_deck = 1,
-        in_sideboard = 1
+        card_id = 40403,
+        in_deck = 4,
+        in_sideboard = 0
     )
     db.session.add(card9)
 
     card10 = Deck_Card(
         deck_id = 1,
-        card_id = 16304,
-        in_deck = 1,
-        in_sideboard = 2
+        card_id = 36550,
+        in_deck = 2,
+        in_sideboard = 0
     )
     db.session.add(card10)
 
     card11 = Deck_Card(
         deck_id = 1,
-        card_id = 40436,
-        in_deck = 4,
+        card_id = 37629,
+        in_deck = 3,
         in_sideboard = 0
     )
     db.session.add(card11)
 
     card12 = Deck_Card(
         deck_id = 1,
-        card_id = 13307,
+        card_id = 46895,
         in_deck = 4,
         in_sideboard = 0
     )
@@ -173,98 +173,98 @@ def seed_deck_cards():
 
     card13 = Deck_Card(
         deck_id = 1,
-        card_id = 37658,
-        in_deck = 2,
+        card_id = 45347,
+        in_deck = 4,
         in_sideboard = 0
     )
     db.session.add(card13)
 
     card14 = Deck_Card(
         deck_id = 1,
-        card_id = 8816,
-        in_deck = 2,
-        in_sideboard = 1
+        card_id = 55212,
+        in_deck = 9,
+        in_sideboard = 0
     )
     db.session.add(card14)
 
     card15 = Deck_Card(
         deck_id = 1,
-        card_id = 46931,
-        in_deck = 4,
+        card_id = 55211,
+        in_deck = 5,
         in_sideboard = 0
     )
     db.session.add(card15)
 
     card16 = Deck_Card(
         deck_id = 1,
-        card_id = 45383,
-        in_deck = 4,
+        card_id = 26697,
+        in_deck = 1,
         in_sideboard = 0
     )
     db.session.add(card16)
 
     card17 = Deck_Card(
         deck_id = 1,
-        card_id = 17080,
-        in_deck = 9,
-        in_sideboard = 0
+        card_id = 23217,
+        in_deck = 0,
+        in_sideboard = 2
     )
     db.session.add(card17)
 
     card18 = Deck_Card(
         deck_id = 1,
-        card_id = 52290,
-        in_deck = 4,
-        in_sideboard = 0
+        card_id = 36337,
+        in_deck = 0,
+        in_sideboard = 3
     )
     db.session.add(card18)
 
     card20 = Deck_Card(
         deck_id = 1,
-        card_id = 18284,
+        card_id = 19490,
         in_deck = 0,
-        in_sideboard = 3
+        in_sideboard = 2
     )
     db.session.add(card20)
 
     card21 = Deck_Card(
         deck_id = 1,
-        card_id = 14916,
+        card_id = 25117,
         in_deck = 0,
-        in_sideboard = 2
+        in_sideboard = 3
     )
     db.session.add(card21)
 
     card22 = Deck_Card(
         deck_id = 1,
-        card_id = 21054,
+        card_id = 17169,
         in_deck = 0,
         in_sideboard = 2
     )
     db.session.add(card22)
 
     card23 = Deck_Card(
-        deck_id = 1,
-        card_id = 14432,
+        deck_id = 2,
+        card_id = 19400,
         in_deck = 0,
-        in_sideboard = 1
+        in_sideboard = 1,
+        is_companion=True
     )
     db.session.add(card23)
 
     card24 = Deck_Card(
-        deck_id = 1,
-        card_id = 25137,
-        in_deck = 0,
-        in_sideboard = 3
+        deck_id = 2,
+        card_id = 3758,
+        in_deck = 3,
+        in_sideboard = 0
     )
     db.session.add(card24)
 
     card25 = Deck_Card(
         deck_id=2,
-        card_id=19418,
-        in_deck=0,
-        in_sideboard=1,
-        is_companion=True
+        card_id=24647,
+        in_deck=4,
+        in_sideboard=0
     )
     db.session.add(card25)
 

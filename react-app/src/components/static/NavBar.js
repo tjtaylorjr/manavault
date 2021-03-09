@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
-import { IoBuild } from "react-icons/io5";
+import { IoHammer } from "react-icons/io5";
 
 const NavBar = ({ authenticated, setAuthenticated, setCurrentUser, currentUser }) => {
   const history = useHistory();
@@ -17,7 +17,7 @@ const NavBar = ({ authenticated, setAuthenticated, setCurrentUser, currentUser }
           </div>
           <div className="navbar-links__build-button">
             <button title="Build" alt="build" onClick={() => history.push("/decks/build")}>
-              <IoBuild />
+              <IoHammer />
             </button>
           </div>
           <nav className="navbar-links">

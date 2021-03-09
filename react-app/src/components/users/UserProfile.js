@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import DeckObject from "../decks/DeckObject";
 import Avatar from "./Avatar";
-import { IoBuild } from 'react-icons/io5';
+import { IoHammer } from 'react-icons/io5';
 
 const UserProfile = (props) => {
   const [user, setUser] = useState({});
@@ -85,7 +85,7 @@ const UserProfile = (props) => {
               <h1>Decks by {user.username}</h1>
               {parseInt(userId) === props.user.id && (
                 <button alt="build" onClick={() => history.push("/decks/build")}>
-                  <IoBuild />
+                  <IoHammer />
                 </button>
               )}
             </div>

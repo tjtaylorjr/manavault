@@ -156,6 +156,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 460px;
+  grid-template-rows: 85px 1fr;
   width: 100%;
   margin-bottom: 0;
   border: 2px ridge #21262D;
@@ -163,7 +164,34 @@
   border-top: none;
   padding-top: 10px;
   height: 100%;
+  min-height: 989px;
 }
+
+.deckbuilder__display-buttons-wrapper {
+  padding-top: 30px;
+  height: 50px;
+  grid-column: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.deckbuilder__display-buttons-wrapper button {
+  margin: 3px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  line-height: 1.2rem;
+  border: 2px ridge #E6CD8C;
+  font-size: 1.4rem;
+  background-color: #21262D;
+  color: #E6CD8C;
+  cursor: pointer;
+  outline: none;
+  padding-left: 5.5px;
+}
+
 
 .deckviewer__deck-container {
   grid-column: 1;

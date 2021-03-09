@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Select from 'react-select';
 import { useHistory } from 'react-router-dom';
 import DeckObject from './DeckObject.js';
-import { IoBuild } from 'react-icons/io5'
+import { IoHammer } from 'react-icons/io5'
 
 
 
@@ -138,7 +138,7 @@ function DecksBrowser() {
           })}
         />
         <button title="Build" className="deckbrowser__header-button" onClick={() => history.push("/decks/build")}>
-          <IoBuild />
+          <IoHammer />
         </button>
       </div>
       <div className="decksbrowser__deck-list">

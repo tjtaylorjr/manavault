@@ -37,9 +37,9 @@ const DeckBuilder = (props) => {
       case 'UPDATE_CARD_COUNT_IN_SIDEBOARD':
         return { ...state, deckList: state.deckList.map((el) => el.card.id === action.payload.card_id ? {...el, in_sideboard: action.payload.count } : el)};
       case 'UPDATE_COMMANDER_STATUS':
-        return { ...state, deckList: state.deckList.map((el) => el.card.id === action.payload.card_id? {...el, isCommander: action.payload.isCommander} : el)};
+        return { ...state, deckList: state.deckList.map((el) => el.card.id === action.payload.card_id? {...el, is_commander: action.payload.is_commander} : el)};
       case 'UPDATE_COMPANION_STATUS':
-        return { ...state, deckList: state.deckList.map((el) => el.card.id === action.payload.card_id ? { ...el, isCompanion: action.payload.isCompanion } : el) };
+        return { ...state, deckList: state.deckList.map((el) => el.card.id === action.payload.card_id ? { ...el, is_companion: action.payload.is_companion } : el) };
       case 'RESET_DECKLIST':
         return init(action.payload);
       default:
@@ -174,31 +174,31 @@ const DeckBuilder = (props) => {
 
     if (mounted) {
       const mainCreature01 = mainDeck.filter((card) =>
-        (parseInt(card.card.conv_mana_cost) === 0 || parseInt(card.card.conv_mana_cost) === 1) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.isCommander === false
+        (parseInt(card.card.conv_mana_cost) === 0 || parseInt(card.card.conv_mana_cost) === 1) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.is_commander === false
       )
 
       const mainCreature2 = mainDeck.filter((card) =>
-        (parseInt(card.card.conv_mana_cost) === 2) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.isCommander === false
+        (parseInt(card.card.conv_mana_cost) === 2) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.is_commander === false
       )
 
       const mainCreature3 = mainDeck.filter((card) =>
-        (parseInt(card.card.conv_mana_cost) === 3) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.isCommander === false
+        (parseInt(card.card.conv_mana_cost) === 3) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.is_commander === false
       )
 
       const mainCreature4 = mainDeck.filter((card) =>
-        (parseInt(card.card.conv_mana_cost) === 4) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.isCommander === false
+        (parseInt(card.card.conv_mana_cost) === 4) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.is_commander === false
       )
 
       const mainCreature5 = mainDeck.filter((card) =>
-        (parseInt(card.card.conv_mana_cost) === 5) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.isCommander === false
+        (parseInt(card.card.conv_mana_cost) === 5) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.is_commander === false
       )
 
       const mainCreature6Plus = mainDeck.filter((card) =>
-        (parseInt(card.card.conv_mana_cost) >= 6) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.isCommander === false
+        (parseInt(card.card.conv_mana_cost) >= 6) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.is_commander === false
       )
 
       const deckCommanders = mainDeck.filter((card) =>
-        card.isCommander === true
+        card.is_commander === true
       )
 
       const lands = mainDeck.filter((card) =>
@@ -344,27 +344,27 @@ const DeckBuilder = (props) => {
     let mounted = true;
     if (mounted) {
       const side01 = sideboard.filter((card) =>
-        (parseInt(card.card.conv_mana_cost) === 0 || parseInt(card.card.conv_mana_cost) === 1) && (!card.card.type.includes("Land")) && card.isCompanion === false
+        (parseInt(card.card.conv_mana_cost) === 0 || parseInt(card.card.conv_mana_cost) === 1) && (!card.card.type.includes("Land")) && card.is_companion === false
       )
 
       const side2 = sideboard.filter((card) =>
-        parseInt(card.card.conv_mana_cost) === 2 && card.isCompanion === false
+        parseInt(card.card.conv_mana_cost) === 2 && card.is_companion === false
       )
 
       const side3 = sideboard.filter((card) =>
-        parseInt(card.card.conv_mana_cost) === 3 && card.isCompanion === false
+        parseInt(card.card.conv_mana_cost) === 3 && card.is_companion === false
       )
 
       const side4 = sideboard.filter((card) =>
-        parseInt(card.card.conv_mana_cost) === 4 && card.isCompanion === false
+        parseInt(card.card.conv_mana_cost) === 4 && card.is_companion === false
       )
 
       const side5 = sideboard.filter((card) =>
-        parseInt(card.card.conv_mana_cost) === 5 && card.isCompanion === false
+        parseInt(card.card.conv_mana_cost) === 5 && card.is_companion === false
       )
 
       const side6Plus = sideboard.filter((card) =>
-        parseInt(card.card.conv_mana_cost) >= 6 && card.isCompanion === false
+        parseInt(card.card.conv_mana_cost) >= 6 && card.is_companion === false
       )
 
       const sideLands = sideboard.filter((card) =>
@@ -372,7 +372,7 @@ const DeckBuilder = (props) => {
       )
 
       const deckCompanion = sideboard.filter((card) =>
-        card.isCompanion === true
+        card.is_companion === true
       )
 
       // if (side01.length > 0) {
@@ -621,15 +621,6 @@ const DeckBuilder = (props) => {
     // setDropData(data.JSON());
   }
 
-  const dumbshit = {
-    width: '96%',
-    height: '1.5rem',
-    backgroundColor: '#21262D',
-    color: '#46646E',
-    fontSize: '20px',
-    paddingLeft: '10px',
-    border: '2px solid'
-  }
   const selectStyles = {
     control: (styles, { isFocused }) => ({ ...styles, backgroundColor: '#21262D', borderRadius: '5px', border: isFocused ? '2px solid #E6CD8C' : '2px solid #46646E', color: '#46646E', height: '1.9rem', minHeight: '1.9rem', fontSize: '20px', lineHeight: '-5rem', '&:hover': { borderColor: isFocused ? '2px solid #E6CD8C' : '2px solid #46646E'}}),
     singleValue: styles => ({ ...styles, color: '#46646E', top: '13px'}),

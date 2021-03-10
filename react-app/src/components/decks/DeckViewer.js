@@ -24,6 +24,7 @@ const DeckViewer = (props) => {
   const [creatures4, setCreatures4] = useState([]);
   const [creatures5, setCreatures5] = useState([]);
   const [creatures6Plus, setCreatures6Plus] = useState([]);
+  const [commanders, setCommanders] = useState([]);
   const [lands, setLands] = useState([]);
   const [spells0Or1, setSpells0Or1] = useState([]);
   const [spells2, setSpells2] = useState([]);
@@ -39,6 +40,7 @@ const DeckViewer = (props) => {
   const [sideSlot5, setSideSlot5] = useState([]);
   const [sideSlot6Plus, setSideSlot6Plus] = useState([]);
   const [sideSlotLands, setSideSlotLands] = useState([]);
+  const [sideSlotCompanion, setSideSlotCompanion] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const location = useLocation();
   const [deck, setDeck] = useState(location.state.data);
@@ -112,27 +114,31 @@ const DeckViewer = (props) => {
     let mounted = true;
     if (mainDeck.length > 0 && mounted) {
       const mainCreature01 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+        (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.is_commander === false
       )
 
       const mainCreature2 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 2) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+        (card.card.conv_mana_cost === 2) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.is_commander === false
       )
 
       const mainCreature3 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 3) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+        (card.card.conv_mana_cost === 3) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.is_commander === false
       )
 
       const mainCreature4 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 4) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+        (card.card.conv_mana_cost === 4) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.is_commander === false
       )
 
       const mainCreature5 = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost === 5) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+        (card.card.conv_mana_cost === 5) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.is_commander === false
       )
 
       const mainCreature6Plus = mainDeck.filter((card) =>
-        (card.card.conv_mana_cost >= 6) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker"))
+        (card.card.conv_mana_cost >= 6) && (card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")) && card.is_commander === false
+      )
+
+      const deckCommanders = mainDeck.filter((card) =>
+        card.is_commander === true
       )
 
       const lands = mainDeck.filter((card) =>
@@ -163,55 +169,59 @@ const DeckViewer = (props) => {
         (card.card.conv_mana_cost >= 6) && (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")
       )
 
-      if (mainCreature01.length > 0) {
+      if (mainCreature01) {
         setCreatures0Or1(mainCreature01)
       }
 
-      if (mainCreature2.length > 0) {
+      if (mainCreature2) {
         setCreatures2(mainCreature2)
       }
 
-      if (mainCreature3.length > 0) {
+      if (mainCreature3) {
         setCreatures3(mainCreature3)
       }
 
-      if (mainCreature4.length > 0) {
+      if (mainCreature4) {
         setCreatures4(mainCreature4)
       }
 
-      if (mainCreature5.length > 0) {
+      if (mainCreature5) {
         setCreatures5(mainCreature5)
       }
 
-      if (mainCreature6Plus.length > 0) {
+      if (mainCreature6Plus) {
         setCreatures6Plus(mainCreature6Plus)
       }
 
-      if (lands.length > 0) {
+      if (deckCommanders) {
+        setCommanders(deckCommanders)
+      }
+
+      if (lands) {
         setLands(lands)
       }
 
-      if (mainSpell01.length > 0) {
+      if (mainSpell01) {
         setSpells0Or1(mainSpell01)
       }
 
-      if (mainSpell2.length > 0) {
+      if (mainSpell2) {
         setSpells2(mainSpell2)
       }
 
-      if (mainSpell3.length > 0) {
+      if (mainSpell3) {
         setSpells3(mainSpell3)
       }
 
-      if (mainSpell4.length > 0) {
+      if (mainSpell4) {
         setSpells4(mainSpell4)
       }
 
-      if (mainSpell5.length > 0) {
+      if (mainSpell5) {
         setSpells5(mainSpell5)
       }
 
-      if (mainSpell6Plus.length > 0) {
+      if (mainSpell6Plus) {
         setSpells6Plus(mainSpell6Plus)
       }
     }
@@ -223,60 +233,69 @@ const DeckViewer = (props) => {
     let mounted = true;
     if (sideboard.length > 0 && mounted) {
       const side01 = sideboard.filter((card) =>
-        (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (!card.card.type.includes("Land"))
+        (card.card.conv_mana_cost === 0 || card.card.conv_mana_cost === 1) && (!card.card.type.includes("Land")) && card.is_companion === false
       )
 
       const side2 = sideboard.filter((card) =>
-        card.card.conv_mana_cost === 2
+        card.card.conv_mana_cost === 2 && card.is_companion === false
       )
 
       const side3 = sideboard.filter((card) =>
-        card.card.conv_mana_cost === 3
+        card.card.conv_mana_cost === 3 && card.is_companion === false
       )
 
       const side4 = sideboard.filter((card) =>
-        card.card.conv_mana_cost === 4
+        card.card.conv_mana_cost === 4 && card.is_companion === false
       )
 
       const side5 = sideboard.filter((card) =>
-        card.card.conv_mana_cost === 5
+        card.card.conv_mana_cost === 5 && card.is_companion === false
       )
 
       const side6Plus = sideboard.filter((card) =>
-        card.card.conv_mana_cost >= 6
+        card.card.conv_mana_cost >= 6 && card.is_companion === false
       )
 
       const sideLands = sideboard.filter((card) =>
         (card.card.conv_mana_cost === 0) && (card.card.type.includes("Land"))
       )
 
-      if (side01.length > 0) {
+      const deckCompanion = sideboard.filter((card) =>
+        card.is_companion === true
+      )
+
+      if (side01) {
         setSideSlot01(side01)
       }
 
-      if (side2.length > 0) {
+      if (side2) {
         setSideSlot2(side2)
       }
 
-      if (side3.length > 0) {
+      if (side3) {
         setSideSlot3(side3)
       }
 
-      if (side4.length > 0) {
+      if (side4) {
         setSideSlot4(side4)
       }
 
-      if (side5.length > 0) {
+      if (side5) {
         setSideSlot5(side5)
       }
 
-      if (side6Plus.length > 0) {
+      if (side6Plus) {
         setSideSlot6Plus(side6Plus)
       }
 
-      if (sideLands.length > 0) {
+      if (sideLands) {
         setSideSlotLands(sideLands)
       }
+
+      if (deckCompanion) {
+        setSideSlotCompanion(deckCompanion)
+      }
+
 
     }
     setIsLoaded(true);
@@ -345,7 +364,7 @@ const DeckViewer = (props) => {
     setImagePreview(e.target.src)
   };
 
-  const unHoverAction = () => {
+  const cancelHoverAction = () => {
     setImagePreview(cardBack);
   }
 
@@ -388,92 +407,260 @@ const DeckViewer = (props) => {
             <button className="deckviewer__edit-button" title="Edit" onClick={() => history.push("/decks/edit")} >
               <IoBuild />
             </button>
-            <button className="deckviewer__delete-deck-button" title="Reset Deck" onClick={deleteDeck}>
+            <button className="deckviewer__delete-deck-button" title="Delete Deck" onClick={deleteDeck}>
               <FaTrashAlt style={{ height: '1.15rem' }} />
             </button>
           </div>
           <div className="deckviewer__deck-container">
-            <div className="deckviewer__main-container1-title">
-              <div className="deckviewer__main-container1-title-text">Creatures & Planeswalkers</div>
-            </div>
-            <div className="deckviewer__main-container1">
-              <div className="deckviewer__creature-container01">
-                {creatures0Or1.length > 0 && creatures0Or1.map((card, i) => (
+            {curveFlag && (
+              <div className="deckviewer__curve-view">
+                <div className="deckviewer__curve-view-special-cards">
+                  <div
+                    className="deckviewer__curve-view-special-cards-commander"
+                    style={commanders.length > 0 ? { display: '' } : { display: "none" }}
+                  >
+                    <div className="deckviewer__commander-container-title">
+                      <div className="deckviewer__commander-container-title-text">Commander</div>
+                    </div>
+                    <div className="deckviewer__commander-container">
+                      {commanders.length > 0 && commanders.map((card, i) => (
+                        <DeckCardObject
+                          key={i} data={card}
+                          // num={card.in_sideboard}
+                          showImagePreview={hoverAction}
+                          dropImagePreview={cancelHoverAction}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <div
+                    className="deckviewer__curve-view-special-cards-companion"
+                    style={sideSlotCompanion.length > 0 ? { display: '' } : { display: "none" }}
+                  >
+                    <div className="deckviewer__companion-container-title">
+                      <div className="deckviewer__companion-container-title-text">Companion</div>
+                    </div>
+                    <div className="deckviewer__companion-container">{sideSlotCompanion.length > 0 && sideSlotCompanion.map((card, i) => (
+                      <DeckCardObject
+                        key={i} data={card}
+                        // num={card.in_sideboard}
+                        showImagePreview={hoverAction}
+                        dropImagePreview={cancelHoverAction}
+                      />
+                    ))}</div>
+                  </div>
+                </div>
+                <div className="deckviewer__curve-view-grid">
+                  <div className="deckviewer__main-container1-title">
+                    <div className="deckviewer__main-container1-title-text">{`Creatures & Planeswalkers (` + mainDeck.filter((card) =>
+                      card.card.type.includes("Creature") || card.card.type.includes("Planeswalker")).reduce((total, el) => total + el.in_deck, 0) + `)`}</div>
+                    <div className="deckviewer__main-container1-row-description">
+                      <p>{"(CMC 0-1)"}</p>
+                      <p>{"(CMC 2)"}</p>
+                      <p>{"(CMC 3)"}</p>
+                      <p>{"(CMC 4)"}</p>
+                      <p>{"(CMC 5)"}</p>
+                      <p>{"(CMC 6+)"}</p>
+                    </div>
+                  </div>
+                  <div className="deckviewer__main-container1">
+                    <div className="deckviewer__creature-container01">
+                      {creatures0Or1.length > 0 && creatures0Or1.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__creature-container2">
+                      {creatures2.length > 0 && creatures2.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__creature-container3">
+
+                      {creatures3.length > 0 && creatures3.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__creature-container4">
+                      {creatures4.length > 0 && creatures4.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__creature-container5">
+                      {creatures5.length > 0 && creatures5.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__creature-container6plus">
+                      {creatures6Plus.length > 0 && creatures6Plus.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                  </div>
+                  <div className="deckviewer__land-container-title">
+                    <div className="deckviewer__land-container-title-text">{`Lands (` + mainDeck.filter((card) =>
+                      card.card.type.includes("Land")).reduce((total, el) => total + el.in_deck, 0) + `)`}</div>
+                  </div>
+                  <div className="deckviewer__land-container">{lands.length > 0 && lands.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__main-container2-title">
+                    <div className="deckviewer__main-container2-title-text">{`Spells & Artifacts (` + mainDeck.filter((card) =>
+                      (card.card.type.includes("Instant") || card.card.type.includes("Sorcery") || card.card.type.includes("Enchantment") || card.card.type.includes("Artifact")) && !card.card.type.includes("Creature")).reduce((total, el) => total + el.in_deck, 0) + `)`}</div>
+                    <div className="deckviewer__main-container2-row-description">
+                      <p>{"(CMC 0-1)"}</p>
+                      <p>{"(CMC 2)"}</p>
+                      <p>{"(CMC 3)"}</p>
+                      <p>{"(CMC 4)"}</p>
+                      <p>{"(CMC 5)"}</p>
+                      <p>{"(CMC 6+)"}</p>
+                    </div>
+                  </div>
+                  <div className="deckviewer__main-container2">
+                    <div className="deckviewer__spell-container01">
+                      {spells0Or1.length > 0 && spells0Or1.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__spell-container2">
+                      {spells2.length > 0 && spells2.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__spell-container3">
+                      {spells3.length > 0 && spells3.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__spell-container4">
+                      {spells4.length > 0 && spells4.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__spell-container5">
+                      {spells5.length > 0 && spells5.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__spell-container6plus">
+                      {spells6Plus.length > 0 && spells6Plus.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                  </div>
+                  <div className="deckviewer__side-container-title">
+                    <div className="deckviewer__side-container-title-text">{`Sideboard (` + sideboard.reduce((total, el) => total + el.in_sideboard, 0) + `)`}</div>
+                    <div className="deckviewer__side-container-row-description">
+                      <p>{"(CMC 0-1)"}</p>
+                      <p>{"(CMC 2)"}</p>
+                      <p>{"(CMC 3)"}</p>
+                      <p>{"(CMC 4)"}</p>
+                      <p>{"(CMC 5)"}</p>
+                      <p>{"(CMC 6+)"}</p>
+                      <p>{"(Extra Lands)"}</p>
+                    </div>
+                  </div>
+                  <div className="deckviewer__side-container">
+                    <div className="deckviewer__sideslot01-container">
+                      {sideSlot01.length > 0 && sideSlot01.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__sideslot2-container">
+                      {sideSlot2.length > 0 && sideSlot2.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__sideslot3-container">
+                      {sideSlot3.length > 0 && sideSlot3.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__sideslot4-container">
+                      {sideSlot4.length > 0 && sideSlot4.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__sideslot5-container">
+                      {sideSlot5.length > 0 && sideSlot5.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__sideslot6plus-container">
+                      {sideSlot6Plus.length > 0 && sideSlot6Plus.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                    <div className="deckviewer__sideslotlands-container">
+                      {sideSlotLands.length > 0 && sideSlotLands.map((card, i) => (
+                        <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction} />
+                      ))}</div>
+                  </div>
+                </div>
+                {/* <div className="deckviewer__main-container1-title">
+                  <div className="deckviewer__main-container1-title-text">Creatures & Planeswalkers</div>
+                </div>
+                <div className="deckviewer__main-container1">
+                  <div className="deckviewer__creature-container01">
+                    {creatures0Or1.length > 0 && creatures0Or1.map((card, i) => (
+                      <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                    ))}</div>
+                  <div className="deckviewer__creature-container2">{creatures2.length > 0 && creatures2.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__creature-container3">{creatures3.length > 0 && creatures3.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__creature-container4">{creatures4.length > 0 && creatures4.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__creature-container5">{creatures5.length > 0 && creatures5.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__creature-container6plus">{creatures6Plus.length > 0 && creatures6Plus.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                </div>
+                <div className="deckviewer__land-container-title">
+                  <div className="deckviewer__land-container-title-text">Lands</div>
+                </div>
+                <div className="deckviewer__land-container">{lands.length > 0 && lands.map((card, i) => (
                   <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
                 ))}</div>
-              <div className="deckviewer__creature-container2">{creatures2.length > 0 && creatures2.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckviewer__creature-container3">{creatures3.length > 0 && creatures3.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckviewer__creature-container4">{creatures4.length > 0 && creatures4.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckviewer__creature-container5">{creatures5.length > 0 && creatures5.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckviewer__creature-container6plus">{creatures6Plus.length > 0 && creatures6Plus.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-            </div>
-            <div className="deckviewer__land-container-title">
-              <div className="deckviewer__land-container-title-text">Lands</div>
-            </div>
-            <div className="deckviewer__land-container">{lands.length > 0 && lands.map((card, i) => (
-              <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-            ))}</div>
-            <div className="deckviewer__main-container2-title">
-              <div className="deckviewer__main-container2-title-text">Spells & Artifacts</div>
-            </div>
-            <div className="deckviewer__main-container2">
-              <div className="deckviewer__spell-container01">
-                {spells0Or1.length > 0 && spells0Or1.map((card, i) => (
-                  <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-                ))}</div>
-              <div className="deckviewer__spell-container2">{spells2.length > 0 && spells2.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckviewer__spell-container3">{spells3.length > 0 && spells3.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckviewer__spell-container4">{spells4.length > 0 && spells4.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckviewer__spell-container5">{spells5.length > 0 && spells5.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckviewer__spell-container6plus">{spells6Plus.length > 0 && spells6Plus.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-            </div>
-            <div className="deckviewer__side-container-title">
-              <div className="deckviewer__side-container-title-text">Sideboard</div>
-            </div>
-            <div className="deckviewer__side-container">
-              <div className="deckviewer__sideslot01-container01">
-                {sideSlot01.length > 0 && sideSlot01.map((card, i) => (
+                <div className="deckviewer__main-container2-title">
+                  <div className="deckviewer__main-container2-title-text">Spells & Artifacts</div>
+                </div>
+                <div className="deckviewer__main-container2">
+                  <div className="deckviewer__spell-container01">
+                    {spells0Or1.length > 0 && spells0Or1.map((card, i) => (
+                      <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                    ))}</div>
+                  <div className="deckviewer__spell-container2">{spells2.length > 0 && spells2.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__spell-container3">{spells3.length > 0 && spells3.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__spell-container4">{spells4.length > 0 && spells4.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__spell-container5">{spells5.length > 0 && spells5.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__spell-container6plus">{spells6Plus.length > 0 && spells6Plus.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_deck} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                </div>
+                <div className="deckviewer__side-container-title">
+                  <div className="deckviewer__side-container-title-text">Sideboard</div>
+                </div>
+                <div className="deckviewer__side-container">
+                  <div className="deckviewer__sideslot01-container01">
+                    {sideSlot01.length > 0 && sideSlot01.map((card, i) => (
+                      <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                    ))}</div>
+                  <div className="deckviewer__sideslot2-container2">{sideSlot2.length > 0 && sideSlot2.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__sideslot3-container3">{sideSlot3.length > 0 && sideSlot3.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__sideslot4-container4">{sideSlot4.length > 0 && sideSlot4.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__sideslot5-container5">{sideSlot5.length > 0 && sideSlot5.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                  <div className="deckviewer__sideslot6plus-container6plus">{sideSlot6Plus.length > 0 && sideSlot6Plus.map((card, i) => (
+                    <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
+                  ))}</div>
+                </div>
+                <div className="deckviewer__sideslotlands-container">{sideSlotLands.length > 0 && sideSlotLands.map((card, i) => (
                   <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-                ))}</div>
-              <div className="deckviewer__sideslot2-container2">{sideSlot2.length > 0 && sideSlot2.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckviewer__sideslot3-container3">{sideSlot3.length > 0 && sideSlot3.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckviewer__sideslot4-container4">{sideSlot4.length > 0 && sideSlot4.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckviewer__sideslot5-container5">{sideSlot5.length > 0 && sideSlot5.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-              <div className="deckviewer__sideslot6plus-container6plus">{sideSlot6Plus.length > 0 && sideSlot6Plus.map((card, i) => (
-                <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-              ))}</div>
-            </div>
-            <div className="deckviewer__sideslotlands-container">{sideSlotLands.length > 0 && sideSlotLands.map((card, i) => (
-              <DeckCardObject key={i} data={card} num={card.in_sideboard} showImagePreview={hoverAction} dropImagePreview={unHoverAction} />
-            ))}</div>
+                ))}</div> */}
+              </div>
+            )}
           </div>
           <div className="deckviewer__card-display">
             <div className="deckviewer__card-display-image" style={{ backgroundImage: `url(${imagePreview})` }}></div>

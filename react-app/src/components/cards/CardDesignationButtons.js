@@ -77,8 +77,8 @@ const CardDesignationButtons = (props) => {
       }
 
       if(idx > -1) {
-        setCommanderIsSelected(deckList[idx].isCommander);
-        setCompanionIsSelected(deckList[idx].isCompanion);
+        setCommanderIsSelected(deckList[idx].is_commander);
+        setCompanionIsSelected(deckList[idx].is_companion);
       }
     }
 
@@ -89,11 +89,11 @@ const CardDesignationButtons = (props) => {
     let mounted = true;
 
     if(updateCommander && mounted){
-      dispatch({ type: 'UPDATE_COMMANDER_STATUS', payload: {card_id: buttonsID, isCommander: commanderIsSelected}})
+      dispatch({ type: 'UPDATE_COMMANDER_STATUS', payload: {card_id: buttonsID, is_commander: commanderIsSelected}})
     }
 
     if(updateCompanion && mounted){
-      dispatch({ type: 'UPDATE_COMPANION_STATUS', payload: {card_id: buttonsID, isCompanion: companionIsSelected}})
+      dispatch({ type: 'UPDATE_COMPANION_STATUS', payload: {card_id: buttonsID, is_companion: companionIsSelected}})
     }
 
     setUpdateCommander(false)

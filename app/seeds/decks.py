@@ -478,10 +478,10 @@ def seed_deck_cards():
     db.session.add(card50)
 
     card51 = Deck_Card(
-        deck_id=2,
+        deck_id=3,
         card_id=19400,
-        in_deck=0,
-        in_sideboard=2
+        in_deck=2,
+        in_sideboard=0
     )
     db.session.add(card51)
 
@@ -511,7 +511,7 @@ def seed_deck_cards():
 
     card55 = Deck_Card(
         deck_id=3,
-        card_id=50146,
+        card_id=54494,
         in_deck=4,
         in_sideboard=0
     )

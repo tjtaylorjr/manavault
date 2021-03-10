@@ -5,11 +5,12 @@ import Counter from '../cards/Counter.js';
 import CardDesignationButtons from '../cards/CardDesignationButtons.js';
 
 const DeckDnd = (props) => {
-  const { dropData, deckBuilderData, dispatch } = props;
+  console.log(props);
+  const { dropData, storedDeckData, dispatch, mainDeck, sideboard } = props;
   // console.log(dropData);
   const [currentCard, setCurrentCard] = useState({});
   const [cards, setCards] = useState([]);
-  // const { deckList } = deckBuilderData;
+  // const { deckList } = storedDeckData;
   // console.log(deckList)
 
   // const initialState = [];
@@ -26,7 +27,7 @@ const DeckDnd = (props) => {
   // const init = (initialState) => {
   //   return {deckList: initialState}
   // }
-  // const [deckBuilderData, dispatch] = useReducer(deckListReducer, initialState, init);
+  // const [storedDeckData, dispatch] = useReducer(deckListReducer, initialState, init);
   // const [deckList, setDeckList] = useState(mainDeck);
   useEffect(()=> {
     let mounted = true;
@@ -35,11 +36,11 @@ const DeckDnd = (props) => {
     }
     return () => mounted = false;
   },[dropData]);
-
+  console.log(currentCard)
   useEffect(() => {
-    setCards(deckBuilderData.deckList);
-    // setMainDeck(deckBuilderData.deckList);
-  }, [deckBuilderData.deckList]);
+    setCards(storedDeckData.deckList);
+    // setMainDeck(storedDeckData.deckList);
+  }, [storedDeckData.deckList]);
 
   const handleDragEnter = e => {
     e.preventDefault();
@@ -78,7 +79,7 @@ const DeckDnd = (props) => {
       //     return () => mounted = false;
       //   }
       // }
-      const existingCardIds = deckBuilderData.deckList.map(el => el.card.id)
+      const existingCardIds = storedDeckData.deckList.map(el => el.card.id)
       // console.log(existingCardIds)
       const newCard = {
         "card": {
@@ -121,17 +122,17 @@ const DeckDnd = (props) => {
       isOver: !!monitor.isOver(),
     }),
   });
-
-  const dragAndDropCards = deckBuilderData.deckList.length > 0 && cards.map((card, i) => (
+  console.log(cards);
+  const dragAndDropCards = storedDeckData.deckList.length > 0 && cards.map((card, i) => (
     <div className="dnd-card" key={i}>
       <div className="dnd-card__counter-container">
         <p>Deck</p>
-        <Counter dispatch={dispatch} deckBuilderData={deckBuilderData} deckList={cards} association={"in_deck"} card_id={card.card != undefined && card.card.id} />
+        <Counter dispatch={dispatch} storedDeckData={storedDeckData} deckList={cards} association={"in_deck"} card_id={card.card != undefined && card.card.id.toString()} />
         <p>Side</p>
-        <Counter dispatch={dispatch} deckBuilderData={deckBuilderData} deckList={cards} association={"in_sideboard"} card_id={card.card != undefined && card.card.id} />
+        <Counter dispatch={dispatch} storedDeckData={storedDeckData} deckList={cards} association={"in_sideboard"} card_id={card.card != undefined && card.card.id.toString()} />
       </div>
       <DndCardObject dragStart={dragStart} data={card} showImagePreview={props.showImagePreview} dropImagePreview={props.dropImagePreview} />
-      <CardDesignationButtons dispatch={dispatch} deckBuilderData={deckBuilderData} data={card}/>
+      <CardDesignationButtons dispatch={dispatch} storedDeckData={storedDeckData} data={card}/>
     </div>
   ))
 

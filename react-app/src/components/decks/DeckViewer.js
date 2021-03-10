@@ -360,6 +360,14 @@ const DeckViewer = (props) => {
     }
   }
 
+  const editDeck = () => {
+    const data = deck;
+    history.push({
+      pathname: `/decks/${deck.id}/edit`,
+      state: { data }
+    })
+  }
+
   const hoverAction = (e) => {
     setImagePreview(e.target.src)
   };
@@ -391,26 +399,28 @@ const DeckViewer = (props) => {
           </div>
         </div>
         <div className="deckviewer__body">
-          <div className="deckviewer__display-buttons-wrapper">
-            <button className="deckviewer__container-button" title="Build" alt="build" onClick={() => history.push("/decks/build")}>
-              <IoHammer />
-            </button>
-            {/* <button className="deckviewer__curve-button" title="Curve Display" onClick={showCurve} >
-              <RiBarChartFill />
-            </button> */}
-            {/* <button className="deckviewer__list-button" title="List Display" onClick={showList} >
-                <BiListUl />
+          {id === deck.user_id &&
+            <div className="deckviewer__display-buttons-wrapper">
+              <button className="deckviewer__container-button" title="Build" alt="build" onClick={() => history.push("/decks/build")}>
+                <IoHammer />
               </button>
-              <button className="deckviewer__stack-button" title="Stack Display" onClick={showStack} >
-                <CgStack />
+              {/* <button className="deckviewer__curve-button" title="Curve Display" onClick={showCurve} >
+                <RiBarChartFill />
               </button> */}
-            <button className="deckviewer__edit-button" title="Edit" onClick={() => history.push("/decks/edit")} >
-              <IoBuild />
-            </button>
-            <button className="deckviewer__delete-deck-button" title="Delete Deck" onClick={deleteDeck}>
-              <FaTrashAlt style={{ height: '1.15rem' }} />
-            </button>
-          </div>
+              {/* <button className="deckviewer__list-button" title="List Display" onClick={showList} >
+                  <BiListUl />
+                </button>
+                <button className="deckviewer__stack-button" title="Stack Display" onClick={showStack} >
+                  <CgStack />
+                </button> */}
+              <button className="deckviewer__edit-button" title="Edit" onClick={editDeck} >
+                <IoBuild />
+              </button>
+              <button className="deckviewer__delete-deck-button" title="Delete Deck" onClick={deleteDeck}>
+                <FaTrashAlt style={{ height: '1.15rem' }} />
+              </button>
+            </div>
+          }
           <div className="deckviewer__deck-container">
             {curveFlag && (
               <div className="deckviewer__curve-view">

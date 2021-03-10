@@ -15,12 +15,12 @@ const CardDesignationButtons = (props) => {
   // const selectionColor = isSelected ? {backgroundColor:'green'} : {backgroundColor:'red'};
 
   const {
-    deckBuilderData,
+    storedDeckData,
     dispatch,
     data
   } = props;
 
-  const {deckList} = deckBuilderData;
+  const {deckList} = storedDeckData;
   const { card } = data;
 
   const {

@@ -161,7 +161,7 @@ edit a deck
 def edit_deck(deck_id):
     deck = Deck.query.get(deck_id)
 
-    deck.user_id = request.json.get('user_id', deck.user_id)
+    # deck.user_id = request.json.get('user_id', deck.user_id)
     deck.deck_name = request.json.get('deck_name', deck.deck_name)
     deck.description = request.json.get('description', deck.description)
     deck.background_img = request.json.get('background_img', deck.background_img)

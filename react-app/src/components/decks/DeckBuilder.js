@@ -11,7 +11,7 @@ import { BiListUl } from 'react-icons/bi';
 import { AiFillSave } from 'react-icons/ai';
 import { ImSearch } from 'react-icons/im';
 import { RiInboxArchiveFill } from 'react-icons/ri';
-import { FaTrashAlt } from 'react-icons/fa';
+import { BiReset } from 'react-icons/bi';
 import DeckDnd from './DeckDnd';
 import Select from 'react-select';
 import { useDrop } from 'react-dnd';
@@ -50,7 +50,7 @@ const DeckBuilder = (props) => {
     return { deckList: initialState }
   }
 
-  const [deckBuilderData, dispatch] = useReducer(deckListReducer, initialState, init);
+  const [storedDeckData, dispatch] = useReducer(deckListReducer, initialState, init);
   const [bgImage, setBgImage] = useState("");
   const [bgImageSelect, setBgImageSelect] = useState([]);
   const [deckName, setDeckName] = useState("");
@@ -128,27 +128,27 @@ const DeckBuilder = (props) => {
   //   }
   // }, [deckChange])
 
-  console.log(deckBuilderData.deckList);
+  console.log(storedDeckData.deckList);
   useEffect(() => {
     let mounted = true;
 
-    if(deckBuilderData.deckList && mounted) {
-      const bgMenuOptions = deckBuilderData.deckList.map((card) => {
+    if(storedDeckData.deckList && mounted) {
+      const bgMenuOptions = storedDeckData.deckList.map((card) => {
         return { value: card.card.illustration.art_crop, label: card.card.name }
       })
       // console.log(bgMenuOptions)
       setBgImageSelect(bgMenuOptions);
     }
     return () => mounted = false;
-  },[deckBuilderData.deckList])
+  },[storedDeckData.deckList])
 
   useEffect(() => {
     let mounted = true;
     let main = []
     let side = []
-    // console.log(deckBuilderData);
-    if (deckBuilderData.deckList && mounted) {
-      deckBuilderData.deckList.forEach((card) => {
+    // console.log(storedDeckData);
+    if (storedDeckData.deckList && mounted) {
+      storedDeckData.deckList.forEach((card) => {
         if (card.in_deck > 0) {
           main.push(card)
         }
@@ -162,7 +162,7 @@ const DeckBuilder = (props) => {
     setMainDeck(main);
     setSideboard(side);
     return () => mounted = false;
-  }, [deckBuilderData])
+  }, [storedDeckData])
 
   useEffect(() => {
     let mounted = true;
@@ -486,7 +486,7 @@ const DeckBuilder = (props) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            cardList: deckBuilderData.deckList
+            cardList: storedDeckData.deckList
           })
         })
 
@@ -706,7 +706,7 @@ const DeckBuilder = (props) => {
               <AiFillSave />
             </button>
             <button className="deckbuilder__delete-build-button" title="Reset Deck" onClick={() => dispatch({ type: 'RESET_DECKLIST', payload: initialState })}>
-              <FaTrashAlt style={{height:'1.15rem'}} />
+              <BiReset  />
             </button>
           </div>
           <div className="deckbuilder__deck-container">
@@ -829,7 +829,7 @@ const DeckBuilder = (props) => {
                     </div>
                   </form>
                   <p>Drag cards here to add them to your deck</p>
-                  <DeckDnd deckBuilderData={deckBuilderData} dispatch={dispatch}mainDeck={mainDeck} setMainDeck={setMainDeck} dropData={dropData} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction}/>
+                  <DeckDnd storedDeckData={storedDeckData} dispatch={dispatch}mainDeck={mainDeck} setMainDeck={setMainDeck} dropData={dropData} showImagePreview={hoverAction} dropImagePreview={cancelHoverAction}/>
                 </div>
                 {/* <div className="deckbuilder__container-view-sideboard-wrapper">
                   <div className="deckbuilder__container-view-sideboard-header">Sideboard</div>

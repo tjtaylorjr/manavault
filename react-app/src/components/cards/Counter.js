@@ -20,14 +20,16 @@ export const Counter = (props) => {
     }
     return () => mounted = false;
   },[props.card_id])
-
+  // console.log(counterID)
+  console.log(deckList)
+  console.log(props.storedDeckData);
   useEffect(() => {
     let mounted = true;
 
     if(mounted) {
       let idx = -1;
       for(let i = 0; i < deckList.length; i++) {
-        if(deckList[i].card.id == card_id) {
+        if(deckList[i].card.id.toString() == card_id) {
           idx = i;
         }
       }
@@ -64,7 +66,7 @@ export const Counter = (props) => {
     // })
     // console.log(idx);
     // if(mounted) {
-    //   setCount(deckBuilderData.deckList.)
+    //   setCount(storedDeckData.deckList.)
     // }
   },[deckList])
   useEffect(() => {

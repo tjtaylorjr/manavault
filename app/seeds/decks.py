@@ -24,7 +24,7 @@ def seed_decks():
         creator_name='rcalabrese',
         deck_name="Mono White Aggression",
         description="A surprisingly strong deck",
-        background_img='https: // c1.scryfall.com/file/scryfall-cards/art_crop/front/9/8/98c85699-2daf-4e87-a3be-465d02bd64bb.jpg?1594734775',
+        background_img='https://c1.scryfall.com/file/scryfall-cards/art_crop/front/9/8/98c85699-2daf-4e87-a3be-465d02bd64bb.jpg?1594734775',
         video_url=''
     )
 

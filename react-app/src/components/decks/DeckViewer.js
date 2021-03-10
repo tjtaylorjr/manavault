@@ -345,8 +345,8 @@ const DeckViewer = (props) => {
   const deleteDeck = () => {
     if (window.confirm(`Are you sure you want to delete ${deck.deck_name}? This action is irreversible.`)) {
       (async() => {
-        const res = await fetch(`/api/decks/${deck.deck_id}/delete`, {
-          "METHOD": "DELETE",
+        const res = await fetch(`/api/decks/${deck.id}/delete`, {
+          method: "DELETE",
           "Content-Type": "application/json",
         })
 
@@ -395,9 +395,9 @@ const DeckViewer = (props) => {
             <button className="deckviewer__container-button" title="Build" alt="build" onClick={() => history.push("/decks/build")}>
               <IoHammer />
             </button>
-            <button className="deckviewer__curve-button" title="Curve Display" onClick={showCurve} >
+            {/* <button className="deckviewer__curve-button" title="Curve Display" onClick={showCurve} >
               <RiBarChartFill />
-            </button>
+            </button> */}
             {/* <button className="deckviewer__list-button" title="List Display" onClick={showList} >
                 <BiListUl />
               </button>

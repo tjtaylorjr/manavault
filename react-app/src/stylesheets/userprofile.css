@@ -4,7 +4,7 @@
   min-height: 100vh;
   display: grid;
   grid-template-columns: 50px 2fr 1fr 50px;
-  grid-template-rows: 75px 350px 715px 1fr;
+  grid-template-rows: 75px 450px 715px 1fr;
   width: 100%;
 }
 
@@ -55,7 +55,7 @@
   position: absolute;
   grid-column: 1 / span 5;
   width: 100%;
-  height: 350px;
+  height: 450px;
   background-color: #121E2F;
   border-top: 3px ridge #E6CD8C;
   border-bottom: 3px ridge #E6CD8C;
@@ -91,11 +91,13 @@
 .user-profile__user-panel-background-image {
   position: relative;
   width: 100%;
-  height: 350px;
+  height: 450px;
   opacity: 1;
   background-color: #121E2F;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position-y: 0%;
+  background-position-x: center;
   transform-origin: top left;
   transform: skewX(45deg);
   mask-image: linear-gradient(to left top, rbga(0, 0, 0, 0) 0%, #000000 100%);
@@ -107,7 +109,7 @@
   transform-origin: top left;
   transform: skewX(-45deg);
   width: 84%;
-  height: 350px;
+  height: 450px;
   left: 0;
   top: 0;
 }
@@ -116,7 +118,7 @@
   content: "";
   position: absolute;
   width: 100%;
-  height: 350px;
+  height: 450px;
   transform-origin: top left;
   transform: skewX(45deg);
   overflow: hidden;

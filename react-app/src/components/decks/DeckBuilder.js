@@ -453,7 +453,10 @@ const DeckBuilder = (props) => {
   useEffect(() => {
     let mounted = true;
     if (saveFlag && mounted) {
-      const createDeck = async() => {
+      console.log(saveFlag);
+      console.log(id, username, deckName, deckDescription, bgImage.value, videoUrl);
+      setSaveFlag(false);
+      (async() => {
         const res = await fetch('/api/decks/build', {
           method: "POST",
           headers: {
@@ -464,7 +467,7 @@ const DeckBuilder = (props) => {
             creator_name: username,
             deck_name: deckName,
             description: deckDescription,
-            background_img: bgImage,
+            background_img: bgImage.value,
             video_url: videoUrl,
           }),
         })
@@ -473,10 +476,11 @@ const DeckBuilder = (props) => {
           throw res;
         }
 
-        const result = await res.json();
-        const deck_id = result.deck.id;
+        const newDeck = await res.json();
+        console.log(newDeck)
+        const new_deck_id = newDeck.id;
 
-        const res2 = await fetch(`/api/decks/${deck_id}/cardlist`, {
+        const res2 = await fetch(`/api/decks/${new_deck_id}/cardlist`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -491,12 +495,28 @@ const DeckBuilder = (props) => {
         }
 
         const { card_list } = await res2.json();
+        if(card_list){
+          dispatch({ type: 'REPLACE_DECKLIST', payload: {cardsList: card_list }})
+        }
 
-        dispatch({ type: 'REPLACE_DECKLIST', payload: {cardsList: card_list }})
-        setSaveFlag(false);
-        mounted = false;
-        history.push(`/decks/${deck_id}`);
-      }
+        (async() => {
+          const res3 = await fetch(`/api/decks/${new_deck_id}`)
+
+          if(!res.ok) {
+            throw res3
+          }
+
+          const data = await res3.json()
+          console.log(data);
+
+          mounted = false;
+          history.push({
+            pathname: `/decks/${new_deck_id}`,
+            state: {data}
+          });
+        })()
+
+      })()
     }
   }, [saveFlag])
 

@@ -67,8 +67,8 @@ class Deck(db.Model):
     deck_name = db.Column(db.String, default = "Unnamed Deck")
     # created_at = db.Column(db.DateTime, default = datetime.now())
     # updated_at = db.Column(db.DateTime, default = datetime.now())
-    created_at = db.Column(db.DateTime(timezone=True), server_default = func.now())
-    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
     description = db.Column(db.Text, nullable = True)
     background_img = db.Column(db.String, nullable = True)
     video_url = db.Column(db.String, nullable = True)
@@ -80,10 +80,12 @@ class Deck(db.Model):
     def total_comments(self):
         return db.func.count('1')
     search_vector = db.Column(TSVectorType('deck_name', 'description', 'creator_name', weights={'deck_name': 'A', 'creator_name': 'B', 'description': 'C'}))
-    card_list = db.relationship("Deck_Card", back_populates="deck", cascade="delete, delete-orphan")
+    card_list = db.relationship("Deck_Card", back_populates="deck", cascade="all, delete-orphan")
     user = db.relationship("User", back_populates="decks", foreign_keys='Deck.user_id')
     deck_likes = db.relationship("User", secondary=likes, back_populates="user_likes")
     deck_comments = db.relationship("Comment", cascade="all, delete-orphan", backref="deck", lazy="joined")
+
+    # onupdate = func.now()
 
     def __init__(self, user_id, creator_name, deck_name, description, background_img, video_url):
         self.user_id = user_id

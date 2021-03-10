@@ -8,18 +8,15 @@ export const Counter = (props) => {
   const [downCount, setDownCount] = useState(false);
   const [counterID, setCounterID] = useState("");
   const { association, card_id, dispatch, deckList } = props;
-  // console.log(props);
+  console.log(props);
   // console.log(deckList);
   // console.log(props.card_id);
   // console.log(card_id);
   useEffect(() => {
     let mounted = true;
-    if(card_id && mounted) {
-      if (card_id.includes("deckBuilder")) {
-        setCounterID(card_id.slice(11));
-      } else {
-        setCounterID(card_id);
-      }
+    if(card_id.length > 0 && mounted) {
+      setCounterID(card_id.includes("deckBuilder") ? card_id.slice(11) : card_id)
+
     }
     return () => mounted = false;
   },[props.card_id])

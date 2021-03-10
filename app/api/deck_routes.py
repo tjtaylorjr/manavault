@@ -107,9 +107,9 @@ add/edit card list of deck
 """
 
 
-@deck_routes.route('/<int:deck_id>/cardlist', methods=["POST"])
+@deck_routes.route('/<int:new_deck_id>/cardlist', methods=["POST"])
 @login_required
-def new_cardlist(deck_id):
+def new_cardlist(new_deck_id):
     # form = DeckCardForm()
     # form['csrf_token'].data = request.cookies['csrf_token']
     # if form.validate_on_submit():
@@ -124,22 +124,29 @@ def new_cardlist(deck_id):
     #     return deckcard.to_dict()
     # print(form.errors)
     # return {'errors': validation_errors_to_error_messages(form.errors)}
-    purge_list = Deck_Card.query.filter(Deck_Card.deck_id == deck_id).delete(syncronize_session='fetch')
+    # purge_list = Deck_Card.query.filter(
+    #     Deck_Card.deck_id == '18').delete(synchronize_session=False)
+    purge_list = Deck_Card.__table__.delete().where(Deck_Card.deck_id == new_deck_id)
+    print(f'THE PURGELIST LOOKS LIKE: {purge_list}')
     db.session.execute(purge_list)
     db.session.commit()
     data = request.json
-    for card in data.cardList:
+    cardList = data["cardList"]
+    print(f'YOOOOOOOOOOOOOOOOOOOOOOOOOO THIS IS THE DATA!!!!!!: {data} AND ITS TYPE IS {type(data)}')
+    print(f'THIS IS THE CARD LIST::::::::::::::::::::::: {cardList}')
+    for card in cardList:
+        print(f'THIS IS WHAT THE CARD OBJECT LOOKS LIKE!!!!!!!!!!!!!!!!! {card}')
         deckcard = Deck_Card(
-          deck_id = deck_id,
-          card_id = card.card.card_id,
-          in_deck = card.in_deck,
-          in_sideboard = card.in_sideboard,
-          is_commander = card.is_commander,
-          is_companion = card.is_companion
+          deck_id = new_deck_id,
+          card_id = card["card"]["id"],
+          in_deck = card["in_deck"],
+          in_sideboard = card["in_sideboard"],
+          is_commander = card["is_commander"],
+          is_companion = card["is_companion"]
         )
         db.session.add(deckcard)
         db.session.commit()
-    new_decklist = Deck_Card.query.filter(Deck_Card.deck_id == deck_id).all()
+    new_decklist = Deck_Card.query.filter(Deck_Card.deck_id == new_deck_id).all()
     # return jsonify({"card_list": [deckcard.to_dict() for deckcard in new_decklist]})
     return {"card_list": [deckcard.to_dict() for deckcard in new_decklist]}
 

@@ -55,7 +55,7 @@ const DeckViewer = (props) => {
 
   const { id, username } = props.user;
 
-  // console.log(deck); // to take a peek at deck object
+  console.log(deck); // to take a peek at deck object
 
   useEffect(() => {
     if (!id) {

@@ -19,7 +19,7 @@ const DataFetch = (props) => {
     if (mounted) {
       (async () => {
         const res = await fetch('https://api.scryfall.com/cards/search?order=set&q=e%3Akhm&unique=prints', {
-          "METHOD": "GET",
+          method: "GET",
           "Content-Type": "application/json; charset=utf-8",
         });
 

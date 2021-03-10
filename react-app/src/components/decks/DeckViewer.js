@@ -3,11 +3,12 @@ import { useHistory, useLocation } from "react-router-dom";
 import CommentBox from "../social/CommentBox.js";
 import Comment from "../social/Comment.js";
 import DeckCardObject from "./DeckCardObject.js";
-import { AiFillDislike, AiFillLike, } from 'react-icons/ai';
+import { AiFillLike, } from 'react-icons/ai';
 import { IoBuild, IoHammer } from 'react-icons/io5';
 import { RiBarChartFill } from 'react-icons/ri';
 import { GiQuillInk } from 'react-icons/gi';
 import { FaTrashAlt } from 'react-icons/fa';
+
 
 import cardBack from '../../assets/images/cards/cardback.jpg';
 
@@ -16,6 +17,7 @@ const DeckViewer = (props) => {
   const [avatar, setAvatar] = useState("");
   const [comments, setComments] = useState([]);
   const [postFlag, setPostFlag] = useState(false);
+  const [likeChangeFlag, setLikeChangeFlag] = useState(false);
   // const [isVIP, setIsVIP] = useState(false);
   const [mainDeck, setMainDeck] = useState([]);
   const [creatures0Or1, setCreatures0Or1] = useState([]);
@@ -44,6 +46,8 @@ const DeckViewer = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const location = useLocation();
   const [deck, setDeck] = useState(location.state.data);
+  const userLikeStatus = deck.deck_likes.filter((like) => like.username === props.user.username);
+  const [likeToggle, setLikeToggle] = useState(userLikeStatus.length > 0 ? true : false)
   const [imagePreview, setImagePreview] = useState(cardBack);
   const [curveFlag, setCurveFlag] = useState(true);
   const [listFlag, setlistFlag] = useState(false);
@@ -54,6 +58,7 @@ const DeckViewer = (props) => {
   const hoverRef = useRef();
 
   const { id, username } = props.user;
+
 
   console.log(deck); // to take a peek at deck object
 
@@ -88,6 +93,49 @@ const DeckViewer = (props) => {
     })()
     setPostFlag(false)
   }, [deck.id, postFlag])
+console.log(props.user);
+
+  useEffect(() => {
+    if(likeChangeFlag) {
+      if(userLikeStatus.length > 0) {
+        let userIdx = -1;
+        for(let i = 0; i < deck.deck_likes.length; i++) {
+          if(deck.deck_likes[i].username === props.user.username) {
+            userIdx = i;
+          }
+        }
+        deck.deck_likes.splice(userIdx, 1);
+        setLikeToggle(false);
+      } else {
+        deck.deck_likes.push({
+          created_at: new Date(),
+          email: props.user.email,
+          id: props.user.id,
+          info: props.user.info,
+          username: props.user.username,
+        })
+        setLikeToggle(true);
+      }
+    }
+    setLikeChangeFlag(false);
+  },[likeChangeFlag])
+
+  const likeChange = async (e) => {
+    const deck_id = deck.id
+    if(props.user.id !== deck.user_id) {
+      await fetch(`/api/decks/${deck_id}/like`, {
+        method: 'PATCH',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "user_id": props.user.id,
+        })
+      })
+      setLikeChangeFlag(true);
+    }
+  }
+
 
 
   useEffect(() => {
@@ -394,6 +442,9 @@ const DeckViewer = (props) => {
               </div>
               <div className="deckviewer-header__deck-description">
                 <p>{deck.description}</p>
+              </div>
+              <div className="deckviewer-header__social-buttons-container">
+                <button className="deckviewer-header__like-button" onClick={likeChange}><AiFillLike style={{ marginBottom: "1px", border: "#E6CD8C", fill: likeToggle ? "#E6CD8C" : "#06090F"}}/></button>
               </div>
             </div>
           </div>

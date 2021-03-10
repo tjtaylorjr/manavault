@@ -200,16 +200,16 @@ def like_deck(deck_id):
     user = User.query.get(form.data['user_id'])
     deck = Deck.query.get(deck_id)
     print(deck.to_dict())
-    if form.validate_on_submit():
-        if user in deck.deck_likes:
-            deck.deck_likes.remove(user)
-            db.session.commit()
-            return deck.to_dict()
-        else:
-            deck.deck_likes.append(user)
-            db.session.commit()
-            return deck.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+    if user in deck.deck_likes:
+        deck.deck_likes.remove(user)
+        db.session.commit()
+        return deck.to_dict()
+    else:
+        deck.deck_likes.append(user)
+        db.session.commit()
+        return deck.to_dict()
+
+
 
 
 """

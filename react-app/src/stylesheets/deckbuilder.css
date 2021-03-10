@@ -146,6 +146,7 @@
   grid-column: 1;
   grid-row: 2;
   position: relative;
+  min-width: 1035px;
 }
 
 .deckbuilder__build-view {
@@ -407,13 +408,13 @@
   color: #fff;
   text-align: center;
   align-self: end;
+
 }
 
 .deckbuilder__curve-view {
   grid-column: 2;
   display: flex;
   flex-direction: row;
-  min-width: 1005px;
 }
 
 .deckbuilder__curve-view-special-cards {
@@ -786,6 +787,7 @@
   right: 0px;
   height: 1595px;
   width: 304px;
+  margin-left: 10px;
 }
 
 .deckbuilder__card-display-sticky-track {

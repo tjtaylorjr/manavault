@@ -21,6 +21,7 @@ function DecksBrowser() {
   const history = useHistory();
 
   const optionSelect = [
+    { value: "Pick a Category", label: "Pick a Category" },
     { value: "Most Discussed", label: "Most Discussed" },
     { value: "Most Liked", label: "Most Liked" },
     { value: "Most Viewed", label: "Most Viewed" },
@@ -44,15 +45,15 @@ function DecksBrowser() {
       })()
     }
     return () => mounted = false;
-  },[]);
+  }, []);
 
   useEffect(() => {
     let mounted = true;
 
     if (option.value && mounted) {
-      if(option.value === "Latest") {
+      if (option.value === "Most Discussed") {
         (async () => {
-          const res = await fetch("/api/decks/browse/latest");
+          const res = await fetch("/api/decks/browse/most-discussed");
           if (!res.ok) {
             throw res;
           }
@@ -97,12 +98,12 @@ function DecksBrowser() {
     }
 
     return () => mounted = false;
-  },[option]);
+  }, [option]);
 
   // console.log(decks);
   const deckObjects = decks.map((deck, i) => {
     return (
-        <DeckObject key={i} data={deck} />
+      <DeckObject key={i} data={deck} />
     );
   });
 
@@ -166,12 +167,12 @@ function DecksBrowser() {
                   <BsEye style={{ fill: "#FF6000", margin: "0 5px" }} />
                   {deck.total_views}
                 </div>
-                <div style={{color: "FF6000"}}>
-                  <RiHeartsLine style={{ fill: "#FF6000", margin: "0 5px"}}/>
+                <div style={{ color: "FF6000" }}>
+                  <RiHeartsLine style={{ fill: "#FF6000", margin: "0 5px" }} />
                   {deck.total_likes}
                 </div>
                 <div>
-                  <FaRegComments style={{ fill: "#FF6000", margin: "0 5px"}}/>
+                  <FaRegComments style={{ fill: "#FF6000", margin: "0 5px" }} />
                   {deck.total_comments}
                 </div>
               </div>

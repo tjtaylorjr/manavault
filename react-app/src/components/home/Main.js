@@ -26,7 +26,7 @@ const Main = (props) => {
       }
 
       const payload = await res.json();
-      console.log(payload);
+      // console.log(payload);
       if(payload) {
         setLatestDecks(payload.decks);
       }
@@ -39,7 +39,7 @@ const Main = (props) => {
       setIsLoaded(true);
     }
   },[latestDecks])
-  
+
   return (
     <>
       <div className="splash">

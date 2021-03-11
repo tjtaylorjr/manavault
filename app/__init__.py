@@ -7,7 +7,7 @@ from flask_login import LoginManager
 from sqlalchemy_searchable import make_searchable
 
 
-from .models import db, User, followers, User_Profile, Set, Card, Alternate_Cardface, Format_List, Illustration, Deck, Deck_Card, CardQuery, DeckQuery, Star_Rating, Comment
+from .models import db, User, followers, User_Profile, Set, Card, Alternate_Cardface, Format_List, Illustration, Deck, Deck_Card, CardQuery, DeckQuery, AltCardQuery, Star_Rating, Comment
 
 #  Comment, followers, Star_Rating, likes, upvotes, downvotes
 from .api import user_routes, auth_routes, card_routes, deck_routes, illustration_routes, search_routes, comment_routes

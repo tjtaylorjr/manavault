@@ -7,7 +7,7 @@ from sqlalchemy.sql import func
 from sqlalchemy_searchable import SearchQueryMixin
 from sqlalchemy_utils import aggregated
 from sqlalchemy_utils.types import TSVectorType
-from .user import User, likes
+from .user import User, likes, views
 import uuid
 
 
@@ -72,9 +72,14 @@ class Deck(db.Model):
     description = db.Column(db.Text, nullable = True)
     background_img = db.Column(db.String, nullable = True)
     video_url = db.Column(db.String, nullable = True)
+    play_format = db.Column(db.String, nullable = True)
+    color_identity = db.Column(db.String, nullable = True)
     # avg_rating = db.Column(db.Float(precision = 1), nullable = True)
     @aggregated('deck_likes', db.Column(db.Integer, default=0))
     def total_likes(self):
+        return db.func.count('1')
+    @aggregated('deck_views', db.Column(db.Integer, default=0))
+    def total_views(self):
         return db.func.count('1')
     @aggregated('deck_comments', db.Column(db.Integer, default=0))
     def total_comments(self):
@@ -84,19 +89,22 @@ class Deck(db.Model):
     user = db.relationship("User", back_populates="decks", foreign_keys='Deck.user_id')
     deck_likes = db.relationship("User", secondary=likes, back_populates="user_likes")
     deck_comments = db.relationship("Comment", cascade="all, delete-orphan", backref="deck", lazy="joined")
+    deck_views = db.relationship("User", secondary=views, back_populates="user_views")
 
     # onupdate = func.now()
 
-    def __init__(self, user_id, creator_name, deck_name, description, background_img, video_url):
+    def __init__(self, user_id, creator_name, deck_name, description, background_img, video_url, play_format, color_identity):
         self.user_id = user_id
         self.creator_name = creator_name
         self.deck_name = deck_name
         self.description = description
         self.background_img = background_img
         self.video_url = video_url
+        self.play_format = play_format,
+        self.color_identity = color_identity
 
     def __repr__(self):
-        return f'Deck({self.id}, {self.uuid}, {self.user_id}, {self.creator_name}, {self.deck_name}, {self.created_at}, {self.updated_at}, {self.description}, {self.background_img}, {self.video_url}, {self.total_likes}, {self.card_list})'
+        return f'Deck({self.id}, {self.uuid}, {self.user_id}, {self.creator_name}, {self.deck_name}, {self.created_at}, {self.updated_at}, {self.description}, {self.background_img}, {self.video_url}, {self.play_format}, {self.color_identity}, {self.total_likes}, {self.total_views}, {self.card_list})'
 
     def to_dict(self):
         return {
@@ -109,11 +117,15 @@ class Deck(db.Model):
             "updated_at": self.updated_at,
             "description": self.description,
             "background_img": self.background_img,
-            "self.video_url": self.video_url,
+            "video_url": self.video_url,
+            "play_format": self.play_format,
+            "color_identity": self.color_identity,
             "total_comments": self.total_comments,
             "total_likes": self.total_likes,
+            "total_views": self.total_views,
             "card_list": [deck_card.to_dict() for deck_card in self.card_list],
-            "deck_likes": [user.to_dict() for user in self.deck_likes]
+            "deck_likes": [user.to_dict() for user in self.deck_likes],
+            "deck_views": [user.to_dict() for user in self.deck_views],
         }
 
     def to_name_dict(self):

@@ -1,12 +1,24 @@
 from .db import db
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import backref
+from flask_sqlalchemy import BaseQuery
+from sqlalchemy_searchable import SearchQueryMixin
+from sqlalchemy_utils import aggregated
+from sqlalchemy_utils.types import TSVectorType
 import uuid
+
+
 
 def generate_uuid():
     return str(uuid.uuid4())
 
+
+class AltCardQuery(BaseQuery, SearchQueryMixin):
+    pass
+
+
 class Alternate_Cardface(db.Model):
+    query_class = AltCardQuery
     __tablename__ = 'alternate_cardfaces'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -24,6 +36,8 @@ class Alternate_Cardface(db.Model):
     keywords = db.Column(db.String(150), nullable = True)
     rules_text = db.Column(db.Text, nullable = True)
     flavor_text = db.Column(db.Text, nullable = True)
+    search_vector = db.Column(TSVectorType('name', 'type', 'keywords',
+                                           'rules_text', weights={'name': 'A', 'type': 'B', 'keywords': 'C', 'rules_text': 'D'}))
     card = db.relationship('Card', back_populates="alternate_cardfaces")
     illustration = db.relationship('Illustration', uselist=False, back_populates='alternate_cardface', cascade="delete, delete-orphan")
 

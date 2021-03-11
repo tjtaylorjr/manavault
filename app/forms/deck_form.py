@@ -27,3 +27,6 @@ class DeckCardForm(FlaskForm):
 
 class DeckLikeForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
+
+class DeckViewForm(FlaskForm):
+    user_id = IntegerField('user_id', validators=[DataRequired()])

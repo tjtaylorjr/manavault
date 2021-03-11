@@ -6,6 +6,14 @@ import CardObjectNormal from "../cards/SearchCardObject";
 import SearchCardObject from "../cards/SearchCardObject";
 import SearchBar from "./SearchBar";
 import "../../stylesheets/searchresults.css";
+import { RiHeartsLine, RiSearchEyeLine } from 'react-icons/ri';
+import { BsEye } from 'react-icons/bs';
+import { FaRegComments } from 'react-icons/fa';
+import wMana from "../../assets/images/symbols/white_mana.svg";
+import uMana from "../../assets/images/symbols/blue_mana.svg";
+import bMana from "../../assets/images/symbols/black_mana.svg";
+import rMana from "../../assets/images/symbols/red_mana.svg";
+import gMana from "../../assets/images/symbols/green_mana.svg";
 
 
 const SearchResults = (props) => {
@@ -159,10 +167,30 @@ const SearchResults = (props) => {
           </h3>
           <ul className='search-page__results-list'>
             {deckQueryResults.map((deck, i) => (
-              <div className="search-page__results-list-deck-item">
+              <div key={i} className="search-page__results-list-deck-item">
+                <div className="search-page__results-list-deck-item-mana">
+                  {deck.color_identity.indexOf('W') > -1 && <img src={wMana} alt="white mana" />}
+                  {deck.color_identity.indexOf('U') > -1 && <img src={uMana} alt="blue mana" />}
+                  {deck.color_identity.indexOf('B') > -1 && <img src={bMana} alt="black mana" />}
+                  {deck.color_identity.indexOf('R') > -1 && <img src={rMana} alt="red mana" />}
+                  {deck.color_identity.indexOf('G') > -1 && <img src={gMana} alt="green mana" />}
+                </div>
                 <h4>{deck.deck_name}</h4>
                 <p>{'by ' + deck.creator_name}</p>
-                <div></div>
+                <div className="decksbrowser__deck-list-item-indicators">
+                  <div>
+                    <BsEye style={{ fill: "#FF6000", margin: "0 5px" }} />
+                    {deck.total_views}
+                  </div>
+                  <div style={{ color: "FF6000" }}>
+                    <RiHeartsLine style={{ fill: "#FF6000", margin: "0 5px" }} />
+                    {deck.total_likes}
+                  </div>
+                  <div>
+                    <FaRegComments style={{ fill: "#FF6000", margin: "0 5px" }} />
+                    {deck.total_comments}
+                  </div>
+                </div>
                 <DeckObject key={i} data={deck} />
               </div>
             ))}

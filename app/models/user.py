@@ -51,6 +51,22 @@ likes = db.Table(
               primary_key=True)
 )
 
+views = db.Table(
+    'views',
+    db.Model.metadata,
+    db.Column(
+              'user_id',
+              db.Integer,
+              db.ForeignKey('users.id'),
+              primary_key=True),
+    db.Column(
+              'deck_id',
+              db.Integer,
+              db.ForeignKey('decks.id'),
+              primary_key=True)
+)
+
+
 followers = db.Table(
     'followers',
     db.Model.metadata,
@@ -97,6 +113,10 @@ class User(db.Model, UserMixin):
                                  "Deck",
                                  secondary=likes,
                                  back_populates="deck_likes")
+    user_views = db.relationship(
+                                 "Deck",
+                                 secondary=views,
+                                 back_populates="deck_views")
     # if you run into issues you changed upvotes, downvotes,
     # and likes into back_populates instead of backref
     user_star_ratings = db.relationship(
@@ -150,6 +170,7 @@ class User(db.Model, UserMixin):
             "user_upvotes": [comment.to_dict() for comment in self.user_upvotes],
             "user_downvotes": [comment.to_dict() for comment in self.user_downvotes],
             "user_likes": [deck.to_dict() for deck in self.user_likes],
+            "user_views": [deck.to_dict() for deck in self.user_views],
             "user_star_ratings": [star_rating.to_dict() for star_rating in self.user_star_ratings]
         }
 

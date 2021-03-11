@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, Deck, Deck_Card, User, Comment
-from app.forms import DeckForm, DeckCardForm, DeckLikeForm, CommentForm, UpvoteForm, DownvoteForm
+from app.forms import DeckForm, DeckCardForm, DeckLikeForm, DeckViewForm, CommentForm, UpvoteForm, DownvoteForm
 from .auth_routes import validation_errors_to_error_messages
 from sqlalchemy.sql.expression import func
 
@@ -42,9 +42,13 @@ def most_liked_decks():
 """
 most viewed decks
 
-will work on this later.  Needs special handling due to reacts nature as single page application
 """
 
+
+@deck_routes.route('/browse/most-viewed')
+def most_viewed_decks():
+    decks = Deck.query.order_by(Deck.total_views.desc()).limit(50).all()
+    return {"decks": [deck.to_dict() for deck in decks]}
 
 # @deck_routes.route('/browse/most-viewed')
 # def most_viewed_decks():
@@ -81,7 +85,9 @@ def new_deck():
             deck_name = form.data['deck_name'],
             description = form.data['description'],
             background_img = form.data['background_img'],
-            video_url = form.data['video_url']
+            video_url = form.data['video_url'],
+            # play_format = form.data['play_format'],
+            color_identity = form.data['color_identity']
         )
         db.session.add(deck)
         db.session.commit()
@@ -127,15 +133,11 @@ def new_cardlist(new_deck_id):
     # purge_list = Deck_Card.query.filter(
     #     Deck_Card.deck_id == '18').delete(synchronize_session=False)
     purge_list = Deck_Card.__table__.delete().where(Deck_Card.deck_id == new_deck_id)
-    print(f'THE PURGELIST LOOKS LIKE: {purge_list}')
     db.session.execute(purge_list)
     db.session.commit()
     data = request.json
     cardList = data["cardList"]
-    print(f'YOOOOOOOOOOOOOOOOOOOOOOOOOO THIS IS THE DATA!!!!!!: {data} AND ITS TYPE IS {type(data)}')
-    print(f'THIS IS THE CARD LIST::::::::::::::::::::::: {cardList}')
     for card in cardList:
-        print(f'THIS IS WHAT THE CARD OBJECT LOOKS LIKE!!!!!!!!!!!!!!!!! {card}')
         deckcard = Deck_Card(
           deck_id = new_deck_id,
           card_id = card["card"]["id"],
@@ -166,6 +168,8 @@ def edit_deck(deck_id):
     deck.description = request.json.get('description', deck.description)
     deck.background_img = request.json.get('background_img', deck.background_img)
     deck.video_url = request.json.get('video_url', deck.video_url)
+    # ('play_format', deck.play_format)
+    ('color_identity', deck.color_identity)
 
     db.session.commit()
     return deck.to_dict()
@@ -210,7 +214,26 @@ def like_deck(deck_id):
         return deck.to_dict()
 
 
+"""
+log a viewing of a deck
 
+
+"""
+
+
+@deck_routes.route('/<int:deck_id>/view', methods=['PATCH'])
+@login_required
+def viewed_deck(deck_id):
+    form = DeckViewForm()
+    user = User.query.get(form.data['user_id'])
+    deck = Deck.query.get(deck_id)
+    print(deck.to_dict())
+    if user not in deck.deck_views:
+        deck.deck_views.append(user)
+        db.session.commit()
+        return deck.to_dict()
+    else:
+        return {"message": "already viewed"}
 
 """
 get last 100 comments for deck / or post a new message

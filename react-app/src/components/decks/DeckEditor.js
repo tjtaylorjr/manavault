@@ -102,6 +102,7 @@ const DeckEditor = (props) => {
   const [dropData, setDropData] = useState("");
   const [multiface, setMultiface] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
+  const [selectedFormat, setSelectedFormat] = useState("");
 
   const history = useHistory();
   const hoverRef = useRef();
@@ -478,6 +479,15 @@ const DeckEditor = (props) => {
     if (saveFlag && mounted) {
       console.log(saveFlag);
       console.log(id, username, deckName, deckDescription, bgImage.value, videoUrl);
+      let colorKey = ['W', 'U', 'B', 'R', 'G'];
+      let colors = "";
+      storedDeckData.deckList.map((el) => {
+        for (let i = 0; i < colorKey.length; i++) {
+          if (el.card.mana_cost.indexOf(colorKey[i] > -1) && colors.indexOf(colorKey[i] < 0)) {
+            colors += `{${colorKey[i]}}`
+          }
+        }
+      })
       setSaveFlag(false);
       (async () => {
         const deck_id = location.state.data.id;
@@ -493,6 +503,8 @@ const DeckEditor = (props) => {
             description: deckDescription,
             background_img: bgImage.value,
             video_url: videoUrl,
+            play_format: selectedFormat,
+            color_identity: colors,
           }),
         })
 

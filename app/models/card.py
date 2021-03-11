@@ -62,8 +62,9 @@ class Card(db.Model):
     flavor_text = db.Column(db.Text, nullable=True)
     is_multifaced = db.Column(db.Boolean, default=False)
     # avg_rating = db.Column(db.Float(precision = 1), nullable = True)
-    search_vector = db.Column(TSVectorType('name', 'type', weights={
-                              'name': 'A', 'type': 'B', 'keywords': 'C', 'set_code': 'D', 'rarity': 'E'}))
+    search_vector = db.Column(TSVectorType('name', 'type', 'keywords',
+                              'rules_text', 'set_code', 'rarity',
+                              weights={'name': 'A', 'type': 'B', 'keywords': 'C', 'rules_text': 'D', 'set_code': 'E', 'rarity': 'F'}))
     format_list = db.relationship(
         'Format_List', uselist=False, back_populates='card', cascade="delete, delete-orphan")
     illustration = db.relationship(

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import W from "../../assets/images/symbols/white_mana.svg";
-import U from "../../assets/images/symbols/blue_mana.svg";
-import B from "../../assets/images/symbols/black_mana.svg";
-import R from "../../assets/images/symbols/red_mana.svg";
-import G from "../../assets/images/symbols/green_mana.svg";
+import wMana from "../../assets/images/symbols/white_mana.svg";
+import uMana from "../../assets/images/symbols/blue_mana.svg";
+import bMana from "../../assets/images/symbols/black_mana.svg";
+import rMana from "../../assets/images/symbols/red_mana.svg";
+import gMana from "../../assets/images/symbols/green_mana.svg";
 
 const DeckObject = ( deck ) => {
   const [deckIMG, setDeckIMG] = useState("");

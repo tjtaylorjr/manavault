@@ -84,6 +84,21 @@ const DeckViewer = (props) => {
   }, [user])
 
   useEffect(() => {
+    const deck_id = deck.id;
+    (async() => {
+      await fetch(`/api/decks/${deck_id}/view`, {
+        method: 'PATCH',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "user_id": props.user.id,
+        })
+      })
+    })()
+  },[])
+
+  useEffect(() => {
     (async () => {
       const res = await fetch(`/api/decks/${deck.id}/comments`);
       const commentList = await res.json()
@@ -444,7 +459,7 @@ console.log(props.user);
                 <p>{deck.description}</p>
               </div>
               <div className="deckviewer-header__social-buttons-container">
-                <button className="deckviewer-header__like-button" onClick={likeChange}><AiFillLike style={{ marginBottom: "1px", border: "#E6CD8C", fill: likeToggle ? "#E6CD8C" : "#06090F"}}/></button>
+                <button className="deckviewer-header__like-button" onClick={likeChange}><AiFillLike style={{ marginBottom: "1px", border: "#E6CD8C", fill: likeToggle ? "#FF6000" : "#06090F"}}/></button>
               </div>
             </div>
           </div>

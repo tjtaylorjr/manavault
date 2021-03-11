@@ -2,7 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import Select from 'react-select';
 import { useHistory } from 'react-router-dom';
 import DeckObject from './DeckObject.js';
-import { IoHammer } from 'react-icons/io5'
+import { IoHammer, IoEyeOutline } from 'react-icons/io5';
+import { RiHeartsLine, RiSearchEyeLine } from 'react-icons/ri';
+import { BsEye } from 'react-icons/bs';
+import { FaRegComments } from 'react-icons/fa';
+import wMana from "../../assets/images/symbols/white_mana.svg";
+import uMana from "../../assets/images/symbols/blue_mana.svg";
+import bMana from "../../assets/images/symbols/black_mana.svg";
+import rMana from "../../assets/images/symbols/red_mana.svg";
+import gMana from "../../assets/images/symbols/green_mana.svg";
 
 
 
@@ -16,9 +24,9 @@ function DecksBrowser() {
     { value: "Latest", label: "Latest" },
     { value: "Most Discussed", label: "Most Discussed" },
     { value: "Most Liked", label: "Most Liked" },
+    { value: "Most Viewed", label: "Most Viewed" },
   ];
 
-  // { value: "Most Viewed", label: "Most Viewed" },
 
   useEffect(() => {
     let mounted = true;
@@ -145,9 +153,29 @@ function DecksBrowser() {
         <div className="decksbrowser__deck-list-wrapper">
           {decks.map((deck, i) => (
             <div key={i} className="decksbrowser__deck-list-item">
+              <div className="decksbrowser__deck-list-item-mana">
+                {deck.color_identity.indexOf('W') > -1 && <img src={wMana} alt="white mana" />}
+                {deck.color_identity.indexOf('U') > -1 && <img src={uMana} alt="blue mana" />}
+                {deck.color_identity.indexOf('B') > -1 && <img src={bMana} alt="black mana" />}
+                {deck.color_identity.indexOf('R') > -1 && <img src={rMana} alt="red mana" />}
+                {deck.color_identity.indexOf('G') > -1 && <img src={gMana} alt="green mana" />}
+              </div>
               <h4>{deck.deck_name}</h4>
               <p>{'by ' + deck.creator_name}</p>
-              <div></div>
+              <div className="decksbrowser__deck-list-item-indicators">
+                <div>
+                  <BsEye style={{ fill: "#FF6000", margin: "0 5px" }} />
+                  {deck.total_views}
+                </div>
+                <div style={{color: "FF6000"}}>
+                  <RiHeartsLine style={{ fill: "#FF6000", margin: "0 5px"}}/>
+                  {deck.total_likes}
+                </div>
+                <div>
+                  <FaRegComments style={{ fill: "#FF6000", margin: "0 5px"}}/>
+                  {deck.total_comments}
+                </div>
+              </div>
               <DeckObject data={deck} />
             </div>
           ))}

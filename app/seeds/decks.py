@@ -7,7 +7,9 @@ def seed_decks():
         deck_name = "Gruul Adventures",
         description = "Abuse the adventure mechanic to create a draw engine that will overwhelm your opponents",
         background_img = 'https://c1.scryfall.com/file/scryfall-cards/art_crop/front/0/9/09fd2d9c-1793-4beb-a3fb-7a869f660cd4.jpg?157249029',
-        video_url = '<iframe width="560" height="315" src="https://www.youtube.com/embed/ts7pZ87yLjM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+        video_url = '<iframe width="560" height="315" src="https://www.youtube.com/embed/ts7pZ87yLjM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+        play_format = 'Standard',
+        color_identity = "{R}{G}"
     )
 
     deck2 = Deck(
@@ -16,7 +18,9 @@ def seed_decks():
         deck_name="Dimir Rogues",
         description="How can you beat me, if you have no cards?",
         background_img='https://c1.scryfall.com/file/scryfall-cards/art_crop/front/d/f/df99f770-2c39-4025-a8a2-a5890f61eb53.jpg?1594736416',
-        video_url='<iframe width="560" height="315" src="https://www.youtube.com/embed/BUzmdkeOLTw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+        video_url='<iframe width="560" height="315" src="https://www.youtube.com/embed/BUzmdkeOLTw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+        play_format='Standard',
+        color_identity="{U}{B}"
     )
 
     deck3 = Deck(
@@ -25,7 +29,9 @@ def seed_decks():
         deck_name="Mono White Aggression",
         description="A surprisingly strong deck",
         background_img='https://c1.scryfall.com/file/scryfall-cards/art_crop/front/9/8/98c85699-2daf-4e87-a3be-465d02bd64bb.jpg?1594734775',
-        video_url=''
+        video_url='',
+        play_format='Standard',
+        color_identity="{W}"
     )
 
     new_user1 = User(

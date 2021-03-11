@@ -1,8 +1,8 @@
-"""new migration due to issues with old ones
+"""new migration due to issues with sqlalchemy searchable
 
-Revision ID: c9179b7a8ad7
+Revision ID: 9b0d474f25c4
 Revises:
-Create Date: 2021-01-31 05:02:13.047242
+Create Date: 2021-03-10 14:15:31.575061
 
 """
 import os
@@ -17,7 +17,7 @@ Session = sessionmaker()
 
 # revision identifiers, used by Alembic.
 
-revision = 'c9179b7a8ad7'
+revision = '9b0d474f25c4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -76,7 +76,8 @@ def upgrade():
     sa.UniqueConstraint('uuid')
     )
     op.create_index('ix_cards_search_vector', 'cards', ['search_vector'], unique=False, postgresql_using='gin')
-    sync_trigger(conn, 'cards', 'search_vector', ['name', 'type', 'keywords', 'rules_text', 'set_code', 'rarity'])
+    sync_trigger(conn, 'cards', 'search_vector', [
+                 'name', 'type', 'keywords', 'rules_text' 'set_code', 'rarity'])
     op.create_table('decks',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('uuid', sa.String(), nullable=False),
@@ -84,12 +85,10 @@ def upgrade():
     sa.Column('creator_name', sa.String(), nullable=True),
     sa.Column('deck_name', sa.String(), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
-    sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True),
     sa.Column('description', sa.Text(), nullable=True),
     sa.Column('background_img', sa.String(), nullable=True),
     sa.Column('video_url', sa.String(), nullable=True),
-    sa.Column('play_format', sa.String(), nullable = True),
-    sa.Column('color_identity', sa.String(), nullable = True),
     sa.Column('total_likes', sa.Integer(), nullable=True),
     sa.Column('total_views', sa.Integer(), nullable=True),
     sa.Column('total_comments', sa.Integer(), nullable=True),
@@ -100,7 +99,8 @@ def upgrade():
     sa.UniqueConstraint('uuid')
     )
     op.create_index('ix_decks_search_vector', 'decks', ['search_vector'], unique=False, postgresql_using='gin')
-    sync_trigger(conn, 'decks', 'search_vector', ['deck_name', 'creator_name', 'description'])
+    sync_trigger(conn, 'decks', 'search_vector', [
+                 'deck_name', 'creator_name', 'description'])
     op.create_table('followers',
     sa.Column('followed_id', sa.Integer(), nullable=False),
     sa.Column('follower_id', sa.Integer(), nullable=False),
@@ -120,24 +120,25 @@ def upgrade():
     )
     op.create_table('alternate_cardfaces',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('base_card_uuid', sa.String(), nullable=False),
+    sa.Column('base_card_uuid', sa.Integer(), nullable=False),
     sa.Column('face_change', sa.String(length=50), nullable=False),
     sa.Column('name', sa.String(length=200), nullable=False),
     sa.Column('type', sa.String(length=100), nullable=True),
+    sa.Column('mana_cost', sa.String(length=50), nullable=True),
     sa.Column('power', sa.String(length=10), nullable=True),
     sa.Column('toughness', sa.String(length=10), nullable=True),
     sa.Column('loyalty', sa.String(length=10), nullable=True),
-    sa.Column('mana_cost', sa.String(length=50), nullable=True),
     sa.Column('keywords', sa.String(length=150), nullable=True),
     sa.Column('rules_text', sa.Text(), nullable=True),
     sa.Column('flavor_text', sa.Text(), nullable=True),
-    sa.Column('search_vector',sqlalchemy_utils.types.ts_vector.TSVectorType(), nullable=True),
+    sa.Column('search_vector', sqlalchemy_utils.types.ts_vector.TSVectorType(), nullable=True),
     sa.ForeignKeyConstraint(['base_card_uuid'], ['cards.uuid'], ),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('base_card_uuid'),
+    sa.UniqueConstraint('base_card_uuid')
     )
     op.create_index('ix_alternate_cardfaces_search_vector', 'alternate_cardfaces', ['search_vector'], unique=False, postgresql_using='gin')
-    sync_trigger(conn, 'alternate_cardfaces', 'search_vector', ['name', 'type', 'keywords', 'rules_text'])
+    sync_trigger(conn, 'alternate_cardfaces', 'search_vector',
+                 ['name', 'type', 'keywords', 'rules_text'])
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
@@ -164,32 +165,25 @@ def upgrade():
     )
     op.create_table('format_lists',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('card_uuid', sa.String(), nullable=True),
-    sa.Column('standard', sa.String(length=10), nullable=True),
-    sa.Column('future', sa.String(length=10), nullable=True),
-    sa.Column('historic', sa.String(length=10), nullable=True),
-    sa.Column('pioneer', sa.String(length=10), nullable=True),
-    sa.Column('modern', sa.String(length=10), nullable=True),
-    sa.Column('legacy', sa.String(length=10), nullable=True),
-    sa.Column('pauper', sa.String(length=10), nullable=True),
-    sa.Column('vintage', sa.String(length=10), nullable=True),
-    sa.Column('penny', sa.String(length=10), nullable=True),
-    sa.Column('commander', sa.String(length=10), nullable=True),
-    sa.Column('brawl', sa.String(length=10), nullable=True),
-    sa.Column('duel', sa.String(length=10), nullable=True),
-    sa.Column('oldschool', sa.String(length=10), nullable=True),
+    sa.Column('card_uuid', sa.String(), nullable=False),
+    sa.Column('standard', sa.String(length=10), nullable=False),
+    sa.Column('future', sa.String(length=10), nullable=False),
+    sa.Column('historic', sa.String(length=10), nullable=False),
+    sa.Column('pioneer', sa.String(length=10), nullable=False),
+    sa.Column('modern', sa.String(length=10), nullable=False),
+    sa.Column('legacy', sa.String(length=10), nullable=False),
+    sa.Column('pauper', sa.String(length=10), nullable=False),
+    sa.Column('vintage', sa.String(length=10), nullable=False),
+    sa.Column('penny', sa.String(length=10), nullable=False),
+    sa.Column('commander', sa.String(length=10), nullable=False),
+    sa.Column('brawl', sa.String(length=10), nullable=False),
+    sa.Column('duel', sa.String(length=10), nullable=False),
+    sa.Column('oldschool', sa.String(length=10), nullable=False),
     sa.ForeignKeyConstraint(['card_uuid'], ['cards.uuid'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('card_uuid')
     )
     op.create_table('likes',
-    sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('deck_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['deck_id'], ['decks.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('user_id', 'deck_id')
-    )
-    op.create_table('views',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('deck_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['deck_id'], ['decks.id'], ),
@@ -204,6 +198,13 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('user_id', 'card_id')
     )
+    op.create_table('views',
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('deck_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['deck_id'], ['decks.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('user_id', 'deck_id')
+    )
     op.create_table('downvotes',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('comment_id', sa.Integer(), nullable=False),
@@ -213,7 +214,7 @@ def upgrade():
     )
     op.create_table('illustrations',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('card_uuid', sa.String(), nullable=True),
+    sa.Column('card_uuid', sa.Integer(), nullable=True),
     sa.Column('alternate_cardface_id', sa.Integer(), nullable=True),
     sa.Column('side', sa.String(), nullable=False),
     sa.Column('artist', sa.String(), nullable=True),
@@ -226,7 +227,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['card_uuid'], ['cards.uuid'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('alternate_cardface_id'),
-    sa.UniqueConstraint('card_uuid'),
+    sa.UniqueConstraint('card_uuid')
     )
     op.create_table('upvotes',
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -244,8 +245,8 @@ def downgrade():
     op.drop_table('upvotes')
     op.drop_table('illustrations')
     op.drop_table('downvotes')
-    op.drop_table('star_ratings')
     op.drop_table('views')
+    op.drop_table('star_ratings')
     op.drop_table('likes')
     op.drop_table('format_lists')
     op.drop_table('deck_cards')

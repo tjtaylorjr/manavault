@@ -131,8 +131,20 @@
 }
 
 .search-page__results-list-deck-item {
-  height: 350px;
+  height: 380px;
 }
+
+.search-page__results-list-deck-item-mana {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.search-page__results-list-deck-item-mana > img{
+  height: 20px;
+  margin: 5px 0;
+}
+
 
 .search-page__results-list-deck-item p {
   font-size: 12px;

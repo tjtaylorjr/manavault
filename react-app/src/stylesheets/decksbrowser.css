@@ -58,13 +58,36 @@
 }
 
 .decksbrowser__deck-list-item {
-  height: 350px;
+  height: 380px;
+}
+
+.decksbrowser__deck-list-item-mana {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.decksbrowser__deck-list-item-mana > img{
+  height: 20px;
+  margin: 5px 0;
 }
 
 .decksbrowser__deck-list-item p {
   font-size: 12px;
 }
 
-.decksbrowser__deck-list-wrapper > .deck-object__displaycard {
-  background-color: pink;
+.decksbrowser__deck-list-item-indicators {
+  height: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 2px;
 }
+
+.decksbrowser__deck-list-item-indicators div {
+  margin: 0 5px;
+}
+/* .decksbrowser__deck-list-wrapper > .deck-object__displaycard {
+  background-color: pink;
+} */

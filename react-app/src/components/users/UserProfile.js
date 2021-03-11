@@ -25,9 +25,9 @@ const UserProfile = (props) => {
       setUser(user);
     })();
   }, [userId]);
-
+  console.log(props.user);
   useEffect(() => {
-    if(Object.keys(user).length === 12) {
+    if(props.user) {
       const avatar = user.info.avatar;
       const VIP = user.info.VIP;
       const decks = user.decks;

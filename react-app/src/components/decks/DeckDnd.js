@@ -5,7 +5,7 @@ import Counter from '../cards/Counter.js';
 import CardDesignationButtons from '../cards/CardDesignationButtons.js';
 
 const DeckDnd = (props) => {
-  console.log(props);
+  // console.log(props);
   const { dropData, storedDeckData, dispatch, mainDeck, sideboard } = props;
   // console.log(dropData);
   const [currentCard, setCurrentCard] = useState({});
@@ -36,7 +36,7 @@ const DeckDnd = (props) => {
     }
     return () => mounted = false;
   },[dropData]);
-  console.log(currentCard)
+  // console.log(currentCard)
   useEffect(() => {
     setCards(storedDeckData.deckList);
     // setMainDeck(storedDeckData.deckList);
@@ -122,7 +122,7 @@ const DeckDnd = (props) => {
       isOver: !!monitor.isOver(),
     }),
   });
-  console.log(cards);
+  // console.log(cards);
   const dragAndDropCards = storedDeckData.deckList.length > 0 && cards.map((card, i) => (
     <div className="dnd-card" key={i}>
       <div className="dnd-card__counter-container">

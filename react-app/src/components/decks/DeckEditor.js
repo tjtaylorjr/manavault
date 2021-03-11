@@ -25,9 +25,9 @@ import xCostUnselected from '../../assets/images/symbols/x_cost_unselected.svg';
 
 const DeckEditor = (props) => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const initialCardListData = location.state.data.card_list ? location.state.data.card_list.map((el) => {el.card.id = el.card.id.toString(); return el }) : [];
-  console.log(initialCardListData)
+  // console.log(initialCardListData)
   const initialState = initialCardListData ? [...initialCardListData] : [];
   const deckListReducer = (state, action) => {
     switch (action.type) {
@@ -127,7 +127,7 @@ const DeckEditor = (props) => {
       const bgCard = location.state.data.card_list.filter((el) =>
         el.card.illustration.art_crop === location.state.data.background_img
       )
-      console.log(bgCard[0])
+      // console.log(bgCard[0])
       setBgImage({value: location.state.data.background_img, label: bgCard[0].card.name});
       setDeckDescription(location.state.data.description)
     }
@@ -477,8 +477,8 @@ const DeckEditor = (props) => {
   useEffect(() => {
     let mounted = true;
     if (saveFlag && mounted) {
-      console.log(saveFlag);
-      console.log(id, username, deckName, deckDescription, bgImage.value, videoUrl);
+      // console.log(saveFlag);
+      // console.log(id, username, deckName, deckDescription, bgImage.value, videoUrl);
       let colorKey = ['W', 'U', 'B', 'R', 'G'];
       let colors = "";
       storedDeckData.deckList.map((el) => {
@@ -513,7 +513,7 @@ const DeckEditor = (props) => {
         }
 
         const editedDeck = await res.json();
-        console.log(editedDeck)
+        // console.log(editedDeck)
         const edited_deck_id = editedDeck.id;
 
         const res2 = await fetch(`/api/decks/${edited_deck_id}/cardlist`, {
@@ -543,7 +543,7 @@ const DeckEditor = (props) => {
           }
 
           const data = await res3.json()
-          console.log(data);
+          // console.log(data);
 
           mounted = false;
           history.push({
@@ -677,7 +677,7 @@ const DeckEditor = (props) => {
     // setDropData(data.JSON());
   }
 
-  console.log(mainDeck);
+  // console.log(mainDeck);
 
   const selectStyles = {
     control: (styles, { isFocused }) => ({ ...styles, backgroundColor: '#21262D', borderRadius: '5px', border: isFocused ? '2px solid #E6CD8C' : '2px solid #46646E', color: '#46646E', height: '1.9rem', minHeight: '1.9rem', fontSize: '20px', lineHeight: '-5rem', '&:hover': { borderColor: isFocused ? '2px solid #E6CD8C' : '2px solid #46646E' } }),

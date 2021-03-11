@@ -3,6 +3,14 @@ import { useParams, useHistory } from "react-router-dom";
 import DeckObject from "../decks/DeckObject";
 import Avatar from "./Avatar";
 import { IoHammer } from 'react-icons/io5';
+import { RiHeartsLine } from 'react-icons/ri';
+import { BsEye } from 'react-icons/bs';
+import { FaRegComments } from 'react-icons/fa';
+import wMana from "../../assets/images/symbols/white_mana.svg";
+import uMana from "../../assets/images/symbols/blue_mana.svg";
+import bMana from "../../assets/images/symbols/black_mana.svg";
+import rMana from "../../assets/images/symbols/red_mana.svg";
+import gMana from "../../assets/images/symbols/green_mana.svg";
 
 const UserProfile = (props) => {
   const [user, setUser] = useState({});
@@ -13,10 +21,10 @@ const UserProfile = (props) => {
   const { userId } = useParams();
 
   const history = useHistory();
-
+  // console.log(userId)
   useEffect(() => {
     if (!userId) {
-      return
+      return null;
     }
     setIsLoaded(false);
     (async () => {
@@ -25,9 +33,9 @@ const UserProfile = (props) => {
       setUser(user);
     })();
   }, [userId]);
-  console.log(props.user);
+  // console.log(Object.keys(user).length);
   useEffect(() => {
-    if(props.user) {
+    if(Object.keys(user).length === 13) {
       const avatar = user.info.avatar;
       const VIP = user.info.VIP;
       const decks = user.decks;
@@ -39,7 +47,7 @@ const UserProfile = (props) => {
   },[user])
 
   if (!user) {
-    return null;
+    history.push('/');
   }
 
   return isLoaded ? (
@@ -92,9 +100,30 @@ const UserProfile = (props) => {
             <div className="user-profile__body-decks-wrapper">
                 {decks.map((deck, i) => (
                   <div className="user-profile__body-decks-result">
+                    <div className="user-profile__deck-list-item-mana">
+                      {deck.color_identity.indexOf('W') > -1 && <img src={wMana} alt="white mana" />}
+                      {deck.color_identity.indexOf('U') > -1 && <img src={uMana} alt="blue mana" />}
+                      {deck.color_identity.indexOf('B') > -1 && <img src={bMana} alt="black mana" />}
+                      {deck.color_identity.indexOf('R') > -1 && <img src={rMana} alt="red mana" />}
+                      {deck.color_identity.indexOf('G') > -1 && <img src={gMana} alt="green mana" />}
+                    </div>
                     <h4>{deck.deck_name}</h4>
-                    <div></div>
-                    <DeckObject key={i} data={deck} />
+                    <p>{'by ' + deck.creator_name}</p>
+                    <div className="user-profile__deck-list-item-indicators">
+                      <div>
+                        <BsEye style={{ fill: "#FF6000", margin: "0 5px" }} />
+                        {deck.total_views}
+                      </div>
+                      <div style={{ color: "FF6000" }}>
+                        <RiHeartsLine style={{ fill: "#FF6000", margin: "0 5px" }} />
+                        {deck.total_likes}
+                      </div>
+                      <div>
+                        <FaRegComments style={{ fill: "#FF6000", margin: "0 5px" }} />
+                        {deck.total_comments}
+                      </div>
+                    </div>
+                    <DeckObject data={deck} />
                   </div>
                 ))}
             </div>

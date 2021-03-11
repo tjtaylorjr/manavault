@@ -21,7 +21,6 @@ function DecksBrowser() {
   const history = useHistory();
 
   const optionSelect = [
-    { value: "Latest", label: "Latest" },
     { value: "Most Discussed", label: "Most Discussed" },
     { value: "Most Liked", label: "Most Liked" },
     { value: "Most Viewed", label: "Most Viewed" },

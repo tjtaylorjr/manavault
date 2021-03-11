@@ -24,9 +24,9 @@ def recent_decks():
 latest decks
 """
 
-@deck_routes.route('/browse/latest')
+@deck_routes.route('/latest')
 def latest_decks():
-    decks = Deck.query.order_by(Deck.created_at.desc()).limit(50).all()
+    decks = Deck.query.order_by(Deck.created_at.desc()).limit(15).all()
     return {"decks": [deck.to_dict() for deck in decks]}
 
 

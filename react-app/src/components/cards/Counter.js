@@ -8,7 +8,7 @@ export const Counter = (props) => {
   const [downCount, setDownCount] = useState(false);
   const [counterID, setCounterID] = useState("");
   const { association, card_id, dispatch, deckList } = props;
-  console.log(props);
+  // console.log(props);
   // console.log(deckList);
   // console.log(props.card_id);
   // console.log(card_id);
@@ -21,8 +21,8 @@ export const Counter = (props) => {
     return () => mounted = false;
   },[props.card_id])
   // console.log(counterID)
-  console.log(deckList)
-  console.log(props.storedDeckData);
+  // console.log(deckList)
+  // console.log(props.storedDeckData);
   useEffect(() => {
     let mounted = true;
 

@@ -60,7 +60,7 @@ const DeckViewer = (props) => {
   const { id, username } = props.user;
 
 
-  console.log(deck); // to take a peek at deck object
+  // console.log(deck); // to take a peek at deck object
 
   useEffect(() => {
     if (!id) {
@@ -108,7 +108,7 @@ const DeckViewer = (props) => {
     })()
     setPostFlag(false)
   }, [deck.id, postFlag])
-console.log(props.user);
+// console.log(props.user);
 
   useEffect(() => {
     if(likeChangeFlag) {
@@ -452,7 +452,7 @@ console.log(props.user);
           <div className="deckviewer-header__main">
             <div className="deckviewer-header__deck-panel" >
               <div className="deckviewer-header__deck-panel-name" >{deck.deck_name.toUpperCase()}</div>
-              <div className="deckviewer-header__deck-panel-attribution" >
+              <div className="deckviewer-header__deck-panel-attribution" style={{cursor: 'pointer'}} onClick={() => history.push(`/users/${deck.user_id}`)}>
                 by {deck.creator_name}
               </div>
               <div className="deckviewer-header__deck-description">

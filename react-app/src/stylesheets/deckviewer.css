@@ -97,7 +97,7 @@
   color: #E6CD8C;
   cursor: pointer;
   outline: none;
-  
+
   /* padding-left: 5.5px; */
 }
 
@@ -180,7 +180,7 @@
   top: 0;
   transform-origin: top right;
   transform: skewX(-45deg);
-  background: linear-gradient(45deg, rgba(18, 30, 47, 1) 40%, rgba(18, 30, 47, .5) 60%, transparent 100%);
+  background: linear-gradient(45deg, rgba(18, 30, 47, 1) 40%, rgba(18, 30, 47, .5) 75%, transparent 100%);
 }
 
 .deckviewer__body {

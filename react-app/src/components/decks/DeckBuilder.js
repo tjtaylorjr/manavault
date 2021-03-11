@@ -129,7 +129,7 @@ const DeckBuilder = (props) => {
   //   }
   // }, [deckChange])
 
-  console.log(storedDeckData.deckList);
+  // console.log(storedDeckData.deckList);
   useEffect(() => {
     let mounted = true;
 
@@ -454,8 +454,8 @@ const DeckBuilder = (props) => {
   useEffect(() => {
     let mounted = true;
     if (saveFlag && mounted) {
-      console.log(saveFlag);
-      console.log(id, username, deckName, deckDescription, bgImage.value, videoUrl);
+      // console.log(saveFlag);
+      // console.log(id, username, deckName, deckDescription, bgImage.value, videoUrl);
       let colorKey = ['W','U','B','R','G'];
       let colors = "";
       storedDeckData.deckList.map((el) => {
@@ -490,7 +490,7 @@ const DeckBuilder = (props) => {
         }
 
         const newDeck = await res.json();
-        console.log(newDeck)
+        // console.log(newDeck)
         const new_deck_id = newDeck.id;
 
         const res2 = await fetch(`/api/decks/${new_deck_id}/cardlist`, {
@@ -520,7 +520,7 @@ const DeckBuilder = (props) => {
           }
 
           const data = await res3.json()
-          console.log(data);
+          // console.log(data);
 
           mounted = false;
           history.push({

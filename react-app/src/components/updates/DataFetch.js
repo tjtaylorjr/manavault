@@ -75,7 +75,7 @@ const DataFetch = (props) => {
         }
       })()
     }
-    console.log(expansionData);
+    // console.log(expansionData);
     return () => mounted = false;
   }, []);
 
@@ -134,7 +134,7 @@ const DataFetch = (props) => {
           return {object: "isEmpty"}
         }
       })
-      console.log(multifacedList);
+      // console.log(multifacedList);
       setMultifacedData(multifacedList);
     }
     return () => mounted = false;
@@ -226,8 +226,8 @@ const DataFetch = (props) => {
           return {object: "isEmpty"};
         }
       })
-      console.log(illustrationList);
-      console.log(altIllustrationList);
+      // console.log(illustrationList);
+      // console.log(altIllustrationList);
       setIllustrationData([...illustrationList, ...altIllustrationList]);
     }
     return () => mounted = false;

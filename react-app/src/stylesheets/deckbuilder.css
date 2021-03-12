@@ -282,7 +282,6 @@
 
 .deckbuilder__search-results-container {
   grid-column: 2;
-  /* height: 362px; */
   height: 590px;
   max-width: 262px;
   overflow-y: auto;
@@ -291,13 +290,10 @@
   background-color: #0D1117;
   display: flex;
   flex-wrap: wrap;
-  /* justify-self: end; */
-  /* padding-left: 33px; */
 }
 
 .build-search-card-object__image-container {
   position: relative;
-  /* padding: 2px 2px; */
 }
 
 .build-search-card-object__image-container img {
@@ -356,7 +352,6 @@
   font-size: 20px;
   padding-left: 10px;
   border: 2px solid;
-  /* outline: 1px solid #E6CD8C; */
 }
 
 .deckbuild-form-input__name-field::placeholder,
@@ -364,7 +359,6 @@
   text-align: left;
   font-size: 20px;
   color: #46646E;
-
 }
 
 .deckbuild-form-input__name-field:focus,
@@ -395,7 +389,6 @@
   font-size: 20px;
   color: #46646E;
 }
-
 
 
 .deckbuild-form-input__description-field:focus {

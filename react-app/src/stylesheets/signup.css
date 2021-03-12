@@ -8,7 +8,6 @@
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-rows: 75px 75px 450px 1fr;
-
 }
 
 .signup-page__buffer {
@@ -16,8 +15,8 @@
   grid-column: 1 / span 3;
   grid-row-start: 2;
   border-top: 1px solid #21262D;
-
 }
+
 .signup-page__main {
   grid-column-start: 2;
   grid-row-start: 3;
@@ -39,15 +38,18 @@
   font-size: 40px;
   font-weight: 700;
 }
+
 .signup-page__form div {
   display: flex;
   flex-direction: column;
   margin: 10px 0px;
 }
+
 .signup-page__form label {
   color: #BBBBBB;
   font-size: 14px;
 }
+
 .signup-page__form input {
   width: 100%;
   background-color: #21262d;
@@ -85,6 +87,7 @@
 .signup-page__main-regbox h2 {
   margin-bottom: 72px;
 }
+
 .signup-page__main-regbox a {
   text-decoration: none;
   background-color: #31B3E1;

@@ -6,9 +6,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: transparent; */
-  /* border-left: 1px solid #21262d;
-  border-right: 1px solid #21262D; */
   border-top-left-radius: 50%;
   border-top-right-radius: 50%;
   border-bottom-left-radius: 50%;
@@ -37,14 +34,7 @@
   height: 250%;
   opacity: .5;
   transform: rotate(45deg);
-  /* background: rgba(227, 252, 2, 0.13);
-  background: linear-gradient(
-    to right,
-    rgba(227, 252, 2, 0.13) 0%,
-    rgba(227, 252, 2, 0.13) 77%,
-    rgba(227, 252, 2, 0.5) 92%,
-    rgba(227, 252, 2, 0.0) 100% */
-      background: rgba(112, 13, 0, 0.13);
+  background: rgba(112, 13, 0, 0.13);
   background: linear-gradient(
     to right,
     rgba(112, 13, 0, 0.13) 0%,

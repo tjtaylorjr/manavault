@@ -1,20 +1,14 @@
 
 .splash {
-  /* min-height: 100vh; */
-  /* min-height: 100%; */
-  /* height: 100vh; */
   min-height: 840px;
   width: 100%;
-  /* bottom: 0; */
-  /* padding-bottom: 2.5rem; */
   position: relative;
   background: transparent;
   display: flex;
-  /* position: fixed; */
   justify-content: center;
   z-index: 1;
-  /* padding-bottom: 5px; */
 }
+
 .splash-search {
   grid-row: 1;
   width: 420px;
@@ -56,7 +50,6 @@
   grid-template-rows: 550px 30px 1fr 85px;
   background-color: transparent;
   z-index: 1;
-
 }
 
 .splash-background {
@@ -73,7 +66,6 @@
   background-blend-mode: multiply;
 }
 
-
 .splash-background::after {
   grid-row-start: 1;
   content: "";
@@ -88,42 +80,7 @@
   position: absolute;
   z-index: -1;
   background-color: #06090F;
-
 }
-
-/* .title__container {
-  grid-column-start: 3;
-  grid-row-start: 2;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-
-}
-
-.title {
-  font-family: "Satmin";
-  font-size: 170px;
-  background: -webkit-linear-gradient(270deg, #721b00, #f5bc2d);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px #421408;
-  max-height: 30%;
-
-} */
-
-/* .splash-statement {
-  grid-column-start: 2;
-  grid-row-start: 3;
-  font-family: "Matrixbsc";
-  font-size: 70px;
-  background: -webkit-linear-gradient(#434878, #31B3E1);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px #21243b;
-} */
-
 
 .latest-decks {
   position: relative;
@@ -161,7 +118,6 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
 }
-
 
 .main__deck-list-item {
   height: 380px;
@@ -207,9 +163,7 @@
   padding: 0 150px;
   align-items: flex-start;
   justify-content: flex-end;
-  /* background-color: #21262d; */
   padding-bottom: 5px;
-
 }
 
 .disclaimer p {

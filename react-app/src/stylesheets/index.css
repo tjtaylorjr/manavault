@@ -27,7 +27,6 @@ html, body {
   padding: 0;
   background-color: #06090F;
   font-family: Arial, Helvetica, sans-serif;
-  /* overflow-y: overlay; */
 }
 
 html {
@@ -73,8 +72,6 @@ body {
   border-radius: 11px;
   border: 1px outset #E6CD8C;
 }
-
-
 
 input[type=search]::-ms-clear {
   display: none;

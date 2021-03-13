@@ -73,7 +73,7 @@ def sign_up():
         new_user = User.query.filter(User.email == form.data['email']).first()
 
         user_profile = User_Profile(
-        user_id=new_user.id,
+            user_id=new_user.id,
         )
         db.session.add(user_profile)
         db.session.commit()

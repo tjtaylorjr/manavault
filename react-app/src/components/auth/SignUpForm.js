@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../utils/auth';
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+const SignUpForm = ({authenticated, setAuthenticated, setCurrentUser}) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,6 +14,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
       const user = await signUp(username, email, password);
       if (!user.errors) {
         setAuthenticated(true);
+        setCurrentUser(user);
       }
     }
   };

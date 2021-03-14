@@ -17,11 +17,6 @@
 
 }
 
-/* .select-bar__control {
-  background-color: #21262D;
-  text-align: center;
-} */
-
 .usersbrowser__user-list {
   display: flex;
   flex-direction: row;

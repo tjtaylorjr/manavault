@@ -10,16 +10,16 @@ search_routes = Blueprint('search', __name__)
 
 @search_routes.route('/<params>')
 def general_search(params):
-    result = User.query.filter(User.username.ilike(f"%{params}%")).limit(10).all()
+    result = User.query.filter(User.username.ilike(f"%{params}%")).limit(50).all()
     data = [user.to_dict_all() for user in result]
     user_results = {"users": data}
 
-    result2 = Deck.query.search(params, sort=True).order_by(Deck.deck_name).limit(10).all()
+    result2 = Deck.query.search(params, sort=True).order_by(Deck.deck_name).limit(50).all()
     data2 = [deck.to_dict() for deck in result2]
     deck_result = {"decks": data2}
 
     result3 = Card.query.search(params, sort=True).filter(func.LENGTH(Card.set_code) <= 3).distinct(
-    ).options(joinedload(Card.illustration)).order_by(Card.name, Card.set_code).all()
+    ).options(joinedload(Card.illustration)).order_by(Card.name, Card.set_code).limit(1000).all()
     data3 = [card.to_dict() for card in result3]
     card_results = {"cards": data3}
 

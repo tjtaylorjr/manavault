@@ -52,7 +52,7 @@ const Main = (props) => {
           {isLoaded && (
 
             <div className="latest-decks">
-              <h1 style={{fontSize: '30px'}}>Latest Decks</h1>
+              <h1 style={{fontSize: '30px', display: 'flex', justifyContent: 'center'}}>Latest Decks</h1>
               <div className="deck-container">
                 {latestDecks.map((deck, i) => (
                   <div key={i} className="main__deck-list-item">

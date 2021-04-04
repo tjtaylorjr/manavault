@@ -38,21 +38,21 @@ def seed_decks():
         username="fcooper",
         email="fcooper@email.com",
         password="password",
-        user_likes=[deck1]
+        user_likes=[deck1, deck2, deck3]
     )
 
     new_user2 = User(
         username="vlemon",
         email="vlemon@email.com",
         password="password",
-        user_likes=[deck1]
+        user_likes=[deck1, deck3]
     )
 
     new_user3 = User(
         username="tmacron",
         email="tmacron@email.com",
         password="password",
-        user_likes=[deck1]
+        user_likes=[deck1, deck3]
     )
 
     new_user4 = User(

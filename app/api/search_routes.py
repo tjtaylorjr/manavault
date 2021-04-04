@@ -44,7 +44,6 @@ def deck_build_search():
     if form.validate_on_submit():
         text = form.data['search_text']
         # print(text)
-        # return {"result": text}
 
         results = Card.query.search(text, sort=True).filter(func.LENGTH(Card.set_code) <= 3).distinct(
         ).options(joinedload(Card.illustration)).order_by(Card.name, Card.id.desc()).limit(500).all()

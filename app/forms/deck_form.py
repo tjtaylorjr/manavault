@@ -5,9 +5,6 @@ from app.models import Deck, Deck_Card, User
 
 
 class DeckForm(FlaskForm):
-    # id = IntegerField('deck_id', validators=[DataRequired()])
-    # would this even have an id slot?  It gets created in PostgreSQL.
-    # unsure why I added this here so I am leaving it commented out for now
     user_id = IntegerField('user_id', validators=[DataRequired()])
     creator_name = StringField('creator_name', validators=[DataRequired()])
     deck_name = StringField('deck_name', validators=[DataRequired()])

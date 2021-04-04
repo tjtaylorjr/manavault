@@ -92,11 +92,15 @@
   padding-bottom: 25px;
 }
 
-.latest-decks h1 {
+.latest-decks__title {
   grid-column: 2;
   grid-row: 1;
   align-items: end;
   padding-top: 60px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  color: #fff;
 }
 
 .latest-decks p,

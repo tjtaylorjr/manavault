@@ -43,7 +43,6 @@ def deck_build_search():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         text = form.data['search_text']
-        # print(text)
 
         results = Card.query.search(text, sort=True).filter(func.LENGTH(Card.set_code) <= 3).distinct(
         ).options(joinedload(Card.illustration)).order_by(Card.name, Card.id.desc()).limit(500).all()

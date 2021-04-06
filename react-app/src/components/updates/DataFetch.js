@@ -15,10 +15,11 @@ const DataFetch = (props) => {
   }
 
   useEffect(() => {
+    const newSet = 'stx';
     let mounted = true;
     if (mounted) {
       (async () => {
-        const res = await fetch('https://api.scryfall.com/cards/search?order=set&q=e%3Astx&unique=prints', {
+        const res = await fetch(`https://api.scryfall.com/cards/search?order=set&q=e%3A${newSet}&unique=prints`, {
           method: "GET",
           "Content-Type": "application/json; charset=utf-8",
         });

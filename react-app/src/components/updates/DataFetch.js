@@ -195,7 +195,7 @@ const DataFetch = (props) => {
 
           return {
             card_uuid: card.id,
-            alternate_cardface_uuid: null,
+            alternate_cardface_id: null,
             side: "Front",
             artist: mainCard.artist,
             small_image: small,
@@ -214,7 +214,7 @@ const DataFetch = (props) => {
 
           return {
             card_uuid: null,
-            alternate_cardface_uuid: null,
+            alternate_cardface_id: null,
             side: "Back",
             artist: backsideCard.artist,
             small_image: small,

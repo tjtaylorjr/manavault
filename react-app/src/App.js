@@ -114,9 +114,9 @@ function App() {
             <Route path="/search/:query" exact={true}>
               <SearchResults user={currentUser} />
             </Route>
-            /* <Route path="/update" exact={true} authenticated={authenticated}>
+            {/* <Route path="/update" exact={true} authenticated={authenticated}>
               <DataFetch user={currentUser} authenticated={authenticated} />
-            </Route> */
+            </Route> */}
             <Route path="/" exact={true} authenticated={authenticated}>
               <Main user={currentUser} authenticated={authenticated} />
             </Route>

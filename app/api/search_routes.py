@@ -19,7 +19,7 @@ def general_search(params):
     deck_result = {"decks": data2}
 
     result3 = Card.query.search(params, sort=True).filter(func.LENGTH(Card.set_code) <= 3).distinct(
-    ).options(joinedload(Card.illustration)).order_by(Card.name, Card.set_code).limit(1000).all()
+    ).options(joinedload(Card.illustration)).order_by(Card.name, Card.set_code).limit(500).all()
     data3 = [card.to_dict() for card in result3]
     card_results = {"cards": data3}
 

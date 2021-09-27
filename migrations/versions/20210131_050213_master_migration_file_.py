@@ -1,4 +1,4 @@
-"""new migration due to issues with old ones
+"""master migration file
 
 Revision ID: c9179b7a8ad7
 Revises:
